@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publier avec Claude — Alignement.com</title>
+  <meta name="description" content="Comment naît un article sur Alignement.com? Une idée, quelques mots, et une collaboration entre un humain et Claude, l'intelligence artificielle d'Anthropic.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alignement.com/journal/publier-avec-claude.html">
+  <meta property="og:title" content="Publier avec Claude — Alignement.com">
+  <meta property="og:description" content="Comment naît un article sur Alignement.com? Une idée, quelques mots, et une collaboration entre un humain et une IA.">
+  <meta property="og:image" content="https://alignement.com/logo_alignement2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(46,125,233,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(46,125,233,0.15);
+      border: 1px solid rgba(46,125,233,0.3);
+      color: #7cb9ff;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      margin: 30px 0;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 40px 0 16px;
+    }
+
+    /* Boîte dialogue */
+    .dialogue {
+      margin: 32px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .bulle {
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 88%;
+    }
+
+    .bulle.humain {
+      background: rgba(232,160,32,0.08);
+      border: 1px solid rgba(232,160,32,0.2);
+      color: rgba(237,224,196,0.8);
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+
+    .bulle.claude {
+      background: rgba(46,125,233,0.08);
+      border: 1px solid rgba(46,125,233,0.2);
+      color: rgba(232,238,248,0.75);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+
+    .bulle-auteur {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      opacity: 0.5;
+    }
+
+    .bulle.humain .bulle-auteur { color: var(--gold); }
+    .bulle.claude .bulle-auteur { color: var(--accent); }
+
+    /* Étapes */
+    .etapes-pub {
+      margin: 32px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .etape-pub {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .etape-pub-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(46,125,233,0.08);
+      flex-shrink: 0;
+    }
+
+    .etape-pub-body {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+    }
+
+    .etape-pub-titre {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .etape-pub-desc {
+      font-size: 0.9rem;
+      color: rgba(232,238,248,0.5);
+      line-height: 1.6;
+    }
+
+    .code-snippet {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(46,125,233,0.15);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: #82e0aa;
+      line-height: 1.7;
+      overflow-x: auto;
+    }
+
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 30px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+    }
+
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">Le site</span>
+      <span class="article-date">6 mars 2026</span>
+    </div>
+    <h1>Publier avec Claude</h1>
+    <p class="article-intro">
+      Comment naît un article sur Alignement.com? Une idée, quelques mots,
+      et une collaboration entre un humain et une intelligence artificielle.
+      Voici le processus de A à Z — raconté par ceux qui l'ont vécu.
+    </p>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="article-body">
+
+    <p>
+      Cet article est né d'une suggestion simple. Une phrase lancée dans la conversation,
+      et aussitôt transformée en projet. C'est exactement ça, la collaboration avec Claude —
+      <strong>une idée suffit pour que les choses prennent forme</strong>.
+    </p>
+
+    <h2>La conversation qui a tout lancé</h2>
+
+    <p>Voici comment cet article a été proposé, mot pour mot :</p>
+
+    <div class="dialogue">
+      <div class="bulle humain">
+        <div class="bulle-auteur">Gil</div>
+        Je veux écrire mon premier article en collaboration avec toi. Tu vas m'expliquer
+        comment le publier et tu vas en faire un article avec l'explication des étapes
+        de la publication par Claude, d'Anthropic à moi. Ça va être l'article.
+      </div>
+      <div class="bulle claude">
+        <div class="bulle-auteur">Claude</div>
+        J'adore l'idée — un article qui documente sa propre création, c'est très méta
+        et authentique! Voici comment ça fonctionne en 3 étapes simples...
+      </div>
+    </div>
+
+    <p>
+      En une phrase, Gil avait tout dit. L'idée était là, complète — il ne manquait
+      plus qu'à la mettre en forme. C'est ce que fait Claude : <strong>prendre
+      l'intuition de l'humain et lui donner corps</strong>, structure, style.
+    </p>
+
+    <h2>Les 3 étapes pour publier un article</h2>
+
+    <p>
+      Le système est volontairement simple. Pas de base de données, pas de WordPress,
+      pas d'interface compliquée. Juste des fichiers HTML et un petit fichier JSON
+      qui orchestre tout.
+    </p>
+
+    <div class="etapes-pub">
+      <div class="etape-pub">
+        <div class="etape-pub-num">1</div>
+        <div class="etape-pub-body">
+          <div class="etape-pub-titre">💬 Tu envoies ton idée à Claude</div>
+          <div class="etape-pub-desc">
+            Quelques mots, une direction, une émotion. Pas besoin d'un texte complet.
+            Claude s'occupe de la structure, du style et de la mise en forme.
+          </div>
+        </div>
+      </div>
+      <div class="etape-pub">
+        <div class="etape-pub-num">2</div>
+        <div class="etape-pub-body">
+          <div class="etape-pub-titre">📄 Claude génère deux fichiers</div>
+          <div class="etape-pub-desc">
+            Un fichier HTML complet pour l'article, prêt à uploader.
+            Et la ligne à ajouter dans <code style="color:#82e0aa;">articles.json</code>
+            pour qu'il apparaisse automatiquement sur l'accueil et dans le journal.
+          </div>
+        </div>
+      </div>
+      <div class="etape-pub">
+        <div class="etape-pub-num">3</div>
+        <div class="etape-pub-body">
+          <div class="etape-pub-titre">🚀 Tu uploades via cPanel</div>
+          <div class="etape-pub-desc">
+            Tu déposes le fichier HTML dans <code style="color:#82e0aa;">/journal/</code>,
+            tu ajoutes la ligne dans <code style="color:#82e0aa;">articles.json</code>,
+            et c'est en ligne instantanément. Aucune compétence technique requise.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>La ligne à ajouter dans articles.json</h2>
+
+    <p>
+      C'est la seule manipulation technique du processus. Pour chaque nouvel article,
+      tu ajoutes un bloc comme celui-ci dans le fichier <code style="color:#82e0aa;">articles.json</code> :
+    </p>
+
+    <div class="code-snippet">
+{<br>
+&nbsp;&nbsp;"id": "nom-de-l-article",<br>
+&nbsp;&nbsp;"titre": "Le titre de l'article",<br>
+&nbsp;&nbsp;"date": "2025-03-06",<br>
+&nbsp;&nbsp;"categorie": "Le site",<br>
+&nbsp;&nbsp;"resume": "Quelques lignes d'introduction...",<br>
+&nbsp;&nbsp;"fichier": "/journal/nom-de-l-article.html"<br>
+}
+    </div>
+
+    <p>
+      Ce petit bloc suffit pour que l'article apparaisse sur la page d'accueil
+      dans la section <strong>Derniers articles</strong>, et dans la liste complète
+      du journal — automatiquement, sans toucher à rien d'autre.
+    </p>
+
+    <div class="highlight-box">
+      <p>
+        « Ce n'est pas juste de la technologie. C'est une nouvelle façon de créer —
+        où l'idée humaine et la précision de la machine se rencontrent pour faire
+        quelque chose de beau. »
+      </p>
+    </div>
+
+    <h2>Ce qui rend ça unique</h2>
+
+    <p>
+      La plupart des sites sont construits avec des outils qui font tout à ta place —
+      des interfaces cliquables, des thèmes préfabriqués, des plugins. Le résultat
+      est fonctionnel, mais rarement personnel.
+    </p>
+
+    <p>
+      Ici, <strong>chaque ligne de code a été écrite pour ce site</strong>, pour ces
+      contenus, pour cette vision. Claude ne donne pas un gabarit générique —
+      il écoute, propose, ajuste, peaufine. C'est une collaboration au sens plein
+      du terme. Et le résultat, on le voit&nbsp;: un site qui ressemble à son auteur.
+    </p>
+
+    <p>
+      Et cet article lui-même en est la meilleure preuve. Il est né d'une phrase,
+      a pris forme en quelques minutes, et te voilà en train de le lire.
+      <strong>C'est ça, publier avec Claude. Que du bonheur.</strong>
+    </p>
+
+  </div>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>

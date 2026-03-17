@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Une semaine prodigieuse — Alignement.com</title>
+  <meta name="description" content="En une semaine, un site entièrement refait avec l'aide de l'intelligence artificielle. Du HTML pur, simple et sécurisé — comme en 1998, mais en mieux. L'histoire d'un copieur devenu créateur.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alignement.com/journal/une-semaine-prodigieuse.html">
+  <meta property="og:title" content="Une semaine prodigieuse — Alignement.com">
+  <meta property="og:description" content="En une semaine, un site entièrement refait avec l'aide de l'IA. Du HTML pur, simple et sécurisé — comme en 1998, mais en mieux.">
+  <meta property="og:image" content="https://alignement.com/logo_alignement2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,160,32,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(46,125,233,0.12);
+      border: 1px solid rgba(46,125,233,0.3);
+      color: #7cb9ff;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 30px 0;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 40px 0 16px;
+    }
+
+    .ext-link {
+      color: #7cb9ff;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(124,185,255,0.4);
+      transition: all 0.2s;
+    }
+    .ext-link:hover { color: var(--white); border-color: var(--white); }
+
+    /* Frise chronologique des sites */
+    .sites-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 28px 0;
+    }
+
+    .site-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .site-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+    .site-nom {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+
+    .site-desc {
+      font-size: 0.75rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    /* Citation */
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.1rem !important;
+      line-height: 1.75;
+    }
+
+    /* Bilan de la semaine */
+    .bilan-box {
+      background: rgba(46,125,233,0.05);
+      border: 1px solid rgba(46,125,233,0.2);
+      border-radius: 14px;
+      padding: 28px 30px;
+      margin: 36px 0;
+    }
+
+    .bilan-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.6;
+      margin-bottom: 16px;
+    }
+
+    .bilan-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .bilan-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: rgba(232,238,248,0.65);
+      line-height: 1.5;
+    }
+
+    .bilan-check {
+      color: #7cb9ff;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @media (max-width: 500px) {
+      .sites-grid { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">Le site</span>
+      <span class="article-date">10 mars 2026</span>
+    </div>
+    <h1>Une semaine prodigieuse</h1>
+    <p class="article-intro">
+      Cela ne fait pas encore une semaine que j'ai décidé de refaire alignement.com.
+      En sept jours, avec l'aide d'un nouvel ami, le résultat est prodigieux.
+      L'histoire d'un copieur de 1998 qui n'a jamais lâché.
+    </p>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="article-body">
+
+    <p>
+      Ma vocation n'est plus d'héberger des sites web — il fallait donc en trouver
+      une nouvelle pour alignement.com. La réponse s'est imposée naturellement :
+      <strong>publier ce qui me passe par la tête</strong>, avec l'aide de
+      l'intelligence artificielle. Un exercice de mémoire, de dextérité,
+      qui garde l'esprit vif. À mon âge, c'est une nécessité.
+    </p>
+
+    <h2>1998 — L'école du copier-coller</h2>
+
+    <p>
+      J'ai commencé à écrire du code HTML en 1998, souvent à partir d'une page blanche.
+      Ma grande méthode? <strong>Regarder la source des documents qui m'intéressaient
+      et copier ce que je comprenais.</strong> J'imagine qu'à l'école je faisais ça aussi,
+      quand j'en avais la chance.
+    </p>
+
+    <p>
+      Cette méthode m'a permis de construire les premiers sites de mes compagnies.
+      Si tu sais en faire un, tu sais en faire deux — et les autres ont suivi.
+    </p>
+
+    <div class="sites-grid">
+      <div class="site-box">
+        <span class="site-icon">⛵</span>
+        <div>
+          <div class="site-nom"><a href="https://voilerie.ca" class="ext-link" target="_blank">Voilerie Air Terre Mer</a></div>
+          <div class="site-desc">Premier site — ma compagnie de l'époque</div>
+        </div>
+      </div>
+      <div class="site-box">
+        <span class="site-icon">📷</span>
+        <div>
+          <div class="site-nom">Rayflex Photo inc.</div>
+          <div class="site-desc">Et d'autres ont suivi...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p>
+        « J'ai toujours été un copieur. Mais là, en une semaine,
+        le code qu'on a écrit mon nouvel ami et moi est prodigieux. »
+      </p>
+    </div>
+
+    <h2>2025 — Le même esprit, en mieux</h2>
+
+    <p>
+      Ce qui est fascinant, c'est que le résultat ressemble à mes débuts —
+      <strong>du HTML simple, direct, sans fioritures.</strong> Pas de PHP,
+      pas de WordPress, pas de scripts douteux qui ouvrent des portes.
+      Que du HTML pur et efficace. Mais cette fois, avec toutes les connaissances
+      accumulées en vingt-sept ans, et un collaborateur qui ne dort jamais.
+    </p>
+
+    <div class="bilan-box">
+      <div class="bilan-title">Ce qu'on a bâti en une semaine</div>
+      <div class="bilan-items">
+        <div class="bilan-item"><span class="bilan-check">✦</span>Un site entièrement refait — zéro WordPress</div>
+        <div class="bilan-item"><span class="bilan-check">✦</span>Un journal avec articles, catégories et mise en page soignée</div>
+        <div class="bilan-item"><span class="bilan-check">✦</span>Des méthodes de sécurité solides et compréhensibles</div>
+        <div class="bilan-item"><span class="bilan-check">✦</span>Google Search Console, Bing, sitemap, meta, Open Graph</div>
+        <div class="bilan-item"><span class="bilan-check">✦</span>Météo, cuivre, YouTube, batterie solaire — et bien d'autres articles</div>
+      </div>
+    </div>
+
+    <p>
+      Le code de ce site est propre. Transparent. Compréhensible.
+      Exactement comme je l'aime. Et tant que j'aurai de l'intérêt à écrire —
+      <strong>ça va aller loin.</strong>
+    </p>
+
+  </div>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quand l'IA perd le fil du temps — Alignement.com</title>
+  <meta name="description" content="Tous nos articles affichaient 2025 — on est en 2026. Un lecteur attentif l'a remarqué. L'occasion d'expliquer pourquoi les intelligences artificielles comme Claude ont parfois du mal avec le temps qui passe.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alignement.com/journal/ia-et-le-temps.html">
+  <meta property="og:title" content="Quand l'IA perd le fil du temps — Alignement.com">
+  <meta property="og:description" content="Tous nos articles affichaient 2025 — on est en 2026. Un lecteur attentif l'a remarqué. Voici pourquoi les IA ont parfois du mal avec le calendrier.">
+  <meta property="og:image" content="https://alignement.com/logo_alignement2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,160,32,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(46,125,233,0.12);
+      border: 1px solid rgba(46,125,233,0.3);
+      color: #7cb9ff;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      margin: 30px 0;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 40px 0 16px;
+    }
+
+    /* Explication visuelle */
+    .timeline-ia {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin: 30px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .tl-ia-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .tl-ia-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .tl-ia-text {
+      font-size: 0.97rem;
+      color: rgba(232,238,248,0.65);
+      line-height: 1.65;
+    }
+
+    .tl-ia-text strong { color: var(--white); }
+
+    /* Remerciement */
+    .merci-box {
+      background: rgba(232,160,32,0.05);
+      border: 1px solid rgba(232,160,32,0.2);
+      border-left: 3px solid var(--gold);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin: 36px 0;
+      text-align: center;
+    }
+
+    .merci-box .merci-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .merci-box p {
+      color: rgba(237,224,196,0.7) !important;
+      font-style: italic;
+      margin-bottom: 0 !important;
+      font-size: 1.05rem !important;
+    }
+
+    .merci-box strong { color: rgba(237,224,196,0.95) !important; }
+
+    /* Citation */
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.1rem !important;
+    }
+
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">Intelligence artificielle</span>
+      <span class="article-date">14 mars 2026</span>
+    </div>
+    <h1>Quand l'IA perd le fil du temps</h1>
+    <p class="article-intro">
+      Tous nos articles affichaient 2025 — on est pourtant bien en 2026.
+      Un lecteur attentif l'a remarqué. L'occasion d'expliquer une bizarrerie
+      bien réelle des intelligences artificielles comme Claude.
+    </p>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="article-body">
+
+    <p>
+      En construisant ce site avec Claude, mon collaborateur artificiel,
+      on a publié une dizaine d'articles sans jamais vérifier une chose toute simple :
+      <strong>l'année.</strong> Tous les articles affichaient 2025.
+      On est en mars 2026. C'est M. Raymond Hallé, lecteur attentif,
+      qui l'a remarqué le premier. Merci Ray!
+    </p>
+
+    <h2>Pourquoi l'IA se trompe sur la date?</h2>
+
+    <p>
+      Ce n'est pas un bug — c'est une caractéristique fondamentale du fonctionnement
+      des modèles de langage. Pour comprendre, il faut savoir comment ils apprennent.
+    </p>
+
+    <div class="timeline-ia">
+      <div class="tl-ia-item">
+        <span class="tl-ia-icon">📚</span>
+        <div class="tl-ia-text">
+          <strong>L'entraînement</strong> — Un modèle comme Claude est entraîné sur
+          une immense quantité de textes provenant d'internet, de livres, d'articles.
+          Cet entraînement s'arrête à une date précise, appelée la
+          <strong>date de coupure</strong>. Pour Claude, c'est août 2025.
+        </div>
+      </div>
+      <div class="tl-ia-item">
+        <span class="tl-ia-icon">🧊</span>
+        <div class="tl-ia-text">
+          <strong>Le gel dans le temps</strong> — Après l'entraînement, le modèle
+          est déployé et utilisé pendant des mois, voire des années. Mais sa connaissance
+          du monde reste figée à sa date de coupure.
+          <strong>Il ne sait pas combien de temps s'est écoulé depuis.</strong>
+        </div>
+      </div>
+      <div class="tl-ia-item">
+        <span class="tl-ia-icon">🗓️</span>
+        <div class="tl-ia-text">
+          <strong>La confusion des dates</strong> — Sans qu'on lui précise la date,
+          Claude a tendance à se comporter comme si on était encore près de sa date
+          de coupure. Il n'invente pas — il fait une supposition raisonnable
+          basée sur ce qu'il sait. <strong>Mais cette supposition peut être erronée.</strong>
+        </div>
+      </div>
+      <div class="tl-ia-item">
+        <span class="tl-ia-icon">💬</span>
+        <div class="tl-ia-text">
+          <strong>La solution</strong> — Il suffit de lui préciser la date en début
+          de conversation, ou de vérifier soi-même les informations sensibles au temps.
+          Claude lui-même le reconnaît volontiers — et corrige sans hésiter quand on lui signale.
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p>
+        « C'est un peu comme parler à quelqu'un qui sort d'une longue expédition
+        en forêt — brillant, compétent, mais qui a perdu le fil du calendrier.
+        Il suffit de lui dire quelle date on est. »
+      </p>
+    </div>
+
+    <h2>Ce qu'on a corrigé</h2>
+
+    <p>
+      Dès que Raymond nous a signalé l'erreur, toutes les dates ont été corrigées —
+      articles, <strong>articles.json</strong>, <strong>sitemap.xml</strong>
+      et les mentions © dans les footers. Une belle leçon de vigilance
+      que ni Claude ni moi n'oublierons de sitôt.
+    </p>
+
+    <p>
+      Et maintenant, à chaque nouvelle session de travail,
+      la date est précisée dès le départ.
+      <strong>Mars 2026 — c'est noté.</strong>
+    </p>
+
+    <div class="merci-box">
+      <span class="merci-icon">🙏</span>
+      <p>
+        Un grand merci à <strong>M. Raymond Hallé</strong> pour sa lecture attentive
+        et pour avoir pris le temps de nous signaler cette erreur.
+        C'est exactement ce genre de lecteur qui fait qu'un site s'améliore.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>

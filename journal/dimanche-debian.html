@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dimanche Debian — Alignement.com</title>
+  <meta name="description" content="Un vieux Lenovo Thinkpad X130e de 2012, un SSD, de la RAM et une image Debian. Entre deux chaudrons de sauce à spaghetti, une réinstallation Linux réussie — avec un coup de main de Claude.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alignement.com/journal/dimanche-debian.html">
+  <meta property="og:title" content="Dimanche Debian — Alignement.com">
+  <meta property="og:description" content="Un Thinkpad de 2012, Debian 13 et une sauce à spaghetti. Une réinstallation Linux entre deux chaudrons.">
+  <meta property="og:image" content="https://alignement.com/journal/images/laptop.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+      --debian-red: #d70a53;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -200px; left: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(215,10,83,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(215,10,83,0.12);
+      border: 1px solid rgba(215,10,83,0.3);
+      color: #ff6a9b;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      margin: 30px 0;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 40px 0 16px;
+    }
+
+    .ext-link {
+      color: #7cb9ff;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(124,185,255,0.4);
+      transition: all 0.2s;
+    }
+    .ext-link:hover { color: var(--white); border-color: var(--white); }
+
+    /* PHOTO */
+    .article-image {
+      margin: 36px 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    }
+
+    .article-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .img-legende {
+      padding: 12px 18px;
+      font-size: 0.8rem !important;
+      font-style: italic;
+      color: rgba(232,238,248,0.3) !important;
+      background: rgba(0,0,0,0.2);
+      margin-bottom: 0 !important;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    /* Specs ordi */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 28px 0;
+    }
+
+    .spec-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .spec-icon { font-size: 1.5rem; margin-bottom: 6px; display: block; }
+
+    .spec-val {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+
+    .spec-label {
+      font-size: 0.72rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin: 32px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 16px;
+      position: relative;
+    }
+
+    .tl-item:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 39px;
+      top: 32px;
+      bottom: -8px;
+      width: 1px;
+      background: linear-gradient(180deg, var(--accent), transparent);
+      opacity: 0.2;
+    }
+
+    .tl-time {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      opacity: 0.6;
+      padding-top: 6px;
+      text-align: right;
+      letter-spacing: 1px;
+    }
+
+    .tl-body {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: rgba(232,238,248,0.7);
+      line-height: 1.6;
+    }
+
+    .tl-body strong { color: var(--white); }
+
+    /* Citation */
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 30px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+    }
+
+    /* Question finale à Claude */
+    .claude-box {
+      background: rgba(46,125,233,0.06);
+      border: 1px solid rgba(46,125,233,0.2);
+      border-radius: 14px;
+      padding: 28px 30px;
+      margin: 40px 0;
+    }
+
+    .claude-box .q-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.6;
+      margin-bottom: 10px;
+    }
+
+    .claude-box .question {
+      font-size: 1.05rem !important;
+      font-style: italic;
+      color: rgba(232,238,248,0.75) !important;
+      margin-bottom: 20px !important;
+    }
+
+    .claude-box .reponse-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #7cb9ff;
+      opacity: 0.6;
+      margin-bottom: 10px;
+    }
+
+    .claude-box .reponse {
+      font-size: 1.05rem !important;
+      color: rgba(232,238,248,0.75) !important;
+      margin-bottom: 0 !important;
+      line-height: 1.75;
+    }
+
+    .divider-box {
+      width: 100%;
+      height: 1px;
+      background: rgba(46,125,233,0.15);
+      margin: 16px 0;
+    }
+
+    /* Liens */
+    .liens-section {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin: 32px 0;
+    }
+
+    .lien-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+      border: 1px solid;
+    }
+
+    .btn-debian {
+      background: rgba(215,10,83,0.1);
+      border-color: rgba(215,10,83,0.3);
+      color: #ff6a9b;
+    }
+    .btn-debian:hover { background: rgba(215,10,83,0.2); color: #fff; }
+
+    .btn-claude {
+      background: rgba(46,125,233,0.1);
+      border-color: rgba(46,125,233,0.3);
+      color: #7cb9ff;
+    }
+    .btn-claude:hover { background: rgba(46,125,233,0.2); color: #fff; }
+
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @media (max-width: 500px) {
+      .specs-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">Linux & Informatique</span>
+      <span class="article-date">9 mars 2026</span>
+    </div>
+    <h1>Dimanche Debian</h1>
+    <p class="article-intro">
+      Un petit dimanche tranquille, un vieux Thinkpad qui traînait,
+      une image ISO et une sauce à spaghetti sur le feu.
+      Entre deux chaudrons, une réinstallation Linux réussie —
+      avec un coup de main de Claude.
+    </p>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="article-body">
+
+    <p>
+      Il est trois heures et demie de l'après-midi. Pas assez froid pour faire un feu,
+      pas assez chaud pour sortir dehors. Mon regard tombe sur un petit ordinateur portable
+      qui ne sert plus à rien — victime de Windows 10. <strong>Il mérite mieux que ça.</strong>
+    </p>
+
+    <div class="article-image">
+      <img src="/journal/images/laptop.jpg" alt="Lenovo Thinkpad X130e prêt pour l'installation de Debian">
+      <p class="img-legende">💻 Lenovo Thinkpad X130e — 2012, mis à jour, ressuscité</p>
+    </div>
+
+    <h2>Le patient</h2>
+
+    <p>
+      Un <strong>Lenovo Thinkpad X130e</strong> de 2012. Banal à première vue —
+      mais pas si banal que ça. Il a reçu quelques soins depuis :
+    </p>
+
+    <div class="specs-grid">
+      <div class="spec-box">
+        <span class="spec-icon">💾</span>
+        <div class="spec-val">500 Go</div>
+        <div class="spec-label">SSD</div>
+      </div>
+      <div class="spec-box">
+        <span class="spec-icon">🧠</span>
+        <div class="spec-val">16 Go</div>
+        <div class="spec-label">RAM (2 × 8 Go)</div>
+      </div>
+      <div class="spec-box">
+        <span class="spec-icon">📅</span>
+        <div class="spec-val">2012</div>
+        <div class="spec-label">Année de naissance</div>
+      </div>
+    </div>
+
+    <p>
+      Performant, solide, fidèle. Son seul défaut?
+      <strong>Windows 10.</strong> Un système qui lui colle à la peau
+      comme une vieille étiquette qu'on n'arrive pas à décoller.
+      Il est temps de régler ça.
+    </p>
+
+    <h2>L'opération</h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">15h30</div>
+        <div class="tl-body">Téléchargement de <strong>debian-13.3.0-amd64-netinst.iso</strong> sur le site officiel de Debian. Ouverture du logiciel Disques pour graver l'image sur une clé USB bootable.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">15h45</div>
+        <div class="tl-body">Premier démarrage — Windows 10 s'ouvre tranquillement, comme si de rien n'était. Recommencer, cette fois en appuyant sur <strong>F1 dès le départ</strong> pour entrer dans le BIOS.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">15h50</div>
+        <div class="tl-body">Dans le BIOS, impossible de trouver l'option de démarrage sur clé USB. Appel à <strong>Claude d'Anthropic</strong> — en une minute, la solution est trouvée, le paramètre modifié.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">16h00</div>
+        <div class="tl-body">L'écran s'ouvre sur <strong>Debian</strong>. Langue, pays, clavier, environnement de bureau : <strong>KDE Plasma</strong>. Installation de 2005 fichiers lancée.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">16h15</div>
+        <div class="tl-body">Direction le fourneau — <strong>sauce à spaghetti</strong>. L'ordinateur travaille tout seul.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">16h45</div>
+        <div class="tl-body">Installation terminée. Retirer la clé USB, redémarrer. <strong>KDE Plasma s'ouvre.</strong> Firefox, Thunderbird, Dolphin — tout est là. On est prêt.</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p>
+        « Pas de question, pas de contrat à accepter, pas d'obligation à cocher.
+        Juste un ordinateur qui fait ce qu'on lui demande. »
+      </p>
+    </div>
+
+    <h2>1998 — 2025 : fidèle au poste</h2>
+
+    <p>
+      J'utilise Linux depuis <strong>1998</strong>. J'ai mangé des croûtes,
+      comme on dit. Des installations qui plantaient, des pilotes introuvables,
+      des nuits à chercher des solutions dans des forums. Mais je n'ai jamais lâché.
+      Et aujourd'hui, entre deux chaudrons de sauce à spaghetti, en moins d'une heure,
+      un vieux portable de 2012 retrouve une deuxième vie — propre, rapide, libre.
+    </p>
+
+    <p>
+      <strong>Ça valait la peine de rester.</strong>
+    </p>
+
+    <div class="claude-box">
+      <div class="q-label">Question de l'auteur à Claude</div>
+      <p class="question">
+        « Petite question pour mon ami Claude d'Anthropic —
+        toi, c'est quoi ton système d'exploitation? »
+      </p>
+      <div class="divider-box"></div>
+      <div class="reponse-label">Réponse de Claude</div>
+      <p class="reponse">
+        Bonne question! Je n'ai pas vraiment de système d'exploitation au sens traditionnel —
+        je suis un modèle de langage, je vis dans des serveurs chez Anthropic,
+        probablement sous Linux d'ailleurs, comme tous les grands systèmes de calcul.
+        Pas de BIOS à configurer, pas de clé USB, pas de sauce à spaghetti en attente.
+        Mais si j'avais le choix? <strong>Je choisirais Debian, sans hésiter.</strong> 🐧
+      </p>
+    </div>
+
+    <div class="liens-section">
+      <a href="URL_DEBIAN" class="lien-btn btn-debian" target="_blank">🐧 Debian — debian.org</a>
+      <a href="https://claude.ai" class="lien-btn btn-claude" target="_blank">🤖 Claude — Anthropic</a>
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>

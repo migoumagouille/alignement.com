@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal — Alignement.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(46,125,233,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+
+    header {
+      padding: 40px 0 36px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: rgba(232,238,248,0.35);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+
+    .header-line {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      margin: 16px 0 0;
+    }
+
+    /* LISTE ARTICLES */
+    .articles-list {
+      padding: 10px 0 60px;
+    }
+
+    .article-card {
+      display: block;
+      text-decoration: none;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 26px 30px;
+      margin-bottom: 18px;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      animation: fadeUp 0.5s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--accent), transparent);
+      border-radius: 14px 0 0 14px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .article-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+      border-color: rgba(46,125,233,0.5);
+    }
+
+    .article-card:hover::before { opacity: 1; }
+
+    .article-card:nth-child(1) { animation-delay: 0.05s; }
+    .article-card:nth-child(2) { animation-delay: 0.12s; }
+    .article-card:nth-child(3) { animation-delay: 0.19s; }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(46,125,233,0.12);
+      border: 1px solid rgba(46,125,233,0.25);
+      color: #7cb9ff;
+    }
+
+    .card-date {
+      font-size: 0.8rem;
+      color: rgba(232,238,248,0.25);
+      letter-spacing: 1px;
+    }
+
+    .card-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .card-resume {
+      font-size: 0.95rem;
+      color: rgba(232,238,248,0.5);
+      line-height: 1.6;
+    }
+
+    .card-arrow {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(46,125,233,0.3);
+      font-size: 1.2rem;
+      transition: color 0.2s, right 0.2s;
+    }
+
+    .article-card:hover .card-arrow {
+      color: var(--accent);
+      right: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px 0 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer p { font-size: 0.78rem; color: rgba(232,238,248,0.2); letter-spacing: 1px; }
+    footer a { color: rgba(46,125,233,0.5); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+  </nav>
+
+  <header>
+    <h1>📓 Journal</h1>
+    <p>Articles, réflexions et projets au fil du temps</p>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="articles-list" id="articlesList">
+    <!-- Chargé dynamiquement depuis articles.json -->
+  </div>
+
+  <footer>
+    <p><a href="/index.html">← Retour à Alignement.com</a> &nbsp;·&nbsp; <a href="/liens/">Liens</a> &nbsp;·&nbsp; <a href="/apropos/">À propos</a> &nbsp;·&nbsp; &copy; 2026 Alignement.com</p>
+  </footer>
+
+</div>
+
+<script src="/js/journal-index.js"></script>
+
+</body>
+</html>

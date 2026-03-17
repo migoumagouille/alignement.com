@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Un hiver à quatre lunes — Alignement.com</title>
+  <meta name="description" content="Un hiver à brûler huit cordes de bois, quatre lunes au calendrier chinois. Vue aérienne par drone d'un quartier sous la neige. Le printemps s'annonce enfin.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alignement.com/journal/hiver-2025.html">
+  <meta property="og:title" content="Un hiver à quatre lunes — Alignement.com">
+  <meta property="og:description" content="Un hiver à brûler huit cordes de bois, quatre lunes au calendrier chinois. Vue aérienne par drone d'un quartier sous la neige.">
+  <meta property="og:image" content="https://alignement.com/journal/images/hiver-quartier.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(46,125,233,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    /* HEADER */
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(46,125,233,0.15);
+      border: 1px solid rgba(46,125,233,0.3);
+      color: #7cb9ff;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      margin: 30px 0;
+    }
+
+    /* BODY */
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 40px 0 16px;
+    }
+
+    /* PHOTO */
+    .article-image {
+      margin: 36px 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    }
+
+    .article-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .img-legende {
+      padding: 12px 18px;
+      font-size: 0.8rem !important;
+      font-style: italic;
+      color: rgba(232,238,248,0.3) !important;
+      background: rgba(0,0,0,0.2);
+      margin-bottom: 0 !important;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    /* Citation */
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 30px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.1rem !important;
+      line-height: 1.7;
+    }
+
+    /* Stats hiver */
+    .hiver-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 32px 0;
+    }
+
+    .stat-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: rgba(232,238,248,0.35);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* FOOTER */
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @media (max-width: 500px) {
+      .hiver-stats { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">Saisons</span>
+      <span class="article-date">9 mars 2026</span>
+    </div>
+    <h1>Un hiver à quatre lunes</h1>
+    <p class="article-intro">
+      Un hiver à brûler huit cordes de bois, quatre lunes au calendrier chinois.
+      L'hiver s'étire, mais les journées allongent — et demain on change d'heure.
+    </p>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="article-body">
+
+    <p>
+      Il y a des hivers qu'on traverse. Celui-là, on l'a <strong>enduré</strong>.
+      Long, froid, têtu. Le genre d'hiver qui teste votre provision de bois,
+      votre patience et votre foi au printemps.
+    </p>
+
+    <div class="article-image">
+      <img src="/journal/images/hiver-quartier.jpg" alt="Vue aérienne du quartier sous la neige — hiver 2025">
+      <p class="img-legende">🚁 Vue par drone — Hiver 2025</p>
+    </div>
+
+    <p>
+      Du haut du drone, le quartier ressemble à une carte postale figée dans le temps.
+      Les toits blancs, les rues tracées dans la neige, les arbres dénudés qui attendent.
+      Tout est là, suspendu. <strong>L'hiver a tout recouvert</strong>, et il n'est pas
+      encore prêt à lâcher prise.
+    </p>
+
+    <div class="hiver-stats">
+      <div class="stat-box">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Cordes de bois brûlées</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Lunes au calendrier chinois</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">+1h</div>
+        <div class="stat-label">Demain — changement d'heure</div>
+      </div>
+    </div>
+
+    <h2>Un hiver en chiffres</h2>
+
+    <p>
+      Huit cordes de bois. C'est une façon bien concrète de mesurer un hiver —
+      pas en degrés, pas en centimètres de neige, mais en <strong>énergie brûlée
+      pour rester au chaud</strong>. Chaque corde empilée à l'automne est une promesse
+      faite à l'hiver : je suis prêt. Huit cordes plus tard, on peut dire qu'il a
+      tenu ses promesses lui aussi.
+    </p>
+
+    <p>
+      Le calendrier chinois, lui, compte les lunes. Et quatre lunes d'hiver,
+      c'est long. C'est quatre cycles complets de nuits froides, de matins glacés,
+      de ciels gris qui n'en finissent plus. Mais <strong>quatre lunes, ça se compte</strong> —
+      et ce qui se compte finit par se terminer.
+    </p>
+
+    <div class="highlight-box">
+      <p>
+        « L'hiver s'étire, on a hâte de jardiner. Mais les journées allongent —
+        et c'est le signe qui ne ment jamais. »
+      </p>
+    </div>
+
+    <h2>Le printemps qui s'annonce</h2>
+
+    <p>
+      Demain on change d'heure. Une heure de lumière volée au soir, offerte au matin.
+      Ce n'est pas grand-chose — et pourtant, c'est tout. C'est le signal officiel
+      que <strong>la bascule est amorcée</strong>. Que la terre a entendu, quelque part
+      dans ses profondeurs, que le moment est venu de recommencer.
+    </p>
+
+    <p>
+      Le jardin attend sous la neige. Les graines sont quelque part dans un tiroir.
+      Les projets aussi — le potager à agrandir, les plants à démarrer, la terre
+      à retourner. <strong>L'hiver aura été long, mais le printemps n'en sera
+      que plus doux.</strong>
+    </p>
+
+  </div>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+AuthUserFile /home/alignem1/public_html/delta/.htpasswd
+AuthGroupFile /dev/null
+AuthName "SVP Identifiez-vous"
+AuthType Basic
+
+require valid-user
+

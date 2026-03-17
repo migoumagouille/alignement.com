@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liens d'intérêt — Alignement.com</title>
+  <meta name="description" content="Liens d'intérêt sélectionnés par Alignement.com — météo, énergie solaire, informatique, géologie, navigation et plus.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alignement.com/liens/">
+  <meta property="og:title" content="Liens d'intérêt — Alignement.com">
+  <meta property="og:description" content="Liens sélectionnés — météo, énergie solaire, informatique, géologie, navigation.">
+  <meta property="og:image" content="https://alignement.com/logo_alignement2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.2);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+
+    /* HEADER */
+    .page-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .page-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, var(--white) 30%, rgba(232,238,248,0.4));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-size: 0.95rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      margin: 24px 0 40px;
+    }
+
+    /* CATÉGORIES */
+    .categorie {
+      margin-bottom: 48px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .categorie:nth-child(1) { animation-delay: 0.05s; }
+    .categorie:nth-child(2) { animation-delay: 0.10s; }
+    .categorie:nth-child(3) { animation-delay: 0.15s; }
+    .categorie:nth-child(4) { animation-delay: 0.20s; }
+    .categorie:nth-child(5) { animation-delay: 0.25s; }
+
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(46,125,233,0.12);
+    }
+
+    .cat-icon { font-size: 1.3rem; }
+
+    .cat-titre {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(232,238,248,0.35);
+    }
+
+    /* GRILLE LIENS */
+    .liens-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .lien-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+
+    .lien-card:hover {
+      border-color: rgba(46,125,233,0.45);
+      background: rgba(46,125,233,0.05);
+      transform: translateY(-2px);
+    }
+
+    .lien-emoji { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+
+    .lien-info {}
+
+    .lien-nom {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+    }
+
+    .lien-desc {
+      font-size: 0.8rem;
+      color: rgba(232,238,248,0.35);
+      line-height: 1.4;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 20px 0 40px;
+      border-top: 1px solid rgba(46,125,233,0.1);
+      margin-top: 20px;
+    }
+
+    footer p {
+      font-size: 0.78rem;
+      color: rgba(232,238,248,0.2);
+      letter-spacing: 1px;
+    }
+
+    footer a {
+      color: rgba(46,125,233,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 560px) {
+      .liens-grid { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+  </nav>
+
+  <div class="page-header">
+    <h1>Liens d'intérêt</h1>
+    <p>Une sélection de ressources utiles — organisées par thème</p>
+    <div class="header-line"></div>
+  </div>
+
+  <!-- MÉTÉO -->
+  <div class="categorie">
+    <div class="cat-header">
+      <span class="cat-icon">🌤️</span>
+      <span class="cat-titre">Météo</span>
+    </div>
+    <div class="liens-grid">
+      <a href="https://meteo.gc.ca" class="lien-card" target="_blank">
+        <span class="lien-emoji">🍁</span>
+        <div class="lien-info">
+          <div class="lien-nom">Environnement Canada</div>
+          <div class="lien-desc">Prévisions météo officielles pour le Canada</div>
+        </div>
+      </a>
+      <a href="https://meteo.gc.ca/index_f.html?layers=radar" class="lien-card" target="_blank">
+        <span class="lien-emoji">📡</span>
+        <div class="lien-info">
+          <div class="lien-nom">Radar météo</div>
+          <div class="lien-desc">Image radar en temps réel — Environnement Canada</div>
+        </div>
+      </a>
+      <a href="https://www.nhc.noaa.gov/" class="lien-card" target="_blank">
+        <span class="lien-emoji">🌀</span>
+        <div class="lien-info">
+          <div class="lien-nom">NHC — Trajectoire des ouragans</div>
+          <div class="lien-desc">National Hurricane Center — NOAA</div>
+        </div>
+      </a>
+      <a href="https://www.ndbc.noaa.gov/" class="lien-card" target="_blank">
+        <span class="lien-emoji">🔵</span>
+        <div class="lien-info">
+          <div class="lien-nom">NOAA — Bouées marines</div>
+          <div class="lien-desc">Conditions météo marines en temps réel</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ÉNERGIE SOLAIRE -->
+  <div class="categorie">
+    <div class="cat-header">
+      <span class="cat-icon">☀️</span>
+      <span class="cat-titre">Énergie solaire</span>
+    </div>
+    <div class="liens-grid">
+      <a href="https://www.catl.com/fr/" class="lien-card" target="_blank">
+        <span class="lien-emoji">🔋</span>
+        <div class="lien-info">
+          <div class="lien-nom">CATL</div>
+          <div class="lien-desc">Fabricant des cellules LiFePO4 utilisées dans notre batterie</div>
+        </div>
+      </a>
+      <a href="https://fr.dalybms.com/#page01" class="lien-card" target="_blank">
+        <span class="lien-emoji">⚡</span>
+        <div class="lien-info">
+          <div class="lien-nom">Daly BMS</div>
+          <div class="lien-desc">Battery Management System — protection et gestion des cellules</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- INFORMATIQUE -->
+  <div class="categorie">
+    <div class="cat-header">
+      <span class="cat-icon">💻</span>
+      <span class="cat-titre">Informatique</span>
+    </div>
+    <div class="liens-grid">
+      <a href="https://www.debian.org/index.fr.html" class="lien-card" target="_blank">
+        <span class="lien-emoji">🐧</span>
+        <div class="lien-info">
+          <div class="lien-nom">Debian</div>
+          <div class="lien-desc">Distribution Linux libre, stable et fiable depuis 1993</div>
+        </div>
+      </a>
+      <a href="https://claude.ai" class="lien-card" target="_blank">
+        <span class="lien-emoji">🤖</span>
+        <div class="lien-info">
+          <div class="lien-nom">Claude — Anthropic</div>
+          <div class="lien-desc">L'intelligence artificielle qui collabore à ce site</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- GÉOLOGIE & CHIMIE -->
+  <div class="categorie">
+    <div class="cat-header">
+      <span class="cat-icon">⚗️</span>
+      <span class="cat-titre">Géologie & Chimie</span>
+    </div>
+    <div class="liens-grid">
+      <a href="https://fr.wikipedia.org/wiki/Mine_d%27Eustis" class="lien-card" target="_blank">
+        <span class="lien-emoji">⛏️</span>
+        <div class="lien-info">
+          <div class="lien-nom">Mine Eustis</div>
+          <div class="lien-desc">Source du minerai de cuivre utilisé dans nos expériences</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- NAVIGATION & MARINE -->
+  <div class="categorie">
+    <div class="cat-header">
+      <span class="cat-icon">⛵</span>
+      <span class="cat-titre">Navigation & Marine</span>
+    </div>
+    <div class="liens-grid">
+      <a href="https://voilerie.ca" class="lien-card" target="_blank">
+        <span class="lien-emoji">🪡</span>
+        <div class="lien-info">
+          <div class="lien-nom">Voilerie Air Terre Mer</div>
+          <div class="lien-desc">Voilerie Air Terre Mer Fabrication & réparation de voiles</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <p><a href="/index.html">← Retour à Alignement.com</a> &nbsp;·&nbsp; <a href="/apropos/">À propos</a> &nbsp;·&nbsp; &copy; 2026 Alignement.com — Tous droits réservés</p>
+  </footer>
+
+</div>
+</body>
+</html>

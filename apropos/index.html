@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À propos — Alignement.com</title>
+  <meta name="description" content="Qui se cache derrière Alignement.com? Un laboratoire, des projets, de l'énergie solaire et une collaboration singulière avec l'intelligence artificielle.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alignement.com/apropos/">
+  <meta property="og:title" content="À propos — Alignement.com">
+  <meta property="og:description" content="Un laboratoire, des projets, de l'énergie solaire et une collaboration singulière avec l'intelligence artificielle.">
+  <meta property="og:image" content="https://alignement.com/logo_alignement2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.2);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.05) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Lueur centrale subtile */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(46,125,233,0.05) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 28px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.25);
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .back-link:hover { color: rgba(232,238,248,0.6); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.1); }
+
+    /* HERO */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .hero-symbol {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 30px;
+      opacity: 0.4;
+      letter-spacing: 12px;
+    }
+
+    .hero h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--white) 40%, rgba(232,238,248,0.3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 24px;
+    }
+
+    .hero-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(180deg, var(--accent), transparent);
+      margin: 0 auto 30px;
+      opacity: 0.4;
+    }
+
+    .hero-tagline {
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(232,238,248,0.2);
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 50px 0;
+      border-top: 1px solid rgba(46,125,233,0.08);
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .section:nth-child(2) { animation-delay: 0.1s; }
+    .section:nth-child(3) { animation-delay: 0.2s; }
+    .section:nth-child(4) { animation-delay: 0.3s; }
+
+    .section-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.4;
+      margin-bottom: 20px;
+    }
+
+    .section p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: rgba(232,238,248,0.55);
+      margin-bottom: 18px;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+    .section p strong { color: rgba(232,238,248,0.85); font-weight: 600; }
+
+    /* Pilliers */
+    .pilliers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(46,125,233,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 30px 0;
+    }
+
+    .pillier {
+      background: var(--navy);
+      padding: 28px 20px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .pillier:hover { background: var(--card-bg); }
+
+    .pillier-icon {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 10px;
+      opacity: 0.6;
+    }
+
+    .pillier-titre {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(232,238,248,0.25);
+    }
+
+    /* Citation */
+    .citation {
+      padding: 40px 0;
+      text-align: center;
+      border-top: 1px solid rgba(46,125,233,0.08);
+    }
+
+    .citation p {
+      font-size: 1.1rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.3);
+      font-style: italic;
+      max-width: 520px;
+      margin: 0 auto 16px;
+    }
+
+    .citation-source {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(232,238,248,0.12);
+    }
+
+    /* Lien journal */
+    .cta {
+      padding: 50px 0 80px;
+      text-align: center;
+      border-top: 1px solid rgba(46,125,233,0.08);
+    }
+
+    .cta-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(232,238,248,0.15);
+      margin-bottom: 20px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(232,238,248,0.4);
+      border: 1px solid rgba(46,125,233,0.2);
+      border-radius: 8px;
+      padding: 14px 28px;
+      transition: all 0.3s;
+    }
+
+    .cta-btn:hover {
+      color: var(--white);
+      border-color: rgba(46,125,233,0.5);
+      background: rgba(46,125,233,0.06);
+    }
+
+    @media (max-width: 500px) {
+      .pilliers { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+  </nav>
+
+  <div class="hero">
+    <span class="hero-symbol">⬡ ⬡ ⬡</span>
+    <h1>À propos</h1>
+    <div class="hero-line"></div>
+    <p class="hero-tagline">Curiosité · Laboratoire · Création</p>
+  </div>
+
+  <section class="section">
+    <div class="section-label">Le lieu</div>
+    <p>
+      Alignement.com est un espace personnel — <strong>ni magazine, ni blogue professionnel.</strong>
+      Un endroit où déposer ce qui mérite d'être dit. Des expériences de laboratoire,
+      des observations sur la nature, des projets techniques, des réflexions qui
+      surgissent un dimanche après-midi tranquille.
+    </p>
+    <p>
+      Le site existe depuis longtemps. Il a changé de vocation. Il a trouvé la sienne.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="section-label">Les piliers</div>
+    <div class="pilliers">
+      <div class="pillier">
+        <span class="pillier-icon">⚗️</span>
+        <div class="pillier-titre">Laboratoire</div>
+      </div>
+      <div class="pillier">
+        <span class="pillier-icon">☀️</span>
+        <div class="pillier-titre">Énergie solaire</div>
+      </div>
+      <div class="pillier">
+        <span class="pillier-icon">🤖</span>
+        <div class="pillier-titre">Intelligence artificielle</div>
+      </div>
+    </div>
+    <p>
+      Le laboratoire est au cœur de tout — un espace où l'on construit,
+      où l'on teste, où l'on apprend en faisant. <strong>Des batteries LiFePO4
+      assemblées à la main. Du cuivre extrait de la roche.</strong>
+      Des projets qui prennent du temps, mais qui durent.
+    </p>
+    <p>
+      L'énergie solaire alimente le salon — 400 watts de capteurs,
+      une batterie de 280Ah, deux jours d'autonomie sous un ciel gris.
+      <strong>L'indépendance, un watt à la fois.</strong>
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="section-label">La collaboration</div>
+    <p>
+      Ce site est écrit en collaboration avec <strong>Claude</strong>,
+      une intelligence artificielle développée par Anthropic.
+      Pas un outil — un collaborateur. Les idées viennent d'ici,
+      les mots prennent forme ensemble.
+    </p>
+    <p>
+      Le code aussi est le fruit de cette collaboration —
+      du HTML pur, sans WordPress, sans scripts douteux.
+      <strong>Simple, transparent, sécurisé.</strong>
+      Exactement comme en 1998. Mais en mieux.
+    </p>
+  </section>
+
+  <div class="citation">
+    <p>
+      « Tant que j'aurai de l'intérêt à écrire —
+      ça va aller loin. »
+    </p>
+    <div class="citation-source">— L'auteur, mars 2026</div>
+  </div>
+
+  <div class="cta">
+    <div class="cta-label">Envie d'en lire plus?</div>
+    <a href="/journal/" class="cta-btn">📓 Lire le journal →</a>
+  </div>
+
+</div>
+</body>
+</html>

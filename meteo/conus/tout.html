@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌡️ Météo — Vue globale infrarouge</title>
+<meta name="author" content="L'aligneur de menhirs">
+<meta name="description" content="Vue globale météo infrarouge — Alignement.com">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg:        #0f1117;
+    --surface:   #181c25;
+    --border:    #2a2f3e;
+    --accent:    #5b8dee;
+    --accent2:   #3ecfb0;
+    --text:      #dde3f0;
+    --muted:     #7a849e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.4rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+  }
+
+  header a {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  header img { height: 42px; width: auto; }
+
+  .site-title {
+    font-size: 1.05rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .site-title strong { color: var(--text); }
+
+  /* ── Main layout ── */
+  main {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  /* ── Page heading ── */
+  .page-heading {
+    margin-bottom: 2rem;
+  }
+
+  .page-heading h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .page-heading p {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-top: 0.35rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── Nav bar ── */
+  nav.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.8rem;
+    align-items: center;
+  }
+
+  nav.toolbar a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.38rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    transition: border-color 0.18s, color 0.18s, background 0.18s;
+  }
+
+  nav.toolbar a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(91,141,238,0.07);
+  }
+
+  /* ── Info banner ── */
+  .info-banner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    border-radius: 8px;
+    padding: 0.85rem 1.2rem;
+    margin-bottom: 1.8rem;
+    font-size: 1rem;
+    color: var(--muted);
+  }
+
+  /* ── Image wrapper ── */
+  .img-wrapper {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+  }
+
+  .img-wrapper img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ── Refresh badge ── */
+  #refresh-badge {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: rgba(15,17,23,0.75);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.25rem 0.65rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    backdrop-filter: blur(4px);
+  }
+
+  #refresh-badge span { color: var(--accent2); }
+
+  /* ── Credits ── */
+  .credits {
+    margin-top: 2.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 1.4rem;
+  }
+
+  .credits a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    transition: color 0.15s;
+  }
+
+  .credits a:hover { color: var(--accent); }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <a href="https://alignement.com">
+    <img src="../gnomon1.png" alt="Alignement.com">
+    <span class="site-title"><strong>alignement.com</strong> — météo</span>
+  </a>
+</header>
+
+<!-- ── Main ── -->
+<main>
+
+  <div class="page-heading">
+    <h1>🔭 Vue globale — Infrarouge</h1>
+    <p>Image satellite rechargée automatiquement · toutes les 30 minutes</p>
+  </div>
+
+  <!-- Nav -->
+  <nav class="toolbar">
+    <a href="observer.html">🔬 Zoom avant</a>
+  </nav>
+
+
+
+  <!-- Image -->
+  <div class="img-wrapper">
+    <img id="satellite"
+         src="https://meteo.gc.ca/data/satellite/goes_gedisk11_1070_100.jpg"
+         width="1024" height="1024"
+         alt="Image satellite infrarouge GOES — Vue globale">
+
+    <div id="refresh-badge">⟳ prochain rechargement : <span id="countdown">30:00</span></div>
+  </div>
+
+  <!-- Credits -->
+  <div class="credits">
+    <span>Sources :</span>
+    <a href="https://meteo.gc.ca/?center=49.26029610,-134.55872930&zoom=3">🍁 Environnement Canada</a>
+    <a href="https://www.ndbc.noaa.gov/">🔵 NOAA — National Data Buoy Center</a>
+  </div>
+
+</main>
+
+<!-- ── Footer ── -->
+<footer>
+  <a href="https://alignement.com">alignement.com</a> &nbsp;·&nbsp; Il fait toujours beau quelque part
+</footer>
+
+<script src="/js/meteo-tout.js"></script>
+
+</body>
+</html>

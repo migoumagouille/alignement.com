@@ -1,0 +1,24 @@
+# =====================================================
+# Alignement.com — robots.txt
+# =====================================================
+
+# Tous les robots
+User-agent: *
+
+# Autoriser l'essentiel
+Allow: /
+Allow: /journal/
+Allow: /cuivre/
+Allow: /contact/
+Allow: /meteo/
+
+# Bloquer ce qui ne doit pas être indexé
+Disallow: /contact/envoyer.php
+Disallow: /journal/images/
+Disallow: /cuivre/images/
+Disallow: /cuivre/videos/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+
+# Sitemap
+Sitemap: https://alignement.com/sitemap.xml

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>503 — Service indisponible · Alignement.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(232,160,32,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(232,160,32,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,160,32,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; left: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,160,32,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .wrap {
+      text-align: center;
+      padding: 40px 24px;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .code {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(6rem, 20vw, 12rem);
+      font-weight: 700;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--white) 0%, rgba(232,160,32,0.5) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -4px;
+      margin-bottom: 8px;
+      opacity: 0.25;
+    }
+
+    .icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      display: block;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 1rem;
+      color: rgba(232,238,248,0.45);
+      line-height: 1.7;
+      max-width: 420px;
+      margin: 0 auto 32px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(232,160,32,0.5), transparent);
+      margin: 24px auto;
+    }
+
+    .status-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(232,160,32,0.08);
+      border: 1px solid rgba(232,160,32,0.2);
+      border-radius: 10px;
+      padding: 12px 20px;
+      margin-bottom: 28px;
+      font-size: 0.85rem;
+      color: rgba(240,192,64,0.7);
+      letter-spacing: 1px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    .btn-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 28px;
+      background: rgba(46,125,233,0.12);
+      border: 1px solid rgba(46,125,233,0.3);
+      border-radius: 10px;
+      color: #7cb9ff;
+      text-decoration: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .btn-home:hover {
+      background: rgba(46,125,233,0.25);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .footer-note {
+      margin-top: 40px;
+      font-size: 0.75rem;
+      color: rgba(232,238,248,0.15);
+      letter-spacing: 1px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="code">503</div>
+    <span class="icon">⚙️</span>
+    <h1>Service temporairement indisponible</h1>
+    <div class="divider"></div>
+    <div class="status-box">
+      <span class="dot"></span>
+      Maintenance en cours — de retour sous peu
+    </div>
+    <p>
+      Le site est temporairement hors ligne pour maintenance.<br>
+      Merci de réessayer dans quelques instants.
+    </p>
+    <a href="/index.html" class="btn-home">← Retour à l'accueil</a>
+    <p class="footer-note">Alignement.com</p>
+  </div>
+</body>
+</html>

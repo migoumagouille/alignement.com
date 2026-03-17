@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La nuit du verglas — Alignement.com</title>
+  <meta name="description" content="11 mars 2025 — panne majeure sur la rive sud de Montréal. 10 heures sans courant. Chez moi, la vie a continué comme si de rien n'était grâce à l'installation solaire.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alignement.com/journal/nuit-du-verglas.html">
+  <meta property="og:title" content="La nuit du verglas — Alignement.com">
+  <meta property="og:description" content="Panne majeure sur la rive sud de Montréal. 10 heures sans courant. Chez moi, la vie a continué comme si de rien n'était.">
+  <meta property="og:image" content="https://alignement.com/logo_alignement2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --ice: #a8d8ea;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(168,216,234,0.2);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(168,216,234,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168,216,234,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; left: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(168,216,234,0.05) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--ice); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(168,216,234,0.08);
+      border: 1px solid rgba(168,216,234,0.25);
+      color: var(--ice);
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--ice));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--ice);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--ice), transparent);
+      margin: 30px 0;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--ice);
+      margin: 40px 0 16px;
+    }
+
+    /* Timeline panne */
+    .timeline {
+      margin: 32px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 16px;
+      position: relative;
+    }
+
+    .tl-item:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 39px;
+      top: 32px;
+      bottom: -8px;
+      width: 1px;
+      background: linear-gradient(180deg, var(--ice), transparent);
+      opacity: 0.15;
+    }
+
+    .tl-time {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--ice);
+      opacity: 0.5;
+      padding-top: 6px;
+      text-align: right;
+      letter-spacing: 1px;
+    }
+
+    .tl-body {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: rgba(232,238,248,0.65);
+      line-height: 1.6;
+    }
+
+    .tl-body strong { color: var(--white); }
+
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 28px 0;
+    }
+
+    .stat-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 16px;
+      text-align: center;
+    }
+
+    .stat-icon { font-size: 1.5rem; margin-bottom: 8px; display: block; }
+
+    .stat-val {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--ice);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Citation */
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.1rem !important;
+    }
+
+    /* Vidéo YouTube */
+    .yt-embed {
+      margin: 36px 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+      position: relative;
+      aspect-ratio: 16/9;
+    }
+
+    .yt-embed iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: none;
+    }
+
+    .article-footer {
+      border-top: 1px solid rgba(168,216,234,0.1);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--ice); }
+
+    @media (max-width: 500px) {
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">Énergie solaire</span>
+      <span class="article-date">12 mars 2026</span>
+    </div>
+    <h1>La nuit du verglas</h1>
+    <p class="article-intro">
+      11 mars 2025 — tempête de verglas majeure sur la rive sud de Montréal.
+      Dix heures de panne. Chez moi, la vie a continué comme si de rien n'était.
+    </p>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="article-body">
+
+    <p>
+      Le verglas ne prévient pas. Il arrive silencieusement, recouvre tout,
+      alourdit les fils et fait tomber ce qui semblait solide.
+      Le 11 mars en soirée, <strong>la rive sud de Montréal a perdu le courant</strong>
+      — une panne majeure causée par une tempête de verglas qui a paralysé
+      des milliers de foyers pendant toute la nuit.
+    </p>
+
+    <h2>La chronologie</h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">18h00</div>
+        <div class="tl-body"><strong>Panne générale.</strong> Le courant coupe sur la rive sud. Les quartiers s'éteignent un à un.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">18h01</div>
+        <div class="tl-body">Chez moi — <strong>rien ne change.</strong> La télévision joue, internet fonctionne, les lumières sont allumées. La batterie prend le relais sans même qu'on s'en aperçoive.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">~4h00</div>
+        <div class="tl-body">Le courant revient dans le quartier. La batterie a tenu <strong>toute la nuit</strong> — sans broncher.</div>
+      </div>
+    </div>
+
+    <h2>Les chiffres de la nuit</h2>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <span class="stat-icon">🕯️</span>
+        <div class="stat-val">~10h</div>
+        <div class="stat-label">Durée de la panne</div>
+      </div>
+      <div class="stat-box">
+        <span class="stat-icon">🔋</span>
+        <div class="stat-val">280 Ah</div>
+        <div class="stat-label">Capacité batterie</div>
+      </div>
+      <div class="stat-box">
+        <span class="stat-icon">✅</span>
+        <div class="stat-val">0 coupure</div>
+        <div class="stat-label">Chez moi</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p>
+        « Pendant que les voisins cherchaient des chandelles,
+        la télévision jouait et internet fonctionnait.
+        C'est exactement pour ça qu'on construit ce genre de système. »
+      </p>
+    </div>
+
+    <h2>Le système qui a tout géré</h2>
+
+    <p>
+      La batterie LiFePO4 de 280Ah assemblée au laboratoire —
+      cellules CATL, BMS Daly, rechargée par 400 watts de capteurs solaires —
+      a absorbé la panne sans la moindre interruption.
+      <strong>Télévision, internet, téléphone, imprimante, éclairage</strong> —
+      tout le salon a fonctionné normalement toute la nuit.
+    </p>
+
+    <p>
+      Ce n'est pas de la chance. C'est le résultat d'un système bien dimensionné,
+      construit pièce par pièce, testé au fil du temps.
+      <strong>L'autonomie, ça se prépare avant la tempête.</strong>
+    </p>
+
+    <h2>La vidéo</h2>
+
+    <p>J'ai filmé la soirée pour montrer concrètement comment le système se comporte
+    pendant une panne. Tout est là — en temps réel, sans mise en scène.</p>
+
+    <div class="yt-embed">
+      <iframe
+        src="https://www.youtube.com/embed/Q4y0v2IR1ac"
+        title="Panne de courant — installation solaire en action"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <p>
+      Si vous avez des questions sur le système ou l'installation,
+      la page sur la <a href="/journal/batterie-solaire.html" style="color:var(--ice);text-decoration:none;border-bottom:1px dashed rgba(168,216,234,0.4);">batterie du salon</a> donne tous les détails techniques.
+    </p>
+
+  </div>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>

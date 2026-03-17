@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Une nouvelle vocation — Alignement.com</title>
+  <meta name="description" content="Alignement.com se réinvente. Fini l'hébergement, place à un espace de création, de partage et de curiosité — construit avec soin et intelligence artificielle.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alignement.com/journal/restructuration.html">
+  <meta property="og:title" content="Une nouvelle vocation — Alignement.com">
+  <meta property="og:description" content="Alignement.com se réinvente. Fini l'hébergement, place à un espace de création, de partage et de curiosité.">
+  <meta property="og:image" content="https://alignement.com/logo_alignement2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(46,125,233,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* NAV */
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+
+    .sep { color: rgba(232,238,248,0.15); }
+
+    /* ARTICLE HEADER */
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(46,125,233,0.15);
+      border: 1px solid rgba(46,125,233,0.3);
+      color: #7cb9ff;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      margin: 30px 0;
+    }
+
+    /* CONTENU */
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 40px 0 16px;
+    }
+
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 30px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 30px 0;
+    }
+
+    .tag {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(232,238,248,0.45);
+    }
+
+    /* FOOTER ARTICLE */
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">Le site</span>
+      <span class="article-date">6 mars 2026</span>
+    </div>
+    <h1>Une nouvelle vocation</h1>
+    <p class="article-intro">
+      Alignement.com se réinvente. Fini l'hébergement, place à un espace de création,
+      de partage et de curiosité — fait avec soin, pixel par pixel.
+    </p>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="article-body">
+
+    <p>
+      Pendant longtemps, Alignement.com a eu une mission claire&nbsp;: offrir des services
+      d'hébergement web à des clients qui voulaient une présence en ligne fiable et personnalisée.
+      C'était un beau chapitre. Mais les chapitres se tournent, et celui-là est maintenant derrière.
+    </p>
+
+    <p>
+      Ce site entre aujourd'hui dans une nouvelle ère — plus personnelle, plus libre, plus vivante.
+      <strong>Une vitrine sur mes centres d'intérêts</strong>, qui sont nombreux et variés&nbsp;:
+      la science, la chimie, les minéraux, la météo, les savoirs anciens, l'artisanat, la nature...
+      et bien d'autres choses qui méritent qu'on s'y attarde.
+    </p>
+
+    <h2>Des recettes, des projets, des découvertes</h2>
+
+    <p>
+      Il y aura ici des <strong>projets de laboratoire</strong> documentés pas à pas — comme
+      l'extraction du cuivre de la mine Eustis, déjà en chantier. Des recettes pratiques.
+      Des techniques oubliées qu'on ressort de l'ombre. Un carnet vivant, entre science et
+      savoir-faire, entre patrimoine et curiosité.
+    </p>
+
+    <div class="highlight-box">
+      <p>
+        « Ce n'est pas un site commercial. Ce n'est pas non plus un blogue comme les autres.
+        C'est un espace de plaisir — si ça plaît à quelqu'un, tant mieux. »
+      </p>
+    </div>
+
+    <h2>Créer avec l'intelligence artificielle</h2>
+
+    <p>
+      Ce site est aussi, en lui-même, une expérience. Chaque page, chaque section est construite
+      en collaboration avec une intelligence artificielle — <strong>Claude, d'Anthropic</strong>.
+      Non pas pour aller vite, mais pour aller loin. Pour faire du beau code, des interfaces
+      soignées, des mises en page qu'on regarde avec plaisir.
+    </p>
+
+    <p>
+      Il y a quelque chose de fascinant dans cette collaboration entre l'intuition humaine
+      et la précision de la machine. Une idée lancée en quelques mots, et elle prend forme,
+      se peaufine, devient quelque chose de concret et d'élégant.
+      <strong>C'est un plaisir en soi. Que du bonheur.</strong>
+    </p>
+
+    <div class="tag-list">
+      <span class="tag">⚗️ Laboratoire</span>
+      <span class="tag">🌤️ Météo</span>
+      <span class="tag">🏺 Artisanat</span>
+      <span class="tag">🤖 Intelligence artificielle</span>
+      <span class="tag">🪨 Minéraux</span>
+      <span class="tag">🌿 Nature</span>
+    </div>
+
+    <p>
+      Bienvenue dans la nouvelle version d'Alignement.com.
+      Le chantier est ouvert — et c'est la meilleure partie.
+    </p>
+
+  </div>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>

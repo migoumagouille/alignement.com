@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌡️ Météo — Zoom avant infrarouge</title>
+<meta name="author" content="L'aligneur de menhirs">
+<meta name="description" content="Observations météo infrarouge zoom avant — Alignement.com">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg:        #0f1117;
+    --surface:   #181c25;
+    --border:    #2a2f3e;
+    --accent:    #5b8dee;
+    --accent2:   #3ecfb0;
+    --text:      #dde3f0;
+    --muted:     #7a849e;
+    --dot-color: #ff5f5f;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.4rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+  }
+
+  header a {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  header img { height: 42px; width: auto; }
+
+  .site-title {
+    font-size: 1.05rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .site-title strong { color: var(--text); }
+
+  /* ── Main layout ── */
+  main {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  /* ── Page heading ── */
+  .page-heading {
+    margin-bottom: 2rem;
+  }
+
+  .page-heading h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .page-heading p {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-top: 0.35rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── Nav bar ── */
+  nav.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.8rem;
+    align-items: center;
+  }
+
+  nav.toolbar a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.38rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    transition: border-color 0.18s, color 0.18s, background 0.18s;
+  }
+
+  nav.toolbar a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(91,141,238,0.07);
+  }
+
+  nav.toolbar .sep {
+    width: 1px; height: 24px;
+    background: var(--border);
+    margin: 0 0.3rem;
+  }
+
+  /* ── Info banner ── */
+  .info-banner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    border-radius: 8px;
+    padding: 0.85rem 1.2rem;
+    margin-bottom: 1.8rem;
+    font-size: 1rem;
+    color: var(--muted);
+  }
+
+  .info-banner a { color: var(--accent); text-decoration: none; }
+  .info-banner a:hover { text-decoration: underline; }
+
+  /* ── Map wrapper ── */
+  .map-wrapper {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+  }
+
+  .map-container {
+    position: relative;
+    display: block;
+    line-height: 0;
+  }
+
+  .map-container img#satellite {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ── Dots ── */
+    .dot {
+    position: absolute !important;
+    width: 0.7%;
+    height: 0;
+    padding-bottom: 0.7%;
+    background: var(--dot-color);
+    border-radius: 50%;
+    opacity: 0.82;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    box-shadow: 0 0 4px rgba(255,95,95,0.6);
+  }
+
+  /* ── Tooltip ── */
+  #map-tooltip {
+    position: fixed;
+    display: none;
+    background: rgba(15,17,23,0.92);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 0.3rem 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent2);
+    pointer-events: none;
+    z-index: 9999;
+    white-space: nowrap;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+
+      /* ── Refresh badge ── */
+  #refresh-badge {
+    position: absolute;
+    bottom: 6px; right: 8px;
+    background: rgba(15,17,23,0.65);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 0.4rem 0.7rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: rgba(122,132,158,0.8);
+    backdrop-filter: blur(3px);
+    pointer-events: none;
+  }
+
+  #refresh-badge span { color: var(--accent2); opacity: 0.85; }
+
+  /* ── Credits ── */
+  .credits {
+    margin-top: 2.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 1.4rem;
+  }
+
+  .credits a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    transition: color 0.15s;
+  }
+
+  .credits a:hover { color: var(--accent); }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <a href="https://alignement.com">
+    <img src="../gnomon1.png" alt="Alignement.com">
+    <span class="site-title"><strong>alignement.com</strong> — météo</span>
+  </a>
+</header>
+
+<!-- ── Main ── -->
+<main>
+
+  <div class="page-heading">
+    <h1>🔬 Zoom avant — Infrarouge</h1>
+    <p>Image satellite rechargée automatiquement · toutes les 10 minutes</p>
+  </div>
+
+  <!-- Nav -->
+  <nav class="toolbar">
+    <a href="observer.html">🔭 Zoom arrière</a>
+  </nav>
+
+  <!-- Info banner -->
+  <div class="info-banner">
+    La <a href="https://www.nhc.noaa.gov/" target="_blank">trajectoire des ouragans</a> et
+  l'<a href="https://meteo.gc.ca/index_f.html?layers=radar" target="_blank">image radar</a>
+  sont cliquables directement sur l'image satellite.
+  Utilisez le bouton <strong>Retour</strong> du navigateur pour revenir.
+  </div>
+
+  <!-- Map -->
+  <div class="map-wrapper">
+    <div class="map-container">
+
+      <img id="satellite"
+           src="https://meteo.gc.ca/data/satellite/goes_ecan_1070_100.jpg"
+           width="1024" height="1024"
+           usemap="#map"
+           alt="Image satellite infrarouge GOES — Est du Canada">
+
+      <!-- Dots stations -->
+      <span class="dot" style="left:10.3516%;top:2.0508%;" title="Trajectoire des ouragans"></span>
+      <span class="dot" style="left:14.0625%;top:2.0508%;" title="Image radar"></span>
+      <span class="dot" style="left:81.0547%;top:38.6719%;" title="NE Burgeo Bank"></span>
+      <span class="dot" style="left:89.2578%;top:38.6719%;" title="Nickerson Bank"></span>
+      <span class="dot" style="left:74.3164%;top:50.2930%;" title="Halifax Harbor"></span>
+      <span class="dot" style="left:57.1289%;top:44.8242%;" title="Québec"></span>
+      <span class="dot" style="left:53.1250%;top:49.3164%;" title="Saint-Hubert"></span>
+      <span class="dot" style="left:44.9219%;top:53.7109%;" title="Prince Edward Pt"></span>
+      <span class="dot" style="left:35.4492%;top:53.8086%;" title="Dunkirk, NY"></span>
+      <span class="dot" style="left:23.2422%;top:39.7461%;" title="Passage Island, MI"></span>
+      <span class="dot" style="left:22.6562%;top:51.8555%;" title="Waukegan Harbor, IL"></span>
+      <span class="dot" style="left:65.3320%;top:50.9766%;" title="Mt Desert Rock, ME"></span>
+      <span class="dot" style="left:60.7422%;top:59.3750%;" title="Mass. Bay"></span>
+      <span class="dot" style="left:56.5430%;top:62.9883%;" title="Ambrose Light, NY"></span>
+      <span class="dot" style="left:50.8789%;top:68.2617%;" title="SE Cape May, NJ"></span>
+      <span class="dot" style="left:48.1445%;top:75.0000%;" title="Chesapeake Light, VA"></span>
+      <span class="dot" style="left:49.2188%;top:80.0781%;" title="Diamond Shoals, NC"></span>
+      <span class="dot" style="left:46.9727%;top:81.2500%;" title="Cape Lookout, NC"></span>
+      <span class="dot" style="left:42.1875%;top:84.8633%;" title="Frying Pan Shoals, NC"></span>
+      <span class="dot" style="left:34.4727%;top:89.9414%;" title="SE Charleston, SC"></span>
+      <span class="dot" style="left:31.9336%;top:94.7266%;" title="St. Augustine, FL"></span>
+      <span class="dot" style="left:70.7031%;top:36.7188%;" title="Gaspé, Qc"></span>
+      <span class="dot" style="left:76.1719%;top:39.7461%;" title="Îles de la Madeleine"></span>
+      <span class="dot" style="left:56.5430%;top:39.2578%;" title="Bagotville, Qc"></span>
+      <span class="dot" style="left:62.9883%;top:36.8164%;" title="Baie Comeau, Qc"></span>
+      <span class="dot" style="left:73.4375%;top:43.4570%;" title="Charlottetown, PEI"></span>
+      <span class="dot" style="left:55.5664%;top:35.9375%;" title="Chibougamau, Qc"></span>
+      <span class="dot" style="left:70.1172%;top:44.8242%;" title="Fredericton, N.-B."></span>
+      <span class="dot" style="left:89.1602%;top:31.8359%;" title="Gander, T.-N."></span>
+      <span class="dot" style="left:50.0000%;top:48.2422%;" title="Gatineau, Qc"></span>
+      <span class="dot" style="left:64.6484%;top:37.5977%;" title="Mont-Joli, Qc"></span>
+      <span class="dot" style="left:74.0234%;top:32.3242%;" title="Natashquan, Qc"></span>
+      <span class="dot" style="left:69.5312%;top:47.6562%;" title="Saint John, N.-B."></span>
+
+      <!-- Refresh badge -->
+      <div id="refresh-badge">⟳ <span id="countdown">10:00</span></div>
+
+    </div><!-- /.map-container -->
+
+    <!-- Image map -->
+    <map name="map">
+      <area shape="RECT" coords="100,15,112,27" href="https://www.nhc.noaa.gov/" target="_blank" alt="Trajectoire des ouragans">
+      <area shape="RECT" coords="138,15,150,27" href="https://meteo.gc.ca/index_f.html?layers=radar" target="_blank" alt="Image radar">
+      <area shape="RECT" coords="822,388,838,404" href="https://www.ndbc.noaa.gov/station_page.php?station=44255" alt="NE Burgeo Bank">
+      <area shape="RECT" coords="906,388,922,404" href="https://www.ndbc.noaa.gov/station_page.php?station=44251" alt="Nickerson Bank">
+      <area shape="RECT" coords="753,507,769,523" href="https://www.ndbc.noaa.gov/station_page.php?station=44258" alt="Halifax Harbor">
+      <area shape="RECT" coords="577,451,593,467" href="https://meteo.gc.ca/past_conditions/index_f.html?station=wqb" alt="Québec">
+      <area shape="RECT" coords="536,497,552,513" href="https://meteo.gc.ca/past_conditions/index_f.html?station=yhu" alt="Saint-Hubert">
+      <area shape="RECT" coords="452,542,468,558" href="https://www.ndbc.noaa.gov/station_page.php?station=45135" alt="Prince Edward Pt">
+      <area shape="RECT" coords="355,543,371,559" href="https://www.ndbc.noaa.gov/station_page.php?station=dbln6" alt="Dunkirk, NY">
+      <area shape="RECT" coords="230,399,246,415" href="https://www.ndbc.noaa.gov/station_page.php?station=pilm4" alt="Passage Island, MI">
+      <area shape="RECT" coords="224,523,240,539" href="https://www.ndbc.noaa.gov/station_page.php?station=whri2" alt="Waukegan Harbor, IL">
+      <area shape="RECT" coords="661,514,677,530" href="https://www.ndbc.noaa.gov/station_page.php?station=mdrm1" alt="Mt Desert Rock, ME">
+      <area shape="RECT" coords="614,600,630,616" href="https://www.ndbc.noaa.gov/station_page.php?station=44029" alt="Mass. Bay">
+      <area shape="RECT" coords="571,637,587,653" href="https://www.ndbc.noaa.gov/station_page.php?station=44065" alt="Ambrose Light, NY">
+      <area shape="RECT" coords="513,691,529,707" href="https://www.ndbc.noaa.gov/station_page.php?station=44009" alt="SE Cape May, NJ">
+      <area shape="RECT" coords="485,760,501,776" href="https://www.ndbc.noaa.gov/station_page.php?station=chlv2" alt="Chesapeake Light, VA">
+      <area shape="RECT" coords="496,812,512,828" href="https://www.ndbc.noaa.gov/station_page.php?station=41025" alt="Diamond Shoals, NC">
+      <area shape="RECT" coords="473,824,489,840" href="https://www.ndbc.noaa.gov/station_page.php?station=clkn7" alt="Cape Lookout, NC">
+      <area shape="RECT" coords="424,861,440,877" href="https://www.ndbc.noaa.gov/station_page.php?station=41013" alt="Frying Pan Shoals, NC">
+      <area shape="RECT" coords="345,913,361,929" href="https://www.ndbc.noaa.gov/station_page.php?station=41004" alt="SE Charleston, SC">
+      <area shape="RECT" coords="319,962,335,978" href="https://www.ndbc.noaa.gov/station_page.php?station=41012" alt="St. Augustine, FL">
+      <area shape="RECT" coords="716,368,732,384" href="https://meteo.gc.ca/past_conditions/index_f.html?station=ygp" alt="Gaspé, Qc">
+      <area shape="RECT" coords="772,399,788,415" href="https://meteo.gc.ca/past_conditions/index_f.html?station=ygr" alt="Îles de la Madeleine">
+      <area shape="RECT" coords="571,394,587,410" href="https://meteo.gc.ca/past_conditions/index_f.html?station=ybg" alt="Bagotville, Qc">
+      <area shape="RECT" coords="637,369,653,385" href="https://meteo.gc.ca/past_conditions/index_f.html?station=ybc" alt="Baie Comeau, Qc">
+      <area shape="RECT" coords="744,437,760,453" href="https://meteo.gc.ca/past_conditions/index_f.html?station=yyg" alt="Charlottetown, PEI">
+      <area shape="RECT" coords="561,360,577,376" href="https://meteo.gc.ca/past_conditions/index_f.html?station=ymt" alt="Chibougamau, Qc">
+      <area shape="RECT" coords="710,451,726,467" href="https://meteo.gc.ca/past_conditions/index_f.html?station=yfc" alt="Fredericton, N.-B.">
+      <area shape="RECT" coords="905,318,921,334" href="https://meteo.gc.ca/past_conditions/index_f.html?station=yqx" alt="Gander, T.-N.">
+      <area shape="RECT" coords="504,486,520,502" href="https://meteo.gc.ca/past_conditions/index_f.html?station=ynd" alt="Gatineau, Qc">
+      <area shape="RECT" coords="654,377,670,393" href="https://meteo.gc.ca/past_conditions/index_f.html?station=yyy" alt="Mont-Joli, Qc">
+      <area shape="RECT" coords="750,323,766,339" href="https://meteo.gc.ca/past_conditions/index_f.html?station=yna" alt="Natashquan, Qc">
+      <area shape="RECT" coords="704,480,720,496" href="https://meteo.gc.ca/past_conditions/index_f.html?station=ysj" alt="Saint John, N.-B.">
+    </map>
+
+  </div><!-- /.map-wrapper -->
+
+  <!-- Credits -->
+  <div class="credits">
+    <span>Sources :</span>
+    <a href="https://meteo.gc.ca/?center=49.26029610,-134.55872930&zoom=3"">🍁 Environnement Canada</a>
+    <a href="https://www.ndbc.noaa.gov/">🔵 NOAA — National Data Buoy Center</a>
+  </div>
+
+</main>
+
+<!-- ── Footer ── -->
+<footer>
+  <a href="https://alignement.com">alignement.com</a> &nbsp;·&nbsp; Il fait toujours beau quelque part
+</footer>
+<!-- Tooltip -->
+<div id="map-tooltip"></div>
+
+<script src="/js/meteo-map.js"></script>
+</body>
+</html>

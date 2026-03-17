@@ -1,0 +1,20 @@
+h1,h2,h3
+{
+font-family: Verdana, Arial, Helvetica, sans-serif ;
+} p,table,li,address
+{
+font-family: Verdana, Arial, Helvetica, sans-serif ;
+margin-left: 10pt;
+} p,li,th,td
+{
+font-size: 85%;
+} h1,h2,h3,hr
+{
+color:#000080;
+} a:link     { color:#000080 }
+a:visited  { color:#444444 }
+a:active   { color:#ff0000 }
+a:hover    { color:red } body
+{
+background-color: #c0c0c0;
+}

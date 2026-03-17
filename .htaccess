@@ -1,0 +1,92 @@
+# =====================================================
+# Alignement.com — .htaccess Sécurité
+# =====================================================
+# ── Forcer HTTPS ───────────────────────────────────
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ── Pages d'erreur personnalisées ──────────────────
+ErrorDocument 403 /403.html
+ErrorDocument 404 /404.html
+ErrorDocument 503 /503.html
+
+# ── En-têtes de sécurité HTTP ──────────────────────
+<IfModule mod_headers.c>
+  # Empêche le site d'être chargé dans une iframe (clickjacking)
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Empêche le navigateur de deviner le type de fichier
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Active la protection XSS dans les vieux navigateurs
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Force HTTPS si disponible
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+  # Contrôle les infos envoyées aux sites externes
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Limite les fonctionnalités du navigateur
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+  # Politique de sécurité du contenu
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://meteo.gc.ca https://img.youtube.com https://alignement.com; frame-src https://www.youtube.com; connect-src 'self'"
+</IfModule>
+
+# ── Bloquer les robots malveillants ────────────────
+# Tentatives d'accès aux chemins WordPress et admin
+RewriteEngine On
+RewriteRule ^wp-admin/? - [F,L]
+RewriteRule ^wp-login\.php - [F,L]
+RewriteRule ^wp-content/? - [F,L]
+RewriteRule ^wp-includes/? - [F,L]
+RewriteRule ^xmlrpc\.php - [F,L]
+RewriteRule ^phpmyadmin/? - [F,L]
+RewriteRule ^pma/? - [F,L]
+RewriteRule ^admin/? - [F,L]
+RewriteRule ^administrator/? - [F,L]
+RewriteRule ^shell\.php - [F,L]
+RewriteRule ^config\.php - [F,L]
+RewriteRule \.env$ - [F,L]
+RewriteRule \.git/? - [F,L]
+
+# ── Bloquer les user-agents suspects ───────────────
+<IfModule mod_rewrite.c>
+  RewriteCond %{HTTP_USER_AGENT} (masscan|nikto|sqlmap|nmap|zgrab|python-requests|curl/7\.[0-5]) [NC]
+  RewriteRule .* - [F,L]
+</IfModule>
+
+# ── Protéger le formulaire de contact (rate limit) ─
+# Limite les requêtes POST vers envoyer.php
+<IfModule mod_rewrite.c>
+  RewriteCond %{REQUEST_METHOD} POST
+  RewriteCond %{REQUEST_URI} ^/contact/envoyer\.php
+  RewriteCond %{HTTP_REFERER} !^https://alignement\.com [NC]
+  RewriteRule .* - [F,L]
+</IfModule>
+
+# ── Protéger les fichiers sensibles ────────────────
+<FilesMatch "(\.htaccess|\.htpasswd|\.env)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# ── Cacher la signature du serveur ─────────────────
+ServerSignature Off
+
+# ── Compression GZIP (performance) ─────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json
+</IfModule>
+
+# ── Cache navigateur (performance) ─────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpg "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+</IfModule>

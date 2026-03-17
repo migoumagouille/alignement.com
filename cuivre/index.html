@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extraction du Cuivre — Mine Eustis</title>
+  <meta name="description" content="Extraction du cuivre de la mine Eustis, de la roche brute au métal pur. Projet de laboratoire documenté étape par étape — lixiviation, cémentation, électrolyse.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alignement.com/cuivre/">
+  <meta property="og:title" content="Extraction du Cuivre — Mine Eustis · Alignement.com">
+  <meta property="og:description" content="De la roche brute au métal pur — extraction du cuivre de la mine Eustis documentée en laboratoire.">
+  <meta property="og:image" content="https://alignement.com/logo_alignement2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --copper:     #b5541a;
+      --copper-lt:  #e07830;
+      --copper-glow:#f0a060;
+      --ore:        #2a1a0e;
+      --dark:       #120d08;
+      --stone:      #1e1610;
+      --parchment:  #f5e8d0;
+      --cream:      #ede0c4;
+      --rust:       #7a3010;
+      --verdigris:  #2d7060;
+      --card-bg:    rgba(181,84,26,0.07);
+      --border:     rgba(181,84,26,0.3);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--cream);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Texture de fond */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 20%, rgba(181,84,26,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(45,112,96,0.06) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Grain subtil */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── NAV ── */
+    nav {
+      padding: 20px 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(245,232,208,0.5);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--copper-glow); }
+    .back-link::before { content: '←'; font-size: 1rem; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 60px 0 50px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--copper-lt);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      opacity: 0.8;
+    }
+
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      background: linear-gradient(160deg, var(--copper-glow) 0%, var(--copper) 50%, var(--rust) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+
+    .hero-sub {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-weight: 400;
+      color: rgba(245,232,208,0.45);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .hero-divider::before,
+    .hero-divider::after {
+      content: '';
+      height: 1px;
+      width: 100px;
+      background: linear-gradient(90deg, transparent, var(--copper));
+    }
+    .hero-divider::after {
+      background: linear-gradient(90deg, var(--copper), transparent);
+    }
+
+    .hero-divider span {
+      color: var(--copper-lt);
+      font-size: 1.4rem;
+    }
+
+    .hero-intro {
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: rgba(237,224,196,0.7);
+      line-height: 1.8;
+    }
+
+    /* ── SECTION TITLES ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .section-header h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--copper-glow);
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    .section-header::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--copper), transparent);
+    }
+
+    .section-num-badge {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--copper);
+      border: 1px solid var(--copper);
+      border-radius: 4px;
+      padding: 2px 8px;
+      opacity: 0.6;
+      white-space: nowrap;
+    }
+
+    /* ── ÉTAPES ── */
+    section.etapes {
+      padding: 60px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .etape {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0 24px;
+      margin-bottom: 48px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .etape:nth-child(1) { animation-delay: 0.1s; }
+    .etape:nth-child(2) { animation-delay: 0.2s; }
+    .etape:nth-child(3) { animation-delay: 0.3s; }
+    .etape:nth-child(4) { animation-delay: 0.4s; }
+    .etape:nth-child(5) { animation-delay: 0.5s; }
+
+    .etape-num-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 4px;
+    }
+
+    .etape-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--copper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--copper-glow);
+      background: rgba(181,84,26,0.1);
+      flex-shrink: 0;
+      box-shadow: 0 0 16px rgba(181,84,26,0.2);
+    }
+
+    .etape-line {
+      flex: 1;
+      width: 1px;
+      background: linear-gradient(180deg, var(--copper), transparent);
+      margin-top: 8px;
+      min-height: 40px;
+    }
+
+    .etape-body {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .etape-body:hover {
+      border-color: rgba(181,84,26,0.55);
+      box-shadow: 0 8px 32px rgba(181,84,26,0.12);
+    }
+
+    .etape-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--copper-glow);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .etape-icon { margin-right: 8px; }
+
+    .etape-text {
+      color: rgba(237,224,196,0.75);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .etape-text strong { color: var(--cream); font-weight: 600; }
+
+    /* ── GALERIE PHOTOS ── */
+    section.galerie {
+      padding: 20px 0 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .photo-slot {
+      aspect-ratio: 4/3;
+      background: rgba(181,84,26,0.06);
+      border: 1px dashed rgba(181,84,26,0.25);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      overflow: hidden;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+
+    .photo-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      display: none; /* affiché quand src valide */
+    }
+
+    .photo-slot .slot-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .photo-slot .slot-icon { font-size: 2rem; opacity: 0.25; }
+    .photo-slot .slot-num {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      color: var(--copper-lt);
+      opacity: 0.5;
+    }
+    .photo-slot .slot-label {
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-align: center;
+      padding: 0 8px;
+      color: rgba(245,232,208,0.45);
+      line-height: 1.4;
+    }
+
+    /* Pour activer une vraie image : ajouter src à l'img et display:block */
+    .photo-slot.has-image img { display: block; }
+    .photo-slot.has-image .slot-placeholder { display: none; }
+
+    .photo-caption {
+      font-size: 0.78rem;
+      font-style: italic;
+      color: rgba(237,224,196,0.35);
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    /* ── VIDÉOS ── */
+    section.videos {
+      padding: 20px 0 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .video-slot {
+      background: rgba(181,84,26,0.06);
+      border: 1px dashed rgba(181,84,26,0.25);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .video-slot video {
+      width: 100%;
+      display: block;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .video-placeholder {
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .video-placeholder .v-icon { font-size: 2.5rem; opacity: 0.2; }
+    .video-placeholder .v-label {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(245,232,208,0.2);
+    }
+
+    .video-meta {
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .video-meta .v-acte {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--copper);
+      opacity: 0.6;
+    }
+
+    .video-meta .v-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      color: var(--copper-lt);
+      letter-spacing: 0.5px;
+      line-height: 1.4;
+    }
+
+    .video-meta .v-title em {
+      font-style: italic;
+      color: rgba(237,224,196,0.35);
+      font-size: 0.75rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid rgba(181,84,26,0.15);
+      padding: 30px 0 40px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: rgba(237,224,196,0.2);
+      letter-spacing: 1px;
+    }
+
+    footer a {
+      color: rgba(181,84,26,0.5);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--copper-lt); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero { animation: fadeUp 0.7s ease both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .photo-grid { grid-template-columns: repeat(2, 1fr); }
+      .video-grid { grid-template-columns: 1fr; }
+      .etape { grid-template-columns: 36px 1fr; gap: 0 14px; }
+      .etape-circle { width: 36px; height: 36px; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/index.html" class="back-link">Alignement.com</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <p class="hero-eyebrow">Projet Laboratoire · Mine Eustis</p>
+    <h1>Extraction du Cuivre</h1>
+    <p class="hero-sub">De la roche brute au métal pur</p>
+    <div class="hero-divider"><span>⚗</span></div>
+    <p class="hero-intro">
+      La mine Eustis, enfouie dans les Cantons-de-l'Est, recèle des filons de chalcopyrite
+      riches en cuivre. Ce projet documente pas à pas le voyage fascinant de ce métal
+      depuis la roche brute extraite du sol jusqu'au cuivre pur obtenu en laboratoire —
+      mêlant chimie, histoire minière et savoir-faire artisanal.
+    </p>
+  </header>
+
+  <!-- ÉTAPES -->
+  <section class="etapes">
+    <div class="section-header">
+      <span class="section-num-badge">PROCESSUS</span>
+      <h2>Étapes d'extraction</h2>
+    </div>
+
+    <div class="etape">
+      <div class="etape-num-col">
+        <div class="etape-circle">1</div>
+        <div class="etape-line"></div>
+      </div>
+      <div class="etape-body">
+        <div class="etape-title"><span class="etape-icon">⛏️</span>Collecte du minerai</div>
+        <p class="etape-text">
+          Prélèvement de spécimens de <strong>chalcopyrite</strong> (CuFeS₂) à la mine Eustis.
+          Identification visuelle du minerai à la teinte dorée caractéristique et à l'éclat métallique.
+          Sélection des échantillons les plus riches pour optimiser le rendement.
+        </p>
+      </div>
+    </div>
+
+    <div class="etape">
+      <div class="etape-num-col">
+        <div class="etape-circle">2</div>
+        <div class="etape-line"></div>
+      </div>
+      <div class="etape-body">
+        <div class="etape-title"><span class="etape-icon">🔨</span>Concassage et broyage</div>
+        <p class="etape-text">
+          Réduction mécanique du minerai en poudre fine pour <strong>maximiser la surface de contact</strong>
+          lors des réactions chimiques. Plus la poudre est fine, plus l'extraction sera complète et rapide.
+        </p>
+      </div>
+    </div>
+
+    <div class="etape">
+      <div class="etape-num-col">
+        <div class="etape-circle">3</div>
+        <div class="etape-line"></div>
+      </div>
+      <div class="etape-body">
+        <div class="etape-title"><span class="etape-icon">🧪</span>Lixiviation acide</div>
+        <p class="etape-text">
+          Dissolution du cuivre à l'aide d'une solution d'<strong>acide sulfurique dilué</strong>.
+          Le cuivre passe en solution sous forme d'ions Cu²⁺, laissant les gangues insolubles.
+          La solution bleue caractéristique du sulfate de cuivre signale la réussite de l'étape.
+        </p>
+      </div>
+    </div>
+
+    <div class="etape">
+      <div class="etape-num-col">
+        <div class="etape-circle">4</div>
+        <div class="etape-line"></div>
+      </div>
+      <div class="etape-body">
+        <div class="etape-title"><span class="etape-icon">⚡</span>Cémentation ou électrolyse</div>
+        <p class="etape-text">
+          Précipitation du cuivre pur par <strong>cémentation sur fer</strong> (le fer déplace le cuivre en solution)
+          ou par <strong>électrolyse</strong> pour un cuivre d'une pureté supérieure.
+          Le dépôt rougeâtre brillant qui apparaît sur l'électrode est du cuivre presque pur.
+        </p>
+      </div>
+    </div>
+
+    <div class="etape">
+      <div class="etape-num-col">
+        <div class="etape-circle">5</div>
+      </div>
+      <div class="etape-body">
+        <div class="etape-title"><span class="etape-icon">✨</span>Récupération et caractérisation</div>
+        <p class="etape-text">
+          Collecte, séchage et pesée du cuivre obtenu. <strong>Calcul du rendement</strong> par rapport
+          à la masse de minerai de départ. Analyse visuelle et tests de conductivité pour confirmer
+          la pureté du métal récupéré.
+        </p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- GALERIE PHOTOS -->
+  <section class="galerie">
+    <div class="section-header">
+      <span class="section-num-badge">GALERIE</span>
+      <h2>Photos du processus</h2>
+    </div>
+
+    <div class="photo-grid">
+      <!-- Pour activer : ajouter class="has-image" au .photo-slot et un <img src="/cuivre/images/nom.jpg" alt="..."> -->
+      <div class="photo-slot">
+        <img src="" alt="Chaudière de minerai broyé gris">
+        <div class="slot-placeholder">
+          <span class="slot-icon">📷</span>
+          <span class="slot-num">#1 · Acte 1</span>
+          <span class="slot-label">Chaudière de minerai broyé gris</span>
+        </div>
+      </div>
+      <div class="photo-slot">
+        <img src="" alt="Versement du minerai dans l'eau">
+        <div class="slot-placeholder">
+          <span class="slot-icon">📷</span>
+          <span class="slot-num">#2 · Acte 1</span>
+          <span class="slot-label">Versement du minerai dans l'eau</span>
+        </div>
+      </div>
+      <div class="photo-slot">
+        <img src="" alt="Liquide bleu-vert après 24-48h">
+        <div class="slot-placeholder">
+          <span class="slot-icon">📷</span>
+          <span class="slot-num">#3 · Acte 1</span>
+          <span class="slot-label">Liquide bleu-vert après 24-48h</span>
+        </div>
+      </div>
+      <div class="photo-slot">
+        <img src="" alt="Bain-marie en place">
+        <div class="slot-placeholder">
+          <span class="slot-icon">📷</span>
+          <span class="slot-num">#4 · Acte 2</span>
+          <span class="slot-label">Bain-marie en place</span>
+        </div>
+      </div>
+      <div class="photo-slot">
+        <img src="" alt="Laine d'acier avant">
+        <div class="slot-placeholder">
+          <span class="slot-icon">📷</span>
+          <span class="slot-num">#5 · Acte 3</span>
+          <span class="slot-label">Laine d'acier avant</span>
+        </div>
+      </div>
+      <div class="photo-slot">
+        <img src="" alt="Résidu cuivré accumulé au fond">
+        <div class="slot-placeholder">
+          <span class="slot-icon">📷</span>
+          <span class="slot-num">#6 · Acte 3</span>
+          <span class="slot-label">Résidu cuivré accumulé au fond</span>
+        </div>
+      </div>
+      <div class="photo-slot">
+        <img src="" alt="Creuset rempli de résidu cuivré">
+        <div class="slot-placeholder">
+          <span class="slot-icon">📷</span>
+          <span class="slot-num">#7 · Acte 4</span>
+          <span class="slot-label">Creuset rempli de résidu cuivré</span>
+        </div>
+      </div>
+      <div class="photo-slot">
+        <img src="" alt="Boulette de cuivre refroidie, brillante">
+        <div class="slot-placeholder">
+          <span class="slot-icon">📷</span>
+          <span class="slot-num">#8 · Acte 4</span>
+          <span class="slot-label">Boulette de cuivre refroidie, brillante</span>
+        </div>
+      </div>
+      <div class="photo-slot">
+        <img src="" alt="Comparaison avant/après — minerai vs boulette">
+        <div class="slot-placeholder">
+          <span class="slot-icon">📷</span>
+          <span class="slot-num">#9 · Acte 4</span>
+          <span class="slot-label">Comparaison avant/après — minerai vs boulette</span>
+        </div>
+      </div>
+    </div>
+    <p class="photo-caption">Les photos du laboratoire seront ajoutées au fil du projet.</p>
+  </section>
+
+  <!-- VIDÉOS -->
+  <section class="videos">
+    <div class="section-header">
+      <span class="section-num-badge">VIDÉOS</span>
+      <h2>Démonstrations</h2>
+    </div>
+
+    <div class="video-grid">
+      <!-- Pour activer : remplacer .video-placeholder par <video controls src="/cuivre/videos/clip1.mp4"></video> -->
+      <div class="video-slot">
+        <div class="video-placeholder">
+          <span class="v-icon">🎬</span>
+          <span class="v-label">Vidéo à venir</span>
+        </div>
+        <div class="video-meta">
+          <span class="v-acte">Acte 1</span>
+          <span class="v-title">Clip 1 — Time-lapse : eau vire au bleu-vert <em>(15-30 sec)</em></span>
+        </div>
+      </div>
+      <div class="video-slot">
+        <div class="video-placeholder">
+          <span class="v-icon">🎬</span>
+          <span class="v-label">Vidéo à venir</span>
+        </div>
+        <div class="video-meta">
+          <span class="v-acte">Acte 2</span>
+          <span class="v-title">Clip 2 — Ajout acide sulfurique + H₂O₂ (réaction) <em>(10-15 sec)</em></span>
+        </div>
+      </div>
+      <div class="video-slot">
+        <div class="video-placeholder">
+          <span class="v-icon">🎬</span>
+          <span class="v-label">Vidéo à venir</span>
+        </div>
+        <div class="video-meta">
+          <span class="v-acte">Acte 2</span>
+          <span class="v-title">Clip 3 — Gros plan : bulles et vapeurs <em>(10 sec)</em></span>
+        </div>
+      </div>
+      <div class="video-slot">
+        <div class="video-placeholder">
+          <span class="v-icon">🎬</span>
+          <span class="v-label">Vidéo à venir</span>
+        </div>
+        <div class="video-meta">
+          <span class="v-acte">Acte 3</span>
+          <span class="v-title">Clip 4 — Laine d'acier dans le liquide <em>(10-15 sec)</em></span>
+        </div>
+      </div>
+      <div class="video-slot">
+        <div class="video-placeholder">
+          <span class="v-icon">🎬</span>
+          <span class="v-label">Vidéo à venir</span>
+        </div>
+        <div class="video-meta">
+          <span class="v-acte">Acte 3</span>
+          <span class="v-title">Clip 5 — Time-lapse : laine disparaît <em>(20 sec)</em></span>
+        </div>
+      </div>
+      <div class="video-slot">
+        <div class="video-placeholder">
+          <span class="v-icon">🎬</span>
+          <span class="v-label">Vidéo à venir</span>
+        </div>
+        <div class="video-meta">
+          <span class="v-acte">Acte 3</span>
+          <span class="v-title">Clip 6 — Versement vinaigre (réaction effervescente) <em>(10 sec)</em></span>
+        </div>
+      </div>
+      <div class="video-slot">
+        <div class="video-placeholder">
+          <span class="v-icon">🎬</span>
+          <span class="v-label">Vidéo à venir</span>
+        </div>
+        <div class="video-meta">
+          <span class="v-acte">Acte 4</span>
+          <span class="v-title">Clip 7 — Allumage torche propane <em>(5 sec)</em></span>
+        </div>
+      </div>
+      <div class="video-slot">
+        <div class="video-placeholder">
+          <span class="v-icon">🎬</span>
+          <span class="v-label">Vidéo à venir</span>
+        </div>
+        <div class="video-meta">
+          <span class="v-acte">Acte 4</span>
+          <span class="v-title">Clip 8 — Gros plan : cuivre qui fond et brille <em>(15-20 sec)</em></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><a href="/index.html">← Retour à Alignement.com</a> &nbsp;·&nbsp; <a href="/liens/">Liens</a> &nbsp;·&nbsp; <a href="/apropos/">À propos</a> &nbsp;·&nbsp; &copy; 2026 Alignement.com</p>
+  </footer>
+
+</div>
+</body>
+</html>

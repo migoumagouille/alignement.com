@@ -1,0 +1,77 @@
+
+
+body {
+    background: #ffffff;
+  }
+
+
+hr {
+    color : #000000;
+    width : 360px;
+  }
+
+
+a:link {
+    color: #15787f;
+  }
+
+
+a:visited {
+    color: #b7854e;
+  }
+
+
+a:active {
+    color: red;
+    background: #c0c0c0;
+  }
+
+
+i, p, blockquote, ul li, ul, dl {
+    font-family: arial,sans-serif;
+    font-size: 12pt;
+    color: #000000;
+  }
+
+
+strong {
+    font-family: arial,sans-serif;
+    font-size: 12pt;
+    color: #ffffff;
+  }
+
+
+h4, smaller {
+    font-family: arial,sans-serif;
+    font-size: 12pt;
+    color: #000000;
+  }
+
+
+h3, big {
+    font-family: arial,sans-serif;
+    font-size: 14pt;
+    color: #000000;
+  }
+
+
+h2 {
+    font-family: arial,sans-serif;
+    font-size: 18pt;
+    color: #000000;
+  }
+
+
+h1 {
+    font-family: arial,sans-serif;
+    font-size: 24pt;
+    color: #000000;
+  }
+
+
+tt, pre {
+    font-family: Courier, Lucidatypewriter;
+    font-size: 12pt;
+    color: #000000;
+  }
+

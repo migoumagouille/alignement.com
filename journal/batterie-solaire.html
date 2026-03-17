@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La batterie du salon — Alignement.com</title>
+  <meta name="description" content="Batterie LiFePO4 280Ah assemblée au laboratoire avec cellules CATL et BMS Daly, rechargée par 400W de panneaux solaires. Deux jours d'autonomie pour tout le salon.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alignement.com/journal/batterie-solaire.html">
+  <meta property="og:title" content="La batterie du salon — Alignement.com">
+  <meta property="og:description" content="Batterie LiFePO4 280Ah assemblée au labo avec cellules CATL et BMS Daly. 400W solaires, deux jours d'autonomie.">
+  <meta property="og:image" content="https://alignement.com/journal/images/batterie.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --green: #27ae60;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(39,174,96,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(39,174,96,0.12);
+      border: 1px solid rgba(39,174,96,0.3);
+      color: #82e0aa;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--white) 30%, #82e0aa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--green);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), transparent);
+      margin: 30px 0;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #82e0aa;
+      margin: 40px 0 16px;
+    }
+
+    /* Lien externe discret */
+    .ext-link {
+      color: #82e0aa;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(130,224,170,0.4);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .ext-link:hover {
+      color: var(--white);
+      border-color: var(--white);
+    }
+
+    /* PHOTO */
+    .article-image {
+      margin: 36px 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(39,174,96,0.2);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    }
+
+    .article-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .img-legende {
+      padding: 12px 18px;
+      font-size: 0.8rem !important;
+      font-style: italic;
+      color: rgba(232,238,248,0.3) !important;
+      background: rgba(0,0,0,0.2);
+      margin-bottom: 0 !important;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    /* Specs batterie */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin: 32px 0;
+    }
+
+    .spec-box {
+      background: var(--card-bg);
+      border: 1px solid rgba(39,174,96,0.2);
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .spec-icon { font-size: 1.6rem; flex-shrink: 0; }
+
+    .spec-info {}
+
+    .spec-val {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #82e0aa;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+
+    .spec-label {
+      font-size: 0.78rem;
+      color: rgba(232,238,248,0.35);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Appareils reliés */
+    .appareils {
+      background: var(--card-bg);
+      border: 1px solid rgba(39,174,96,0.2);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 28px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .appareil-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.88rem;
+      color: rgba(232,238,248,0.6);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 6px 12px;
+    }
+
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 30px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+    }
+
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @media (max-width: 500px) {
+      .specs-grid { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">Énergie solaire</span>
+      <span class="article-date">7 mars 2026</span>
+    </div>
+    <h1>La batterie du salon</h1>
+    <p class="article-intro">
+      Il pleut à boire debout. Pas question que les capteurs solaires rechargent quoi que ce soit aujourd'hui.
+      Heureusement, la batterie assemblée au labo tient le coup — et demain il fait beau.
+    </p>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="article-body">
+
+    <p>
+      Les jours de pluie de fin d'hiver, on apprécie vraiment ce qu'on a bâti.
+      Le salon tourne en autonomie complète — télévision, internet, téléphone,
+      imprimante, éclairage — le tout alimenté par une batterie assemblée
+      <strong>à la main, dans le laboratoire</strong>.
+    </p>
+
+    <div class="article-image">
+      <img src="/journal/images/batterie.jpg" alt="Batterie LiFePO4 280Ah assemblée avec cellules CATL">
+      <p class="img-legende">🔋 Batterie LiFePO4 280Ah — assemblée au laboratoire</p>
+    </div>
+
+    <h2>Ce qui est branché</h2>
+
+    <p>Tout l'électronique du salon y est relié :</p>
+
+    <div class="appareils">
+      <span class="appareil-tag">📺 Télévision</span>
+      <span class="appareil-tag">🌐 Internet</span>
+      <span class="appareil-tag">📞 Téléphone</span>
+      <span class="appareil-tag">🖨️ Imprimante</span>
+      <span class="appareil-tag">💡 Éclairage</span>
+    </div>
+
+    <h2>Les specs de la bête</h2>
+
+    <div class="specs-grid">
+      <div class="spec-box">
+        <span class="spec-icon">⚡</span>
+        <div class="spec-info">
+          <div class="spec-val">12.8V / 280Ah</div>
+          <div class="spec-label">Batterie LiFePO4</div>
+        </div>
+      </div>
+      <div class="spec-box">
+        <span class="spec-icon">☀️</span>
+        <div class="spec-info">
+          <div class="spec-val">400W</div>
+          <div class="spec-label">Capteurs solaires</div>
+        </div>
+      </div>
+      <div class="spec-box">
+        <span class="spec-icon">🌑</span>
+        <div class="spec-info">
+          <div class="spec-val">2 jours</div>
+          <div class="spec-label">Autonomie sans soleil</div>
+        </div>
+      </div>
+      <div class="spec-box">
+        <span class="spec-icon">🔬</span>
+        <div class="spec-info">
+          <div class="spec-val">Fait main</div>
+          <div class="spec-label">Assemblé au laboratoire</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>La recette</h2>
+
+    <p>
+      La batterie est construite à partir de cellules
+      <a href="https://www.catl.com/fr/" class="ext-link" target="_blank"><strong>CATL</strong></a>
+      — le géant chinois des batteries lithium, fournisseur de la plupart des grands
+      constructeurs automobiles. Des cellules prismatiques LiFePO4,
+      robustes, stables et conçues pour durer.
+    </p>
+
+    <p>
+      La gestion de charge et de décharge est assurée par un BMS
+      <a href="https://fr.dalybms.com/#page01" class="ext-link" target="_blank"><strong>Daly</strong></a>
+      — un Battery Management System qui protège les cellules contre la surcharge,
+      la décharge profonde et les courts-circuits. <strong>Le cerveau de la batterie.</strong>
+    </p>
+
+    <div class="highlight-box">
+      <p>
+        « Assembler sa propre batterie, c'est comprendre l'énergie autrement —
+        pas comme quelque chose qui sort d'une prise, mais comme quelque chose
+        qu'on capte, stocke et gère soi-même. »
+      </p>
+    </div>
+
+    <h2>Deux jours d'autonomie</h2>
+
+    <p>
+      Par temps couvert, la batterie peut tenir <strong>deux jours complets</strong>
+      sans recharge. Aujourd'hui c'est jour de pluie — mais demain le soleil revient,
+      et les 400 watts de capteurs feront leur travail. Le cycle recommencera,
+      silencieux et propre, comme il le fait depuis que le système est en place.
+    </p>
+
+    <p>
+      Ce projet est un des nombreux fils qui composent la vie au labo.
+      D'autres suivront — des recettes, des montages, des expériences.
+      <strong>La curiosité, c'est une énergie renouvelable elle aussi.</strong>
+    </p>
+
+  </div>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>

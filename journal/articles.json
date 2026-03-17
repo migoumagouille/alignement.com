@@ -1,0 +1,82 @@
+[
+  {
+    "id": "restructuration",
+    "titre": "Une nouvelle vocation",
+    "date": "2026-03-06",
+    "categorie": "Le site",
+    "resume": "Alignement.com se réinvente. Fini l'hébergement, place à un espace de création, de partage et de curiosité — fait avec soin, pixel par pixel.",
+    "fichier": "/journal/restructuration.html"
+  },
+  {
+    "id": "publier-avec-claude",
+    "titre": "Publier avec Claude",
+    "date": "2026-03-06",
+    "categorie": "Le site",
+    "resume": "Comment naît un article sur Alignement.com? Une idée, quelques mots, et une collaboration entre un humain et une intelligence artificielle. Le processus de A à Z.",
+    "fichier": "/journal/publier-avec-claude.html"
+  },
+  {
+    "id": "hiver-2026",
+    "titre": "Un hiver à quatre lunes",
+    "date": "2026-03-09",
+    "categorie": "Saisons",
+    "resume": "Un hiver à brûler huit cordes de bois, quatre lunes au calendrier chinois. L'hiver s'étire, on a hâte de jardiner — mais les journées allongent et demain on change d'heure.",
+    "fichier": "/journal/hiver-2026.html"
+  },
+  {
+    "id": "batterie-solaire",
+    "titre": "La batterie du salon",
+    "date": "2026-03-07",
+    "categorie": "Énergie solaire",
+    "resume": "Il pleut à boire debout — pas question que les capteurs solaires rechargent quoi que ce soit. Heureusement, la batterie LiFePO4 280Ah assemblée au labo tient le coup. Demain il fait beau.",
+    "fichier": "/journal/batterie-solaire.html"
+  },
+  {
+    "id": "le-precieux",
+    "titre": "Le Précieux",
+    "date": "2026-03-08",
+    "categorie": "Expérience & Philosophie",
+    "resume": "Un pot en argile du Mont-Saint-Bruno, des tressages de cuivre, un triskel. Personne ne peut s'empêcher de passer un anneau à son doigt. Le métal a-t-il le pouvoir d'envoûter l'humain?",
+    "fichier": "/journal/le-precieux.html"
+  },
+  {
+    "id": "dimanche-debian",
+    "titre": "Dimanche Debian",
+    "date": "2026-03-09",
+    "categorie": "Linux & Informatique",
+    "resume": "Un Thinkpad X130e de 2012, Debian 13 et une sauce à spaghetti sur le feu. Entre deux chaudrons, une réinstallation Linux en moins d'une heure — avec un coup de main de Claude.",
+    "fichier": "/journal/dimanche-debian.html"
+  },
+  {
+    "id": "une-semaine-prodigieuse",
+    "titre": "Une semaine prodigieuse",
+    "date": "2026-03-10",
+    "categorie": "Le site",
+    "resume": "Cela ne fait pas encore une semaine que j'ai refait alignement.com avec l'aide de l'intelligence artificielle. Du HTML pur, simple et sécurisé — comme en 1998, mais en mieux.",
+    "fichier": "/journal/une-semaine-prodigieuse.html"
+  },
+  {
+    "id": "nuit-du-verglas",
+    "titre": "La nuit du verglas",
+    "date": "2026-03-12",
+    "categorie": "Énergie solaire",
+    "resume": "11 mars 2026 — panne majeure sur la rive sud de Montréal. Dix heures sans courant. Chez moi, la vie a continué comme si de rien n'était grâce à la batterie solaire du laboratoire.",
+    "fichier": "/journal/nuit-du-verglas.html"
+  },
+  {
+  "id": "ia-et-le-temps",
+  "titre": "Quand l'IA perd le fil du temps",
+  "date": "2026-03-14",
+  "categorie": "Intelligence artificielle",
+  "resume": "Tous nos articles affichaient 2025 — on est en 2026. Un lecteur attentif l'a remarqué. Pourquoi les IA comme Claude ont parfois du mal avec le calendrier?",
+  "fichier": "/journal/ia-et-le-temps.html"
+ },
+ {
+  "id": "page-de-liens",
+  "titre": "Une page de liens",
+  "date": "2026-03-15",
+  "categorie": "Le site",
+  "resume": "Nouvelle section sur Alignement.com — une page de liens d'intérêt organisée par thème. Météo, énergie solaire, informatique, géologie et navigation.",
+  "fichier": "/journal/page-de-liens.html"
+}
+]

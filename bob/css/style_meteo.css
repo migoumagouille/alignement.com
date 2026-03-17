@@ -1,0 +1,16 @@
+<!--
+body { background: #31497b }
+hr { color: #5b5b5b }
+td { background: #31497b; padding: 0px; border: 0px; color: #ffffff; font-family: Verdana, Helvetica, Arial; font-size: 10pt}
+a:link { color: #ffcc66 }
+a:visited { color: #ffcc99 }
+a:active  { color: #ff0000; background: #c0c0c0 }
+i, p, blockquote, ul li, ul, dl { font-family: Verdana, Helvetica, Arial; font-size: 10pt; color: #ffffff }
+b {font-family: Verdana, Helvetica, Arial; font-size: 12pt; color: #ffffff }
+cite, small {font-family: Verdana, Helvetica, Arial; font-size: 10pt; color: #000077 }
+h4, smaller { font-family: Verdana, Helvetica, Arial; font-size: 12pt; color: #000077 }
+h3, big { font-family: Verdana, Helvetica, Arial; font-size: 14pt; color: #000059 }
+h2 { font-family: Verdana, Helvetica, Arial; font-size: 18pt; color: #ffffff }
+h1 { font-family: Verdana, Helvetica, Arial; font-size: 24pt; color: #000077 }
+tt, pre { font-family: Courier, Lucidatypewriter; font-size: 10pt; color: #006600 }
+-->
