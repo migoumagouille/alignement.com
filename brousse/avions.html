@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nos avions — Marcel Bourhis</title>
+  <meta name="description" content="Les avions de brousse de Marcel Bourhis — Beaver, Otter, Norseman, Husky, Cessna, Beech 18.">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sky: #0a1a2e;
+      --gold: #c8a84b;
+      --ice: #a8c4d8;
+      --white: #f0f4f8;
+      --border: rgba(168,196,216,0.15);
+      --card-bg: rgba(255,255,255,0.04);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--sky);
+      color: var(--white);
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 100% 40% at 50% 0%, rgba(200,168,75,0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .site-nav .logo {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .site-nav .logo:hover { opacity: 1; }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(168,196,216,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--ice); }
+
+    .page-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .page-header h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .page-header .sous-titre {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+    }
+
+    .divider {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 24px 0 40px;
+    }
+
+    /* AVION CARD */
+    .avion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 50px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .avion-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .avion-card:hover { border-color: rgba(200,168,75,0.3); }
+
+    .avion-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+      filter: sepia(0.15) contrast(1.05);
+    }
+
+    .avion-info {
+      padding: 16px 18px;
+    }
+
+    .avion-nom {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .avion-desc {
+      font-size: 0.88rem;
+      color: rgba(240,244,248,0.65);
+      line-height: 1.65;
+    }
+
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 0 50px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .page-nav a {
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(168,196,216,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .page-nav a:hover { color: var(--ice); }
+
+    footer {
+      text-align: center;
+      padding: 20px 0 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      color: rgba(168,196,216,0.2);
+      letter-spacing: 1px;
+    }
+
+    footer a {
+      color: rgba(168,196,216,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--ice); }
+
+    @media (max-width: 600px) {
+      .avion-grid { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav class="site-nav">
+    <a href="index.html" class="logo">✈ Marcel Bourhis</a>
+    <div class="nav-links">
+      <a href="index.html">À propos</a>
+      <a href="marcel.html">Vol de brousse</a>
+      <a href="avions.html" class="active">Nos avions</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <h1>Nos avions</h1>
+    <div class="sous-titre">Les appareils du Grand Nord</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="avion-grid">
+
+    <div class="avion-card">
+      <img src="images/beaverouge.jpg" alt="Le Beaver">
+      <div class="avion-info">
+        <div class="avion-nom">Le Beaver</div>
+        <div class="avion-desc">
+          L'avion de brousse par excellence. Un appareil construit spécialement pour le nord canadien —
+          performances exceptionnelles, puissant moteur Pratt & Whitney de 450 C.V., très grande fiabilité.
+          Production totale : 1631. En service dans 63 pays.
+          L'appareil le plus employé dans la brousse à travers le monde.
+        </div>
+      </div>
+    </div>
+
+    <div class="avion-card">
+      <img src="images/otercano.jpg" alt="Le Otter">
+      <div class="avion-info">
+        <div class="avion-nom">Le Otter</div>
+        <div class="avion-desc">
+          Le grand frère du Beaver — beaucoup d'espace de chargement, idéal pour le transport des grosses charges.
+          Très bonnes performances S.T.O.L. Production totale : 466. En service dans 21 pays. Moteur de 600 C.V. P.W.1340.
+          Son seul reproche : un moteur qui manquait un peu de puissance, surtout l'été.
+        </div>
+      </div>
+    </div>
+
+    <div class="avion-card">
+      <img src="images/norsemanflot.jpg" alt="Le Norseman">
+      <div class="avion-info">
+        <div class="avion-nom">Le Norseman</div>
+        <div class="avion-desc">
+          Appareil extrêmement robuste, un peu lourd, équipé d'un moteur de 600 C.V.
+          Il opérait bien sur les grands lacs mais demandait une course assez longue pour décoller.
+          Entièrement recouvert de toile, il demandait aussi un entretien particulier.
+          Environ 900 appareils construits dans diverses versions : MK-4, MK-5, MK-6.
+        </div>
+      </div>
+    </div>
+
+    <div class="avion-card">
+      <img src="images/husky.jpg" alt="Le Husky">
+      <div class="avion-info">
+        <div class="avion-nom">Le Husky</div>
+        <div class="avion-desc">
+          Construit à seulement 18 exemplaires. Une grande porte à l'arrière facilitait le chargement
+          de très longues pièces. Équipé d'un moteur de 550 C.V., construit en Colombie-Britannique,
+          il était très rare d'en rencontrer au Québec. Une épave a été récupérée à la fin des années 60
+          dans un lac au nord de Témiscamie — probablement pour le musée de l'aviation.
+        </div>
+      </div>
+    </div>
+
+    <div class="avion-card">
+      <img src="images/cf-yfm.jpg" alt="Cessna 180 et 185">
+      <div class="avion-info">
+        <div class="avion-nom">Cessna 180 et 185</div>
+        <div class="avion-desc">
+          Les appareils les plus populaires — surtout employés par des propriétaires privés
+          pour la chasse et la pêche.
+        </div>
+      </div>
+    </div>
+
+    <div class="avion-card">
+      <img src="images/beech18.jpg" alt="Le Beech 18">
+      <div class="avion-info">
+        <div class="avion-nom">Le Beech 18</div>
+        <div class="avion-desc">
+          Quelques compagnies s'en servent encore — un appareil qui n'est pas très
+          facile à opérer dans la brousse.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-nav">
+    <a href="marcel.html">← Vol de brousse</a>
+    <a href="index.html">À propos →</a>
+  </div>
+
+  <footer>
+    <p>
+      <a href="/index.html">← Alignement.com</a>
+      &nbsp;·&nbsp;
+      Marcel Bourhis · Pilote de brousse · Québec 1960–2000
+      &nbsp;·&nbsp;
+      &copy; 2026
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vol de brousse — Marcel Bourhis</title>
+  <meta name="description" content="Photos et récits du vol de brousse au Québec par Marcel Bourhis — lac Cache, Baie James, enfants Cris, caribous.">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sky: #0a1a2e;
+      --gold: #c8a84b;
+      --ice: #a8c4d8;
+      --white: #f0f4f8;
+      --border: rgba(168,196,216,0.15);
+      --card-bg: rgba(255,255,255,0.04);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--sky);
+      color: var(--white);
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 100% 40% at 50% 0%, rgba(200,168,75,0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .site-nav .logo {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .site-nav .logo:hover { opacity: 1; }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(168,196,216,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--ice); }
+
+    .page-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .page-header h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .page-header .sous-titre {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+    }
+
+    .divider {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 24px 0 40px;
+    }
+
+    .section-titre {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      opacity: 0.85;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 50px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 6px;
+      filter: sepia(0.15) contrast(1.05);
+      border: 1px solid var(--border);
+      display: block;
+    }
+
+    .photo-item .legende {
+      font-size: 0.88rem;
+      color: rgba(240,244,248,0.65);
+      line-height: 1.6;
+      margin-top: 12px;
+      padding: 0 4px;
+    }
+
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 0 50px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .page-nav a {
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(168,196,216,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .page-nav a:hover { color: var(--ice); }
+
+    footer {
+      text-align: center;
+      padding: 20px 0 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      color: rgba(168,196,216,0.2);
+      letter-spacing: 1px;
+    }
+
+    footer a {
+      color: rgba(168,196,216,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--ice); }
+
+    @media (max-width: 600px) {
+      .photo-grid { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav class="site-nav">
+    <a href="index.html" class="logo">✈ Marcel Bourhis</a>
+    <div class="nav-links">
+      <a href="index.html">À propos</a>
+      <a href="marcel.html" class="active">Vol de brousse</a>
+      <a href="avions.html">Nos avions</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <h1>Vol de brousse</h1>
+    <div class="sous-titre">Québec · Années 60 à 90</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="section-titre">Lac Cache · Baie James · Grand Nord</div>
+
+  <div class="photo-grid">
+
+    <div class="photo-item">
+      <img src="images/avions_a_cache.jpg" alt="Lac Cache à Chibougamau">
+      <div class="legende">
+        Un matin d'hiver au lac Cache à Chibougamau. Préparatifs pour le transport des barils :
+        essence, fuel, JP4... Nous en chargions 5 ou 6 dans les Otters, 3 dans les Beavers,
+        4 ou 5 dans les Norsemans, pour alimenter les camps isolés du Grand Nord.
+      </div>
+    </div>
+
+    <div class="photo-item">
+      <img src="images/campatila.jpg" alt="Camp du lac Attila">
+      <div class="legende">
+        Camp du lac Attila, quelques milles au sud de LG-2 — la principale centrale de
+        ce gigantesque complexe hydro-électrique de la Baie James. Toiles de tentes montées
+        sur des armatures de bois, planchers et murs en contreplaqué. Très confortables.
+        Une excellente cuisine. Une bonne étape pour les pilotes.
+      </div>
+    </div>
+
+    <div class="photo-item">
+      <img src="images/matinopinaca.jpg" alt="Lac Opinaca - Pâques 1973">
+      <div class="legende">
+        Matin de Pâques 1973 sur le lac Opinaca. Nous nous préparions à évacuer le site :
+        une grosse partie du camp avait brûlé la veille. Tous les appareils disponibles
+        avaient été affectés à l'évacuation des lieux.
+      </div>
+    </div>
+
+      <div class="photo-item">
+      <img src="images/alouetmoteur.jpg" alt="Alouette transporte un moteur">
+      <div class="legende">
+        Une Alouette emporte un moteur de Otter dans un petit lac, pour remplacer
+        celui d'un avion qui a dû faire un atterrissage forcé.
+      </div>
+    </div>
+
+    <div class="photo-item">
+      <img src="images/oternorsmatagami.jpg" alt="Base de Matagami">
+      <div class="legende">
+        La base de Matagami sur la rivière Bell — le point de ravitaillement le plus important
+        pendant la construction de la route du nord qui menait aux sites des grands barrages.
+      </div>
+    </div>
+
+    <div class="photo-item">
+      <img src="images/belgri.jpg" alt="Halte sur une rivière">
+      <div class="legende">
+        Une courte halte sur une rivière nous permettait de ramener quelques beaux poissons
+        pour le souper.
+      </div>
+    </div>
+
+    </div>
+
+  <div class="page-nav">
+    <a href="index.html">← À propos</a>
+    <a href="avions.html">Nos avions →</a>
+  </div>
+
+  <footer>
+    <p>
+      <a href="/index.html">← Alignement.com</a>
+      &nbsp;·&nbsp;
+      Marcel Bourhis · Pilote de brousse · Québec 1960–2000
+      &nbsp;·&nbsp;
+      &copy; 2026
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>

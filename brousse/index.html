@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marcel Bourhis — Pilote de brousse</title>
+  <meta name="description" content="Marcel Bourhis, pilote de brousse au Québec de 1960 à 2000. Son histoire, ses aventures dans le Grand Nord québécois.">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sky: #0a1a2e;
+      --horizon: #112240;
+      --steel: #1e3a5f;
+      --ice: #a8c4d8;
+      --gold: #c8a84b;
+      --white: #f0f4f8;
+      --mist: rgba(168,196,216,0.6);
+      --border: rgba(168,196,216,0.15);
+      --card-bg: rgba(255,255,255,0.04);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--sky);
+      color: var(--white);
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 100% 40% at 50% 0%, rgba(200,168,75,0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 0% 100%, rgba(14,34,64,0.8) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* NAV */
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .site-nav .logo {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .site-nav .logo:hover { opacity: 1; }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(168,196,216,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--ice); }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 48px;
+      align-items: start;
+      padding: 60px 0 50px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-photo {
+      text-align: center;
+    }
+
+    .hero-photo img {
+      width: 153px;
+      height: auto;
+      border-radius: 4px;
+      filter: sepia(0.2) contrast(1.05);
+      border: 1px solid var(--border);
+    }
+
+    .hero-photo .photo-legende {
+      font-size: 0.78rem;
+      color: rgba(168,196,216,0.35);
+      margin-top: 10px;
+      letter-spacing: 1px;
+      font-style: italic;
+    }
+
+    .hero-text h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .hero-text .dates {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.8;
+      margin-bottom: 24px;
+    }
+
+    .hero-text p {
+      color: rgba(240,244,248,0.75);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .divider {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 30px 0;
+    }
+
+    /* PHOTO GIL ET MARCEL */
+    .photo-duo {
+      text-align: center;
+      margin: 20px 0 50px;
+      animation: fadeUp 0.8s ease both 0.2s;
+    }
+
+    .photo-duo img {
+      max-width: 100%;
+      width: 420px;
+      height: auto;
+      border-radius: 6px;
+      filter: sepia(0.15) contrast(1.05);
+      border: 1px solid var(--border);
+    }
+
+    .photo-duo .legende {
+      font-size: 0.82rem;
+      font-style: italic;
+      color: rgba(168,196,216,0.4);
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+
+    /* SECTION PHOTOS */
+    .section-titre {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      opacity: 0.85;
+    }
+
+    /* GRILLE PHOTOS */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 50px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 6px;
+      filter: sepia(0.15) contrast(1.05);
+      border: 1px solid var(--border);
+      display: block;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .photo-item img:hover { opacity: 0.85; }
+
+    .photo-item .legende {
+      font-size: 0.88rem;
+      color: rgba(240,244,248,0.65);
+      line-height: 1.6;
+      margin-top: 12px;
+      padding: 0 4px;
+    }
+
+    /* NAVIGATION BAS */
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 0 50px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .page-nav a {
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(168,196,216,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .page-nav a:hover { color: var(--ice); }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 20px 0 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      color: rgba(168,196,216,0.2);
+      letter-spacing: 1px;
+    }
+
+    footer a {
+      color: rgba(168,196,216,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--ice); }
+
+    @media (max-width: 600px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-photo { display: none; }
+      .photo-grid { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav class="site-nav">
+    <a href="index.html" class="logo">✈ Marcel Bourhis</a>
+    <div class="nav-links">
+      <a href="index.html" class="active">À propos</a>
+      <a href="marcel.html">Vol de brousse</a>
+      <a href="avions.html">Nos avions</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-photo">
+      <img src="images/marcel97.jpg" alt="Marcel Bourhis">
+      <div class="photo-legende">Marcel Bourhis</div>
+    </div>
+    <div class="hero-text">
+      <h1>Marcel Bourhis</h1>
+      <div class="dates">Pilote de brousse · 1960 — 2000</div>
+      <p>
+        Breton bretonnant — il parlait le breton — originaire du sud Finistère (Scaër).
+        Émigré au Canada depuis février 1955. Un peu aventurier, pêcheur, chasseur,
+        fanatique d'aviation.
+      </p>
+      <p>
+        Il a été comblé au Québec par la nature et par la facilité avec laquelle
+        on peut s'impliquer dans ce monde fabuleux qu'est le vol de brousse.
+      </p>
+      <div class="divider"></div>
+      <p>
+        95% de son temps de vol s'est fait sur les skis ou sur flotteurs. Il a ainsi
+        pu accumuler plusieurs milliers d'heures et une expérience unique et enrichissante
+        dans ce genre de vol.
+      </p>
+      <p>
+        Ce travail lui a permis de rencontrer une foule de personnages intéressants
+        et hauts en couleurs : des pilotes, des Indiens, des Esquimaux, des prospecteurs,
+        des géologues, des ingénieurs forestiers, des garde-feux, des traceurs de lignes,
+        des chasseurs de phoques... Beaucoup d'entre eux lui ont fait connaître des moments
+        très forts. Il en a gardé des souvenirs inoubliables.
+      </p>
+    </div>
+  </div>
+
+  <div class="photo-duo">
+    <img src="images/gil_et_dio.jpg" alt="Gil et Marcel">
+    <div class="legende">Gil et Marcel</div>
+  </div>
+
+  <div class="divider" style="margin: 0 auto 40px;"></div>
+  <div class="section-titre">MON VOL DE BROUSSE AU QUÉBEC — ANNÉES 60 À 90</div>
+
+  <div class="photo-grid">
+
+    <div class="photo-item">
+      <img src="images/qcucouleur.jpg" alt="Ravitaillement camps cris">
+      <div class="legende">
+        Ravitaillement d'un camp de chasse d'Indiens Cris. Sous contrat avec la Compagnie de la Baie d'Hudson,
+        nous avions à ravitailler pendant l'hiver près de 70 camps de trappeurs cris. Nous rentrions ces familles
+        sur leur territoire de chasse (situés dans les bassins des rivières Rupert, Opinaca, Sakami, Eastmain, La Grande)
+        en septembre et octobre avant le gel, et nous les sortions le printemps suivant.
+      </div>
+    </div>
+
+    <div class="photo-item">
+      <img src="images/chrgber.jpg" alt="Chargement équipement lourd">
+      <div class="legende">
+        Chargement d'équipement lourd. Au début des années 70 lors de la construction des routes d'accès
+        aux sites des grandes centrales électriques de la Baie James, les camps provisoires occupés par
+        plusieurs centaines d'ouvriers étaient tous ravitaillés par avion. Sur la photo, c'est une génératrice
+        que nous chargeons dans le Otter BER.
+      </div>
+    </div>
+
+    <div class="photo-item">
+      <img src="images/lacotish.jpg" alt="Monts Ottish">
+      <div class="legende">
+        L'est des Monts Ottish — Château d'eau du Québec. Presque toutes les grandes rivières du centre
+        du Québec prennent leurs sources autour de ces montagnes : La Mouchalagane, la rivière aux Outardes,
+        la Péribonca, la Manouane, la Rupert, la Eastmain, la Sakami, la Grande, la Caniapiscau...
+      </div>
+    </div>
+
+    <div class="photo-item">
+      <img src="images/nichicun.jpg" alt="Base météo de Nichicun">
+      <div class="legende">
+        La base météo de Nichicun — complètement isolée, loin de tout, en opération pendant plus de 20 ans.
+        Une vingtaine de météorologues, radio-mécaniciens et cuisiniers l'occupait par équipes de trois mois.
+        En février 1972, le thermomètre y est descendu sous les -55°C.
+      </div>
+    </div>
+
+    <div class="photo-item">
+      <img src="images/beaverbles.jpg" alt="Beaver blessé">
+      <div class="legende">
+        Beaver blessé. Les lacs du nord cachaient souvent des pièges : les roches à fleur d'eau,
+        les rochers cachés par la neige — une hantise pour les pilotes. Un circuit ou deux s'imposaient
+        avant chaque atterrissage sur un lac inconnu. Et ce n'était pas toujours suffisant.
+      </div>
+    </div>
+
+    <div class="photo-item">
+      <img src="images/oterblesse.jpg" alt="Otter blessé">
+      <div class="legende">
+        Otter blessé. Lorsque ce genre d'accident se produisait loin des bases, l'organisation des
+        réparations s'avérait toujours pleine de surprises. Ici c'est un Otter qui venait sortir le
+        Beaver de sa fâcheuse situation qui se fait prendre de la même façon.
+      </div>
+    </div>
+
+    <div class="photo-item">
+      <img src="images/rocoupable.jpg" alt="Le rocher coupable">
+      <div class="legende">
+        Le rocher coupable. Ce genre d'accident se produisait toujours loin de nos bases et les
+        réparations nécessitaient une expédition de plusieurs jours avec les mécaniciens.
+      </div>
+    </div>
+
+    <div class="photo-item">
+      <img src="images/piston.jpg" alt="Problème piston">
+      <div class="legende">
+        Problème avec le piston N°1. Changer un piston ou un moteur en pleine brousse demandait
+        beaucoup d'ingéniosité aux mécaniciens — et surtout beaucoup d'insecticide (si cela se passait en été).
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-nav">
+    <span></span>
+    <a href="marcel.html">Vol de brousse →</a>
+  </div>
+
+  <footer>
+    <p>
+      <a href="/index.html">← Alignement.com</a>
+      &nbsp;·&nbsp;
+      Marcel Bourhis · Pilote de brousse · Québec 1960–2000
+      &nbsp;·&nbsp;
+      &copy; 2026
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>
