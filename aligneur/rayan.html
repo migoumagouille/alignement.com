@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ancrage — L'Aligneur de Menhirs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #2a2a2a;
+      --amber: #c8740a;
+      --bone: #d4c9b0;
+      --white: #f0ead8;
+      --mist: rgba(212,201,176,0.45);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--bone);
+      font-family: 'Crimson Pro', Georgia, serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,0,0,0.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .scene {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      max-width: 560px;
+      width: 100%;
+    }
+
+    /* IMAGE NAVIRE */
+    .navire-wrap img {
+      max-width: 100%;
+      width: 513px;
+      height: auto;
+      display: block;
+      filter: sepia(0.3) contrast(1.05);
+      border-radius: 2px;
+    }
+
+    /* CORNE DE BRUME */
+    .corne-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .corne-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(212,201,176,0.35);
+    }
+
+    audio {
+      width: 220px;
+      filter: invert(0.85) sepia(0.3);
+      opacity: 0.7;
+    }
+
+    /* RETOUR */
+    .retour {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(200,116,10,0.6);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,116,10,0.2);
+      padding-bottom: 3px;
+      transition: all 0.3s;
+      margin-top: 10px;
+    }
+
+    .retour:hover {
+      color: var(--white);
+      border-color: var(--white);
+      letter-spacing: 7px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="scene">
+
+  <div class="navire-wrap">
+    <img src="images/navire.JPG" alt="Cargo à l'ancre">
+  </div>
+
+  <div class="corne-wrap">
+    <div class="corne-label">Corne de brume</div>
+    <audio controls loop>
+      <source src="images/corne.wav" type="audio/wav">
+    </audio>
+  </div>
+
+  <a href="current.html" class="retour">← Retour</a>
+
+</div>
+
+</body>
+</html>

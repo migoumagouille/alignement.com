@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La face cachée du Mont Saint-Hilaire — L'Aligneur de Menhirs</title>
+  <title>Le bout du monde — L'Aligneur de Menhirs</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
       --black: #000000;
       --amber: #c8740a;
+      --amber-lt: #e8960c;
       --bone: #d4c9b0;
       --white: #f0ead8;
       --red: #cc2200;
@@ -61,49 +62,39 @@
     }
     .back-link:hover { color: var(--white); }
 
+    /* TITRE */
     .page-titre {
       font-family: 'Cinzel', serif;
-      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
       font-weight: 600;
       color: var(--amber);
       text-align: center;
-      padding: 50px 0 10px;
+      padding: 50px 0 30px;
       letter-spacing: 3px;
-      line-height: 1.3;
       animation: fadeIn 1.2s ease both;
       text-shadow: 0 0 40px rgba(200,116,10,0.25);
     }
 
-    .sous-titre {
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: rgba(212,201,176,0.3);
+    /* IMAGE PRINCIPALE */
+    .img-principale {
       text-align: center;
-      margin-bottom: 40px;
-      animation: fadeIn 1.2s ease both 0.2s;
+      margin-bottom: 36px;
+      animation: fadeIn 1.2s ease both 0.3s;
+    }
+
+    .img-principale img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      opacity: 0.9;
+      filter: sepia(0.2) contrast(1.1);
     }
 
     .divider {
       width: 120px;
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--amber), transparent);
-      margin: 0 auto 40px;
-    }
-
-    /* IMAGE COUCHER */
-    .img-centre {
-      text-align: center;
-      margin-bottom: 36px;
-      animation: fadeIn 1.2s ease both 0.3s;
-    }
-
-    .img-centre img {
-      max-width: 100%;
-      height: auto;
-      filter: sepia(0.2) contrast(1.1);
-      border-radius: 2px;
+      margin: 0 auto 36px;
     }
 
     /* TEXTE */
@@ -115,75 +106,57 @@
       animation: fadeIn 1.2s ease both 0.5s;
     }
 
-    .lien-amber {
-      color: var(--amber);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(200,116,10,0.35);
-      transition: all 0.3s;
-    }
-    .lien-amber:hover { color: var(--white); border-color: var(--white); }
-
-    /* CITATION */
+    /* CITATION CLEF */
     .citation-clef {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(1rem, 3vw, 1.4rem);
-      font-weight: 600;
-      color: var(--white);
-      text-align: center;
-      line-height: 1.6;
-      margin: 10px 0 28px;
-      padding: 24px 32px;
-      border-top: 1px solid rgba(200,116,10,0.2);
-      border-bottom: 1px solid rgba(200,116,10,0.2);
-      animation: fadeIn 1.2s ease both 0.6s;
-    }
-
-    /* IMAGE YAMASKA */
-    .img-yamaska {
-      text-align: center;
-      margin: 36px 0 28px;
-      animation: fadeIn 1.2s ease both 0.8s;
-    }
-
-    .img-yamaska img {
-      max-width: 100%;
-      height: auto;
-      filter: sepia(0.2) contrast(1.1);
-      border-radius: 2px;
-    }
-
-    /* TEXTE ROUGE */
-    .texte-rouge {
       font-family: 'Cinzel', serif;
       font-size: clamp(1.1rem, 3vw, 1.5rem);
       font-weight: 600;
-      color: var(--red);
+      color: var(--white);
       text-align: center;
-      line-height: 1.6;
-      margin: 0 0 16px;
-      text-shadow: 0 0 30px rgba(204,34,0,0.3);
-      animation: fadeIn 1.2s ease both 1s;
+      line-height: 1.5;
+      margin: 36px 0;
+      padding: 24px 32px;
+      border-top: 1px solid rgba(200,116,10,0.2);
+      border-bottom: 1px solid rgba(200,116,10,0.2);
+      animation: fadeIn 1.2s ease both 0.7s;
     }
 
-    .texte-rouge-sub {
+    /* IMAGE SCAER */
+    .img-scaer {
       text-align: center;
-      color: var(--red);
+      margin: 36px 0;
+      animation: fadeIn 1.2s ease both 0.9s;
+    }
+
+    .img-scaer img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      opacity: 0.88;
+      filter: sepia(0.2) contrast(1.1);
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .img-scaer img:hover { opacity: 1; }
+
+    .img-legende {
+      font-size: 0.8rem;
       font-style: italic;
-      margin-bottom: 36px;
-      animation: fadeIn 1.2s ease both 1.1s;
-      opacity: 0.8;
+      color: rgba(212,201,176,0.35);
+      margin-top: 10px;
+      letter-spacing: 1px;
     }
 
-    /* NAVIGATION */
+    /* LIENS DE NAVIGATION */
     .nav-liens {
       text-align: center;
-      padding: 36px 0 60px;
+      padding: 20px 0 60px;
       display: flex;
       flex-direction: column;
       gap: 18px;
       align-items: center;
-      border-top: 1px solid rgba(200,116,10,0.1);
-      animation: fadeIn 1.2s ease both 1.2s;
+      animation: fadeIn 1.2s ease both 1.1s;
     }
 
     .nav-lien {
@@ -210,7 +183,46 @@
       border-color: rgba(160,168,176,0.3);
     }
 
-    .nav-lien.discret:hover { color: var(--white); border-color: var(--white); }
+    .nav-lien.discret:hover {
+      color: var(--white);
+      border-color: var(--white);
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 4px;
+      filter: sepia(0.2) contrast(1.1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(212,201,176,0.5);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .lightbox-close:hover { color: var(--white); }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(14px); }
@@ -226,40 +238,33 @@
     <a href="table.html" class="back-link">← Table des matières</a>
   </nav>
 
-  <h1 class="page-titre">La face cachée du<br>Mont Saint-Hilaire</h1>
-  <div class="sous-titre">Chapitre II — The Season Of The Witch</div>
-  <div class="divider"></div>
+  <h1 class="page-titre">Le bout du monde</h1>
 
-  <div class="img-centre">
-    <img src="images/coucher_soleil.jpg" alt="Coucher de soleil">
+  <div class="img-principale">
+    <img src="images/pointe.jpg" alt="Le bout du monde">
   </div>
 
+  <div class="divider"></div>
+
   <div class="bloc">
-    Certaines personnes regardent<br>
-    là où les autres ne regardent pas...
+    C'est ici que commence cette incroyable histoire...<br>
+    Vous allez constater que :
   </div>
 
   <div class="citation-clef">
-    Elles voient donc ce que<br>
-    d'autres ne voient pas...
+    La recette est longue et le produit final<br>n'arrive jamais...
   </div>
 
   <div class="bloc">
-    Ouvrons les
-    <a href="#" class="lien-amber" id="yeux-link">yeux</a><br>
-    Il y a toujours un revers à une médaille (!)
+    Vous constaterez aussi que certains
+    <a href="#" id="secrets-link" style="color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(200,116,10,0.4);">secrets</a>
+    qui jusqu'ici étaient bien cachés<br>
+    sont exposés dans ces pages très clairement...
   </div>
-
-  <div class="img-yamaska">
-    <img src="images/mont_yamaska.jpg" alt="Mont Yamaska">
-  </div>
-
-  <div class="texte-rouge">Ici tout semble normal...</div>
-  <div class="texte-rouge-sub">Mais prenez le temps de regarder autour.</div>
 
   <div class="nav-liens">
-    <a href="basile.html" class="nav-lien">En savoir plus →</a>
-    <a href="photo.html" class="nav-lien">Chapitre III — Histoire de pêche →</a>
+    <a href="rayan.html" class="nav-lien">Ressentir le départ →</a>
+    <a href="mine.html" class="nav-lien">Chapitre I — La mine →</a>
     <a href="table.html" class="nav-lien discret">← Retour à la table</a>
   </div>
 
@@ -272,6 +277,5 @@
 </div>
 
 <script src="lightbox.js"></script>
-
 </body>
 </html>

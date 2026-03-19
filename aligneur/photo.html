@@ -1,24 +1,245 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
-<!-- *************************************************
-        EDITEUR WEBEXPERT
-        DATE DE CREATION: 12/4/99
-        DERNIERE MODIFICATION: 12/4/99
-************************************************** -->
-<HTML>
-<HEAD>
-<TITLE>Histoire de p&ecirc;che</TITLE>
-<META NAME="Author" CONTENT="L' aligneur de menhirs">
-<META NAME="Description" CONTENT="">
-<META NAME="Keywords" CONTENT="">
-</HEAD>
-<BODY BGCOLOR="#004080" TEXT="#C0C0C0" LINK="#FF0000" VLINK="#000000" ALINK="#FFFF00"><BR><P>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Histoire de pêche — L'Aligneur de Menhirs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --deep-blue: #002a54;
+      --blue: #004080;
+      --amber: #c8740a;
+      --bone: #d4c9b0;
+      --silver: #c0c0c0;
+      --white: #f0ead8;
+      --red: #cc2200;
+    }
 
-<CENTER><H3>Bienvenue sur la page personnelle d' un p&ecirc;cheur <BR>qui aime mieux montrer ses photos <BR>que de conter des histoires..</H3></CENTER><BR>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-<CENTER><IMG SRC="esturgeonp.jpg" BORDER=0 WIDTH=300 HEIGHT=203 ALT="Maudit gros poisson (!!!)"></CENTER><BR><P>
-<HR WIDTH=30% SIZE=5 COLOR="#808080"><BR><P><H3><CENTER>Esturgeons pris au lac Caopatina en 1968.
-</CENTER></H3>
-<CENTER>Si vous cliquez <A HREF="esturgeon.jpg">ici</A> vous aurez une meilleure id&eacute;e <BR>de la grandeur nature...<BR>Pour d' autres histoires de p&ecirc;cheurs le chemin est <A HREF="lada.html">ici</A>.</CENTER>.
+    body {
+      background: var(--deep-blue);
+      color: var(--silver);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.25rem;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-</BODY>
-</HTML>
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(0,0,0,0.4) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 28px 0 0;
+      text-align: center;
+    }
+
+    .back-link {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(192,192,192,0.5);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .back-link:hover { color: var(--white); }
+
+    /* TITRE */
+    .page-titre {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 600;
+      color: var(--silver);
+      text-align: center;
+      padding: 50px 0 10px;
+      letter-spacing: 3px;
+      line-height: 1.4;
+      animation: fadeIn 1.2s ease both;
+    }
+
+    .sous-titre {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(192,192,192,0.3);
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeIn 1.2s ease both 0.2s;
+    }
+
+    .divider {
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(192,192,192,0.4), transparent);
+      margin: 0 auto 40px;
+    }
+
+    /* IMAGE */
+    .img-centre {
+      text-align: center;
+      margin-bottom: 24px;
+      animation: fadeIn 1.2s ease both 0.4s;
+    }
+
+    .img-centre img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 2px;
+      filter: contrast(1.05);
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .img-centre img:hover { opacity: 0.85; }
+
+    .img-alt {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: rgba(192,192,192,0.35);
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+
+    /* SÉPARATEUR */
+    .hr-custom {
+      width: 30%;
+      height: 4px;
+      background: rgba(128,128,128,0.4);
+      margin: 28px auto;
+      border-radius: 2px;
+    }
+
+    /* TEXTE */
+    .bloc {
+      text-align: center;
+      line-height: 1.85;
+      color: var(--silver);
+      animation: fadeIn 1.2s ease both 0.6s;
+      margin-bottom: 20px;
+    }
+
+    .lien-rouge {
+      color: #ff4444;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,68,68,0.35);
+      transition: all 0.3s;
+    }
+    .lien-rouge:hover { color: var(--white); border-color: var(--white); }
+
+    .lien-silver {
+      color: var(--silver);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(192,192,192,0.35);
+      transition: all 0.3s;
+    }
+    .lien-silver:hover { color: var(--white); border-color: var(--white); }
+
+    /* NAVIGATION */
+    .nav-liens {
+      text-align: center;
+      padding: 36px 0 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: center;
+      border-top: 1px solid rgba(192,192,192,0.1);
+      animation: fadeIn 1.2s ease both 0.8s;
+    }
+
+    .nav-lien {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(192,192,192,0.7);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(192,192,192,0.2);
+      padding-bottom: 3px;
+      transition: all 0.3s;
+    }
+
+    .nav-lien:hover {
+      color: var(--white);
+      border-color: var(--white);
+      letter-spacing: 7px;
+    }
+
+    .nav-lien.discret {
+      font-size: 0.7rem;
+      color: rgba(192,192,192,0.35);
+      border-color: rgba(192,192,192,0.15);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="table.html" class="back-link">← Table des matières</a>
+  </nav>
+
+  <h1 class="page-titre">Bienvenue sur la page personnelle<br>d'un pêcheur qui aime mieux montrer<br>ses photos que de conter des histoires...</h1>
+  <div class="sous-titre">Chapitre III — Histoire de pêche</div>
+  <div class="divider"></div>
+
+  <div class="img-centre">
+    <img src="images/esturgeonp.jpg"
+         alt="Maudit gros poisson (!!!)"
+         id="esturgeon-img">
+    <div class="img-alt">Maudit gros poisson (!!!) — cliquez pour agrandir</div>
+  </div>
+
+  <div class="hr-custom"></div>
+
+  <div class="bloc">
+    <strong>Esturgeons pris au lac Caopatina en 1968.</strong>
+  </div>
+
+  <div class="bloc">
+    Si vous cliquez
+    <a href="#" class="lien-rouge" id="ici-link">ici</a>
+    vous aurez une meilleure idée de la grandeur nature...
+  </div>
+
+  <div class="nav-liens">
+    <a href="lada.html" class="nav-lien">Chapitre IV — Une autre Lada rentre chez elle →</a>
+    <a href="table.html" class="nav-lien discret">← Table des matières</a>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image agrandie" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:100;align-items:center;justify-content:center;">
+  <div id="lightbox-close" role="button" aria-label="Fermer" tabindex="0" style="position:absolute;top:20px;right:28px;font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;color:rgba(212,201,176,0.5);cursor:pointer;">Fermer ✕</div>
+  <img id="lightbox-img" src="" alt="Image agrandie" style="max-width:90vw;max-height:85vh;border-radius:4px;">
+</div>
+
+<script src="lightbox.js"></script>
+
+</body>
+</html>

@@ -1,38 +1,311 @@
-
-<html>
-<META NAME="Author" CONTENT="L' aligneur de menhirs">
-<META NAME="Description" CONTENT="aligneur">
-<META NAME="Keywords" CONTENT="Menhirs">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suzie on the Moon — L'Aligneur de Menhirs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --amber: #c8740a;
+      --amber-lt: #e8960c;
+      --bone: #d4c9b0;
+      --white: #f0ead8;
+      --red: #cc2200;
+      --silver: #a0a8b0;
+      --mist: rgba(212,201,176,0.55);
+    }
 
-<title>Kaolin</title>
-</head><BODY BGCOLOR="#000000" TEXT="#FF8000" LINK="#C0C0C0" VLINK="#FF0000" ALINK="#FF0000" LEFTMARGIN=0 TOPMARGIN=0>
-<script language="JavaScript">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-function WinOpen1() {
+    body {
+      background: var(--black);
+      color: var(--bone);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.25rem;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-   window.open("alietcop.jpg","panorama_window","toolbar=no,directories=no,location=no,status=no,menubar=no,scrollbar=no,resizable=no,width=320,height=250");}
-</script>
-<font size="5">Suzie on the moon</font>
-<br><br>
-<table border=0 cellspacing=0 cellpadding=0 valign=top width=500 >
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 30%, rgba(200,116,10,0.04) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-<tr>
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
 
+    nav {
+      padding: 28px 0 0;
+      text-align: center;
+    }
 
-  <td valign=top >
+    .back-link {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(212,201,176,0.6);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .back-link:hover { color: var(--white); }
 
-<BR><BR><CENTER>
+    /* TITRE */
+    .page-titre {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 600;
+      color: var(--amber);
+      text-align: center;
+      padding: 50px 0 10px;
+      letter-spacing: 3px;
+      animation: fadeIn 1.2s ease both;
+      text-shadow: 0 0 40px rgba(200,116,10,0.25);
+    }
 
-<IMG SRC="suzie_on_the_moonl.jpg" BORDER=0 WIDTH=160 HEIGHT=500>&nbsp;&nbsp;&nbsp;&nbsp;</CENTER></td><td>
-<FONT COLOR="#FFFFFF"><H5><P>Suzie en visite dans une mine dans le<BR> bout d' Huberdeau.<BR> Le kaolin pr&eacute;sent dans cette mine<BR> est un produit pr&eacute;cieux.<BR> Vous pouvez en parler au <A HREF="mailto:aligneur@alignement.com?subject=Parlez-moi de cette mine">Webmaster</A> ou<BR> &agrave; son copain.<BR> Pour mieux reconna&icirc;tre ces personnages douteux cliquez 
-<A HREF="javascript:WinOpen1()"; onMouseOver="parent.status=''; return true">ici
-</A>.<BR><P> <FONT COLOR="#FF8040">Suzie on the moon</FONT> peut &ecirc;tre vue de plus <BR><CENTER><A HREF="suzie_on_the_moon.jpg"><H1>pr&egrave;s</H1></A></CENTER>Et voici le petit copain de <FONT COLOR="#FF8040">Suzie</FONT> le <CENTER><FONT COLOR="#FF8000"><I><B>rockhounder</B></I></FONT></CENTER><BR><CENTER><IMG SRC="rock_hounder.jpg" BORDER=0 WIDTH=189 HEIGHT=300></CENTER><BR><P>Un grand merci &agrave; la <A HREF="antre.html">mine</A><BR><P>La suite de cette histoire se trouve dans<BR> la face cach&eacute;e du Mont Saint-Hilaire ou <BR><P><CENTER><A HREF="mont_saint_hilaire.html"><B>The Season Of The Witch</B></A></CENTER><BR><P>
+    .sous-titre {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(212,201,176,0.3);
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeIn 1.2s ease both 0.2s;
+    }
 
-</td>
-  </tr>
-</table><BR><P>
+    .divider {
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--amber), transparent);
+      margin: 0 auto 40px;
+    }
 
+    /* LAYOUT DEUX COLONNES */
+    .deux-cols {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 32px;
+      align-items: start;
+      margin-bottom: 48px;
+      animation: fadeIn 1.2s ease both 0.4s;
+    }
 
-</body>
-</html>
+    .col-img { text-align: center; }
+
+    .col-img img {
+      max-width: 100%;
+      height: auto;
+      filter: sepia(0.2) contrast(1.1);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .col-img img:hover { opacity: 0.85; }
+
+    .img-legende {
+      font-size: 0.75rem;
+      font-style: italic;
+      color: rgba(212,201,176,0.3);
+      margin-top: 8px;
+      letter-spacing: 1px;
+    }
+
+    /* TEXTE */
+    .col-texte {
+      line-height: 1.85;
+      color: var(--white);
+    }
+
+    .col-texte p { margin-bottom: 18px; }
+
+    .lien-amber {
+      color: var(--amber);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,116,10,0.35);
+      transition: all 0.3s;
+    }
+    .lien-amber:hover { color: var(--white); border-color: var(--white); }
+
+    .rockhounder-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--amber);
+      letter-spacing: 2px;
+      text-align: center;
+      margin: 8px 0 16px;
+    }
+
+    /* IMAGE ROCKHOUNDER */
+    .rock-wrap {
+      text-align: center;
+      margin: 32px 0 40px;
+      animation: fadeIn 1.2s ease both 0.7s;
+    }
+
+    .rock-wrap img {
+      max-width: 220px;
+      height: auto;
+      filter: sepia(0.2) contrast(1.1);
+      border-radius: 2px;
+    }
+
+    /* NAVIGATION */
+    .nav-liens {
+      text-align: center;
+      padding: 20px 0 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: center;
+      border-top: 1px solid rgba(200,116,10,0.1);
+      padding-top: 36px;
+      animation: fadeIn 1.2s ease both 0.9s;
+    }
+
+    .nav-lien {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--amber);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,116,10,0.3);
+      padding-bottom: 3px;
+      transition: all 0.3s;
+    }
+
+    .nav-lien:hover {
+      color: var(--white);
+      border-color: var(--white);
+      letter-spacing: 7px;
+    }
+
+    .nav-lien.discret {
+      color: var(--silver);
+      font-size: 0.7rem;
+      border-color: rgba(160,168,176,0.3);
+    }
+
+    .nav-lien.discret:hover {
+      color: var(--white);
+      border-color: var(--white);
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 4px;
+      filter: sepia(0.2) contrast(1.1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(212,201,176,0.5);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .lightbox-close:hover { color: var(--white); }
+
+    @media (max-width: 520px) {
+      .deux-cols { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="table.html" class="back-link">← Table des matières</a>
+  </nav>
+
+  <h1 class="page-titre">Suzie on the Moon</h1>
+  <div class="sous-titre">Chapitre I — Une mine dans le bout d'Huberdeau</div>
+  <div class="divider"></div>
+
+  <div class="deux-cols">
+    <div class="col-img">
+      <img src="images/suzie_on_the_moonl.jpg"
+           alt="Suzie on the Moon"
+           id="suzie-img">
+      <div class="img-legende">Cliquez pour agrandir</div>
+    </div>
+    <div class="col-texte">
+      <p>
+        Suzie en visite dans une mine dans le bout d'Huberdeau.<br>
+        Le kaolin présent dans cette mine est un produit précieux.
+      </p>
+      <p>
+        Vous pouvez en parler au
+        <a href="mailto:gbourhis@alignement.com" class="lien-amber">Webmaster</a>
+        ou à son copain.<br>
+        Pour mieux reconnaître ces personnages douteux cliquez
+        <a href="#" class="lien-amber" id="alietcop-link">ici</a>.
+      </p>
+      <p>
+        Et voici le petit copain de <span style="color:var(--amber);">Suzie</span> —
+      </p>
+      <div class="rockhounder-label">le rockhounder</div>
+    </div>
+  </div>
+
+  <div class="rock-wrap">
+    <img src="images/rock_hounder.jpg" alt="Le rockhounder">
+  </div>
+
+  <div class="nav-liens">
+    <a href="antre.html" class="nav-lien">La mine →</a>
+    <a href="mont_saint_hilaire.html" class="nav-lien">Chapitre II — The Season Of The Witch →</a>
+    <a href="table.html" class="nav-lien discret">← Retour à la table</a>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image agrandie" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:100;align-items:center;justify-content:center;">
+  <div id="lightbox-close" role="button" aria-label="Fermer" tabindex="0" style="position:absolute;top:20px;right:28px;font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;color:rgba(212,201,176,0.5);cursor:pointer;">Fermer ✕</div>
+  <img id="lightbox-img" src="" alt="Image agrandie" style="max-width:90vw;max-height:85vh;border-radius:4px;filter:sepia(0.2) contrast(1.1);">
+</div>
+
+<script src="lightbox.js"></script>

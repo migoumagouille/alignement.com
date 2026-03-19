@@ -1,29 +1,100 @@
-
-<html>
-<META NAME="Author" CONTENT="L' aligneur de menhirs">
-<META NAME="Description" CONTENT="aligneur">
-<META NAME="Keywords" CONTENT="Menhirs">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cul de sac — L'Aligneur de Menhirs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --amber: #c8740a;
+      --bone: #d4c9b0;
+      --white: #f0ead8;
+      --silver: #a0a8b0;
+    }
 
-<title>Aligneur</title>
-</head><BODY BGCOLOR="#000000" TEXT="#FFFFFF" LINK="#808080" VLINK="#C0C0C0" ALINK="#FF0000" LEFTMARGIN=0 TOPMARGIN=0>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-<CENTER><table border=0 cellspacing=0 cellpadding=0 valign=top >
+    body {
+      background: var(--black);
+      color: var(--bone);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.25rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+    }
 
-<tr>
+    .scene {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      max-width: 580px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 1.2s ease both;
+    }
 
+    .scene img {
+      max-width: 100%;
+      height: auto;
+      opacity: 0.85;
+      filter: sepia(0.2) contrast(1.05);
+      border-radius: 2px;
+    }
 
- <CENTER> <td valign=top width=555 >
+    .message {
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.85;
+    }
 
-<BR><BR><CENTER>
+    .retour {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(200,116,10,0.7);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,116,10,0.3);
+      padding-bottom: 3px;
+      transition: all 0.3s;
+      cursor: pointer;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-size: 0.75rem;
+    }
 
-<IMG SRC="images/depression.gif" BORDER=0 WIDTH=555 HEIGHT=222>
+    .retour:hover {
+      color: var(--white);
+      border-color: var(--white);
+      letter-spacing: 7px;
+    }
 
-Vous &ecirc;tes &agrave; la fin de ce chapitre.<BR>Mais il est en construction et de temps en temps...<BR><A HREF="javascript: history.back();" onMouseOver="status='Back'; return true;">retour</A></CENTER> 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
 
-  </tr>
-</table></CENTER>
+<div class="scene">
+  <img src="images/depression.gif" alt="Cul de sac">
+  <p class="message">
+    Vous êtes à la fin de ce chapitre.<br>
+    Mais qui sait bientôt...
+  </p>
+  <button class="retour" id="retour-btn">← Retour</button>
+</div>
 
-
+<script src="retour.js"></script>
 </body>
 </html>

@@ -1,39 +1,286 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
-<!-- *************************************************
-        EDITEUR WEBEXPERT
-        DATE DE CREATION: 10/24/98
-        DERNIERE MODIFICATION: 9/30/99
-************************************************** -->
-<HTML>
-<HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<TITLE>Table des mati�res</TITLE>
-<META NAME="Author" CONTENT="L`aligneur de menhirs">
-<META NAME="Description" CONTENT="Table des mati�res">
-<META NAME="Keywords" CONTENT="Po�sie.net">
-</HEAD>
-<BODY BGCOLOR="#000000" TEXT="#FFFFFF" LINK="#FFFF00" VLINK="#FF8040" ALINK="#FF0000">
-<table border=0 cellspacing=0 cellpadding=0 valign=top>
-<tr>
-  <td width=160 height=400 align="CENTER" valign="top"BACKGROUND="menhirf.gif">
-<BR><BR><A HREF="debut.html" TARGET="centre"><H3>Introduction</H3></A><BR><P>
-<IMG SRC="../voilerie/images/78chau.gif" BORDER=0 WIDTH=82 HEIGHT=70><BR><P>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table des matières — L'Aligneur de Menhirs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --deep: #050508;
+      --stone: #1a1a1f;
+      --amber: #c8740a;
+      --amber-lt: #e8960c;
+      --amber-dim: rgba(200,116,10,0.12);
+      --bone: #d4c9b0;
+      --mist: rgba(212,201,176,0.45);
+      --white: #f0ead8;
+    }
 
-Alignements<BR>
-<A HREF="current.htm" TARGET="centre">Pr�face</A><H4>Table des mati�res</H4>
-<H6>Chapitre 1:</H6>
-<H5><A HREF="mine.html" TARGET="centre">Une mine dans le <BR>bout d' Huberdeau</A></H5>
-<H6>Chapitre 2:</H6><A HREF="mont_saint_hilaire.html" TARGET="centre">
-<H5>La face cach�e du mont Saint-Hilaire</H5></A><BR>
-<H6>Chapitre 3:</H6><A HREF="photo.html" TARGET="centre"><H5>Histoire de p�che.</H5></A><BR>
-<H6>Chapitre 4:</H6><A HREF="lada.html" TARGET="centre"><H5>Une autre Lada <BR>rentre chez elle.</H5></A><BR>
-<H6>Chapitre 5:</H6><A HREF="http://pages.infinit.net/mbourhis/" TARGET="_TOP"><H5>Vol de brousse</H5></A><BR>
-<H6>Chapitre 6:</H6><A HREF="images/index.php3" TARGET="centre"><H5>Images</H5></A><BR>
-<H6>Utilitaire</H6><A HREF="../meteo/meteo.html" TARGET="centre"><H5>Observations m�t�o<BR>
-N 45:30' 55.8<BR>W073:18' 59.5</H5></A><BR>
-<H6>Conclusion</H6><A HREF="mailto:aligneur@alignement.com" TARGET="centre"><H5>Vous avez des <BR>commentaires ou <BR>m�me quelque chose<BR> � ajouter dans ces pages ?</H5></A>�crivez-moi.<BR>
-</td>
-  </tr>
-</table>
-</BODY>
-</HTML>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--bone);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.25rem;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(200,116,10,0.04) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* NAV */
+    nav {
+      padding: 28px 0 0;
+      text-align: center;
+    }
+
+    .back-link {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(212,201,176,0.6);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .back-link:hover { color: var(--white); }
+
+    /* HEADER */
+    .page-header {
+      padding: 60px 0 50px;
+      text-align: center;
+      animation: fadeIn 1s ease both;
+    }
+
+    .overline {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--amber);
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .page-header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .divider {
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--amber), transparent);
+      margin: 0 auto 28px;
+    }
+
+    .page-header p {
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.75;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* CHAPITRES */
+    .chapitres {
+      padding: 20px 0 80px;
+    }
+
+    .chapitre {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(200,116,10,0.08);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s;
+      animation: fadeIn 0.8s ease both;
+    }
+
+    .chapitre:nth-child(1) { animation-delay: 0.1s; }
+    .chapitre:nth-child(2) { animation-delay: 0.2s; }
+    .chapitre:nth-child(3) { animation-delay: 0.3s; }
+    .chapitre:nth-child(4) { animation-delay: 0.4s; }
+    .chapitre:nth-child(5) { animation-delay: 0.5s; }
+
+    .chapitre:hover { padding-left: 12px; }
+    .chapitre:hover .chap-titre { color: var(--white); }
+    .chapitre:hover .chap-num { color: var(--amber-lt); opacity: 1; }
+
+    .chap-num {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--amber);
+      opacity: 0.8;
+      min-width: 80px;
+      padding-top: 6px;
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+
+    .chap-content {}
+
+    .chap-titre {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+      transition: color 0.3s;
+      line-height: 1.3;
+    }
+
+    .chap-desc {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: rgba(212,201,176,0.65);
+      line-height: 1.65;
+    }
+
+    .chap-arrow {
+      margin-left: auto;
+      color: var(--amber);
+      opacity: 0;
+      font-size: 1.2rem;
+      padding-top: 4px;
+      flex-shrink: 0;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .chapitre:hover .chap-arrow {
+      opacity: 0.6;
+      transform: translateX(4px);
+    }
+
+    /* FOOTER */
+    .page-footer {
+      border-top: 1px solid rgba(200,116,10,0.08);
+      padding: 30px 0 50px;
+      text-align: center;
+    }
+
+    .page-footer p {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(212,201,176,0.15);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="index.html" class="back-link">← Retour à l'entrée</a>
+  </nav>
+
+  <div class="page-header">
+    <div class="overline">L'Aligneur de Menhirs</div>
+    <h1>Table des matières</h1>
+    <div class="divider"></div>
+    <p>
+      Des secrets bien gardés vous sont maintenant racontés.
+    </p>
+  </div>
+
+  <div class="chapitres">
+
+    <a href="debut.html" class="chapitre">
+      <div class="chap-num">Prélude</div>
+      <div class="chap-content">
+        <div class="chap-titre">Introduction</div>
+        <div class="chap-desc">Par où tout commence.</div>
+      </div>
+      <div class="chap-arrow">→</div>
+    </a>
+
+    <a href="current.html" class="chapitre">
+      <div class="chap-num">Avant-propos</div>
+      <div class="chap-content">
+        <div class="chap-titre">Préface</div>
+        <div class="chap-desc">Ce qu'il faut savoir avant d'entrer.</div>
+      </div>
+      <div class="chap-arrow">→</div>
+    </a>
+
+    <a href="mine.html" class="chapitre">
+      <div class="chap-num">Chapitre I</div>
+      <div class="chap-content">
+        <div class="chap-titre">Une mine dans le bout d'Huberdeau</div>
+        <div class="chap-desc">Ce qu'on trouve quand on cherche sans savoir ce qu'on cherche.</div>
+      </div>
+      <div class="chap-arrow">→</div>
+    </a>
+
+    <a href="mont_saint_hilaire.html" class="chapitre">
+      <div class="chap-num">Chapitre II</div>
+      <div class="chap-content">
+        <div class="chap-titre">La face cachée du mont Saint-Hilaire</div>
+        <div class="chap-desc">Certains endroits gardent leurs secrets mieux que d'autres.</div>
+      </div>
+      <div class="chap-arrow">→</div>
+    </a>
+
+    <a href="photo.html" class="chapitre">
+      <div class="chap-num">Chapitre III</div>
+      <div class="chap-content">
+        <div class="chap-titre">Histoire de pêche</div>
+        <div class="chap-desc">Une histoire de pêche — mais pas tout à fait celle qu'on attendait.</div>
+      </div>
+      <div class="chap-arrow">→</div>
+    </a>
+
+    <a href="lada.html" class="chapitre">
+      <div class="chap-num">Chapitre IV</div>
+      <div class="chap-content">
+        <div class="chap-titre">Une autre Lada rentre chez elle</div>
+        <div class="chap-desc">Les voitures soviétiques ont leurs propres mystères.</div>
+      </div>
+      <div class="chap-arrow">→</div>
+    </a>
+
+  </div>
+
+  <div class="page-footer">
+    <p>© L'Aligneur de Menhirs — Section privée</p>
+  </div>
+
+</div>
+</body>
+</html>

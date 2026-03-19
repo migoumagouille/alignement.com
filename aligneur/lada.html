@@ -1,34 +1,279 @@
-
-<html>
-<META NAME="Author" CONTENT="L' aligneur de menhirs">
-<META NAME="Description" CONTENT="aligneur">
-<META NAME="Keywords" CONTENT="Menhirs">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Une autre Lada rentre chez elle — L'Aligneur de Menhirs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --amber: #c8740a;
+      --bone: #d4c9b0;
+      --white: #f0ead8;
+      --red: #cc2200;
+      --silver: #a0a8b0;
+      --mist: rgba(212,201,176,0.55);
+    }
 
-<title>Aligneur</title>
-</head><BODY BGCOLOR="#000000" TEXT="#FF8000" LINK="#808080" VLINK="#C0C0C0" ALINK="#FF0000" LEFTMARGIN=0 TOPMARGIN=0>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
+    body {
+      background: var(--black);
+      color: var(--bone);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.25rem;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-<table border=0 cellspacing=0 cellpadding=0 valign=top>
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 30%, rgba(200,116,10,0.04) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-<tr>
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
 
+    nav {
+      padding: 28px 0 0;
+      text-align: center;
+    }
 
-  <td valign=top width=450 >
+    .back-link {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(212,201,176,0.6);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .back-link:hover { color: var(--white); }
 
-<BR><BR><CENTER>
-<font size="5">L' embarquement</font>
-<br><P>
+    .page-titre {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 600;
+      color: var(--amber);
+      text-align: center;
+      padding: 50px 0 10px;
+      letter-spacing: 3px;
+      animation: fadeIn 1.2s ease both;
+      text-shadow: 0 0 40px rgba(200,116,10,0.25);
+    }
 
-<FONT COLOR="#FFFFFF"><H5>Une autre Lada rentre chez elle.<BR>Mais elles n' ont pas toutes cette chance.<BR><P><IMG SRC="images/embarquement.jpg" BORDER=0 WIDTH=400 HEIGHT=264><BR><P>
-<H1><CENTER>Celle-ci &eacute;tait attendue.</CENTER></H1><BR>On la manipule avec grand soin.<BR> Remarquez comme elle est bien prot&eacute;g&eacute;e par une toile.
-<BR><P>Ensuite vient la satisfaction du travail accompli.<BR><P><IMG SRC="images/fier.jpg" BORDER=0 WIDTH=400 HEIGHT=263><BR><P>Il est &eacute;vident qu' il y a plusieurs dessous &agrave; cette histoire,<BR>qui ne peuvent  tous &ecirc;tre ici mentionn&eacute;s.<BR>Mais je vous en confie un:<BR>cet embarquement a &eacute;t&eacute; organnis&eacute; par Jean-Yves<BR> du <FONT COLOR="#FF0000">Plateau Mont-Royal</FONT> et Leonid de <FONT COLOR="#FF0000">Murmanks</FONT> <BR><P><IMG SRC="images/chambre.jpg" BORDER=0 WIDTH=400 HEIGHT=284><BR><P>On les reconna&icirc;t ici tous les deux dans la chambre des machines.<BR><P><FONT COLOR="#FF0000">Merci les gars (!)</FONT></H5></FONT></CENTER> 
+    .sous-titre {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(212,201,176,0.3);
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeIn 1.2s ease both 0.2s;
+    }
 
+    .divider {
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--amber), transparent);
+      margin: 0 auto 40px;
+    }
 
-</td>
-  </tr>
-</table>
+    /* BLOCS TEXTE + IMAGE */
+    .bloc {
+      text-align: center;
+      line-height: 1.85;
+      color: var(--white);
+      margin-bottom: 24px;
+      animation: fadeIn 1.2s ease both;
+    }
 
+    .bloc:nth-child(3) { animation-delay: 0.3s; }
+    .bloc:nth-child(4) { animation-delay: 0.4s; }
+    .bloc:nth-child(5) { animation-delay: 0.5s; }
+    .bloc:nth-child(6) { animation-delay: 0.6s; }
+    .bloc:nth-child(7) { animation-delay: 0.7s; }
+    .bloc:nth-child(8) { animation-delay: 0.8s; }
+    .bloc:nth-child(9) { animation-delay: 0.9s; }
+
+    .img-bloc {
+      text-align: center;
+      margin: 28px 0;
+      animation: fadeIn 1.2s ease both;
+    }
+
+    .img-bloc img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 2px;
+      filter: sepia(0.15) contrast(1.05);
+    }
+
+    /* CITATION */
+    .citation-clef {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      font-weight: 600;
+      color: var(--white);
+      text-align: center;
+      padding: 20px 32px;
+      border-top: 1px solid rgba(200,116,10,0.2);
+      border-bottom: 1px solid rgba(200,116,10,0.2);
+      margin: 10px 0 24px;
+      animation: fadeIn 1.2s ease both 0.5s;
+    }
+
+    /* NOMS EN ROUGE */
+    .rouge { color: var(--red); }
+
+    /* MERCI */
+    .merci {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--red);
+      text-align: center;
+      letter-spacing: 3px;
+      margin: 10px 0 40px;
+      animation: fadeIn 1.2s ease both 1s;
+      text-shadow: 0 0 20px rgba(204,34,0,0.3);
+    }
+
+    /* FIN */
+    .fin-section {
+      text-align: center;
+      padding: 30px 0;
+      border-top: 1px solid rgba(200,116,10,0.1);
+      margin-bottom: 20px;
+      animation: fadeIn 1.2s ease both 1.1s;
+    }
+
+    .fin-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: rgba(212,201,176,0.2);
+    }
+
+    /* NAVIGATION */
+    .nav-liens {
+      text-align: center;
+      padding: 20px 0 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: center;
+      animation: fadeIn 1.2s ease both 1.2s;
+    }
+
+    .nav-lien {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--amber);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,116,10,0.3);
+      padding-bottom: 3px;
+      transition: all 0.3s;
+    }
+
+    .nav-lien:hover {
+      color: var(--white);
+      border-color: var(--white);
+      letter-spacing: 7px;
+    }
+
+    .nav-lien.discret {
+      color: var(--silver);
+      font-size: 0.7rem;
+      border-color: rgba(160,168,176,0.3);
+    }
+
+    .nav-lien.discret:hover { color: var(--white); border-color: var(--white); }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="table.html" class="back-link">← Table des matières</a>
+  </nav>
+
+  <h1 class="page-titre">L'embarquement</h1>
+  <div class="sous-titre">Chapitre IV — Une autre Lada rentre chez elle</div>
+  <div class="divider"></div>
+
+  <div class="bloc">
+    Une autre Lada rentre chez elle.<br>
+    Mais elles n'ont pas toutes cette chance.
+  </div>
+
+  <div class="img-bloc">
+    <img src="images/embarquement.jpg" alt="L'embarquement">
+  </div>
+
+  <div class="citation-clef">Celle-ci était attendue.</div>
+
+  <div class="bloc">
+    On la manipule avec grand soin.<br>
+    Remarquez comme elle est bien protégée par une toile.
+  </div>
+
+  <div class="bloc">
+    Ensuite vient la satisfaction du travail accompli.
+  </div>
+
+  <div class="img-bloc">
+    <img src="images/fier.jpg" alt="La satisfaction du travail accompli">
+  </div>
+
+  <div class="bloc">
+    Il est évident qu'il y a plusieurs dessous à cette histoire,<br>
+    qui ne peuvent tous être ici mentionnés.<br>
+    Mais je vous en confie un :<br>
+    cet embarquement a été organisé par <span class="rouge">Jean-Yves</span><br>
+    du <span class="rouge">Plateau Mont-Royal</span> et <span class="rouge">Leonid</span> de <span class="rouge">Mourmansk</span>.
+  </div>
+
+  <div class="img-bloc">
+    <img src="images/chambre.jpg" alt="Dans la chambre des machines">
+  </div>
+
+  <div class="bloc">
+    On les reconnaît ici tous les deux dans la chambre des machines.
+  </div>
+
+  <div class="merci">Merci les gars (!)</div>
+
+  <div class="fin-section">
+    <div class="fin-label">— Fin des légendes —</div>
+  </div>
+
+  <div class="nav-liens">
+    <a href="table.html" class="nav-lien">← Retour à la table des matières</a>
+    <a href="index.html" class="nav-lien discret">← Retour à l'entrée</a>
+  </div>
+
+</div>
 
 </body>
 </html>

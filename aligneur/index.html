@@ -1,15 +1,227 @@
-
-<html>
-<META NAME="Author" CONTENT="L' aligneur de menhirs">
-<META NAME="Description" CONTENT="aligneur">
-<META NAME="Keywords" CONTENT="Menhirs">
-<meta http-equiv="refresh" content="10; url=intro.html">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-<title>L' aligneur de menhirs</title>
-</head><BODY BGCOLOR="#000000" TEXT="#FF8000" LINK="#C0C0C0" VLINK="#FF0000" ALINK="#FF0000" LEFTMARGIN=0 TOPMARGIN=0>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'Aligneur de Menhirs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --deep: #050508;
+      --stone: #1a1a1f;
+      --amber: #c8740a;
+      --amber-lt: #e8960c;
+      --amber-dim: rgba(200,116,10,0.15);
+      --bone: #d4c9b0;
+      --mist: rgba(212,201,176,0.45);
+      --white: #f0ead8;
+    }
 
-<BR><P>
-<CENTER><IMG SRC="align_fond.gif" BORDER=0 WIDTH=350 HEIGHT=240 ALT="Contes et l&eacute;gendes web"></CENTER><BR><CENTER>Vous &ecirc;tes t&eacute;l&eacute;charg&eacute;s (!)</CENTER><P>
-<CENTER><IMG SRC="../alignement_2p.gif" BORDER=0 WIDTH=25 HEIGHT=75></CENTER><BR>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; }
+
+    body {
+      background: var(--black);
+      color: var(--bone);
+      font-family: 'Crimson Pro', Georgia, serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* Texture de fond */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,116,10,0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 100%, rgba(200,116,10,0.03) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Grain subtil */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .scene {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+    }
+
+    /* Ligne décorative */
+    .rule {
+      width: 1px;
+      background: linear-gradient(180deg, transparent, var(--amber), transparent);
+      margin: 0 auto;
+    }
+
+    .rule-h {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--amber), transparent);
+      margin: 0 auto;
+    }
+
+    /* SYMBOLE */
+    .symbol {
+      font-size: 2.5rem;
+      color: var(--amber);
+      opacity: 0.5;
+      letter-spacing: 18px;
+      margin-bottom: 40px;
+      animation: flicker 6s ease-in-out infinite;
+    }
+
+    /* TITRE */
+    .main-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 6vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--white);
+      text-align: center;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      animation: fadeIn 2s ease both 0.3s;
+      text-shadow: 0 0 60px rgba(200,116,10,0.2);
+    }
+
+    .sub-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.8rem, 2vw, 1.1rem);
+      font-weight: 400;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: var(--amber);
+      text-align: center;
+      opacity: 0.7;
+      margin-bottom: 50px;
+      animation: fadeIn 2s ease both 0.6s;
+    }
+
+    .divider {
+      width: 200px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--amber), transparent);
+      margin: 0 auto 50px;
+      animation: fadeIn 2s ease both 0.9s;
+    }
+
+    /* INTRO TEXT */
+    .intro {
+      max-width: 560px;
+      text-align: center;
+      font-size: 1.15rem;
+      font-style: italic;
+      line-height: 1.85;
+      color: var(--mist);
+      margin-bottom: 60px;
+      animation: fadeIn 2s ease both 1.2s;
+    }
+
+    /* ENTRER */
+    .enter-btn {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      animation: fadeIn 2s ease both 1.8s;
+    }
+
+    .enter-text {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--amber);
+      transition: color 0.3s, letter-spacing 0.3s;
+    }
+
+    .enter-btn:hover .enter-text {
+      color: var(--white);
+      letter-spacing: 8px;
+    }
+
+    .enter-arrow {
+      font-size: 1.2rem;
+      color: var(--amber);
+      opacity: 0.6;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    /* AVERTISSEMENT */
+    .warning {
+      margin-top: 80px;
+      max-width: 420px;
+      text-align: center;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(212,201,176,0.2);
+      animation: fadeIn 3s ease both 2.5s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes flicker {
+      0%, 95%, 100% { opacity: 0.5; }
+      96% { opacity: 0.2; }
+      97% { opacity: 0.5; }
+      98% { opacity: 0.1; }
+      99% { opacity: 0.5; }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="scene">
+
+  <div class="symbol">⬡ ✦ ⬡</div>
+
+  <h1 class="main-title">L'Aligneur<br>de Menhirs</h1>
+  <div class="sub-title">Légendes du web</div>
+  <div class="divider"></div>
+
+  <p class="intro">
+    La recette est longue et le produit final n'arrive jamais...
+  </p>
+
+  <a href="table.html" class="enter-btn" id="enter">
+    <span class="enter-text" id="enter-text">Initialisation...</span>
+    <span class="enter-arrow">↓</span>
+  </a>
+
+  <p class="warning">Section privée — sur invitation seulement</p>
+
+</div>
+
+<script src="redirect.js"></script>
+
 </body>
 </html>
