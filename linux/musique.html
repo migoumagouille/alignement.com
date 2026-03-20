@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Musique — LMMS · Logiciels libres</title>
+  <meta name="description" content="LMMS — mon studio de musique libre pour composer et produire sous Debian Linux.">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: rgba(48,54,61,0.8);
+      --green: #3fb950;
+      --green-dim: rgba(63,185,80,0.12);
+      --text: #e6edf3;
+      --muted: #7d8590;
+      --white: #ffffff;
+      --accent: #58a6ff;
+      --pink: #ff7eb6;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(63,185,80,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(63,185,80,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-logo {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--green);
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .nav-logo:hover { opacity: 1; }
+    .nav-logo::before { content: '~/'; color: var(--muted); }
+
+    .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--green); }
+
+    .page-header {
+      padding: 55px 0 40px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .prompt {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+    .prompt span { color: var(--green); }
+
+    .page-header h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .page-header h1 em {
+      font-style: italic;
+      color: var(--green);
+    }
+
+    .page-header p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 580px;
+      border-left: 2px solid var(--green);
+      padding-left: 16px;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green);
+      opacity: 0.6;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .logiciel-hero {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 28px;
+      align-items: start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--pink);
+      border-radius: 10px;
+      padding: 28px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.6s ease both 0.15s;
+    }
+
+    .logiciel-logo { font-size: 3rem; text-align: center; padding-top: 4px; }
+
+    .logiciel-nom {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.8rem;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .logiciel-version {
+      font-size: 0.68rem;
+      color: var(--pink);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+
+    .logiciel-desc {
+      font-size: 0.88rem;
+      color: rgba(230,237,243,0.7);
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+
+    .logiciel-lien {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(88,166,255,0.3);
+      padding-bottom: 2px;
+      transition: all 0.2s;
+    }
+    .logiciel-lien:hover { color: var(--white); border-color: var(--white); }
+
+    /* PIANO ROLL DÉCO */
+    .piano-roll {
+      display: flex;
+      gap: 3px;
+      align-items: flex-end;
+      height: 50px;
+      margin: 24px 0;
+      opacity: 0.25;
+    }
+
+    .piano-key {
+      background: var(--pink);
+      border-radius: 2px;
+      animation: piano 2s ease-in-out infinite;
+    }
+
+    .piano-key:nth-child(odd)  { width: 6px; }
+    .piano-key:nth-child(even) { width: 4px; background: rgba(255,126,182,0.5); }
+
+    .piano-key:nth-child(1)  { height: 30%; animation-delay: 0.0s; }
+    .piano-key:nth-child(2)  { height: 70%; animation-delay: 0.15s; }
+    .piano-key:nth-child(3)  { height: 50%; animation-delay: 0.3s; }
+    .piano-key:nth-child(4)  { height: 90%; animation-delay: 0.45s; }
+    .piano-key:nth-child(5)  { height: 40%; animation-delay: 0.6s; }
+    .piano-key:nth-child(6)  { height: 80%; animation-delay: 0.75s; }
+    .piano-key:nth-child(7)  { height: 60%; animation-delay: 0.9s; }
+    .piano-key:nth-child(8)  { height: 100%; animation-delay: 1.05s; }
+    .piano-key:nth-child(9)  { height: 45%; animation-delay: 1.2s; }
+    .piano-key:nth-child(10) { height: 75%; animation-delay: 1.35s; }
+    .piano-key:nth-child(11) { height: 35%; animation-delay: 1.5s; }
+    .piano-key:nth-child(12) { height: 65%; animation-delay: 1.65s; }
+
+    @keyframes piano {
+      0%, 100% { transform: scaleY(1); opacity: 1; }
+      50% { transform: scaleY(0.5); opacity: 0.5; }
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.6s ease both 0.3s;
+    }
+
+    .feature-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .feature-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+    .feature-titre { font-size: 0.82rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .feature-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.6; }
+
+    .usage-box {
+      background: rgba(63,185,80,0.06);
+      border: 1px solid rgba(63,185,80,0.15);
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      animation: fadeUp 0.6s ease both 0.45s;
+    }
+
+    .usage-box .label {
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green);
+      opacity: 0.7;
+      margin-bottom: 12px;
+    }
+
+    .usage-box p {
+      font-size: 0.88rem;
+      color: rgba(230,237,243,0.75);
+      line-height: 1.85;
+    }
+
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 24px 0 50px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .page-nav a {
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .page-nav a:hover { color: var(--green); }
+
+    footer {
+      text-align: center;
+      padding: 20px 0 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p { font-size: 0.68rem; color: var(--muted); letter-spacing: 1px; opacity: 0.5; }
+    footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--green); }
+
+    @media (max-width: 600px) {
+      .logiciel-hero { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav class="site-nav">
+    <a href="/index.html" class="nav-logo">alignement.com</a>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="video.html">Vidéo</a>
+      <a href="photo.html">Photo</a>
+      <a href="son.html">Son</a>
+      <a href="musique.html" class="active">Musique</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="prompt"><span>gil@debian</span>:~/linux$ <span>cat musique.md</span></div>
+    <h1>Production <em>musicale</em><br>sous Linux.</h1>
+    <p>
+      Pour composer et produire ma propre musique —
+      un studio complet, gratuit et libre.
+    </p>
+  </div>
+
+  <div class="section-label">// Mon studio</div>
+
+  <div class="logiciel-hero">
+    <div class="logiciel-logo">🎹</div>
+    <div>
+      <div class="logiciel-nom">LMMS</div>
+      <div class="logiciel-version">Linux MultiMedia Studio · Libre</div>
+      <p class="logiciel-desc">
+        LMMS — Linux MultiMedia Studio — est un studio de production musicale complet
+        et entièrement gratuit. Séquenceur, synthétiseurs, boîte à rythmes, piano roll,
+        effets... Tout ce qu'il faut pour composer, arranger et produire de la musique
+        professionnelle directement sous Linux.
+      </p>
+      <a href="https://lmms.io/" class="logiciel-lien" target="_blank" rel="noopener noreferrer">lmms.io →</a>
+
+      <div class="piano-roll">
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-item">
+      <span class="feature-icon">🎹</span>
+      <div>
+        <div class="feature-titre">Piano Roll</div>
+        <div class="feature-desc">Édition note par note avec un piano roll intuitif.</div>
+      </div>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">🥁</span>
+      <div>
+        <div class="feature-titre">Boîte à rythmes</div>
+        <div class="feature-desc">Programmation de rythmes et de patterns percussifs.</div>
+      </div>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">🎛️</span>
+      <div>
+        <div class="feature-titre">Synthétiseurs</div>
+        <div class="feature-desc">Plusieurs synthétiseurs intégrés — ZynAddSubFX, BitInvader et plus.</div>
+      </div>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">🎚️</span>
+      <div>
+        <div class="feature-titre">Mixage & effets</div>
+        <div class="feature-desc">Table de mixage, effets VST, égaliseur, réverbération.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="usage-box">
+    <div class="label">// Gil dit</div>
+    <p>
+      J'utilise LMMS pour composer la musique de fond de mes vidéos YouTube.
+      Créer ses propres pièces musicales c'est bien mieux que d'utiliser
+      des musiques libres de droits trouvées sur internet —
+      et c'est un passe-temps créatif qui garde l'esprit actif.
+    </p>
+  </div>
+
+  <div class="page-nav">
+    <a href="son.html">← Son</a>
+    <a href="index.html">Accueil →</a>
+  </div>
+
+  <footer>
+    <p>
+      <a href="/index.html">← Alignement.com</a>
+      &nbsp;·&nbsp;
+      Logiciels libres · Gil Bourhis
+      &nbsp;·&nbsp;
+      &copy; 2026
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>
