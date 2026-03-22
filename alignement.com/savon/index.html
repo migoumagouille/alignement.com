@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Savonnerie artisanale — Alignement.com</title>
+  <meta name="description" content="Savon artisanal à froid — huile d'olive infusée au mélilot, bois de santal, rose, ylang-ylang. Une recette transmise par la patience et le soin.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alignement.com/savon/">
+  <meta property="og:title" content="Savonnerie artisanale — Alignement.com">
+  <meta property="og:description" content="Savon artisanal à froid — huile d'olive infusée au mélilot, bois de santal, rose, ylang-ylang.">
+  <meta property="og:image" content="https://alignement.com/logo_alignement2.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f7f3ec;
+      --warm: #ede6d8;
+      --sand: #d4c4a8;
+      --bark: #4a2f0a;
+      --bark-dim: rgba(107,79,40,0.12);
+      --moss: #2d4a22;
+      --rose: #a85550;
+      --text: #0d0800;
+      --muted: #3d2a10;
+      --white: #ffffff;
+      --border: rgba(74,47,10,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* Texture grain subtile */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* NAV */
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--bark);
+      text-decoration: none;
+      letter-spacing: 1px;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .nav-logo:hover { opacity: 1; }
+
+    .nav-back {
+      font-size: 1.05rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--bark); }
+
+    /* HERO */
+    .hero {
+      padding: 70px 0 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-text {}
+
+    .hero-eyebrow {
+      font-size: 1.1rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--moss);
+      margin-bottom: 16px;
+      opacity: 0.8;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--bark);
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 360px;
+    }
+
+    /* Cercles déco */
+    .hero-deco {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      height: 280px;
+    }
+
+    .cercle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+    }
+
+    .cercle-1 {
+      width: 220px; height: 220px;
+      background: var(--warm);
+      animation: rotate1 20s linear infinite;
+    }
+
+    .cercle-2 {
+      width: 160px; height: 160px;
+      background: linear-gradient(135deg, #e8dcc8, #f0e8d8);
+      animation: rotate2 15s linear infinite reverse;
+    }
+
+    .cercle-3 {
+      width: 90px; height: 90px;
+      background: var(--bark-dim);
+      border-color: rgba(139,111,71,0.3);
+    }
+
+    .savon-emoji {
+      position: absolute;
+      font-size: 2rem;
+      z-index: 2;
+    }
+
+    @keyframes rotate1 {
+      from { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+      to   { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+    }
+
+    @keyframes rotate2 {
+      from { transform: rotate(0deg) translateX(15px) rotate(0deg); }
+      to   { transform: rotate(360deg) translateX(15px) rotate(-360deg); }
+    }
+
+    /* SECTION RECETTE */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 20px 0 40px;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .divider-symbol {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--bark);
+      opacity: 0.5;
+    }
+
+    .section-titre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .section-sous-titre {
+      font-size: 1.05rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+      opacity: 1;
+    }
+
+    /* INGRÉDIENTS */
+    .ingredients-section {
+      margin-bottom: 60px;
+      animation: fadeUp 0.8s ease both 0.2s;
+    }
+
+    .ingredients-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .ingredient-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .ingredient-card:hover {
+      border-color: var(--bark);
+      transform: translateY(-2px);
+    }
+
+    .ingredient-icon { font-size: 1.6rem; flex-shrink: 0; }
+
+    .ingredient-nom {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .ingredient-quantite {
+      font-size: 1.08rem;
+      color: var(--bark);
+      letter-spacing: 1px;
+      font-weight: 500;
+    }
+
+    .ingredient-role {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* HUILES ESSENTIELLES */
+    .he-section {
+      background: var(--warm);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 60px;
+      animation: fadeUp 0.8s ease both 0.3s;
+    }
+
+    .he-titre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .he-sous {
+      font-size: 1.05rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.7;
+      margin-bottom: 24px;
+    }
+
+    .he-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .he-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 8px 16px;
+    }
+
+    .he-nom {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .he-g {
+      font-size: 1.05rem;
+      color: var(--rose);
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    /* PROCÉDÉ */
+    .procede-section {
+      margin-bottom: 60px;
+      animation: fadeUp 0.8s ease both 0.4s;
+    }
+
+    .etapes {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .etape {
+      display: grid;
+      grid-template-columns: 50px 1fr;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+
+    .etape:last-child { border-bottom: none; }
+
+    .etape-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--bark);
+      opacity: 0.3;
+      line-height: 1;
+      padding-top: 4px;
+    }
+
+    .etape-titre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .etape-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* CURE */
+    .cure-box {
+      background: var(--bark-dim);
+      border: 1px solid rgba(139,111,71,0.25);
+      border-left: 3px solid var(--bark);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 60px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      animation: fadeUp 0.8s ease both 0.5s;
+    }
+
+    .cure-icon { font-size: 2.5rem; flex-shrink: 0; }
+
+    .cure-titre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .cure-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 30px 0 50px;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      font-size: 1.08rem;
+      color: var(--muted);
+      letter-spacing: 1px;
+      opacity: 1;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--bark); }
+
+    @media (max-width: 640px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-deco { display: none; }
+      .ingredients-grid { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav class="site-nav">
+    <a href="/index.html" class="nav-logo">Alignement.com</a>
+    <a href="/index.html" class="nav-back">← Retour</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Savonnerie artisanale · Méthode à froid</div>
+      <h1>Le savon<br>du <em>laboratoire</em></h1>
+      <p class="hero-desc">
+        Huile d'olive infusée au mélilot tout l'été.
+        Bois de santal, rose, ylang-ylang, benjoin, lavande.
+        Dix savons par batch. Trois semaines de cure.
+        Rien de pressé — et c'est pour ça que c'est bon.
+      </p>
+    </div>
+    <div class="hero-deco">
+      <div class="cercle cercle-1"></div>
+      <div class="cercle cercle-2"></div>
+      <div class="cercle cercle-3"></div>
+      <span class="savon-emoji">🧼</span>
+    </div>
+  </div>
+
+  <!-- INTRODUCTION -->
+  <div class="intro-histoire" style="
+    background: var(--warm);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--moss);
+    border-radius: 10px;
+    padding: 32px 36px;
+    margin-bottom: 50px;
+    animation: fadeUp 0.8s ease both 0.15s;
+  ">
+    <div style="
+      font-size: 1.1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--moss);
+      opacity: 0.8;
+      margin-bottom: 16px;
+    ">// Depuis 1985</div>
+    <p style="
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    ">
+      Le premier savon date de 1985 — avec du gras de bœuf, comme on faisait autrefois.
+      Ça n'a pas duré. Très vite tout est devenu végétal, et avec le végétal est venue
+      une curiosité qui ne s'est plus arrêtée.
+    </p>
+    <p style="
+      font-size: 1.08rem;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 16px;
+    ">
+      Le savon était la porte. Derrière il y avait la chimie — le soufre, le mercure,
+      le sel. Les huiles essentielles des plantes sauvages. Et une vieille
+      <em>British Pharmacopoeia</em> de 1909, héritée comme un trésor,
+      qui a ouvert bien d'autres portes encore.
+    </p>
+    <p style="
+      font-size: 1.05rem;
+      color: var(--muted);
+      font-style: italic;
+      opacity: 0.7;
+    ">
+      Ce qui se passe dans le laboratoire n'est pas tout raconté ici.
+      Mais le savon, lui, peut être partagé.
+    </p>
+  </div>
+
+  <!-- INGRÉDIENTS -->
+  <div class="ingredients-section">
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-symbol">✦</div>
+      <div class="divider-line"></div>
+    </div>
+    <div class="section-titre">Les ingrédients</div>
+    <div class="section-sous-titre">Pour une batch de 10 savons</div>
+
+    <div class="ingredients-grid">
+      <div class="ingredient-card">
+        <span class="ingredient-icon">🫒</span>
+        <div>
+          <div class="ingredient-nom">Huile d'olive</div>
+          <div class="ingredient-quantite">528 g</div>
+          <div class="ingredient-role">Infusée au mélilot tout l'été · Base principale</div>
+        </div>
+      </div>
+      <div class="ingredient-card">
+        <span class="ingredient-icon">🥥</span>
+        <div>
+          <div class="ingredient-nom">Huile de coco</div>
+          <div class="ingredient-quantite">176 g</div>
+          <div class="ingredient-role">Mousse abondante · Dureté du savon</div>
+        </div>
+      </div>
+      <div class="ingredient-card">
+        <span class="ingredient-icon">🌿</span>
+        <div>
+          <div class="ingredient-nom">Beurre de karité</div>
+          <div class="ingredient-quantite">48 g</div>
+          <div class="ingredient-role">Hydratation · Douceur sur la peau</div>
+        </div>
+      </div>
+      <div class="ingredient-card">
+        <span class="ingredient-icon">🌾</span>
+        <div>
+          <div class="ingredient-nom">Huile de sésame</div>
+          <div class="ingredient-quantite">48 g</div>
+          <div class="ingredient-role">Nourrissante · Antioxydante</div>
+        </div>
+      </div>
+      <div class="ingredient-card">
+        <span class="ingredient-icon">💧</span>
+        <div>
+          <div class="ingredient-nom">Eau</div>
+          <div class="ingredient-quantite">304 g</div>
+          <div class="ingredient-role">Solvant pour la soude caustique</div>
+        </div>
+      </div>
+      <div class="ingredient-card">
+        <span class="ingredient-icon">⚗️</span>
+        <div>
+          <div class="ingredient-nom">Soude caustique</div>
+          <div class="ingredient-quantite">NaOH</div>
+          <div class="ingredient-role">Saponification · Calculée au gramme</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HUILES ESSENTIELLES -->
+    <div class="he-section">
+      <div class="he-titre">Le parfum</div>
+      <div class="he-sous">Huiles essentielles · Ajoutées à la trace</div>
+      <div class="he-grid">
+        <div class="he-item">
+          <span>🪵</span>
+          <span class="he-nom">Bois de santal</span>
+          <span class="he-g">10 g</span>
+        </div>
+        <div class="he-item">
+          <span>🌹</span>
+          <span class="he-nom">Rose</span>
+          <span class="he-g">4 g</span>
+        </div>
+        <div class="he-item">
+          <span>🌺</span>
+          <span class="he-nom">Ylang-ylang</span>
+          <span class="he-g">3 g</span>
+        </div>
+        <div class="he-item">
+          <span>🌰</span>
+          <span class="he-nom">Benjoin</span>
+          <span class="he-g">2 g</span>
+        </div>
+        <div class="he-item">
+          <span>💜</span>
+          <span class="he-nom">Lavande</span>
+          <span class="he-g">1 g</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCÉDÉ -->
+  <div class="procede-section">
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-symbol">✦</div>
+      <div class="divider-line"></div>
+    </div>
+    <div class="section-titre">Le procédé</div>
+    <div class="section-sous-titre">Méthode à froid · Saponification naturelle</div>
+
+    <div class="etapes">
+      <div class="etape">
+        <div class="etape-num">1</div>
+        <div>
+          <div class="etape-titre">L'infusion d'été</div>
+          <div class="etape-desc">
+            Dès l'été, l'huile d'olive infuse avec du mélilot fraîchement cueilli.
+            Plusieurs semaines de macération pour capturer le parfum de la plante.
+            C'est la base aromatique du savon — longtemps avant qu'on commence à le faire.
+          </div>
+        </div>
+      </div>
+      <div class="etape">
+        <div class="etape-num">2</div>
+        <div>
+          <div class="etape-titre">Préparer les huiles</div>
+          <div class="etape-desc">
+            Toutes les huiles et le beurre de karité sont réunis au bain-marie
+            pour les maintenir tièdes et homogènes. On surveille la température —
+            pas trop chaud, juste assez pour que tout soit bien fondu et uniforme.
+          </div>
+        </div>
+      </div>
+      <div class="etape">
+        <div class="etape-num">3</div>
+        <div>
+          <div class="etape-titre">La soude caustique</div>
+          <div class="etape-desc">
+            La soude caustique est versée lentement dans l'eau froide dans un bécher —
+            jamais l'inverse. La réaction est exothermique : le bécher devient très chaud.
+            On laisse refroidir jusqu'à ce que la soude soit tiède,
+            légèrement plus chaude que les huiles.
+          </div>
+        </div>
+      </div>
+      <div class="etape">
+        <div class="etape-num">4</div>
+        <div>
+          <div class="etape-titre">La saponification</div>
+          <div class="etape-desc">
+            La soude tiède est versée dans les huiles. On mélange — longtemps,
+            patiemment — jusqu'à atteindre <em>la trace</em> : ce moment précis où
+            le mélange s'épaissit et laisse une traînée visible en surface quand
+            on soulève le mélangeur. C'est le signe que la saponification est en cours.
+          </div>
+        </div>
+      </div>
+      <div class="etape">
+        <div class="etape-num">5</div>
+        <div>
+          <div class="etape-titre">Les huiles essentielles</div>
+          <div class="etape-desc">
+            À la trace, on ajoute les huiles essentielles — bois de santal, rose,
+            ylang-ylang, benjoin, lavande. On mélange encore un peu pour bien
+            incorporer le parfum. L'odeur qui se dégage à ce moment est extraordinaire.
+          </div>
+        </div>
+      </div>
+      <div class="etape">
+        <div class="etape-num">6</div>
+        <div>
+          <div class="etape-titre">Le moulage</div>
+          <div class="etape-desc">
+            Le mélange est coulé dans un moule en silicone. Deux jours plus tard,
+            on démoule — et on découpe dix savons qui sentent déjà très bon.
+            Mais il faut encore patienter.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CURE -->
+  <div class="cure-box">
+    <span class="cure-icon">⏳</span>
+    <div>
+      <div class="cure-titre">Trois semaines de cure</div>
+      <div class="cure-desc">
+        Les savons reposent à l'air libre pendant trois semaines avant d'être utilisés.
+        La saponification se complète, le pH s'équilibre, le savon durcit.
+        La patience fait partie de la recette. Quand il ne reste plus que quatre savons
+        dans le lot — c'est le signe qu'il est temps de refaire une batch.
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>
+      <a href="/index.html">← Alignement.com</a>
+      &nbsp;·&nbsp;
+      <a href="galerie.html">📷 Galerie photos</a>
+      &nbsp;·&nbsp;
+      Savonnerie artisanale · Gil Bourhis
+      &nbsp;·&nbsp;
+      &copy; 2026
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>

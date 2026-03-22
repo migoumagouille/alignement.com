@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galerie — Savonnerie artisanale</title>
+  <meta name="description" content="Photos et vidéo du processus de fabrication du savon artisanal à froid.">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f7f3ec;
+      --warm: #ede6d8;
+      --bark: #4a2f0a;
+      --bark-dim: rgba(107,79,40,0.12);
+      --moss: #2d4a22;
+      --text: #0d0800;
+      --muted: #3d2a10;
+      --white: #ffffff;
+      --border: rgba(74,47,10,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--bark);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .nav-logo:hover { opacity: 1; }
+
+    .nav-back {
+      font-size: 1.05rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--bark); }
+
+    .page-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .page-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .page-header h1 em {
+      font-style: italic;
+      color: var(--bark);
+    }
+
+    .page-header p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 10px 0 36px;
+    }
+
+    .divider-line { flex: 1; height: 1px; background: var(--border); }
+    .divider-symbol {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--bark);
+      opacity: 0.5;
+    }
+
+    .section-titre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .section-sous {
+      font-size: 1.1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 1;
+      margin-bottom: 24px;
+    }
+
+    /* GRILLE PHOTOS */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 50px;
+      animation: fadeUp 0.8s ease both 0.2s;
+    }
+
+    .photo-item {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .photo-wrap {
+      aspect-ratio: 4/3;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--warm);
+      position: relative;
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .photo-item:hover .photo-wrap img { transform: scale(1.04); }
+
+    /* Placeholder quand l'image n'existe pas */
+    .photo-wrap .placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--warm);
+    }
+
+    .placeholder-icon { font-size: 2rem; opacity: 0.3; }
+
+    .placeholder-text {
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.85;
+      text-align: center;
+      padding: 0 12px;
+    }
+
+    .photo-legende {
+      font-size: 1.1rem !important;
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.5;
+      padding: 0 4px;
+    }
+
+    /* VIDÉO */
+    .video-section {
+      margin-bottom: 60px;
+      animation: fadeUp 0.8s ease both 0.4s;
+    }
+
+    .video-placeholder {
+      aspect-ratio: 16/9;
+      background: var(--warm);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .video-placeholder .icon { font-size: 3rem; opacity: 0.3; }
+
+    .video-placeholder p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--muted);
+      opacity: 0.6;
+    }
+
+    /* LIGHTBOX */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(26,18,8,0.92);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-family: 'Jost', sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.5);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    #lightbox-close:hover { color: var(--cream); }
+
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 6px;
+      object-fit: contain;
+    }
+
+    /* NAV BAS */
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 24px 0 50px;
+      border-top: 1px solid var(--border);
+    }
+
+    .page-nav a {
+      font-size: 1.05rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .page-nav a:hover { color: var(--bark); }
+
+    footer {
+      text-align: center;
+      padding: 20px 0 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p { font-size: 1.08rem; color: var(--muted); letter-spacing: 1px; opacity: 1; }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--bark); }
+
+    @media (max-width: 640px) {
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 400px) {
+      .photo-grid { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav class="site-nav">
+    <a href="/index.html" class="nav-logo">Alignement.com</a>
+    <a href="index.html" class="nav-back">← La recette</a>
+  </nav>
+
+  <div class="page-header">
+    <h1>La <em>galerie</em></h1>
+    <p>Photos et vidéo du processus — de l'ingrédient au savon fini</p>
+  </div>
+
+  <!-- INGRÉDIENTS -->
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-symbol">✦</div>
+    <div class="divider-line"></div>
+  </div>
+  <div class="section-titre">Les ingrédients</div>
+  <div class="section-sous">Avant de commencer</div>
+
+  <div class="photo-grid">
+
+    <div class="photo-item" id="p-ingredients">
+      <div class="photo-wrap">
+        <img src="images/ingredients.jpg" alt="Les ingrédients"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none;">
+          <span class="placeholder-icon">📸</span>
+          <span class="placeholder-text">ingredients.jpg</span>
+        </div>
+      </div>
+      <div class="photo-legende">Tous les ingrédients alignés avant de commencer</div>
+    </div>
+
+    <div class="photo-item">
+      <div class="photo-wrap">
+        <img src="images/huile_olive.jpg" alt="Huile d'olive au mélilot"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none;">
+          <span class="placeholder-icon">📸</span>
+          <span class="placeholder-text">huile_olive.jpg</span>
+        </div>
+      </div>
+      <div class="photo-legende">L'huile d'olive infusée au mélilot tout l'été</div>
+    </div>
+
+    <div class="photo-item">
+      <div class="photo-wrap">
+        <img src="images/huiles_essentielles.jpg" alt="Huiles essentielles"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none;">
+          <span class="placeholder-icon">📸</span>
+          <span class="placeholder-text">huiles_essentielles.jpg</span>
+        </div>
+      </div>
+      <div class="photo-legende">Les flacons — santal, rose, ylang-ylang, benjoin, lavande</div>
+    </div>
+
+  </div>
+
+  <!-- PROCESSUS -->
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-symbol">✦</div>
+    <div class="divider-line"></div>
+  </div>
+  <div class="section-titre">Le processus</div>
+  <div class="section-sous">De l'huile au savon</div>
+
+  <div class="photo-grid">
+
+    <div class="photo-item">
+      <div class="photo-wrap">
+        <img src="images/bain_marie.jpg" alt="Bain-marie"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none;">
+          <span class="placeholder-icon">📸</span>
+          <span class="placeholder-text">bain_marie.jpg</span>
+        </div>
+      </div>
+      <div class="photo-legende">Les huiles au bain-marie — tièdes et homogènes</div>
+    </div>
+
+    <div class="photo-item">
+      <div class="photo-wrap">
+        <img src="images/soude_becher.jpg" alt="Soude caustique"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none;">
+          <span class="placeholder-icon">📸</span>
+          <span class="placeholder-text">soude_becher.jpg</span>
+        </div>
+      </div>
+      <div class="photo-legende">La soude caustique dans le bécher — réaction exothermique</div>
+    </div>
+
+    <div class="photo-item">
+      <div class="photo-wrap">
+        <img src="images/trace.jpg" alt="La trace"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none;">
+          <span class="placeholder-icon">📸</span>
+          <span class="placeholder-text">trace.jpg</span>
+        </div>
+      </div>
+      <div class="photo-legende">La trace — le moment où tout bascule</div>
+    </div>
+
+    <div class="photo-item">
+      <div class="photo-wrap">
+        <img src="images/coulage.jpg" alt="Coulage dans le moule"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none;">
+          <span class="placeholder-icon">📸</span>
+          <span class="placeholder-text">coulage.jpg</span>
+        </div>
+      </div>
+      <div class="photo-legende">Le coulage dans le moule en silicone</div>
+    </div>
+
+    <div class="photo-item">
+      <div class="photo-wrap">
+        <img src="images/demoulage.jpg" alt="Démoulage"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none;">
+          <span class="placeholder-icon">📸</span>
+          <span class="placeholder-text">demoulage.jpg</span>
+        </div>
+      </div>
+      <div class="photo-legende">Le bloc sorti du moule après deux jours</div>
+    </div>
+
+    <div class="photo-item">
+      <div class="photo-wrap">
+        <img src="images/decoupe.jpg" alt="La découpe"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none;">
+          <span class="placeholder-icon">📸</span>
+          <span class="placeholder-text">decoupe.jpg</span>
+        </div>
+      </div>
+      <div class="photo-legende">Les dix savons alignés juste après la coupe</div>
+    </div>
+
+  </div>
+
+  <!-- RÉSULTAT -->
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-symbol">✦</div>
+    <div class="divider-line"></div>
+  </div>
+  <div class="section-titre">Le résultat</div>
+  <div class="section-sous">Après trois semaines de cure</div>
+
+  <div class="photo-grid" style="grid-template-columns: repeat(2, 1fr);">
+
+    <div class="photo-item">
+      <div class="photo-wrap" style="aspect-ratio: 3/2;">
+        <img src="images/cure.jpg" alt="En cure"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none;">
+          <span class="placeholder-icon">📸</span>
+          <span class="placeholder-text">cure.jpg</span>
+        </div>
+      </div>
+      <div class="photo-legende">Les savons en cure — trois semaines de patience</div>
+    </div>
+
+    <div class="photo-item">
+      <div class="photo-wrap" style="aspect-ratio: 3/2;">
+        <img src="images/savons_finis.jpg" alt="Savons finis"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none;">
+          <span class="placeholder-icon">📸</span>
+          <span class="placeholder-text">savons_finis.jpg</span>
+        </div>
+      </div>
+      <div class="photo-legende">Les savons finis — prêts à être utilisés</div>
+    </div>
+
+  </div>
+
+  <!-- VIDÉO -->
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-symbol">✦</div>
+    <div class="divider-line"></div>
+  </div>
+  <div class="section-titre">La vidéo</div>
+  <div class="section-sous">Le processus complet · YouTube</div>
+
+  <div class="video-section">
+    <!-- Remplacer par : <iframe src="https://www.youtube.com/embed/VOTRE_ID" ... /> -->
+    <div class="video-placeholder">
+      <span class="icon">🎬</span>
+      <p>Vidéo à venir — prochaine batch</p>
+    </div>
+  </div>
+
+  <div class="page-nav">
+    <a href="index.html">← La recette</a>
+    <a href="/index.html">Alignement.com →</a>
+  </div>
+
+  <footer>
+    <p>
+      <a href="/index.html">← Alignement.com</a>
+      &nbsp;·&nbsp;
+      Savonnerie artisanale · Gil Bourhis
+      &nbsp;·&nbsp;
+      &copy; 2026
+    </p>
+  </footer>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <div id="lightbox-close">Fermer ✕</div>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script src="galerie.js"></script>
+</body>
+</html>
