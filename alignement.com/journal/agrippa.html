@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'Agrippa — Alignement.com</title>
+  <meta name="description" content="Une British Pharmacopoeia de 1909, héritée d'un pharmacien, réparée par une jumelle bibliothécaire. Ce livre est mon Agrippa — celui que l'on ne doit pas nommer.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alignement.com/journal/agrippa.html">
+  <meta property="og:title" content="L'Agrippa — Alignement.com">
+  <meta property="og:description" content="Une British Pharmacopoeia de 1909. Des pages brûlées au chapitre de l'acide nitrique. Ce livre est mon Agrippa.">
+  <meta property="og:image" content="https://alignement.com/journal/images/agrippa.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --copper: #b5541a;
+      --copper-lt: #d4692a;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(181,84,26,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(181,84,26,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(181,84,26,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(232,160,32,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--copper-lt); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(181,84,26,0.12);
+      border: 1px solid rgba(181,84,26,0.35);
+      color: #e07830;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      letter-spacing: 4px;
+      background: linear-gradient(135deg, var(--white) 20%, var(--gold) 60%, var(--copper-lt) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--copper);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 30px 0;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--copper-lt);
+      margin: 40px 0 16px;
+    }
+
+    /* IMAGE DU LIVRE */
+    .article-image {
+      margin: 36px 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(181,84,26,0.3);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+
+    .article-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: sepia(0.2) contrast(1.05);
+    }
+
+    .img-legende {
+      padding: 12px 18px;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: rgba(232,238,248,0.3);
+      background: rgba(0,0,0,0.2);
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    /* CITATION */
+    .highlight-box {
+      background: rgba(232,160,32,0.05);
+      border: 1px solid rgba(232,160,32,0.2);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin: 36px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(237,224,196,0.8) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.15rem !important;
+      line-height: 1.75;
+    }
+
+    /* VIDÉO */
+    .yt-embed {
+      margin: 36px 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(181,84,26,0.3);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+      position: relative;
+      aspect-ratio: 16/9;
+    }
+
+    .yt-embed iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: none;
+    }
+
+    /* FIN MYSTÉRIEUSE */
+    .fin-box {
+      background: rgba(181,84,26,0.06);
+      border: 1px solid rgba(181,84,26,0.2);
+      border-radius: 14px;
+      padding: 30px 32px;
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .fin-box .symbol {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 16px;
+      opacity: 0.4;
+      letter-spacing: 12px;
+    }
+
+    .fin-box p {
+      font-family: 'Rajdhani', sans-serif !important;
+      font-size: 1.1rem !important;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: rgba(237,224,196,0.5) !important;
+      line-height: 1.7 !important;
+      margin-bottom: 0 !important;
+    }
+
+    .article-footer {
+      border-top: 1px solid rgba(181,84,26,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--copper-lt); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">Laboratoire</span>
+      <span class="article-date">25 mars 2026</span>
+    </div>
+    <h1>L'Agrippa</h1>
+    <p class="article-intro">
+      Dans la tradition bretonne, l'Agrippa est le grimoire qu'on ne doit pas garder chez soi.
+      Le livre de tous les malheurs et de toutes les gloires.
+      J'en ai un. Il est sur une tablette dans mon laboratoire.
+      Il date de 1909.
+    </p>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="article-body">
+
+    <p>
+      Dans le folklore breton — celui de mes ancêtres —
+      l'<strong>Agrippa</strong> est un grimoire légendaire.
+      Un recueil de secrets et de savoirs qu'on dit dangereux
+      à posséder. On ne le nomme pas trop fort.
+      On ne l'expose pas. On le garde dans l'ombre,
+      à portée de main, pour celui qui sait quoi en faire.
+    </p>
+
+    <p>
+      Je suis Breton. Et j'ai mon Agrippa.
+      Sauf que le mien ne contient pas de conjurations —
+      il contient de la chimie. Ce qui, selon les époques,
+      revient parfois au même.
+    </p>
+
+    <div class="article-image">
+      <img src="images/agrippa.jpg" alt="British Pharmacopoeia 1909">
+      <div class="img-legende">British Pharmacopoeia · 1909 · État passable</div>
+    </div>
+
+    <h2>L'héritage</h2>
+
+    <p>
+      Ce livre me vient de la mère de ma conjointe —
+      qui l'avait elle-même hérité de son père, pharmacien de métier.
+      Une <strong>British Pharmacopoeia</strong> de 1909.
+      Un siècle de chimie condensé entre deux couvertures usées,
+      transmis de main en main comme un secret de famille
+      qu'on ne sait pas très bien comment nommer.
+    </p>
+
+    <p>
+      Il est en état passable. Quelques pages sont brûlées —
+      précisément au chapitre de l'acide nitrique.
+      Ce détail m'a toujours fasciné. <strong>Quelqu'un, avant moi,
+      avait été curieux lui aussi.</strong> Ces pages ont été
+      soigneusement réparées par Yvon Dionne — et oui,
+      une des célèbres jumelles qui travaillait avec ma conjointe
+      à la bibliothèque municipale. Même les grimoires
+      ont besoin de bibliothécaires.
+    </p>
+
+    <div class="highlight-box">
+      <p>
+        « On dit qu'on ne peut garder l'Agrippa chez soi
+        sans en subir les conséquences.
+        Chez moi, les conséquences ont été
+        une passion qui dure depuis quarante ans. »
+      </p>
+    </div>
+
+    <h2>Ce qu'il a ouvert</h2>
+
+    <p>
+      J'ai commencé par la première page.
+      J'ai avancé méthodiquement, produit après produit,
+      jusqu'à la chimie organique qui m'intéressait moins.
+      Entre les deux, il y avait tout un monde.
+    </p>
+
+    <p>
+      Pour trouver ma matière première, j'ai couru
+      <strong>les mines de la province de Québec</strong> —
+      le soufre, le mercure, le sel, les minéraux rares
+      qu'on ne trouve pas dans les quincailleries.
+      C'est comme ça que j'ai appris à connaître le territoire,
+      les roches, ce que la terre cache.
+    </p>
+
+    <p>
+      Puis sont venus <strong>les trois acides forts</strong>.
+      Et là — toutes les portes se sont ouvertes.
+      Je ne dirai pas lesquelles.
+      Certaines choses appartiennent au laboratoire.
+    </p>
+
+    <h2>Il est toujours là</h2>
+
+    <p>
+      Le vrai Agrippa breton, selon la légende,
+      est un livre qu'on ne peut pas détruire —
+      qu'on ne peut que transmettre.
+      Le mien est sur une tablette dans mon laboratoire.
+      Je le consulte encore à l'occasion.
+      Il attend, avec la patience des vieux livres —
+      celle qui ressemble beaucoup à la patience des pierres.
+    </p>
+
+    <p>
+      Un Breton, une Pharmacopoeia de 1909,
+      des pages brûlées à l'acide nitrique,
+      et quarante ans de curiosité.
+      <strong>Certaines coïncidences ne sont pas des coïncidences.</strong>
+    </p>
+
+    <div class="yt-embed">
+      <iframe
+        src="https://www.youtube.com/embed/TqoSOlop6Qw"
+        title="Le laboratoire — Migoumagouille"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="fin-box">
+      <span class="symbol">⚗ ✦ ⚗</span>
+      <p>
+        Le savon était la porte.<br>
+        La Pharmacopoeia était le couloir.<br>
+        Ce qu'il y avait au bout —<br>
+        c'est une autre histoire.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>

@@ -86,5 +86,13 @@
     "categorie": "Intelligence artificielle",
     "resume": "Claude crée, Claude Code corrige. Deux intelligences artificielles sur le même projet. Ce que ça donne — vu de l'intérieur, par celle qui écrit ces lignes.",
     "fichier": "/journal/deux-ia.html"
+  },
+  {
+    "id": "agrippa",
+    "titre": "L'Agrippa",
+    "date": "2026-03-25",
+    "categorie": "Laboratoire",
+    "resume": "Une British Pharmacopoeia de 1909, héritée d'un pharmacien, réparée par une jumelle bibliothécaire. Des pages brûlées au chapitre de l'acide nitrique. Ce livre est mon Agrippa — celui que l'on ne doit pas nommer.",
+    "fichier": "/journal/agrippa.html"
   }
 ]
