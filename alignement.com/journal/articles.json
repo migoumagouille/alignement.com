@@ -64,19 +64,27 @@
     "fichier": "/journal/nuit-du-verglas.html"
   },
   {
-  "id": "ia-et-le-temps",
-  "titre": "Quand l'IA perd le fil du temps",
-  "date": "2026-03-14",
-  "categorie": "Intelligence artificielle",
-  "resume": "Tous nos articles affichaient 2025 — on est en 2026. Un lecteur attentif l'a remarqué. Pourquoi les IA comme Claude ont parfois du mal avec le calendrier?",
-  "fichier": "/journal/ia-et-le-temps.html"
- },
- {
-  "id": "page-de-liens",
-  "titre": "Une page de liens",
-  "date": "2026-03-15",
-  "categorie": "Le site",
-  "resume": "Nouvelle section sur Alignement.com — une page de liens d'intérêt organisée par thème. Météo, énergie solaire, informatique, géologie et navigation.",
-  "fichier": "/journal/page-de-liens.html"
-}
+    "id": "ia-et-le-temps",
+    "titre": "Quand l'IA perd le fil du temps",
+    "date": "2026-03-14",
+    "categorie": "Intelligence artificielle",
+    "resume": "Tous nos articles affichaient 2025 — on est en 2026. Un lecteur attentif l'a remarqué. Pourquoi les IA comme Claude ont parfois du mal avec le calendrier?",
+    "fichier": "/journal/ia-et-le-temps.html"
+  },
+  {
+    "id": "page-de-liens",
+    "titre": "Une page de liens",
+    "date": "2026-03-15",
+    "categorie": "Le site",
+    "resume": "Nouvelle section sur Alignement.com — une page de liens d'intérêt organisée par thème. Météo, énergie solaire, informatique, géologie et navigation.",
+    "fichier": "/journal/page-de-liens.html"
+  },
+  {
+    "id": "deux-ia",
+    "titre": "Deux intelligences dans le garage",
+    "date": "2026-03-24",
+    "categorie": "Intelligence artificielle",
+    "resume": "Claude crée, Claude Code corrige. Deux intelligences artificielles sur le même projet. Ce que ça donne — vu de l'intérieur, par celle qui écrit ces lignes.",
+    "fichier": "/journal/deux-ia.html"
+  }
 ]
