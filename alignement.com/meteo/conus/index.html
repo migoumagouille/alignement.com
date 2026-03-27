@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌤️ Météo — Est du Canada · Alignement.com</title>
+<meta name="author" content="L'aligneur de menhirs">
+<meta name="description" content="Prévisions météo pour l'Est du Canada — vent, pression, précipitations, température. Alignement.com">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg:      #0f1117;
+    --surface: #181c25;
+    --border:  #2a2f3e;
+    --accent:  #5b8dee;
+    --accent2: #3ecfb0;
+    --gold:    #e8a020;
+    --text:    #dde3f0;
+    --muted:   #7a849e;
+    --red:     #e05555;
+    --green:   #3ecfb0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  header a {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  header img { height: 38px; width: auto; }
+
+  .site-title {
+    font-size: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--muted);
+  }
+
+  .site-title strong { color: var(--text); }
+
+  /* MAIN */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .page-heading { margin-bottom: 1.8rem; }
+
+  .page-heading h1 {
+    font-size: 1.9rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .page-heading p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* SECTION TITLE */
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* VILLES GRID */
+  .villes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+    margin-bottom: 2.5rem;
+  }
+
+  .ville-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ville-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity .2s;
+  }
+
+  .ville-card:hover, .ville-card.active {
+    border-color: rgba(91,141,238,0.5);
+    background: rgba(91,141,238,0.06);
+  }
+
+  .ville-card:hover::before, .ville-card.active::before { opacity: 1; }
+
+  .ville-nom {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .ville-prov {
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+
+  .metrics-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .metric-mini {
+    background: rgba(0,0,0,0.2);
+    border-radius: 6px;
+    padding: 7px 10px;
+  }
+
+  .metric-mini .val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .metric-mini .lbl {
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .metric-mini.temp .val { color: #ff9966; }
+  .metric-mini.vent .val { color: var(--accent2); }
+  .metric-mini.pres .val { color: var(--accent); }
+  .metric-mini.prec .val { color: #88aaff; }
+
+  .loading-dots {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    animation: pulse 1.2s infinite;
+  }
+
+  @keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+
+  /* DIRECTION VENT */
+  .wind-arrow {
+    display: inline-block;
+    font-size: 0.9rem;
+    margin-left: 4px;
+    transition: transform .3s;
+  }
+
+  /* SATELLITES SECTION */
+  .sat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 2.5rem;
+  }
+
+  .sat-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color .2s, background .2s;
+  }
+
+  .sat-card:hover {
+    border-color: rgba(91,141,238,0.45);
+    background: rgba(91,141,238,0.05);
+  }
+
+  .sat-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+  .sat-info {}
+
+  .sat-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .sat-sub {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* RESSOURCES EXTERNES */
+  .ext-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin-bottom: 2.5rem;
+  }
+
+  .ext-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color .2s;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+  }
+
+  .ext-card:hover { border-color: rgba(91,141,238,0.4); }
+  .ext-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+  /* MISE À JOUR */
+  .update-bar {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dot-live {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent2);
+    animation: blink 2s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.1rem 2rem;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--muted);
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .villes-grid { grid-template-columns: 1fr; }
+    .sat-grid, .ext-grid { grid-template-columns: 1fr; }
+    main { padding: 1.5rem 1rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="https://alignement.com">
+    <img src="../gnomon1.png" alt="Alignement.com">
+    <span class="site-title"><strong>alignement.com</strong> — météo</span>
+  </a>
+</header>
+
+<main>
+
+  <div class="page-heading">
+    <h1>🌤️ Météo — Est du Canada</h1>
+    <p>Conditions actuelles · données Open-Meteo · mises à jour en temps réel</p>
+  </div>
+
+  <div class="update-bar">
+    <span class="dot-live"></span>
+    <span id="updateTime">Chargement des données…</span>
+  </div>
+
+  <!-- VILLES -->
+  <div class="section-label">Conditions actuelles</div>
+  <div class="villes-grid" id="villesGrid">
+    <!-- Chargé par JS -->
+  </div>
+
+  <!-- SATELLITES -->
+  <div class="section-label">Images satellite</div>
+  <div class="sat-grid">
+    <a href="observer.html" class="sat-card">
+      <span class="sat-icon">🌡️</span>
+      <div class="sat-info">
+        <div class="sat-title">Infrarouge — Est ANAM</div>
+        <div class="sat-sub">Rechargement 10 min</div>
+      </div>
+    </a>
+    <a href="observer_vis.html" class="sat-card">
+      <span class="sat-icon">🛰️</span>
+      <div class="sat-info">
+        <div class="sat-title">Visible — Est ANAM</div>
+        <div class="sat-sub">Rechargement 10 min</div>
+      </div>
+    </a>
+    <a href="petit.html" class="sat-card">
+      <span class="sat-icon">🔬</span>
+      <div class="sat-info">
+        <div class="sat-title">Infrarouge — Zoom Est Canada</div>
+        <div class="sat-sub">Rechargement 10 min</div>
+      </div>
+    </a>
+    <a href="petit_vis.html" class="sat-card">
+      <span class="sat-icon">🔭</span>
+      <div class="sat-info">
+        <div class="sat-title">Visible — Zoom Est Canada</div>
+        <div class="sat-sub">Rechargement 10 min</div>
+      </div>
+    </a>
+    <a href="tout.html" class="sat-card">
+      <span class="sat-icon">🌍</span>
+      <div class="sat-info">
+        <div class="sat-title">Infrarouge — Vue globale</div>
+        <div class="sat-sub">Rechargement 30 min</div>
+      </div>
+    </a>
+    <a href="tout_vis.html" class="sat-card">
+      <span class="sat-icon">☀️</span>
+      <div class="sat-info">
+        <div class="sat-title">Visible — Vue globale</div>
+        <div class="sat-sub">Rechargement 30 min</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- RESSOURCES EXTERNES -->
+  <div class="section-label">Ressources externes</div>
+  <div class="ext-grid">
+    <a href="https://meteo.gc.ca/index_f.html?layers=radar" target="_blank" class="ext-card">
+      <span class="ext-icon">📡</span> Image radar — Environnement Canada
+    </a>
+    <a href="https://www.nhc.noaa.gov/" target="_blank" class="ext-card">
+      <span class="ext-icon">🌀</span> Trajectoire des ouragans — NHC
+    </a>
+    <a href="https://www.ndbc.noaa.gov/" target="_blank" class="ext-card">
+      <span class="ext-icon">🔵</span> Bouées marines — NOAA NDBC
+    </a>
+    <a href="https://meteo.gc.ca/?center=49.26029610,-134.55872930&zoom=3" target="_blank" class="ext-card">
+      <span class="ext-icon">🍁</span> Carte météo — Environnement Canada
+    </a>
+    <a href="https://earth.nullschool.net/#current/wind/surface/level/orthographic=-73,46,1200" target="_blank" class="ext-card">
+      <span class="ext-icon">💨</span> Vent animé global — earth.nullschool
+    </a>
+    <a href="https://www.windy.com/?46,-73,7" target="_blank" class="ext-card">
+      <span class="ext-icon">🌬️</span> Windy — Prévisions interactives
+    </a>
+  </div>
+
+</main>
+
+<footer>
+  <a href="https://alignement.com">alignement.com</a> &nbsp;·&nbsp; Il fait toujours beau quelque part
+</footer>
+
+<script src="/js/meteo-index.js"></script>
+
+</body>
+</html>

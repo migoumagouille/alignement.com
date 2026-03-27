@@ -27,6 +27,13 @@
 
   <!-- Météo -->
   <url>
+    <loc>https://alignement.com/meteo/conus/</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://alignement.com/meteo/conus/tout.html</loc>
     <lastmod>2026-03-06</lastmod>
     <changefreq>yearly</changefreq>
