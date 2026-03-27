@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculateur de savon artisanal — Alignement.com</title>
+  <meta name="description" content="Calculateur de savon artisanal en français — calcul NaOH/KOH, surgraissage, propriétés du savon. Outil gratuit pour savonniers.">
+  <meta name="author" content="Alignement.com">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://savon.alignement.com/">
+  <meta property="og:title" content="Calculateur de savon artisanal — Alignement.com">
+  <meta property="og:description" content="Calculateur NaOH/KOH gratuit en français pour savonniers artisanaux.">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --blue: #1a3a6e;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+      --success: #27ae60;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(46,125,233,0.10) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* HEADER */
+    header {
+      padding: 36px 0 16px;
+      text-align: center;
+    }
+
+    .breadcrumb {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(232,238,248,0.35);
+      margin-bottom: 18px;
+    }
+
+    .breadcrumb a {
+      color: rgba(46,125,233,0.6);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .breadcrumb a:hover { color: var(--accent); }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 8px;
+    }
+
+    .soap-icon {
+      font-size: 2.2rem;
+      filter: drop-shadow(0 0 10px rgba(232,160,32,0.4));
+    }
+
+    header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: rgba(232,238,248,0.45);
+      font-size: 0.88rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .header-line {
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 16px auto 0;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp .5s ease both;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .card-params::before { background: linear-gradient(90deg, var(--accent), #5aa3ff); }
+    .card-oils::before   { background: linear-gradient(90deg, var(--gold), #f0c040); }
+    .card-results::before{ background: linear-gradient(90deg, var(--success), #82e0aa); }
+
+    .card-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--white);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-num {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+      opacity: .7;
+    }
+
+    /* FORM ELEMENTS */
+    label {
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(232,238,248,0.45);
+      margin-bottom: 5px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+    }
+
+    input[type="number"], select {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(46,125,233,0.3);
+      border-radius: 8px;
+      padding: 9px 12px;
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem;
+      transition: border-color .2s, background .2s;
+    }
+
+    input[type="number"]:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(46,125,233,0.08);
+    }
+
+    select option {
+      background: #1a2e50;
+      color: var(--light);
+    }
+
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .grid4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+
+    /* OIL ROWS */
+    .oil-row {
+      display: grid;
+      grid-template-columns: 1fr 120px 34px;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(46,125,233,0.1);
+    }
+
+    .oil-row:last-child { border-bottom: none; }
+
+    .oil-name {
+      font-size: 0.9rem;
+      color: var(--light);
+    }
+
+    .oil-row input[type="number"] {
+      text-align: right;
+      padding: 7px 10px;
+    }
+
+    .btn-remove {
+      background: rgba(231,76,60,0.1);
+      border: 1px solid rgba(231,76,60,0.25);
+      border-radius: 8px;
+      color: rgba(231,76,60,0.6);
+      cursor: pointer;
+      padding: 6px;
+      font-size: 0.85rem;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-remove:hover { background: rgba(231,76,60,0.2); color: #e74c3c; }
+
+    .add-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .add-row select { flex: 1; min-width: 180px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all .2s;
+      border: 1px solid;
+      white-space: nowrap;
+    }
+
+    .btn-add {
+      background: rgba(46,125,233,0.12);
+      border-color: rgba(46,125,233,0.35);
+      color: #7cb9ff;
+    }
+    .btn-add:hover { background: rgba(46,125,233,0.25); color: #fff; }
+
+    .btn-reset {
+      background: rgba(232,160,32,0.08);
+      border-color: rgba(232,160,32,0.25);
+      color: rgba(232,160,32,0.6);
+    }
+    .btn-reset:hover { background: rgba(232,160,32,0.18); color: var(--gold); }
+
+    .total-bar {
+      margin-top: 12px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.85rem;
+      color: rgba(232,238,248,0.4);
+      letter-spacing: 1px;
+    }
+
+    .total-bar span {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    /* METRIC CARDS */
+    .metric {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(46,125,233,0.2);
+      border-radius: 12px;
+      padding: 16px 12px;
+      text-align: center;
+    }
+
+    .metric .val {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+
+    .metric .lbl {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(232,238,248,0.4);
+      margin-top: 3px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+    }
+
+    .metric.highlight {
+      border-color: rgba(232,160,32,0.4);
+      background: rgba(232,160,32,0.06);
+    }
+    .metric.highlight .val { color: var(--gold); }
+
+    /* PROPERTY BARS */
+    .props-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .prop-item {}
+
+    .prop-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .prop-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(232,238,248,0.5);
+    }
+
+    .prop-val {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .prop-bar {
+      height: 6px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .prop-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width .5s ease;
+    }
+
+    /* RANGES RECOMMENDATION */
+    .prop-hint {
+      font-size: 0.72rem;
+      color: rgba(232,238,248,0.25);
+      margin-top: 3px;
+    }
+
+    .sep {
+      border: none;
+      border-top: 1px solid rgba(46,125,233,0.15);
+      margin: 20px 0;
+    }
+
+    /* NOTE BOX */
+    .note {
+      background: rgba(232,160,32,0.06);
+      border: 1px solid rgba(232,160,32,0.2);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.83rem;
+      color: rgba(232,238,248,0.55);
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+
+    .note strong { color: rgba(232,160,32,0.8); }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 24px 0 40px;
+      font-size: 0.76rem;
+      color: rgba(232,238,248,0.2);
+      letter-spacing: 1px;
+    }
+
+    footer a {
+      color: rgba(46,125,233,0.45);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    footer a:hover { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card:nth-child(1) { animation-delay: .05s; }
+    .card:nth-child(2) { animation-delay: .14s; }
+    .card:nth-child(3) { animation-delay: .22s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .grid2, .grid3, .grid4 { grid-template-columns: 1fr 1fr; }
+      .grid3 { grid-template-columns: 1fr; }
+      .props-grid { grid-template-columns: 1fr; }
+      header h1 { letter-spacing: 1px; }
+    }
+
+    @media (max-width: 420px) {
+      .grid2, .grid4 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <div class="breadcrumb">
+      <a href="https://alignement.com/">Alignement.com</a> &rsaquo; Savon artisanal
+    </div>
+    <div class="logo-wrap">
+      <span class="soap-icon">🧼</span>
+      <h1>Calculateur de savon</h1>
+      <span class="soap-icon">⚗️</span>
+    </div>
+    <p>NaOH · KOH · Surgraissage · Propriétés</p>
+    <div class="header-line"></div>
+  </header>
+
+  <main style="padding: 28px 0 20px;">
+
+    <!-- PARAMÈTRES -->
+    <div class="card card-params">
+      <div class="card-num">Étape 01</div>
+      <div class="card-title">⚙️ Paramètres généraux</div>
+      <div class="grid3" style="margin-bottom:16px">
+        <div>
+          <label>Type de lessive</label>
+          <select id="lyeType" onchange="calc()">
+            <option value="naoh">NaOH — Savon dur</option>
+            <option value="koh">KOH — Savon liquide</option>
+          </select>
+        </div>
+        <div>
+          <label>Surgraissage (%)</label>
+          <input type="number" id="superfat" value="5" min="0" max="30" step="1" oninput="calc()">
+        </div>
+        <div>
+          <label>Eau (% des huiles)</label>
+          <input type="number" id="waterPct" value="38" min="20" max="50" step="1" oninput="calc()">
+        </div>
+      </div>
+      <div class="grid2">
+        <div>
+          <label>Unité de mesure</label>
+          <select id="unit" onchange="calc()">
+            <option value="g">Grammes (g)</option>
+            <option value="oz">Onces (oz)</option>
+          </select>
+        </div>
+        <div id="kohPurityRow">
+          <label>Pureté du KOH (%)</label>
+          <input type="number" id="kohPurity" value="90" min="80" max="100" step="1" oninput="calc()">
+        </div>
+      </div>
+      <div class="note">
+        <strong>Surgraissage :</strong> 5–8% est recommandé pour un savon doux à usage quotidien. Plus élevé = savon plus hydratant mais moins nettoyant.
+        &nbsp;|&nbsp; <strong>Eau :</strong> 33–38% des huiles est la plage standard. Moins d'eau = démoulage plus rapide.
+      </div>
+    </div>
+
+    <!-- HUILES -->
+    <div class="card card-oils">
+      <div class="card-num">Étape 02</div>
+      <div class="card-title">🫙 Huiles et graisses</div>
+      <div id="oilRows"></div>
+      <div class="add-row">
+        <select id="oilPicker"></select>
+        <button class="btn btn-add" onclick="addOil()">+ Ajouter</button>
+        <button class="btn btn-reset" onclick="resetOils()">↺ Recette de base</button>
+      </div>
+      <div id="addOilMsg" style="display:none;margin-top:.5rem;padding:.4rem .8rem;border-radius:6px;font-size:.85rem;background:rgba(232,80,32,0.12);border:1px solid rgba(232,80,32,0.35);color:#ff9977;"></div>
+      <div class="total-bar">
+        Total huiles&nbsp;: <span id="totalOils">0</span> <span id="unitLbl">g</span>
+      </div>
+    </div>
+
+    <!-- RÉSULTATS -->
+    <div class="card card-results" id="resultsCard" style="display:none">
+      <div class="card-num">Résultats</div>
+      <div class="card-title">✅ Votre recette</div>
+
+      <div class="grid4">
+        <div class="metric highlight">
+          <div class="val" id="rLye">—</div>
+          <div class="lbl" id="rLyeLbl">NaOH</div>
+        </div>
+        <div class="metric">
+          <div class="val" id="rWater">—</div>
+          <div class="lbl">Eau</div>
+        </div>
+        <div class="metric">
+          <div class="val" id="rOils">—</div>
+          <div class="lbl">Huiles</div>
+        </div>
+        <div class="metric">
+          <div class="val" id="rBatch">—</div>
+          <div class="lbl">Total lot</div>
+        </div>
+      </div>
+
+      <hr class="sep">
+
+      <div class="card-title" style="font-size:1rem; margin-bottom:0">📊 Propriétés du savon</div>
+      <div class="props-grid" id="propsGrid"></div>
+
+      <div class="note" style="margin-top:18px">
+        <strong>Valeurs cibles recommandées :</strong>
+        Dureté 29–54 · Nettoyant 12–22 · Mousse crémeuse 16–48 · Conditionnant 44–69 · Longévité 5–20.
+        Ces valeurs sont calculées selon les index de saponification des huiles sélectionnées.
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      <a href="https://alignement.com/">← Alignement.com</a>
+      &nbsp;·&nbsp;
+      Valeurs SAP basées sur les références de la savonnerie artisanale
+      &nbsp;·&nbsp;
+      &copy; 2026 Alignement.com
+    </p>
+  </footer>
+
+</div><!-- /.container -->
+
+<script>
+const OILS = [
+  {n:"Huile de coco",          naoh:.190, koh:.268, props:{dureté:79,nettoyant:67,mousse:67,conditionnant:10,longévité:79,onctuosité:10}},
+  {n:"Huile de palme",         naoh:.141, koh:.199, props:{dureté:57,nettoyant:10,mousse:10,conditionnant:43,longévité:57,onctuosité:43}},
+  {n:"Huile d'olive",          naoh:.134, koh:.189, props:{dureté:17,nettoyant:16,mousse:16,conditionnant:83,longévité:17,onctuosité:83}},
+  {n:"Huile de ricin",         naoh:.128, koh:.180, props:{dureté:0, nettoyant:0, mousse:95,conditionnant:90,longévité:0, onctuosité:90}},
+  {n:"Huile de tournesol",     naoh:.134, koh:.189, props:{dureté:14,nettoyant:10,mousse:10,conditionnant:86,longévité:14,onctuosité:86}},
+  {n:"Beurre de cacao",        naoh:.137, koh:.194, props:{dureté:70,nettoyant:8, mousse:8, conditionnant:30,longévité:70,onctuosité:30}},
+  {n:"Beurre de karité",       naoh:.128, koh:.180, props:{dureté:50,nettoyant:5, mousse:5, conditionnant:60,longévité:50,onctuosité:60}},
+  {n:"Huile de canola",        naoh:.124, koh:.175, props:{dureté:10,nettoyant:5, mousse:5, conditionnant:56,longévité:10,onctuosité:56}},
+  {n:"Huile de soja",          naoh:.135, koh:.191, props:{dureté:17,nettoyant:10,mousse:10,conditionnant:61,longévité:17,onctuosité:61}},
+  {n:"Huile de sésame",        naoh:.133, koh:.187, props:{dureté:14,nettoyant:8, mousse:8, conditionnant:75,longévité:14,onctuosité:75}},
+  {n:"Saindoux",               naoh:.138, koh:.195, props:{dureté:47,nettoyant:10,mousse:10,conditionnant:47,longévité:47,onctuosité:47}},
+  {n:"Suif de bœuf",           naoh:.140, koh:.198, props:{dureté:58,nettoyant:5, mousse:5, conditionnant:42,longévité:58,onctuosité:42}},
+  {n:"Huile de palme noyau",   naoh:.178, koh:.251, props:{dureté:76,nettoyant:72,mousse:72,conditionnant:24,longévité:76,onctuosité:24}},
+  {n:"Huile d'amande douce",   naoh:.136, koh:.192, props:{dureté:14,nettoyant:8, mousse:8, conditionnant:77,longévité:14,onctuosité:77}},
+  {n:"Huile d'avocat",         naoh:.133, koh:.187, props:{dureté:13,nettoyant:8, mousse:8, conditionnant:80,longévité:13,onctuosité:80}},
+  {n:"Huile de chanvre",       naoh:.135, koh:.191, props:{dureté:18,nettoyant:8, mousse:8, conditionnant:80,longévité:18,onctuosité:80}},
+  {n:"Huile d'argan",          naoh:.136, koh:.192, props:{dureté:17,nettoyant:8, mousse:8, conditionnant:78,longévité:17,onctuosité:78}},
+  {n:"Huile de maïs",          naoh:.136, koh:.192, props:{dureté:15,nettoyant:10,mousse:10,conditionnant:62,longévité:15,onctuosité:62}},
+  {n:"Huile de jojoba",        naoh:.069, koh:.097, props:{dureté:5, nettoyant:0, mousse:0, conditionnant:95,longévité:5, onctuosité:95}},
+  {n:"Huile de lin",           naoh:.135, koh:.191, props:{dureté:15,nettoyant:8, mousse:8, conditionnant:72,longévité:15,onctuosité:72}},
+  {n:"Huile de pépins de raisin",naoh:.126,koh:.178,props:{dureté:12,nettoyant:5, mousse:5, conditionnant:73,longévité:12,onctuosité:73}},
+  {n:"Huile de noisette",      naoh:.136, koh:.192, props:{dureté:14,nettoyant:8, mousse:8, conditionnant:76,longévité:14,onctuosité:76}},
+  {n:"Cire d'abeille",         naoh:.069, koh:.097, props:{dureté:90,nettoyant:0, mousse:0, conditionnant:0, longévité:90,onctuosité:0}},
+  {n:"Huile de son de riz",    naoh:.128, koh:.180, props:{dureté:20,nettoyant:8, mousse:8, conditionnant:70,longévité:20,onctuosité:70}},
+  {n:"Huile de noix de macadamia",naoh:.139,koh:.196,props:{dureté:16,nettoyant:5,mousse:5, conditionnant:80,longévité:16,onctuosité:80}},
+];
+
+const PROP_COLORS = {
+  dureté:     '#2e7de9',
+  nettoyant:  '#e8a020',
+  mousse:     '#27ae60',
+  conditionnant:'#9b59b6',
+  longévité:  '#20b8d4',
+  onctuosité: '#e84060',
+};
+
+const PROP_LABELS = {
+  dureté:      'Dureté',
+  nettoyant:   'Nettoyant',
+  mousse:      'Mousse',
+  conditionnant:'Conditionnant',
+  longévité:   'Longévité',
+  onctuosité:  'Onctuosité',
+};
+
+let recipe = [
+  {idx:0, amt:300},
+  {idx:2, amt:400},
+  {idx:3, amt:50},
+];
+
+function populatePicker() {
+  const s = document.getElementById('oilPicker');
+  s.innerHTML = '';
+  OILS.forEach((o,i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = o.n;
+    s.appendChild(opt);
+  });
+}
+
+function renderRows() {
+  const unit = document.getElementById('unit').value;
+  const div = document.getElementById('oilRows');
+  div.innerHTML = '';
+  recipe.forEach((r,ri) => {
+    const row = document.createElement('div');
+    row.className = 'oil-row';
+    row.innerHTML = `
+      <span class="oil-name">${OILS[r.idx].n}</span>
+      <input type="number" value="${r.amt}" min="0" step="1"
+        style="text-align:right"
+        onchange="recipe[${ri}].amt=+this.value;calc()">
+      <button class="btn-remove" onclick="recipe.splice(${ri},1);renderRows();calc()" title="Retirer">✕</button>
+    `;
+    div.appendChild(row);
+  });
+  document.getElementById('unitLbl').textContent = unit;
+  calc();
+}
+
+function addOil() {
+  const idx = +document.getElementById('oilPicker').value;
+  if (recipe.find(r => r.idx === idx)) {
+    const msg = document.getElementById('addOilMsg');
+    msg.textContent = 'Cette huile est déjà dans la recette.';
+    msg.style.display = 'block';
+    clearTimeout(msg._t);
+    msg._t = setTimeout(() => { msg.style.display = 'none'; }, 3000);
+    return;
+  }
+  recipe.push({idx, amt: 100});
+  renderRows();
+}
+
+function resetOils() {
+  recipe = [{idx:0,amt:300},{idx:2,amt:400},{idx:3,amt:50}];
+  renderRows();
+}
+
+function calc() {
+  const lye = document.getElementById('lyeType').value;
+  const sf  = +document.getElementById('superfat').value / 100;
+  const wp  = +document.getElementById('waterPct').value / 100;
+  const unit= document.getElementById('unit').value;
+  const kohP= +document.getElementById('kohPurity').value / 100;
+
+  document.getElementById('kohPurityRow').style.opacity = lye === 'koh' ? '1' : '0.4';
+
+  let totalOils = 0, totalLye = 0;
+  const props = {dureté:0,nettoyant:0,mousse:0,conditionnant:0,longévité:0,onctuosité:0};
+
+  recipe.forEach(r => {
+    const o = OILS[r.idx];
+    totalOils += r.amt;
+    const sap = lye === 'naoh' ? o.naoh : o.koh;
+    totalLye  += r.amt * sap * (1 - sf);
+    Object.keys(props).forEach(k => props[k] += o.props[k] * r.amt);
+  });
+
+  document.getElementById('totalOils').textContent = totalOils.toFixed(1);
+
+  if (totalOils === 0) {
+    document.getElementById('resultsCard').style.display = 'none';
+    return;
+  }
+
+  if (lye === 'koh') totalLye = totalLye / kohP;
+  const water = totalOils * wp;
+  const batch = totalOils + totalLye + water;
+
+  Object.keys(props).forEach(k => props[k] = props[k] / totalOils);
+
+  document.getElementById('resultsCard').style.display = 'block';
+  const u = unit;
+  document.getElementById('rLye').textContent   = totalLye.toFixed(1) + ' ' + u;
+  document.getElementById('rLyeLbl').textContent = lye === 'naoh' ? 'NaOH (soude)' : 'KOH (potasse)';
+  document.getElementById('rWater').textContent  = water.toFixed(1) + ' ' + u;
+  document.getElementById('rOils').textContent   = totalOils.toFixed(1) + ' ' + u;
+  document.getElementById('rBatch').textContent  = batch.toFixed(1) + ' ' + u;
+
+  const pg = document.getElementById('propsGrid');
+  pg.innerHTML = '';
+  Object.keys(props).forEach(k => {
+    const v = Math.round(props[k]);
+    const col = PROP_COLORS[k];
+    pg.innerHTML += `
+      <div class="prop-item">
+        <div class="prop-header">
+          <span class="prop-label">${PROP_LABELS[k]}</span>
+          <span class="prop-val">${v}</span>
+        </div>
+        <div class="prop-bar">
+          <div class="prop-fill" style="width:${v}%;background:${col}"></div>
+        </div>
+      </div>`;
+  });
+}
+
+populatePicker();
+renderRows();
+</script>
+</body>
+</html>
