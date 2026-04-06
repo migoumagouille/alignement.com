@@ -16,7 +16,7 @@ const VILLES = [
   { nom: "St. John's",     prov: "T.-N.",    lat: 47.561, lon: -52.713 },
 ];
 
-const ARROWS = ['↑','↗','→','↘','↓','↙','←','↖'];
+const ARROWS = ['↓','↙','←','↖','↑','↗','→','↘'];
 
 function degToArrow(deg) {
   return ARROWS[Math.round(deg / 45) % 8];
