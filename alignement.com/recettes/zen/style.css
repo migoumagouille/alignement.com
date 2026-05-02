@@ -1,0 +1,386 @@
+/* ============================================================
+   ZEN MACROBIOTIQUE — Cuisine d'Ohsawa
+   Palette washi : encre de sumi, papier, vermeil torii, bois
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+
+:root {
+  --paper:   #f4efe5;
+  --ink:     #1a1208;
+  --vermeil: #aa2e22;
+  --brun:    #5c3d1e;
+  --sable:   #cbb896;
+  --muted:   #7d6349;
+  --border:  rgba(92, 61, 30, 0.15);
+  --light:   rgba(203, 184, 150, 0.18);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Jost', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.85;
+  min-height: 100vh;
+}
+
+/* Grain de papier washi */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 28px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── NAVIGATION ── */
+.site-nav {
+  padding: 28px 0 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.breadcrumb {
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.breadcrumb a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.breadcrumb a:hover { color: var(--vermeil); }
+.breadcrumb .sep { margin: 0 8px; opacity: 0.4; }
+.breadcrumb .current { color: var(--brun); }
+
+/* ── ENSO (index only) ── */
+.enso-wrap {
+  text-align: center;
+  padding: 64px 0 16px;
+}
+
+.enso-svg { width: 110px; height: 110px; }
+
+@keyframes draw-enso {
+  to { stroke-dashoffset: 0; }
+}
+
+.enso-path {
+  stroke-dasharray: 680;
+  stroke-dashoffset: 680;
+  animation: draw-enso 2.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards;
+}
+
+/* ── INDEX TITLE ── */
+.index-title {
+  text-align: center;
+  padding: 12px 0 8px;
+}
+
+.index-title h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.index-title .tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+/* ── CITATION ── */
+.philosophy {
+  max-width: 540px;
+  margin: 44px auto;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--brun);
+  line-height: 1.72;
+  padding: 28px 36px;
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+.philosophy::before {
+  content: '❝';
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--paper);
+  padding: 0 10px;
+  font-size: 1.6rem;
+  color: var(--sable);
+  line-height: 1;
+}
+
+/* ── DIVIDER ── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 40px 0;
+  color: var(--sable);
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── GRILLE DES RECETTES ── */
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+  gap: 14px;
+  margin: 0 0 80px;
+}
+
+.recipe-card {
+  display: block;
+  text-decoration: none;
+  padding: 22px 18px 20px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.45);
+  transition: border-color 0.25s, transform 0.25s, background 0.25s;
+}
+
+.recipe-card:hover {
+  border-color: var(--sable);
+  background: rgba(255, 255, 255, 0.75);
+  transform: translateY(-3px);
+}
+
+.card-jp {
+  font-size: 1.4rem;
+  color: var(--sable);
+  letter-spacing: 0.2em;
+  margin-bottom: 6px;
+  line-height: 1;
+}
+
+.card-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.38rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.card-desc {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.card-badge {
+  display: inline-block;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 2px 9px;
+  border-radius: 10px;
+}
+.card-badge.yang { color: var(--vermeil); border-color: rgba(170, 46, 34, 0.3); }
+
+/* ── EN-TÊTE DE RECETTE ── */
+.recipe-head {
+  padding: 60px 0 44px;
+  text-align: center;
+}
+
+.japanese {
+  font-size: 1.9rem;
+  color: var(--sable);
+  letter-spacing: 0.28em;
+  margin-bottom: 14px;
+  font-weight: 400;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.2rem;
+  font-weight: 300;
+  line-height: 1.05;
+  margin-bottom: 22px;
+  color: var(--ink);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 16px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 36px;
+}
+.badge.yang    { border-color: rgba(170, 46, 34, 0.35); color: var(--vermeil); }
+.badge.yin     { border-color: rgba(92, 61, 30, 0.3); color: var(--brun); }
+.badge.equilibre { border-color: rgba(92, 61, 30, 0.22); }
+
+.intro {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.22rem;
+  font-style: italic;
+  color: var(--brun);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.68;
+}
+
+/* ── CORPS DE LA RECETTE ── */
+.recipe-body {
+  padding-bottom: 80px;
+}
+
+.recipe-body h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--vermeil);
+  margin-bottom: 22px;
+}
+
+/* Ingrédients */
+.ingredients ul {
+  list-style: none;
+}
+
+.ingredients li {
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+}
+.ingredients li:last-child { border-bottom: none; }
+
+.qty {
+  font-weight: 500;
+  color: var(--brun);
+  min-width: 90px;
+  font-size: 0.88rem;
+  flex-shrink: 0;
+}
+
+.servings {
+  margin-top: 16px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Préparation */
+.preparation ol {
+  counter-reset: etapes;
+  list-style: none;
+}
+
+.preparation li {
+  counter-increment: etapes;
+  padding: 12px 0 12px 50px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  line-height: 1.72;
+}
+.preparation li:last-child { border-bottom: none; }
+
+.preparation li::before {
+  content: counter(etapes);
+  position: absolute;
+  left: 0;
+  top: 11px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  color: var(--sable);
+  line-height: 1;
+  width: 36px;
+  text-align: center;
+}
+
+/* Note macrobiotique */
+.note {
+  background: var(--light);
+  border-left: 2px solid var(--sable);
+  padding: 22px 26px;
+}
+
+.note h2 { margin-bottom: 12px; }
+
+.note p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--brun);
+  line-height: 1.72;
+}
+
+/* ── PIED DE RECETTE ── */
+.recipe-foot {
+  padding: 32px 0 56px;
+  border-top: 1px solid var(--border);
+}
+
+.back-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.back-link:hover { color: var(--vermeil); }
+.back-link::before { content: '←'; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  h1 { font-size: 2.5rem; }
+  .recipe-head { padding: 44px 0 34px; }
+  .recipe-grid { grid-template-columns: 1fr 1fr; }
+  .container { padding: 0 20px; }
+  .index-title h1 { font-size: 2.3rem; }
+}
+
+@media (max-width: 400px) {
+  .recipe-grid { grid-template-columns: 1fr; }
+}

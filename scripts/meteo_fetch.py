@@ -16,6 +16,7 @@ Cron (2× par jour — 03h07 UTC et 15h07 UTC) :
 import json
 import math
 import os
+import subprocess
 import sys
 import time
 import urllib.request
@@ -51,6 +52,32 @@ def build_grid():
     flat_lats = [lats[i // nx] for i in range(ny * nx)]
     flat_lons = [lons[i % nx]  for i in range(ny * nx)]
     return lats, lons, flat_lats, flat_lons
+
+
+# ── Notification d'échec ─────────────────────────────────────────────────────
+NOTIFY_TO   = "admin@alignement.com"
+NOTIFY_FROM = "meteo@alignement.com"
+SENDMAIL    = "/sbin/sendmail"
+
+def send_failure_email(reason):
+    try:
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        msg = (
+            "From: {}\r\n"
+            "To: {}\r\n"
+            "Subject: [ERREUR] meteo_fetch.py a échoué — {}\r\n"
+            "\r\n"
+            "Le script meteo_fetch.py a échoué le {} :\r\n\r\n{}\r\n\r\n"
+            "Vérifiez le journal : {}\r\n"
+        ).format(NOTIFY_FROM, NOTIFY_TO, now, now, reason, LOG_FILE)
+        proc = subprocess.Popen(
+            [SENDMAIL, "-t", "-oi"],
+            stdin=subprocess.PIPE,
+        )
+        proc.communicate(msg.encode("utf-8"))
+        log("Notification envoyée à {}".format(NOTIFY_TO))
+    except Exception as e:
+        log("Impossible d'envoyer la notification : {}".format(e))
 
 
 # ── Logging ───────────────────────────────────────────────────────────────────
@@ -269,7 +296,9 @@ def main():
             for j, item in enumerate(batch):
                 fc_all[start + j] = item
         except Exception as e:
-            log("ERREUR prévisions: {}".format(e))
+            msg = "ERREUR prévisions batch {}-{} : {}".format(start, end - 1, e)
+            log(msg)
+            send_failure_email(msg)
             sys.exit(1)
 
         log("Batch {}-{}/{} — marines…".format(start, end - 1, n))
@@ -283,7 +312,9 @@ def main():
     try:
         process_and_save(fc_all, mr_all, lats, lons)
     except Exception as e:
-        log("ERREUR traitement: {}".format(e))
+        msg = "ERREUR traitement des données : {}".format(e)
+        log(msg)
+        send_failure_email(msg)
         import traceback; traceback.print_exc()
         sys.exit(1)
 

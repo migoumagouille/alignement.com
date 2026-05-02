@@ -63,12 +63,9 @@ async function loadVille(ville, idx) {
   }
 }
 
-async function init() {
-  const grid = document.getElementById('villesGrid');
-  VILLES.forEach((ville, idx) => {
-    grid.appendChild(createCard(ville, idx));
-  });
+const REFRESH_MS = 10 * 60 * 1000; // 10 minutes
 
+async function refreshData() {
   for (let i = 0; i < VILLES.length; i += 3) {
     const lot = VILLES.slice(i, i + 3).map((v, j) => loadVille(v, i + j));
     await Promise.all(lot);
@@ -76,8 +73,19 @@ async function init() {
   }
 
   const now = new Date();
+  const prochaine = new Date(now.getTime() + REFRESH_MS);
   document.getElementById('updateTime').textContent =
-    `Données à jour — ${now.toLocaleTimeString('fr-CA', {hour:'2-digit', minute:'2-digit'})}`;
+    `Données à jour — ${now.toLocaleTimeString('fr-CA', {hour:'2-digit', minute:'2-digit'})} · prochaine mise à jour ${prochaine.toLocaleTimeString('fr-CA', {hour:'2-digit', minute:'2-digit'})}`;
+}
+
+async function init() {
+  const grid = document.getElementById('villesGrid');
+  VILLES.forEach((ville, idx) => {
+    grid.appendChild(createCard(ville, idx));
+  });
+
+  await refreshData();
+  setInterval(refreshData, REFRESH_MS);
 }
 
 init();

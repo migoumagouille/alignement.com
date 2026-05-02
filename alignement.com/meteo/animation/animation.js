@@ -282,6 +282,41 @@ async function init() {
   }
 
   await renderLayer(currentLayer, currentHour);
+  scheduleDataCheck();
+}
+
+// ── Rechargement automatique (2× par jour) ────────────────────────────────────
+const CHECK_INTERVAL_MS = 30 * 60 * 1000; // 30 minutes
+
+function scheduleDataCheck() {
+  setTimeout(checkForNewData, CHECK_INTERVAL_MS);
+}
+
+async function checkForNewData() {
+  try {
+    const resp = await fetch('data/meta.json?_=' + Date.now());
+    if (!resp.ok) { scheduleDataCheck(); return; }
+    const newMeta = await resp.json();
+
+    if (newMeta.refTime !== (metaData && metaData.refTime)) {
+      // Nouvelles données disponibles — vider le cache et recharger
+      Object.keys(dataCache).forEach(k => delete dataCache[k]);
+      metaData   = newMeta;
+      scalarData = null;
+      totalHours = metaData.hours || 24;
+      document.getElementById('timeSlider').max = totalHours - 1;
+
+      try {
+        const sr = await fetch('data/scalar.json?_=' + Date.now());
+        if (sr.ok) scalarData = await sr.json();
+      } catch(e) { console.warn('scalar.json non rechargé:', e); }
+
+      await renderLayer(currentLayer, currentHour);
+    }
+  } catch(e) {
+    console.warn('Vérification mise à jour échouée:', e);
+  }
+  scheduleDataCheck();
 }
 
 // ── Contrôles ─────────────────────────────────────────────────────────────────

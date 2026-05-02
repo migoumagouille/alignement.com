@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon mois avec 2 200 $ de pension — Alignement.com</title>
+  <meta name="description" content="Robert a 74 ans. Il vit seul dans un 3½ à Longueuil. Il touche 2 200 $ par mois. Voici son mois.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alignement.com/journal/retraites-robert.html">
+  <meta property="og:title" content="Mon mois avec 2 200 $ de pension">
+  <meta property="og:description" content="Robert a 74 ans, locataire à Longueuil. 2 200 $ par mois. Voici où va chaque dollar.">
+  <meta property="og:image" content="https://alignement.com/journal/images/windows10.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --copper: #b5541a;
+      --copper-lt: #d4692a;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(181,84,26,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(181,84,26,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(181,84,26,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(232,160,32,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--copper-lt); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(181,84,26,0.12);
+      border: 1px solid rgba(181,84,26,0.35);
+      color: #e07830;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .partie-badge {
+      font-size: 0.78rem;
+      color: rgba(46,125,233,0.6);
+      letter-spacing: 1px;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      font-weight: 700;
+      letter-spacing: 4px;
+      background: linear-gradient(135deg, var(--white) 20%, var(--gold) 60%, var(--copper-lt) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--copper);
+      padding-left: 20px;
+    }
+
+    .partie-lien {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(46,125,233,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .partie-lien:hover { color: var(--accent); }
+    .partie-lien::before { content: '←'; }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 30px 0;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+    .article-body p em { color: rgba(232,238,248,0.5); font-style: italic; }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--copper-lt);
+      margin: 40px 0 16px;
+    }
+
+    /* BUDGET */
+    .budget-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(181,84,26,0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 36px 0;
+    }
+
+    .budget-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px;
+      border-bottom: 1px solid rgba(181,84,26,0.1);
+      gap: 20px;
+    }
+    .budget-row:last-child {
+      border-bottom: none;
+      background: rgba(181,84,26,0.06);
+    }
+
+    .budget-label {
+      font-size: 0.95rem;
+      color: rgba(232,238,248,0.6);
+      font-weight: 300;
+    }
+
+    .budget-val {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      white-space: nowrap;
+      color: #e07830;
+    }
+    .budget-val.entree { color: rgba(100,200,100,0.8); }
+    .budget-val.serre  { color: #e05020; }
+
+    /* IMAGE */
+    .article-image {
+      margin: 36px 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(181,84,26,0.3);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+
+    .article-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .img-legende {
+      padding: 12px 18px;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: rgba(232,238,248,0.3);
+      background: rgba(0,0,0,0.2);
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    /* CITATION */
+    .highlight-box {
+      background: rgba(232,160,32,0.05);
+      border: 1px solid rgba(232,160,32,0.2);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin: 36px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(237,224,196,0.8) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.15rem !important;
+      line-height: 1.75;
+    }
+
+    /* FIN */
+    .fin-box {
+      background: rgba(181,84,26,0.06);
+      border: 1px solid rgba(181,84,26,0.2);
+      border-radius: 14px;
+      padding: 30px 32px;
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .fin-box .symbol {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 16px;
+      opacity: 0.4;
+      letter-spacing: 12px;
+    }
+
+    .fin-box p {
+      font-family: 'Rajdhani', sans-serif !important;
+      font-size: 1.1rem !important;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: rgba(237,224,196,0.5) !important;
+      line-height: 1.7 !important;
+      margin-bottom: 0 !important;
+    }
+
+    .article-footer {
+      border-top: 1px solid rgba(181,84,26,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--copper-lt); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">Société</span>
+      <span class="article-date">1 mai 2026</span>
+      <span class="partie-badge">Partie III</span>
+    </div>
+    <h1>Mon mois avec 2 200 $ de pension</h1>
+    <p class="article-intro">
+      Robert a 74 ans. Il vit seul dans un 3½ à Longueuil.
+      Il ne se plaint pas — c'est pas son genre.
+      Mais si vous lui demandez comment il va,
+      il va dire «correct» en regardant ailleurs.
+    </p>
+    <a href="/journal/retraites-chiffres.html" class="partie-lien">Lire la Partie II — Les chiffres qu'on ne met jamais côte à côte</a>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="article-body">
+
+    <p>
+      Il touche 2 200 $ par mois. RRQ et Sécurité de vieillesse combinées.
+      C'est le résultat de quarante ans de travail.
+    </p>
+
+    <p>Voici son mois.</p>
+
+    <div class="budget-block">
+      <div class="budget-row">
+        <span class="budget-label">Pension mensuelle (RRQ + PSV)</span>
+        <span class="budget-val entree">+ 2 200 $</span>
+      </div>
+      <div class="budget-row">
+        <span class="budget-label">Loyer — 3½ à Longueuil</span>
+        <span class="budget-val">− 1 000 $</span>
+      </div>
+      <div class="budget-row">
+        <span class="budget-label">Passe RTL (transport en commun)</span>
+        <span class="budget-val">− 105 $</span>
+      </div>
+      <div class="budget-row">
+        <span class="budget-label">Épicerie</span>
+        <span class="budget-val">− 400 $</span>
+      </div>
+      <div class="budget-row">
+        <span class="budget-label">Téléphone</span>
+        <span class="budget-val">− 50 $</span>
+      </div>
+      <div class="budget-row">
+        <span class="budget-label">Internet</span>
+        <span class="budget-val">− 60 $</span>
+      </div>
+      <div class="budget-row">
+        <span class="budget-label">Médicaments (quote-part RAMQ)</span>
+        <span class="budget-val">− 80 $</span>
+      </div>
+      <div class="budget-row">
+        <span class="budget-label">Électricité</span>
+        <span class="budget-val">− 70 $</span>
+      </div>
+      <div class="budget-row">
+        <span class="budget-label">Il reste pour tout le reste</span>
+        <span class="budget-val serre">435 $</span>
+      </div>
+    </div>
+
+    <h2>Le premier du mois</h2>
+
+    <p>
+      Le loyer part en premier. Toujours. <strong>1 000 $</strong>.
+      Il reste 1 200 $. Sur le papier, ça semble gérable.
+      Sur le papier.
+    </p>
+
+    <h2>La deuxième semaine</h2>
+
+    <p>
+      La passe de bus du RTL. <strong>105 $</strong>.
+      Robert n'a pas de voiture — il n'en a plus les moyens depuis trois ans.
+      Le RTL, c'est son lien avec le monde.
+      L'épicerie, le médecin, la pharmacie.
+    </p>
+
+    <p>
+      L'épicerie du mois : <strong>400 $</strong>. Robert mange simple.
+      Pas de viande tous les jours, pas de fruits exotiques.
+      Des œufs, des légumes en spécial, du poulet quand c'est à moitié prix.
+      Il connaît tous les cycles de promotions du IGA du coin.
+    </p>
+
+    <h2>La troisième semaine</h2>
+
+    <p>
+      Téléphone : <strong>50 $</strong>. Internet : <strong>60 $</strong>.
+      Sans internet, pas de contact avec ses enfants en dehors de la ville.
+      Pas de nouvelles, pas de médecin en ligne,
+      pas d'accès aux services gouvernementaux.
+    </p>
+
+    <p>
+      La pharmacie. Les médicaments sont partiellement couverts par la RAMQ —
+      mais partiellement seulement.
+      Sa quote-part mensuelle : <strong>80 $</strong>.
+    </p>
+
+    <p>L'électricité : <strong>70 $</strong>.</p>
+
+    <h2>La fin du mois</h2>
+
+    <p>
+      435 $ pour les imprévus. Les vêtements.
+      Une sortie de temps en temps. Un cadeau pour un petit-enfant.
+    </p>
+
+    <p>
+      Ce mois-ci, son ordinateur lui a encore affiché l'avertissement.
+    </p>
+
+    <div class="article-image">
+      <img src="images/windows10.jpg" alt="Avertissement Windows 10 fin de support">
+      <div class="img-legende">L'avertissement que Robert ferme chaque semaine</div>
+    </div>
+
+    <p>
+      Il a cliqué sur «Fermer» comme d'habitude.
+      Un nouvel ordinateur c'est 600 $ minimum.
+      Robert sait très bien ce que ça veut dire —
+      il va attendre que ça lâche.
+    </p>
+
+    <p>En attendant, il fait attention où il clique.</p>
+
+    <div class="highlight-box">
+      <p>
+        « Chaque achat est un calcul.
+        Chaque sortie est une décision.
+        Est-ce que je prends le taxi ou j'attends l'autobus sous la pluie ?
+        Est-ce que j'achète le fromage cette semaine ou la semaine prochaine ? »
+      </p>
+    </div>
+
+    <h2>Ce que le mois lui a coûté</h2>
+
+    <p>Pas en argent. En dignité.</p>
+
+    <p>
+      Robert ne manque de rien d'essentiel.
+      Mais il ne fait que ça — l'essentiel. Depuis des années.
+    </p>
+
+    <p>
+      Et chaque janvier, sa pension augmente un peu.
+      Et chaque janvier, tout le reste augmente plus vite.
+    </p>
+
+    <p>Il dit que c'est correct.</p>
+
+    <p><strong>C'est pas correct.</strong></p>
+
+    <div class="fin-box">
+      <span class="symbol">✦ ✦ ✦</span>
+      <p>
+        — Gil Bourhis<br>
+        Mai 2026 · Partie III
+      </p>
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>

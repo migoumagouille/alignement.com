@@ -94,5 +94,30 @@
     "categorie": "Laboratoire",
     "resume": "Une British Pharmacopoeia de 1909, héritée d'un pharmacien, réparée par une jumelle bibliothécaire. Des pages brûlées au chapitre de l'acide nitrique. Ce livre est mon Agrippa — celui que l'on ne doit pas nommer.",
     "fichier": "/journal/agrippa.html"
+  },
+  {
+    "id": "retraites-appauvrissement",
+    "titre": "Les retraités s'appauvrissent — en silence",
+    "date": "2026-04-28",
+    "categorie": "Société",
+    "resume": "Les pensions stagnent, les loyers explosent, les salaires bondissent. Pendant ce temps, les aînés se taisent. Pour combien de temps encore ?",
+    "fichier": "/journal/retraites-appauvrissement.html"
+  },
+  {
+    "id": "retraites-chiffres",
+    "titre": "Les chiffres qu'on ne met jamais côte à côte",
+    "date": "2026-04-28",
+    "categorie": "Société",
+    "resume": "Pensions à 2,6 %, loyers à 5,9 %, fonctionnaires à 17,4 %. Le tableau que personne ne dresse — et ce que ça signifie concrètement pour les retraités du Québec.",
+    "fichier": "/journal/retraites-chiffres.html"
+  },
+  {
+    "id": "retraites-robert",
+    "titre": "Mon mois avec 2 200 $ de pension",
+    "date": "2026-05-01",
+    "categorie": "Société",
+    "resume": "Robert a 74 ans. Il vit seul dans un 3½ à Longueuil. Il touche 2 200 $ par mois — RRQ et Sécurité de vieillesse combinées. Voici où va chaque dollar.",
+    "fichier": "/journal/retraites-robert.html"
   }
 ]
+

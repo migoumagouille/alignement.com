@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recettes — Alignement.com</title>
+  <meta name="description" content="Recettes artisanales et philosophiques sur Alignement.com — cuisine zen macrobiotique dans l'esprit de Georges Ohsawa.">
+  <meta name="author" content="Alignement.com">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alignement.com/recettes/">
+  <meta property="og:title" content="Recettes — Alignement.com">
+  <meta property="og:image" content="https://alignement.com/logo_alignement2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap"></noscript>
+  <style>
+    :root {
+      --paper: #f4efe5;
+      --ink: #1a1208;
+      --vermeil: #aa2e22;
+      --brun: #5c3d1e;
+      --sable: #cbb896;
+      --muted: #7d6349;
+      --border: rgba(92, 61, 30, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Jost', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.85;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    .site-nav {
+      padding: 28px 0 22px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .breadcrumb {
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .breadcrumb a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .breadcrumb a:hover { color: var(--vermeil); }
+    .breadcrumb .sep { margin: 0 8px; opacity: 0.4; }
+
+    .page-head {
+      padding: 64px 0 48px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.18rem;
+      font-style: italic;
+      color: var(--brun);
+      max-width: 500px;
+      line-height: 1.68;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 40px 0;
+      color: var(--sable);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 80px;
+    }
+
+    .section-card {
+      display: block;
+      text-decoration: none;
+      padding: 28px 24px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.45);
+      transition: border-color 0.25s, transform 0.25s, background 0.25s;
+    }
+
+    .section-card:hover {
+      border-color: var(--sable);
+      background: rgba(255, 255, 255, 0.75);
+      transform: translateY(-3px);
+    }
+
+    .card-symbol {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .card-count {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 2px 10px;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.4rem; }
+      .container { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <nav class="site-nav">
+      <span class="breadcrumb">
+        <a href="https://alignement.com/">Alignement</a>
+        <span class="sep">›</span>
+        <span>Recettes</span>
+      </span>
+    </nav>
+
+    <header class="page-head">
+      <h1>Recettes</h1>
+      <p class="lead">
+        Des recettes nées d'une philosophie du manger — simples, conscientes,
+        ancrées dans la tradition.
+      </p>
+    </header>
+
+    <div class="divider">collections</div>
+
+    <div class="section-grid">
+      <a href="zen/" class="section-card">
+        <div class="card-symbol">○</div>
+        <div class="card-title">Zen macrobiotique</div>
+        <div class="card-desc">
+          Cuisine dans l'esprit de Georges Ohsawa — riz brun, gomasio,
+          soupe miso, légumes racines. Yin, yang, équilibre.
+        </div>
+        <span class="card-count">5 recettes</span>
+      </a>
+    </div>
+
+  </div>
+</body>
+</html>
