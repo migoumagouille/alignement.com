@@ -14,7 +14,6 @@ Allow: /meteo/
 
 # Bloquer ce qui ne doit pas être indexé
 Disallow: /contact/envoyer.php
-Disallow: /journal/images/
 Disallow: /cuivre/images/
 Disallow: /cuivre/videos/
 Disallow: /cgi-bin/
