@@ -118,6 +118,14 @@
     "categorie": "Société",
     "resume": "Robert a 74 ans. Il vit seul dans un 3½ à Longueuil. Il touche 2 200 $ par mois — RRQ et Sécurité de vieillesse combinées. Voici où va chaque dollar.",
     "fichier": "/journal/retraites-robert.html"
+  },
+  {
+    "id": "noaa-meteo-canada",
+    "titre": "Quand Washington coupe, Montréal rentre ses plants",
+    "date": "2026-05-04",
+    "categorie": "Météo",
+    "resume": "Les coupures massives à la NOAA se font sentir jusqu'au Québec. Météo Canada travaille avec moins de données — et ça paraît. Un jardinier de la Rive-Sud en témoigne.",
+    "fichier": "/journal/noaa-meteo-canada.html"
   }
 ]
 

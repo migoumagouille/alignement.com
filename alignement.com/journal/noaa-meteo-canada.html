@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quand Washington coupe, Montréal rentre ses plants — Alignement.com</title>
+  <meta name="description" content="Les coupures à la NOAA se font sentir jusqu'au Québec. Météo Canada travaille avec moins — et ça paraît.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alignement.com/journal/noaa-meteo-canada.html">
+  <meta property="og:title" content="Quand Washington coupe, Montréal rentre ses plants — Alignement.com">
+  <meta property="og:description" content="Les coupures à la NOAA se font sentir jusqu'au Québec. Météo Canada travaille avec moins — et ça paraît.">
+  <meta property="og:image" content="https://alignement.com/journal/images/plantes.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(46,125,233,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* NAV */
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+
+    .sep { color: rgba(232,238,248,0.15); }
+
+    /* ARTICLE HEADER */
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(46,125,233,0.15);
+      border: 1px solid rgba(46,125,233,0.3);
+      color: #7cb9ff;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      margin: 30px 0;
+    }
+
+    /* CONTENU */
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 40px 0 16px;
+    }
+
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 30px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 30px 0;
+    }
+
+    .tag {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(232,238,248,0.45);
+    }
+
+    /* FOOTER ARTICLE */
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    /* PHOTO */
+    .photo-bloc {
+      margin: 30px 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    }
+
+    .photo-bloc img {
+      width: 100%;
+      display: block;
+    }
+
+    .photo-legende {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(232,238,248,0.35);
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.03);
+      border-top: 1px solid var(--border);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">🌤️ Météo</span>
+      <span class="article-date">4 mai 2026</span>
+    </div>
+    <h1>Quand Washington coupe, Montréal rentre ses plants</h1>
+    <p class="article-intro">
+      Les coupures à la NOAA se font sentir jusqu'au Québec. Météo Canada travaille avec moins — et ça paraît.
+    </p>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="article-body">
+
+    <p>
+      Cette nuit encore — la nuit du 3 au 4 mai — j'ai rentré mes plants sur avis de gel au sol.
+      Ce matin&nbsp;: <strong>+4&nbsp;°C</strong>. Quatre degrés au-dessus du point de gel.
+      Trois voyages inutiles en autant de jours, mes tomates et mon basilic entassés dans l'entrée
+      pour rien. Ce n'est pas de la malchance — c'est le signe que quelque chose cloche dans
+      la chaîne de prévisions météo.
+    </p>
+
+    <div class="photo-bloc">
+      <img src="images/plantes.jpg" alt="Plants de jardin rentrés à l'intérieur suite à un avis de gel — Rive-Sud de Montréal, mai 2026">
+      <div class="photo-legende">Mes plants réfugiés à l'intérieur — avis de gel à +4 °C, 4 mai 2026</div>
+    </div>
+
+    <p>
+      Ce quelque chose a un nom&nbsp;: <strong>la NOAA</strong>.
+    </p>
+
+    <h2>Une infrastructure colossale en démantèlement</h2>
+
+    <p>
+      La NOAA — <em>National Oceanic and Atmospheric Administration</em> — c'est l'agence
+      américaine qui chapeaute le service météo national des États-Unis. Douze mille employés,
+      des satellites, des milliers de stations au sol, des ballons-sondes lancés deux fois par
+      jour. Une infrastructure colossale dont dépend toute la météorologie nord-américaine,
+      Canada inclus.
+    </p>
+
+    <p>
+      Depuis le début 2025, cette infrastructure est en train de se faire démanteler.
+      Plus de 1&nbsp;300 employés mis à la porte, des stations sous-staffées qui n'envoient
+      plus leurs ballons-sondes, des données satellitaires abandonnées. Un expert canadien
+      estime qu'à certains moments, <strong>15 à 20&nbsp;% des stations américaines ne
+      transmettent plus leurs données</strong>.
+    </p>
+
+    <div class="highlight-box">
+      <p>
+        Et la météo, ça ne connaît pas les frontières.
+      </p>
+    </div>
+
+    <h2>Moins de données, moins de précision</h2>
+
+    <p>
+      Météo Canada ne fabrique pas ses prévisions dans le vide. Les modèles informatiques
+      qui calculent ce qu'il fera demain — ou cette nuit — ingèrent des données de partout&nbsp;:
+      satellites, stations au sol, ballons-sondes, bouées océaniques. Une bonne partie de ces
+      données vient des États-Unis, et une bonne partie de ces données américaines vient de la NOAA.
+    </p>
+
+    <p>
+      Moins de données en entrée, c'est moins de précision en sortie. Et les erreurs ne restent
+      pas petites — elles s'accumulent et s'amplifient d'une prévision à l'autre. Un modèle qui
+      rate la température de surface cette nuit va rater la trajectoire de la dépression de demain.
+    </p>
+
+    <p>
+      C'est exactement ce qu'on observe. Des avis de gel qui ne se matérialisent pas. Des quantités
+      de neige à côté. Des systèmes de précipitations mal timés. <strong>Ce n'est pas Météo Canada
+      qui travaille mal — c'est Météo Canada qui travaille avec moins.</strong>
+    </p>
+
+    <h2>Une question de souveraineté</h2>
+
+    <p>
+      La situation n'est pas passée inaperçue. Un rapport d'experts canadiens publié en
+      septembre&nbsp;2025 recommande que le Canada diversifie ses sources de données vers
+      l'Europe pour compenser. On parle de <strong>souveraineté météorologique</strong> —
+      un concept qui aurait semblé absurde il y a deux ans.
+    </p>
+
+    <p>
+      Pour un marin qui planifie une traversée ou un pilote de vol libre qui choisit son créneau
+      de décollage, une prévision ratée n'est pas un inconvénient — c'est un risque réel.
+      La météo a toujours été une science imparfaite, on le sait. Mais il y a une différence
+      entre l'imperfection naturelle des phénomènes atmosphériques et une dégradation artificielle
+      causée par des coupures budgétaires à Washington.
+    </p>
+
+    <p>
+      En attendant, sur la Rive-Sud de Montréal, je continue de surveiller mes plants. Mais
+      désormais je vérifie aussi la température réelle dehors avant de faire le voyage.
+      Quatre degrés Celsius, c'est loin du gel — et mon thermomètre de jardin, lui,
+      n'a pas été coupé par DOGE.
+    </p>
+
+    <div class="tag-list">
+      <span class="tag">🌤️ Météo</span>
+      <span class="tag">🇺🇸 NOAA</span>
+      <span class="tag">🇨🇦 Météo Canada</span>
+      <span class="tag">⛵ Navigation</span>
+      <span class="tag">🪂 Vol libre</span>
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>
