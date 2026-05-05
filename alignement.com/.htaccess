@@ -2,6 +2,7 @@
 # Alignement.com — .htaccess Sécurité
 # =====================================================
 # ── Forcer HTTPS ───────────────────────────────────
+RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
@@ -53,7 +54,10 @@ RewriteRule \.git/? - [F,L]
 
 # ── Bloquer les user-agents suspects ───────────────
 <IfModule mod_rewrite.c>
-  RewriteCond %{HTTP_USER_AGENT} (masscan|nikto|sqlmap|nmap|zgrab|python-requests|curl/7\.[0-5]) [NC]
+  # Exception Facebook avant le blocage
+  RewriteCond %{HTTP_USER_AGENT} facebookexternalhit [NC]
+  RewriteRule .* - [L]
+  RewriteCond %{HTTP_USER_AGENT} (masscan|nikto|sqlmap|nmap|zgrab|python-requests) [NC]
   RewriteRule .* - [F,L]
 </IfModule>
 
@@ -78,6 +82,7 @@ ServerSignature Off
 # ── Compression GZIP (performance) ─────────────────
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json
+  SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|webp)$ no-gzip dont-vary
 </IfModule>
 
 # ── Cache navigateur (performance) ─────────────────
