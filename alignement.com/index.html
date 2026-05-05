@@ -15,6 +15,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="/images/hero-labo.webp" as="image" type="image/webp">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap"></noscript>
   <style>
@@ -710,12 +711,12 @@
       <div class="logo-wrap">
         <picture>
           <source srcset="logo_alignement2.webp" type="image/webp">
-          <img src="logo_alignement2.png" alt="Logo Alignement">
+          <img src="logo_alignement2.png" alt="Logo Alignement" width="72" height="72">
         </picture>
         <h1>Alignement.com</h1>
         <picture>
           <source srcset="logo_alignement2.webp" type="image/webp">
-          <img src="logo_alignement2.png" alt="Logo Alignement" class="flip">
+          <img src="logo_alignement2.png" alt="Logo Alignement" class="flip" width="72" height="72">
         </picture>
       </div>
       <p>Gardez vos objectifs dans la mire!</p>
@@ -727,7 +728,9 @@
       <picture>
         <source srcset="/images/hero-labo.webp" type="image/webp">
         <img src="/images/hero-labo.jpg"
-             alt="Laboratoire — Alignement.com">
+             alt="Laboratoire — Alignement.com"
+             width="1399" height="499"
+             fetchpriority="high">
       </picture>
       <div class="hero-overlay">
         <span class="hero-caption">Laboratoire · Curiosité · Savoir-faire</span>
