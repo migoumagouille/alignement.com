@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À qui obéit la machine — Alignement.com</title>
+  <meta name="description" content="Washington force Anthropic à fermer ses modèles les plus puissants. Un État et une entreprise d'IA se battent au grand jour pour le contrôle de ces machines. Et nous, les usagers ordinaires, là-dedans?">
+  <link rel="canonical" href="https://alignement.com/journal/a-qui-obeit-la-machine.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="fr_CA">
+  <meta property="og:url" content="https://alignement.com/journal/a-qui-obeit-la-machine.html">
+  <meta property="og:title" content="À qui obéit la machine — Alignement.com">
+  <meta property="og:description" content="Le bras de fer entre Anthropic et le gouvernement américain est dans toutes les nouvelles. Vu d'une cuisine de la Rive-Sud — et de l'usager ordinaire que je suis.">
+  <meta property="og:image" content="https://alignement.com/journal/images/a-qui-obeit-la-machine.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="/fonts/fonts-all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/fonts/fonts-all.css"></noscript>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,160,32,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(46,125,233,0.12);
+      border: 1px solid rgba(46,125,233,0.3);
+      color: #7cb9ff;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 30px 0;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 40px 0 16px;
+    }
+
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.1rem !important;
+      line-height: 1.75;
+    }
+
+    /* Image en vedette — toujours sous l'en-tête */
+    .article-figure {
+      margin: 8px 0 4px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      animation: fadeUp 0.6s ease both 0.05s;
+    }
+    .article-figure img { width: 100%; height: auto; display: block; }
+    .article-figure figcaption {
+      font-size: 0.8rem;
+      color: rgba(232,238,248,0.35);
+      letter-spacing: 0.5px;
+      padding: 10px 14px;
+      font-style: italic;
+    }
+
+    /* Sources */
+    .sources-box {
+      background: rgba(46,125,233,0.05);
+      border: 1px solid rgba(46,125,233,0.2);
+      border-radius: 12px;
+      padding: 22px 26px;
+      margin: 8px 0 50px;
+    }
+    .sources-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.7;
+      margin-bottom: 14px;
+    }
+    .sources-box ul { list-style: none; }
+    .sources-box li {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: rgba(232,238,248,0.55);
+      margin-bottom: 10px;
+      padding-left: 16px;
+      position: relative;
+    }
+    .sources-box li::before {
+      content: '\203A';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+    .sources-box a {
+      color: #7cb9ff;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(124,185,255,0.4);
+      transition: all 0.2s;
+    }
+    .sources-box a:hover { color: var(--white); border-color: var(--white); }
+
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <article>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">Intelligence artificielle</span>
+      <time class="article-date" datetime="2026-06-14">14 juin 2026</time>
+    </div>
+    <h1>À qui obéit la machine</h1>
+    <p class="article-intro">
+      Washington force Anthropic à fermer ses modèles les plus puissants. Un État et une entreprise
+      d'IA se battent au grand jour pour le contrôle de ces machines. Et nous, les usagers
+      ordinaires, là-dedans?
+    </p>
+    <div class="header-line"></div>
+  </header>
+
+  <figure class="article-figure">
+    <img src="/journal/images/a-qui-obeit-la-machine.jpg"
+         alt="Mon poste de travail dans un coin du salon : une tour et un écran affichant Claude, sur la Rive-Sud.">
+    <figcaption>Le poste de travail, dans son coin du salon.</figcaption>
+  </figure>
+
+  <div class="article-body">
+
+    <p>
+      Depuis quelques jours, il n'est question que de ça dans les nouvelles : Anthropic et le
+      gouvernement américain. La compagnie qui fabrique Claude — l'intelligence artificielle avec
+      qui je travaille presque tous les jours — vient de se faire ordonner par Washington de fermer
+      l'accès à ses modèles les plus puissants. Au nom de la sécurité nationale.
+    </p>
+
+    <p>
+      Ce n'est pas leur premier accrochage. Il faut reculer un peu pour comprendre.
+    </p>
+
+    <h2>Un bras de fer au grand jour</h2>
+
+    <p>
+      L'an dernier, Anthropic signait un contrat de 200 millions avec le département de la Défense
+      pour faire tourner Claude sur les réseaux classifiés. Puis le Pentagone a voulu davantage :
+      que la machine puisse servir à la <strong>surveillance de masse</strong> des Américains et aux
+      <strong>armes létales autonomes</strong>. La compagnie a refusé de franchir ces lignes.
+    </p>
+
+    <p>
+      En représailles, à la fin février, l'administration a ordonné à toutes les agences fédérales
+      de cesser d'utiliser les technologies de la compagnie, et l'a désignée « risque pour la chaîne
+      d'approvisionnement de sécurité nationale ». Sur son réseau, le président a prévenu que
+      l'entreprise avait intérêt à « se ressaisir », sans quoi il userait de « tout le pouvoir de
+      la présidence » pour la forcer à obéir — avec, écrit-il, de lourdes conséquences civiles et
+      criminelles à la clé. Et tout récemment, rebelote : Washington force la fermeture des
+      deux modèles les plus avancés, en invoquant une faille. La compagnie conteste, affirmant
+      n'avoir reçu que des preuves verbales d'une vulnérabilité étroite et déjà connue.
+    </p>
+
+    <p>
+      Je rapporte tout ça avec prudence — ce sont des nouvelles fraîches, et il faudra du temps
+      pour démêler le vrai du bruit. Mais une chose est claire : un État et une entreprise privée
+      se battent au grand jour pour savoir <strong>qui contrôle ces machines, et pour quels
+      usages</strong>.
+    </p>
+
+    <h2>Et nous, là-dedans?</h2>
+
+    <p>
+      J'ai suivi ça depuis le salon, sur la Rive-Sud, où mon poste de travail occupe son coin
+      depuis toujours. Et il s'est passé quelque chose de bizarre.
+      Cette grande affaire de gouvernement et de milliards m'a ramené à mon propre petit coin.
+    </p>
+
+    <p>
+      Parce que je l'utilise, moi, cette machine. Tous les jours. Alors je lui ai posé la question
+      bête : est-ce que ce qu'on se dit reste entre nous? Réponse honnête : non. Rien de vraiment
+      secret. Nos échanges passent par des serveurs, sont soumis à des politiques, peuvent être
+      conservés, parfois examinés.
+    </p>
+
+    <p>
+      Et là, la pente. Si rien n'est secret, est-ce que tout le monde voit les recherches que j'ai
+      faites sur l'histoire de ma maison, bâtie vers 1870? Et mon laboratoire — ce coin de garage
+      où je fonds du cuivre tiré du minerai d'Eustis, où je cuis des creusets d'argile dans le
+      Jøtul, où je garde des acides pour lixivier la roche — est-ce que ça me rend louche?
+    </p>
+
+    <h2>Le soupçon qu'on retourne contre soi</h2>
+
+    <p>
+      Je me suis entendu poser la question. Personne ne m'accusait de rien. C'est moi qui avais
+      commencé à me regarder comme on regarde un dossier.
+    </p>
+
+    <p>
+      Et ce glissement-là pèse plus lourd quand on vient de voir des États se disputer ces outils
+      pour en faire des instruments de surveillance et des armes. La machine installée dans le coin
+      de mon salon n'est pas neutre : elle est coincée entre moi et des institutions infiniment
+      plus puissantes que moi. Quand le Pentagone réclame un accès « pour tout usage légal », ce
+      n'est pas une abstraction. C'est la même technologie que j'allume le matin pour écrire.
+    </p>
+
+    <div class="highlight-box">
+      <p>
+        « La machine installée dans le coin de mon salon est coincée entre moi et des institutions
+        infiniment plus puissantes que moi. »
+      </p>
+    </div>
+
+    <h2>Ne pas baisser la lumière</h2>
+
+    <p>
+      Reste qu'entre la lucidité et la paranoïa, il y a un pas. Mon laboratoire n'a pas à se
+      justifier. Fondre de la roche en métal dans son garage, comprendre ce qu'un acide fait à un
+      minerai, c'est de la curiosité ancienne, parfaitement légale, celle qui a fait l'alchimie
+      puis la chimie. Je continuerai, avec la vraie prudence — celle de la ventilation, des
+      étiquettes, des résidus bien gérés. Pas cette autre prudence, inutile, qui consiste à se
+      surveiller soi-même comme si un œil invisible était posé sur nous.
+    </p>
+
+    <p>
+      Mais je n'oublierai pas ce que cette histoire m'a appris. Ces machines ne sont pas que des
+      outils tranquilles. Elles sont l'enjeu d'un rapport de force qui nous dépasse, et nous, les
+      usagers ordinaires, on est tout en bas du courant. Le minimum, c'est de garder les yeux
+      ouverts. Rien n'est tout à fait secret — et désormais, <strong>on sait pourquoi ça
+      compte</strong>.
+    </p>
+
+  </div>
+
+  <section class="sources-box">
+    <div class="sources-title">Sources</div>
+    <ul>
+      <li>Anthropic — communiqué sur la directive de suspension de Fable 5 et Mythos 5 : <a href="https://www.anthropic.com/news/fable-mythos-access" target="_blank" rel="noopener">anthropic.com</a></li>
+      <li>Bloomberg — Washington restreint l'accès étranger aux modèles : <a href="https://www.bloomberg.com/news/articles/2026-06-13/anthropic-says-us-limits-foreign-access-to-fable-5-mythos-5" target="_blank" rel="noopener">bloomberg.com</a></li>
+      <li>Time — Anthropic désactive ses modèles les plus puissants : <a href="https://time.com/article/2026/06/13/anthropic-fable-mythos-ban-US-security/" target="_blank" rel="noopener">time.com</a></li>
+      <li>CNN — le refus du Pentagone et les deux lignes rouges : <a href="https://www.cnn.com/2026/02/27/tech/anthropic-pentagon-deadline" target="_blank" rel="noopener">cnn.com</a></li>
+      <li>NPR — rupture, « supply chain risk » et accord OpenAI : <a href="https://www.npr.org/2026/02/27/nx-s1-5729118/trump-anthropic-pentagon-openai-ai-weapons-ban" target="_blank" rel="noopener">npr.org</a></li>
+      <li>Mayer Brown — analyse de la désignation « supply chain risk » : <a href="https://www.mayerbrown.com/en/insights/publications/2026/03/pentagon-designates-anthropic-a-supply-chain-risk-what-government-contractors-need-to-know" target="_blank" rel="noopener">mayerbrown.com</a></li>
+      <li>TechPolicy.Press — chronologie du conflit Anthropic–Pentagone : <a href="https://www.techpolicy.press/a-timeline-of-the-anthropic-pentagon-dispute/" target="_blank" rel="noopener">techpolicy.press</a></li>
+    </ul>
+  </section>
+
+  </article>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>

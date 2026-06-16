@@ -126,6 +126,31 @@
     "categorie": "Météo",
     "resume": "Les coupures massives à la NOAA se font sentir jusqu'au Québec. Météo Canada travaille avec moins de données — et ça paraît. Un jardinier de la Rive-Sud en témoigne.",
     "fichier": "/journal/noaa-meteo-canada.html"
+  },
+  {
+  "id": "enqueter-sur-les-fraudeurs",
+  "titre": "Enquêter sur les fraudeurs",
+  "date": "2026-05-26",
+  "categorie": "Cybersécurité",
+  "resume": "Pas de morale, des outils. Comment lire un header de courriel, tracer une IP, utiliser WHOIS, VirusTotal et Shodan pour identifier — et dénoncer — ceux qui tentent de t'arnaquer.",
+  "image": "/journal/images/enqueter-sur-les-fraudeurs.jpg",
+  "fichier": "/journal/enqueter-sur-les-fraudeurs.html"
+  },
+  {
+    "id": "langue-une-generation",
+    "titre": "Une langue meurt en une génération",
+    "date": "2026-06-03",
+    "categorie": "Société",
+    "resume": "Mon père parlait breton. À l'école, on a appris aux enfants à en avoir honte — une génération a suffi. Au Québec, le français ne tient qu'à un fil : à nous de le parler, et de l'écrire, le mieux possible.",
+    "fichier": "/journal/langue-une-generation.html"
+  } ,
+  {
+    "id": "a-qui-obeit-la-machine",
+    "titre": "À qui obéit la machine",
+    "date": "2026-06-14",
+    "categorie": "Intelligence artificielle",
+    "resume": "Washington force Anthropic à fermer ses modèles les plus puissants. Un État et une entreprise d'IA se battent au grand jour pour le contrôle de ces machines. Et nous, les usagers ordinaires, là-dedans?",
+    "fichier": "/journal/a-qui-obeit-la-machine.html"
   }
 ]
 

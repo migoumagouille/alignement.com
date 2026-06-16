@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Une langue meurt en une génération — Alignement.com</title>
+  <meta name="description" content="Mon père parlait breton. À l'école, on a appris aux enfants à en avoir honte. Une génération a suffi. Au Québec, le français ne tient qu'à un fil — à nous de le parler, et de l'écrire, le mieux possible.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="fr_CA">
+  <meta property="og:url" content="https://alignement.com/journal/langue-une-generation.html">
+  <meta property="og:title" content="Une langue meurt en une génération — Alignement.com">
+  <meta property="og:description" content="Mon père parlait breton. Une génération a suffi pour tout perdre. Au Québec, le français ne tient qu'à un fil — à nous de le parler, et de l'écrire, le mieux possible.">
+  <meta property="og:image" content="https://alignement.com/journal/images/langue-une-generation.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://alignement.com/journal/langue-une-generation.html">
+  <link rel="preload" href="/fonts/fonts-all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/fonts/fonts-all.css"></noscript>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,160,32,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(46,125,233,0.12);
+      border: 1px solid rgba(46,125,233,0.3);
+      color: #7cb9ff;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 30px 0;
+    }
+
+    .article-figure {
+      margin: 0 0 10px;
+    }
+    .article-figure img {
+      width: 100%;
+      max-width: 360px;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      display: block;
+      margin: 0 auto;
+    }
+    .article-figure figcaption {
+      font-size: 0.78rem;
+      color: rgba(232,238,248,0.35);
+      text-align: center;
+      margin-top: 10px;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+    .article-body em { color: rgba(232,238,248,0.9); }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 40px 0 16px;
+    }
+
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.1rem !important;
+      line-height: 1.75;
+    }
+
+    .bilan-box {
+      background: rgba(46,125,233,0.05);
+      border: 1px solid rgba(46,125,233,0.2);
+      border-radius: 14px;
+      padding: 28px 30px;
+      margin: 36px 0;
+    }
+
+    .bilan-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.6;
+      margin-bottom: 16px;
+    }
+
+    .bilan-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .bilan-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: rgba(232,238,248,0.65);
+      line-height: 1.5;
+    }
+
+    .bilan-check {
+      color: #7cb9ff;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .echo-box {
+      background: rgba(232,160,32,0.05);
+      border: 1px solid rgba(232,160,32,0.25);
+      border-left: 3px solid var(--gold);
+      border-radius: 14px;
+      padding: 26px 30px;
+      margin: 44px 0 10px;
+    }
+    .echo-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 14px;
+    }
+    .echo-box h3 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .echo-box p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(232,238,248,0.72);
+      margin-bottom: 16px;
+    }
+    .echo-box p:last-child { margin-bottom: 0; }
+    .echo-link {
+      color: #f0b952;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(232,160,32,0.5);
+      transition: all 0.2s;
+    }
+    .echo-link:hover { color: var(--white); border-color: var(--white); }
+
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <article>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">Société</span>
+      <span class="article-date"><time datetime="2026-06-03">3 juin 2026</time></span>
+    </div>
+    <h1>Une langue meurt en une génération</h1>
+    <p class="article-intro">
+      Mon père parlait breton couramment. Sa grand-mère, qui l'a élevé, ne parlait
+      que ça. À l'école, on a appris aux enfants à en avoir honte. Une génération
+      a suffi. Au Québec, le français ne tient qu'à un fil — et ce fil, c'est nous.
+    </p>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="article-body">
+
+    <figure class="article-figure">
+      <img src="/journal/images/langue-une-generation.jpg"
+           alt="Affiche scolaire ancienne : « Il est défendu de parler breton et de cracher à terre »">
+      <figcaption>L'affiche placardée dans les écoles : la langue maternelle des enfants, sur la même ligne que cracher par terre.</figcaption>
+    </figure>
+
+    <p>
+      Je suis né en Bretagne. J'avais trois ans quand on a émigré au Québec.
+      De ma terre natale, il me reste surtout une histoire de famille. Mon père a été
+      élevé par sa grand-mère, qui ne parlait pas un mot de français. La langue lui
+      venait par le ventre, comme on dit — il était bretonnant de naissance.
+      <strong>Et puis il est allé à l'école.</strong>
+    </p>
+
+    <h2>« Il est défendu de parler breton et de cracher à terre »</h2>
+
+    <p>
+      L'affiche existe vraiment. On la placardait dans les écoles de la République :
+      sur la même ligne, on mettait la langue maternelle des enfants et le fait de
+      cracher par terre. Deux saletés à corriger. Le message était limpide —
+      <strong>ta langue, celle de ta mère et de ta grand-mère, est une mauvaise habitude.</strong>
+    </p>
+
+    <p>
+      Et il y avait pire que l'affiche : il y avait <em>le symbole</em>. Un objet —
+      un sabot, une bûchette, une pièce — qu'on donnait à l'enfant surpris à parler
+      breton. Pour s'en débarrasser, il devait à son tour dénoncer un camarade pris
+      sur le fait. Le dernier à le tenir en fin de journée était puni. On a fait
+      surveiller les enfants par les enfants. C'est d'une efficacité redoutable :
+      au bout d'une génération, on n'a même plus besoin d'interdire la langue —
+      plus personne ne veut la parler.
+    </p>
+
+    <div class="highlight-box">
+      <p>
+        « On ne tue pas une langue avec une loi. On la tue en apprenant
+        à une génération d'enfants à rougir de celle de leurs parents. »
+      </p>
+    </div>
+
+    <h2>Le compte à rebours breton</h2>
+
+    <p>
+      Ce n'est pas une vieille histoire poussiéreuse. Les derniers chiffres viennent
+      de tomber, et ils donnent le vertige.
+    </p>
+
+    <div class="bilan-box">
+      <div class="bilan-title">Le breton aujourd'hui</div>
+      <div class="bilan-items">
+        <div class="bilan-item"><span class="bilan-check">✦</span>107 000 locuteurs en 2024 — moitié moins qu'en 2018</div>
+        <div class="bilan-item"><span class="bilan-check">✦</span>Seulement 16 % l'ont appris à la maison — dix points de moins qu'en 2018</div>
+        <div class="bilan-item"><span class="bilan-check">✦</span>La langue survit désormais surtout par l'école, plus par la famille</div>
+        <div class="bilan-item"><span class="bilan-check">✦</span>Il y a un siècle, on comptait plus d'un million de bretonnants</div>
+      </div>
+    </div>
+
+    <p>
+      Quand la transmission familiale s'effondre, c'est le signe que la chaîne est
+      cassée. La grand-mère de mon père parlait breton. Mon père le parlait. Moi,
+      quelques mots. Mes enfants, rien. Raconté comme ça, on dirait une longue glissade. Mais en
+      réalité, tout se joue en <strong>une seule génération</strong> : celle qui cesse
+      de parler la langue à ses enfants. À partir de là, c'est plié — le reste n'est
+      que du temps qui passe.
+    </p>
+
+    <h2>Et nous, ici, sur notre île</h2>
+
+    <p>
+      Le français en Amérique du Nord, c'est une île au milieu d'un océan anglophone.
+      On le sait, on s'en vante même un peu. Mais je regarde les jeunes autour de moi,
+      et beaucoup se font un devoir de bien parler anglais. <strong>Et c'est très bien.</strong>
+      Moi-même j'ai fait quatre ans à l'école anglaise, je parle très bien l'anglais,
+      et je n'en ai aucun regret — c'est une richesse, une porte ouverte sur le monde.
+    </p>
+
+    <p>
+      Sauf que personne, ici, n'a besoin d'afficher « il est défendu de parler
+      français ». On n'en est plus là, et tant mieux. Le danger a changé de visage.
+      Une langue ne meurt pas seulement par interdiction — elle meurt par
+      <strong>commodité</strong>. Par le réflexe de toujours choisir l'autre langue
+      parce que c'est plus simple, plus utile, plus payant, plus « cool ». Le breton
+      de mon père n'a jamais été interdit au Québec. Il a simplement cessé d'être
+      parlé. Le résultat est le même.
+    </p>
+
+    <h2>Le parler, et l'écrire, le mieux possible</h2>
+
+    <p>
+      Et il y a un deuxième danger, plus sournois encore que l'abandon : la négligence.
+      Une langue ne meurt pas seulement parce qu'on la délaisse — elle s'effrite aussi
+      <strong>quand on la maltraite</strong>. Quand on la parle de travers, qu'on la
+      truffe d'anglicismes par paresse, qu'on l'écrit n'importe comment parce qu'« on
+      se comprend pareil ».
+    </p>
+
+    <p>
+      Parler français, ce n'est pas seulement le sauver — c'est l'honorer. Chercher
+      le bon mot plutôt que le mot anglais qui traîne. Soigner ses phrases. Et l'écrire
+      correctement : l'orthographe, les accords, les accents, ce n'est pas du chichi
+      de vieux maître d'école. C'est le squelette de la langue. Une langue qu'on n'écrit
+      plus avec soin est une langue qui commence à se liquéfier. À l'ère des textos
+      bâclés et des correcteurs qui pensent à notre place, faire l'effort de bien
+      écrire, c'est un petit acte de résistance.
+    </p>
+
+    <p>
+      Une langue, ça ne se garde pas dans une loi ni dans une politique. Ça se garde
+      à la table de cuisine, dans les berceuses, dans les sacres, dans les chicanes
+      de famille — et dans le soin qu'on met à la dire et à l'écrire. Ça se transmet,
+      bien fait, ou ça s'éteint. Je ne dis pas aux jeunes de moins parler anglais.
+      Je leur dis : <strong>parlez français, et parlez-le bien.</strong> Notre culture
+      tient dans cette langue. La laisser filer, c'est laisser filer tout le reste avec.
+    </p>
+
+    <p>
+      Mon père est parti, et son breton est parti avec lui, presque en entier.
+      J'aurais détesté qu'on le lui arrache de force. Mais je détesterais encore plus
+      qu'ici, chez nous, on laisse filer le français tranquillement —
+      <strong>par nous-mêmes, et de notre plein gré.</strong>
+    </p>
+
+    <div class="echo-box">
+      <div class="echo-label">Écho de Bretagne · ajout du 4 juin 2026</div>
+      <h3>« Breton en France, français au Canada : même combat »</h3>
+      <p>
+        Quelques jours après la parution de ce texte, un ami de Scaër, en Bretagne,
+        m'a écrit. Bilingue breton-français de naissance — sa grand-mère ne lui parlait
+        qu'en breton — il n'a pas su, lui non plus, transmettre la langue à ses enfants.
+        Et il pousse mon constat encore plus loin.
+      </p>
+      <p>
+        Au début du XX<sup>e</sup> siècle, des familles entières de Scaër, uniquement
+        bretonnantes, ont émigré vers la Saskatchewan. Pour elles, ce ne fut pas le
+        breton vers le français, mais <strong>le breton vers l'anglais, d'un seul coup</strong>.
+        Le résumé d'un Scaërois de sa génération qui a vécu à New York tient en trois mots :
+        <em>« OK, Yec'hed-mat! »</em> — un « bonjour » d'anglais soudé à une « santé » de
+        breton, le français évaporé au milieu. Le même effacement, deux continents, un
+        siècle d'écart.
+      </p>
+      <p>
+        À lire — l'histoire de la famille Carduner, partie du village de Lojou en 1912
+        pour les plaines canadiennes :
+        <a href="https://scaerunelonguehistoire.blogspot.com/2026/05/de-lojou-au-coeur-des-plaines.html"
+           class="echo-link" target="_blank" rel="noopener">De Lojou au cœur des plaines canadiennes</a>
+        (blogue <em>Scaër, une longue histoire</em>).
+      </p>
+    </div>
+
+  </div>
+
+  </article>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>

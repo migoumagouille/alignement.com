@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enquêter sur les fraudeurs — Alignement.com</title>
+  <meta name="description" content="Pas de panique, pas de morale — juste des outils. Comment lire un header de courriel, tracer une IP, utiliser WHOIS, VirusTotal et Shodan pour identifier ceux qui tentent de vous arnaquer.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="fr_CA">
+  <meta property="og:url" content="https://alignement.com/journal/enqueter-sur-les-fraudeurs.html">
+  <meta property="og:title" content="Enquêter sur les fraudeurs — Alignement.com">
+  <meta property="og:description" content="Pas de panique, pas de morale — juste des outils. Comment lire un header de courriel, tracer une IP, utiliser WHOIS, VirusTotal et Shodan pour identifier ceux qui tentent de vous arnaquer.">
+  <meta property="og:image" content="https://alignement.com/journal/images/enqueter-sur-les-fraudeurs.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://alignement.com/journal/enqueter-sur-les-fraudeurs.html">
+  <link rel="preload" href="/fonts/fonts-all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/fonts/fonts-all.css"></noscript>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+      --red: #e85050;
+      --green: #3ecf8e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,80,80,0.05) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    /* ── HEADER ── */
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(232,80,80,0.1);
+      border: 1px solid rgba(232,80,80,0.3);
+      color: #ff9a9a;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--red));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--red);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--red), transparent);
+      margin: 30px 0;
+    }
+
+    /* ── BODY ── */
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 44px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .article-body h2::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .ext-link {
+      color: #7cb9ff;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(124,185,255,0.4);
+      transition: all 0.2s;
+    }
+    .ext-link:hover { color: var(--white); border-color: var(--white); }
+
+    /* ── COURRIEL FICTIF ── */
+    .email-box {
+      background: #0d1f0d;
+      border: 1px solid rgba(62,207,142,0.2);
+      border-left: 3px solid var(--green);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 28px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    .email-box .email-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green);
+      opacity: 0.6;
+      margin-bottom: 12px;
+    }
+
+    .email-box .field { color: rgba(232,238,248,0.4); }
+    .email-box .value { color: rgba(232,238,248,0.85); }
+    .email-box .suspicious { color: #ff9a9a; font-weight: bold; }
+    .email-box .raw { color: rgba(232,238,248,0.35); font-size: 0.78rem; margin-top: 10px; }
+
+    /* ── ÉTAPE BOX ── */
+    .step-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 28px 0;
+      position: relative;
+    }
+
+    .step-number {
+      position: absolute;
+      top: -14px;
+      left: 20px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: var(--navy);
+      padding: 2px 10px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--accent);
+    }
+
+    .step-box h3 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .step-box p {
+      margin-bottom: 12px !important;
+    }
+
+    /* ── TERMINAL ── */
+    .terminal {
+      background: #050d1a;
+      border: 1px solid rgba(46,125,233,0.2);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin: 14px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.65;
+      overflow-x: auto;
+    }
+
+    .terminal .prompt { color: var(--green); }
+    .terminal .cmd { color: var(--white); }
+    .terminal .out { color: rgba(232,238,248,0.45); }
+    .terminal .highlight { color: var(--gold); }
+    .terminal .bad { color: var(--red); }
+
+    /* ── OUTILS OSINT ── */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 28px 0;
+    }
+
+    .tool-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      transition: border-color 0.2s;
+    }
+    .tool-card:hover { border-color: var(--accent); }
+
+    .tool-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .tool-url {
+      font-size: 0.75rem;
+      color: var(--accent);
+      opacity: 0.7;
+      margin-bottom: 8px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .tool-desc {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.5);
+      line-height: 1.5;
+    }
+
+    /* ── DÉNONCER ── */
+    .denonce-box {
+      background: rgba(232,160,32,0.05);
+      border: 1px solid rgba(232,160,32,0.2);
+      border-left: 3px solid var(--gold);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 36px 0;
+    }
+
+    .denonce-box .denonce-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+
+    .denonce-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .denonce-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: rgba(232,238,248,0.65);
+      line-height: 1.5;
+    }
+
+    .denonce-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.05rem !important;
+      line-height: 1.75;
+    }
+
+    /* ── WARNING ── */
+    .warning-box {
+      background: rgba(232,80,80,0.05);
+      border: 1px solid rgba(232,80,80,0.2);
+      border-left: 3px solid var(--red);
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin: 28px 0;
+    }
+
+    .warning-box p {
+      color: rgba(232,238,248,0.65) !important;
+      margin-bottom: 0 !important;
+      font-size: 0.95rem !important;
+    }
+
+    .warning-box strong { color: #ff9a9a !important; }
+
+    /* ── FOOTER ── */
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @media (max-width: 500px) {
+      .tools-grid { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <article>
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="categorie-badge">Cybersécurité</span>
+        <time datetime="2026-05-26" class="article-date">26 mai 2026</time>
+      </div>
+      <h1>Enquêter sur les fraudeurs</h1>
+      <p class="article-intro">
+        Tout le monde sait qu'il ne faut pas cliquer sur les liens suspects.
+        Mais qui sont ces gens? D'où viennent-ils? Et qu'est-ce qu'on peut faire
+        avec les traces qu'ils laissent? Voici comment mener une vraie enquête
+        — avec des outils gratuits, depuis votre salon.
+      </p>
+      <div class="header-line"></div>
+    </header>
+
+    <div class="article-body">
+
+      <h2>D'abord, respirez</h2>
+
+      <p>
+        Vous recevez un courriel bizarre. L'expéditeur imite votre banque.
+        Il y a un lien, peut-être un fichier joint. Le réflexe habituel —
+        surtout chez les utilisateurs Windows qui ont grandi avec des virus
+        qui s'exécutaient au simple survol d'une icône — c'est la panique :
+        <strong>supprimer immédiatement, vider la corbeille, redémarrer l'ordinateur.</strong>
+        Comme si le courriel allait exploser.
+      </p>
+
+      <p>
+        Ce réflexe est compréhensible. Mais il vous prive d'une mine d'information.
+        Et surtout, il est inutile — parce que <strong>un courriel d'hameçonnage
+        ne peut absolument rien faire tant que vous ne cliquez pas sur le lien
+        et que vous n'ouvrez pas la pièce jointe.</strong>
+        Il est là, inerte, dans votre boîte. Comme un couteau posé sur une table.
+        Le couteau ne bouge pas tout seul.
+      </p>
+
+      <div class="highlight-box">
+        <p>
+          « Un courriel frauduleux dans votre boîte, c'est une opportunité —
+          pas une menace active. Adoptez la mentalité du dojo :
+          calme, observation, maîtrise. La peur profite à l'adversaire.
+          La curiosité, à vous. »
+        </p>
+      </div>
+
+      <p>
+        Ce que vous avez entre les mains, c'est un document avec des traces,
+        des métadonnées, une origine. Un enquêteur ne détruit pas les preuves —
+        il les lit. C'est exactement ce qu'on va faire ici.
+      </p>
+
+      <p>
+        J'ai passé six mois sur <strong>TryHackMe</strong>, deux certifications,
+        quelques badges et plusieurs sessions aux <strong>Hackfests organisés par
+        Polytechnique de l'UdM</strong>. Ce que j'y ai appris m'a changé la façon
+        de regarder ma boîte courriel. Pas avec peur — avec curiosité.
+        Parce que chaque tentative d'hameçonnage, chaque appel frauduleux,
+        laisse des traces. Et ces traces se lisent.
+      </p>
+
+      <p>
+        Je ne vais pas vous parler de « changer votre mot de passe ». Ça, vous savez déjà.
+        Je vais vous montrer comment <strong>retourner la table</strong> : analyser,
+        identifier, documenter et dénoncer ceux qui tentent de vous arnaquer.
+      </p>
+
+      <h2>Le scénario</h2>
+
+      <p>
+        Voici un courriel fictif mais représentatif de ce qu'on reçoit régulièrement.
+        Il imite Desjardins — logo, ton officiel, urgence fabriquée. On va le
+        disséquer de fond en comble.
+      </p>
+
+      <div class="email-box">
+        <div class="email-label">Courriel reçu — exemple fictif</div>
+        <span class="field">De :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="value">service-securite@<span class="suspicious">desjardlns-alerte.com</span></span><br>
+        <span class="field">À :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="value">vous@example.com</span><br>
+        <span class="field">Objet :&nbsp;&nbsp;</span><span class="value">⚠️ Votre compte a été suspendu — action requise</span><br>
+        <span class="field">Date :&nbsp;&nbsp;&nbsp;</span><span class="value">Lun 25 mai 2026 03:47:12 -0400</span><br>
+        <br>
+        <span class="raw">
+          Received: from mail.vpshost-ru47.net (185.220.101.47)<br>
+          &nbsp;&nbsp;by mx.example.com; Mon, 25 May 2026 03:47:15 -0400<br>
+          X-Originating-IP: <span class="suspicious">185.220.101.47</span><br>
+          Return-Path: &lt;<span class="suspicious">bounce@desjardlns-alerte.com</span>&gt;
+        </span>
+      </div>
+
+      <p>
+        Tu as déjà deux signaux d'alarme visibles à l'œil nu : le domaine
+        <strong>desjardlns-alerte.com</strong> (un « l » à la place du « i »)
+        et l'heure d'envoi à 3h47 du matin depuis un serveur russe.
+        Mais on peut aller beaucoup plus loin.
+      </p>
+
+      <figure style="margin: 36px 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border);">
+        <img
+          src="/journal/images/enqueter-sur-les-fraudeurs.jpg"
+          alt="Terminal affichant l'analyse d'un courriel frauduleux — en-têtes, IP et domaine suspects"
+          style="width: 100%; display: block;"
+          loading="lazy">
+      </figure>
+
+      <h2>Étape 1 — Lire les en-têtes complets</h2>
+
+      <div class="step-box">
+        <span class="step-number">Étape 01</span>
+        <h3>Extraire les headers bruts</h3>
+        <p>
+          Chaque client courriel cache les métadonnées techniques par défaut.
+          Il faut aller les chercher.
+        </p>
+        <p>
+          <strong>Gmail :</strong> ouvrir le courriel → trois points en haut à droite → <em>Afficher l'original</em><br>
+          <strong>Outlook :</strong> Fichier → Propriétés → En-têtes Internet<br>
+          <strong>Thunderbird :</strong> Affichage → Code source du message
+        </p>
+        <p>
+          Ce que vous cherchez dans les headers : les lignes <strong>Received:</strong>
+          (le trajet du courriel, de bas en haut), <strong>X-Originating-IP:</strong>
+          (l'IP de départ) et <strong>Return-Path:</strong> (où vont les bounces — rarement le même domaine que le From).
+        </p>
+        <p>
+          Outil en ligne pour lire ça proprement :
+          <a href="https://mxtoolbox.com/EmailHeaders.aspx" class="ext-link" target="_blank">mxtoolbox.com/EmailHeaders.aspx</a>
+          — vous collez le header brut, il vous dessine le trajet et surligne les anomalies.
+        </p>
+      </div>
+
+      <h2>Étape 2 — Analyser le domaine frauduleux</h2>
+
+      <div class="step-box">
+        <span class="step-number">Étape 02</span>
+        <h3>WHOIS — qui a enregistré ce domaine?</h3>
+        <p>
+          Notre domaine suspect : <strong>desjardlns-alerte.com</strong>.
+          WHOIS vous dit qui l'a enregistré, quand, et chez quel registraire.
+        </p>
+        <div class="terminal">
+          <span class="prompt">$ </span><span class="cmd">whois desjardlns-alerte.com</span><br><br>
+          <span class="out">Registrar: Namecheap, Inc.<br>
+          Created: 2026-05-20 (il y a 5 jours)<br>
+          Registrant: <span class="bad">REDACTED FOR PRIVACY</span><br>
+          Registrant Country: <span class="highlight">RU</span><br>
+          Name Server: ns1.vpshost-ru47.net<br>
+          Name Server: ns2.vpshost-ru47.net</span>
+        </div>
+        <p>
+          Cinq jours d'existence, enregistré en Russie, identité masquée
+          par un service de confidentialité. C'est une signature classique de domaine jetable.
+          Les fraudeurs en créent des dizaines par semaine — ils savent qu'ils
+          seront suspendus rapidement.
+        </p>
+        <p>
+          Outils WHOIS en ligne :
+          <a href="https://www.whois.com/" class="ext-link" target="_blank">whois.com</a> ou
+          <a href="https://lookup.icann.org/" class="ext-link" target="_blank">lookup.icann.org</a>
+        </p>
+      </div>
+
+      <h2>Étape 3 — Tracer l'adresse IP</h2>
+
+      <div class="step-box">
+        <span class="step-number">Étape 03</span>
+        <h3>Géolocalisation et réputation de l'IP</h3>
+        <p>
+          On a l'IP d'origine du courriel : <strong>185.220.101.47</strong>.
+          On vérifie d'abord à qui elle appartient.
+        </p>
+        <div class="terminal">
+          <span class="prompt">$ </span><span class="cmd">whois 185.220.101.47</span><br><br>
+          <span class="out">OrgName: <span class="bad">Frantech Solutions</span> (hébergeur connu pour tolérer l'abus)<br>
+          Country: <span class="highlight">LU</span> (Luxembourg — infrastructure, pas l'opérateur réel)<br>
+          ASN: AS53667</span>
+        </div>
+        <p>
+          Ensuite, <strong>AbuseIPDB</strong> vous dira si cette IP a déjà été signalée :
+        </p>
+        <p>
+          <a href="https://www.abuseipdb.com/check/185.220.101.47" class="ext-link" target="_blank">abuseipdb.com/check/185.220.101.47</a>
+          — dans ce cas fictif, score d'abus : <strong style="color: var(--red);">97%</strong>,
+          signalée 412 fois en 30 jours pour spam et hameçonnage.
+        </p>
+        <p>
+          Pour la géolocalisation approximative :
+          <a href="https://ipinfo.io" class="ext-link" target="_blank">ipinfo.io</a>
+          vous donne ville, FAI, ASN et carte.
+        </p>
+      </div>
+
+      <h2>Étape 4 — Scanner le lien malicieux</h2>
+
+      <div class="step-box">
+        <span class="step-number">Étape 04</span>
+        <h3>VirusTotal + URLScan.io — ne clique jamais directement</h3>
+        <p>
+          Le courriel contient un bouton « Vérifier mon compte » pointant vers
+          <strong>https://desjardlns-alerte.com/secure/login</strong>.
+          On n'y va pas — on envoie l'URL aux outils.
+        </p>
+        <p>
+          <strong>VirusTotal</strong> (<a href="https://www.virustotal.com" class="ext-link" target="_blank">virustotal.com</a>) :
+          analyse l'URL contre 90+ moteurs antivirus et bases de réputation.
+          Résultat typique pour ce genre de page : 34/90 moteurs la signalent
+          comme phishing actif.
+        </p>
+        <p>
+          <strong>URLScan.io</strong> (<a href="https://urlscan.io" class="ext-link" target="_blank">urlscan.io</a>) :
+          visite la page dans un navigateur isolé, prend une capture d'écran,
+          et vous montre tout ce que la page charge en arrière-plan —
+          trackers, scripts, domaines tiers. C'est souvent là qu'on voit
+          que la page imite parfaitement l'interface d'une vraie banque,
+          jusque dans les polices et les couleurs.
+        </p>
+
+        <div class="warning-box" style="margin-top:16px;">
+          <p><strong>Règle absolue :</strong> ne jamais visiter un lien suspect directement depuis votre navigateur habituel. Toujours passer par VirusTotal ou URLScan en premier.</p>
+        </div>
+      </div>
+
+      <h2>Étape 5 — Chercher l'infrastructure avec Shodan</h2>
+
+      <div class="step-box">
+        <span class="step-number">Étape 05</span>
+        <h3>Shodan — le moteur de recherche des serveurs exposés</h3>
+        <p>
+          <strong>Shodan</strong> (<a href="https://www.shodan.io" class="ext-link" target="_blank">shodan.io</a>)
+          indexe en continu les services exposés sur internet.
+          En cherchant notre IP, on voit ce qu'elle expose publiquement.
+        </p>
+        <div class="terminal">
+          <span class="prompt">Shodan › </span><span class="cmd">185.220.101.47</span><br><br>
+          <span class="out">Open ports:<br>
+          &nbsp;&nbsp;<span class="highlight">25/tcp</span> — SMTP (serveur de courriel)<br>
+          &nbsp;&nbsp;<span class="highlight">443/tcp</span> — HTTPS (nginx/1.18.0)<br>
+          &nbsp;&nbsp;<span class="highlight">3306/tcp</span> — MySQL <span class="bad">exposé sans auth</span><br>
+          Hostnames: mail.vpshost-ru47.net<br>
+          Tags: <span class="bad">malware, phishing</span></span>
+        </div>
+        <p>
+          Un MySQL ouvert sur un serveur de phishing, c'est souvent là que
+          sont stockées les données volées. Ce genre d'information, vous ne
+          l'utilisez pas vous-même — vous la transmettez aux autorités compétentes.
+        </p>
+        <p>
+          Shodan est gratuit pour les recherches de base. Un compte permet
+          d'accéder aux filtres avancés et à l'historique.
+        </p>
+      </div>
+
+      <h2>Étape 6 — Vérifier les DNS et l'authentification courriel</h2>
+
+      <div class="step-box">
+        <span class="step-number">Étape 06</span>
+        <h3>SPF, DKIM, DMARC — les mécanismes que les fraudeurs contournent</h3>
+        <p>
+          Ces trois protocoles sont censés valider l'authenticité des courriels.
+          Les fraudeurs utilisent des domaines où ils contrôlent tout,
+          donc SPF et DKIM peuvent être valides même sur un domaine frauduleux.
+          Mais l'absence de DMARC ou une politique <em>p=none</em> est un signal.
+        </p>
+        <div class="terminal">
+          <span class="prompt">$ </span><span class="cmd">dig TXT desjardlns-alerte.com</span><br><br>
+          <span class="out">_spf: <span class="highlight">v=spf1 include:vpshost-ru47.net ~all</span><br>
+          _dmarc: <span class="bad">(aucun enregistrement)</span><br>
+          MX: mail.vpshost-ru47.net</span>
+        </div>
+        <p>
+          Pas de DMARC. Le vrai Desjardins, lui, a un DMARC strict (<em>p=reject</em>).
+          La comparaison suffit à démontrer l'imposture.
+        </p>
+        <p>
+          Pour faire ça sans ligne de commande :
+          <a href="https://mxtoolbox.com/SuperTool.aspx" class="ext-link" target="_blank">MXToolbox SuperTool</a> —
+          vous entrez le domaine, vous choisissez SPF, DKIM ou DMARC, il fait le travail.
+        </p>
+      </div>
+
+      <h2>La trousse OSINT complète</h2>
+
+      <div class="tools-grid">
+        <div class="tool-card">
+          <div class="tool-name">MXToolbox</div>
+          <div class="tool-url">mxtoolbox.com</div>
+          <div class="tool-desc">Headers, SPF, DKIM, DMARC, DNS. Le couteau suisse du courriel.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">AbuseIPDB</div>
+          <div class="tool-url">abuseipdb.com</div>
+          <div class="tool-desc">Réputation d'une IP. Score d'abus, historique des signalements.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">VirusTotal</div>
+          <div class="tool-url">virustotal.com</div>
+          <div class="tool-desc">Analyse URLs, fichiers, IPs contre 90+ moteurs de détection.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">URLScan.io</div>
+          <div class="tool-url">urlscan.io</div>
+          <div class="tool-desc">Visite isolée d'une URL, capture d'écran, analyse des ressources.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">Shodan</div>
+          <div class="tool-url">shodan.io</div>
+          <div class="tool-desc">Ports ouverts, services exposés, historique d'une IP ou domaine.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">WHOIS / ICANN</div>
+          <div class="tool-url">lookup.icann.org</div>
+          <div class="tool-desc">Enregistrement d'un domaine, registraire, dates, nameservers.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">IPinfo.io</div>
+          <div class="tool-url">ipinfo.io</div>
+          <div class="tool-desc">Géolocalisation, FAI, ASN, carte. Rapide et gratuit.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">PhishTank</div>
+          <div class="tool-url">phishtank.org</div>
+          <div class="tool-desc">Base de données collaborative de pages de phishing vérifiées.</div>
+        </div>
+      </div>
+
+      <h2>Dénoncer — et à qui</h2>
+
+      <p>
+        Enquêter, c'est bien. Documenter et transmettre, c'est mieux.
+        Voici où envoyer ce que vous avez trouvé.
+      </p>
+
+      <div class="denonce-box">
+        <div class="denonce-title">Où dénoncer</div>
+        <div class="denonce-items">
+          <div class="denonce-item">
+            <span class="denonce-icon">🇨🇦</span>
+            <div><strong style="color:var(--white);">Centre antifraude du Canada</strong> — <a href="https://www.antifraudcentre-centreantifraude.ca/" class="ext-link" target="_blank">antifraudcentre-centreantifraude.ca</a><br>
+            Signalement en ligne, formulaire structuré. Incontournable pour les arnaques ciblant des Canadiens.</div>
+          </div>
+          <div class="denonce-item">
+            <span class="denonce-icon">🌐</span>
+            <div><strong style="color:var(--white);">CRTC — Spam Canada</strong> — <a href="https://fightspam.gc.ca/fr/" class="ext-link" target="_blank">fightspam.gc.ca</a><br>
+            Pour les courriels commerciaux non sollicités et les tentatives de phishing envoyées massivement.</div>
+          </div>
+          <div class="denonce-item">
+            <span class="denonce-icon">🏦</span>
+            <div><strong style="color:var(--white);">L'institution imitée</strong> — Desjardins, RBC, CRA, peu importe.<br>
+            Tous ont une équipe de sécurité. Un courriel à <em>phishing@desjardins.com</em> ou l'équivalent.<br>
+            Ils peuvent agir vite pour faire suspendre un domaine frauduleux.</div>
+          </div>
+          <div class="denonce-item">
+            <span class="denonce-icon">🔴</span>
+            <div><strong style="color:var(--white);">AbuseIPDB</strong> — <a href="https://www.abuseipdb.com/report" class="ext-link" target="_blank">abuseipdb.com/report</a><br>
+            Signaler l'IP directement dans la base collaborative. Ça aide les autres enquêteurs.</div>
+          </div>
+          <div class="denonce-item">
+            <span class="denonce-icon">📬</span>
+            <div><strong style="color:var(--white);">Le registraire du domaine</strong> — Namecheap, GoDaddy, etc.<br>
+            Chaque registraire a une adresse abuse@. Un rapport documenté
+            (WHOIS + VirusTotal + URLScan) entraîne souvent la suspension en 24–48h.</div>
+          </div>
+          <div class="denonce-item">
+            <span class="denonce-icon">🐟</span>
+            <div><strong style="color:var(--white);">PhishTank</strong> — <a href="https://phishtank.org/add_web_phish.php" class="ext-link" target="_blank">phishtank.org</a><br>
+            Soumettre l'URL d'hameçonnage à la base collaborative. Elle sera vérifiée et bloquée dans les navigateurs.</div>
+          </div>
+        </div>
+      </div>
+
+      <h2>Ce que vous n'avez pas le droit de faire</h2>
+
+      <div class="warning-box">
+        <p>
+          <strong>Observer et documenter : légal.</strong> Tenter d'accéder au serveur,
+          exploiter la base MySQL ouverte ou lancer des attaques de déni de service :
+          <strong>illégal</strong>, même contre des fraudeurs.
+          Au Canada, la Loi sur la cybercriminalité est claire là-dessus.
+          Ton rôle c'est celui du journaliste d'investigation — pas du justicier.
+          Tu collectes, vous transmettez, vous laissez les autorités agir.
+        </p>
+      </div>
+
+      <h2>Ce que ça donne dans la vraie vie</h2>
+
+      <p>
+        J'ai appliqué cette méthode sur plusieurs courriels suspects reçus
+        au cours des derniers mois. Dans la majorité des cas, le domaine frauduleux
+        avait moins de deux semaines d'existence. Dans un cas, l'IP appartenait
+        à un nœud de sortie Tor — utilisé intentionnellement pour brouiller les pistes.
+        Dans un autre, un simple WHOIS a révélé que le domaine avait été enregistré
+        depuis la même adresse courriel que cinq autres domaines d'hameçonnage actifs.
+        Ce genre de corrélation, c'est exactement ce qu'une équipe de sécurité
+        d'institution bancaire peut exploiter.
+      </p>
+
+      <div class="highlight-box">
+        <p>
+          « Les fraudeurs laissent des traces parce qu'ils opèrent vite et en volume.
+          La vitesse, c'est leur force — mais c'est aussi leur talon d'Achille.
+          Un domaine enregistré il y a 72 heures, une IP déjà signalée 400 fois,
+          un MySQL grand ouvert — c'est ça, leurs empreintes digitales. »
+        </p>
+      </div>
+
+      <p>
+        Tu n'as pas besoin d'un diplôme en sécurité informatique pour faire ce travail.
+        Tu as besoin de curiosité, d'une connexion internet et des huit outils
+        listés plus haut. Le reste, c'est de la lecture de signaux —
+        et ça, ça s'apprend rapidement.
+      </p>
+
+    </div>
+  </article>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>
