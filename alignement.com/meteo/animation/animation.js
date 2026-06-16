@@ -67,24 +67,35 @@ const ScalarLayer = L.Layer.extend({
         : this._data.precipitation[this._hour];
     if (!values) return;
 
-    // Taille d'une cellule en pixels
-    const p0  = map.latLngToContainerPoint([la1, lo1]);
-    const pSE = map.latLngToContainerPoint([la1 - step, lo1 + step]);
-    const cellW = Math.abs(pSE.x - p0.x) + 1;
-    const cellH = Math.abs(pSE.y - p0.y) + 1;
+    // Canvas hors-écran 1 pixel par point de grille → interpolation bilinéaire au rescale
+    const offscreen = document.createElement('canvas');
+    offscreen.width  = nx;
+    offscreen.height = ny;
+    const octx = offscreen.getContext('2d');
+    const imageData = octx.createImageData(nx, ny);
+    const px = imageData.data;
 
     for (let row = 0; row < ny; row++) {
       for (let col = 0; col < nx; col++) {
         const val = values[row * nx + col];
-        const color = getScalarColor(this._type, val);
-        if (!color) continue;
-        const lat = la1 - row * step;
-        const lon = lo1 + col * step;
-        const pt  = map.latLngToContainerPoint([lat, lon]);
-        ctx.fillStyle = color;
-        ctx.fillRect(pt.x - cellW / 2, pt.y - cellH / 2, cellW, cellH);
+        const rgba = getScalarRGBA(this._type, val);
+        if (!rgba) continue;
+        const i = (row * nx + col) * 4;
+        px[i]   = rgba[0];
+        px[i+1] = rgba[1];
+        px[i+2] = rgba[2];
+        px[i+3] = rgba[3];
       }
     }
+    octx.putImageData(imageData, 0, 0);
+
+    // Projeter les coins de la grille → redimensionner avec lissage
+    const ptTL = map.latLngToContainerPoint([la1,              lo1             ]);
+    const ptBR = map.latLngToContainerPoint([la1 - ny * step,  lo1 + nx * step ]);
+
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(offscreen, ptTL.x, ptTL.y, ptBR.x - ptTL.x, ptBR.y - ptTL.y);
   },
 });
 
@@ -133,6 +144,30 @@ function getScalarColor(type, val) {
     const t = Math.min(1, val / 100);
     const alpha = 0.05 + t * 0.18;
     return 'rgba(200,220,255,' + alpha.toFixed(2) + ')';
+  }
+  return null;
+}
+
+function getScalarRGBA(type, val) {
+  if (val === null || val === undefined) return null;
+  if (type === 'temperature') {
+    const [r,g,b] = interpColor(TEMP_STOPS, val);
+    return [Math.round(r), Math.round(g), Math.round(b), 90];
+  }
+  if (type === 'precipitation') {
+    if (val <= 0) return null;
+    const t = Math.min(1, val / 20);
+    return [
+      Math.round(lerp(120, 20, t)),
+      Math.round(lerp(160, 80, t)),
+      255,
+      Math.round((0.05 + t * 0.25) * 255),
+    ];
+  }
+  if (type === 'cloud') {
+    if (val <= 0) return null;
+    const t = Math.min(1, val / 100);
+    return [200, 220, 255, Math.round((0.05 + t * 0.18) * 255)];
   }
   return null;
 }
