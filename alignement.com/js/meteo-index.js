@@ -64,8 +64,11 @@ async function loadVille(ville, idx) {
 }
 
 const REFRESH_MS = 10 * 60 * 1000; // 10 minutes
+let lastRefresh = 0;
 
 async function refreshData() {
+  lastRefresh = Date.now();
+
   for (let i = 0; i < VILLES.length; i += 3) {
     const lot = VILLES.slice(i, i + 3).map((v, j) => loadVille(v, i + j));
     await Promise.all(lot);
@@ -86,6 +89,14 @@ async function init() {
 
   await refreshData();
   setInterval(refreshData, REFRESH_MS);
+
+  // Les navigateurs gèlent setInterval quand l'onglet dort.
+  // On recharge dès que la page redevient visible si les données ont plus de 10 min.
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && Date.now() - lastRefresh > REFRESH_MS) {
+      refreshData();
+    }
+  });
 }
 
 init();
