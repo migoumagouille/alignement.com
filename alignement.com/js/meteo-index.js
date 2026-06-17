@@ -88,14 +88,22 @@ async function init() {
   });
 
   await refreshData();
-  setInterval(refreshData, REFRESH_MS);
 
-  // Les navigateurs gèlent setInterval quand l'onglet dort.
-  // On recharge dès que la page redevient visible si les données ont plus de 10 min.
+  // Vérifie chaque minute si 10 min se sont écoulées — résiste au gel des timers en veille.
+  setInterval(() => {
+    if (Date.now() - lastRefresh > REFRESH_MS) refreshData();
+  }, 60 * 1000);
+
+  // Filet de sécurité : tab qui redevient visible après sommeil.
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible' && Date.now() - lastRefresh > REFRESH_MS) {
       refreshData();
     }
+  });
+
+  // Réveil de l'ordinateur avec l'onglet déjà en avant-plan.
+  window.addEventListener('focus', () => {
+    if (Date.now() - lastRefresh > REFRESH_MS) refreshData();
   });
 }
 
