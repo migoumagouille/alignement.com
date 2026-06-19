@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J'ai un problème avec les problématiques — Alignement.com</title>
+  <meta name="description" content="Quand j'étais jeune, on avait des problèmes. Aujourd'hui on a des problématiques — et on nous demande d'être résilients. Deux mots qui s'entendent un peu trop bien.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="fr_CA">
+  <meta property="og:url" content="https://alignement.com/journal/problematiques-resilience.html">
+  <meta property="og:title" content="J'ai un problème avec les problématiques — Alignement.com">
+  <meta property="og:description" content="Deux mots qui s'entendent un peu trop bien : la problématique pour ceux d'en haut qui décrivent, la résilience pour ceux d'en bas qui encaissent.">
+  <meta property="og:image" content="https://alignement.com/journal/images/cent-laminoir.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://alignement.com/journal/problematiques-resilience.html">
+  <link rel="preload" href="/fonts/fonts-all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/fonts/fonts-all.css"></noscript>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,160,32,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(46,125,233,0.12);
+      border: 1px solid rgba(46,125,233,0.3);
+      color: #7cb9ff;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 30px 0;
+    }
+
+    .article-figure {
+      margin: 0 0 10px;
+      animation: fadeUp 0.6s ease both 0.05s;
+    }
+    .article-figure img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    .article-figure figcaption {
+      font-size: 0.8rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+    .article-body em { color: rgba(232,238,248,0.92); font-style: italic; }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 40px 0 16px;
+    }
+
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.1rem !important;
+      line-height: 1.75;
+    }
+
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <article>
+
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="categorie-badge">Société</span>
+        <time class="article-date" datetime="2026-06-17">17 juin 2026</time>
+      </div>
+      <h1>J'ai un problème avec les problématiques</h1>
+      <p class="article-intro">
+        Et un autre avec la résilience. Petit examen de deux mots
+        qui s'entendent un peu trop bien.
+      </p>
+      <div class="header-line"></div>
+    </header>
+
+    <figure class="article-figure">
+      <img src="/journal/images/cent-laminoir.jpg"
+           alt="Une cent canadienne calée dans la ligne de pincement des rouleaux d'un laminoir.">
+      <figcaption>Une cent prise dans les rouleaux du laminoir. Elle encaisse — elle n'a pas le choix.</figcaption>
+    </figure>
+
+    <div class="article-body">
+
+      <p>
+        Quand j'étais jeune, on avait des problèmes. Le char qui partait pas
+        le matin, une dette, une tuile qui tombait : un problème. Et quand
+        les choses tournaient vraiment mal, là-haut dans la capsule Apollo,
+        l'homme disait à Houston qu'il avait <em>a problem</em>. Court, net,
+        et qui demandait une réponse tout de suite.
+      </p>
+
+      <p>
+        Aujourd'hui, plus personne n'a de problème. On a des problématiques.
+        Et quand la problématique nous tombe dessus, on nous demande d'être
+        résilients.
+      </p>
+
+      <p>
+        Ces deux mots-là, je les entends partout. À la radio, dans les réunions,
+        à la quincaillerie. Et plus je les écoute, plus je me dis qu'ils vont
+        ensemble. Qu'ils forment une paire. Qu'ils se sont trouvés.
+      </p>
+
+      <h2>Le mot qui ne se résout pas</h2>
+
+      <p>
+        Commençons par le premier. Un problème, ça se règle. Ça appelle une
+        solution, donc quelqu'un qui agit, donc quelqu'un de responsable. Une
+        problématique, elle, ne se règle pas. Elle s'analyse. On la « prend en
+        compte », on l'« explore », on la « met sur la table ». On tourne autour.
+        Mais on ne la répare jamais vraiment, parce que ce n'est pas dans la
+        nature du mot.
+      </p>
+
+      <p>
+        Le garagiste qui me dit « vous avez un problème de transmission »
+        s'engage à le réparer. Le fonctionnaire qui parle d'une « problématique
+        d'accès aux soins » ne s'engage à rien — il décrit. Personne n'est en
+        faute. Il y a simplement, flottant dans l'air, une problématique complexe
+        que personne n'a créée et que personne n'a à résoudre.
+      </p>
+
+      <p>
+        C'est un mot pour celui qui est en haut. Celui qui regarde, qui commente,
+        qui cadre. <strong>Un mot confortable.</strong>
+      </p>
+
+      <h2>Le mot qui demande d'encaisser</h2>
+
+      <p>
+        L'autre vient de loin. La résilience, à l'origine, c'est de la physique :
+        la capacité d'un métal à recevoir un choc sans se rompre, à absorber
+        l'énergie puis à reprendre sa forme. Du solide, du mesurable. Puis la
+        psychologie l'a emprunté pour décrire ces enfants qui se développent
+        malgré un trauma — Boris Cyrulnik l'a fait connaître. C'était une
+        observation. <em>Certains s'en sortent, et voici comment.</em> Une bonne
+        nouvelle, presque.
+      </p>
+
+      <p>
+        Et là, le mot a glissé. On est passé du constat à la commande.
+        « Sois résilient. » Il a quitté le cabinet du psychologue pour envahir
+        le management, l'urbanisme, l'écologie, les discours de motivation. On
+        demande aujourd'hui à un employé épuisé d'être résilient, à un quartier
+        inondé d'être résilient, à un peuple appauvri d'être résilient.
+      </p>
+
+      <p>
+        C'est un mot pour celui qui est en bas. Celui qui subit, qui plie,
+        qui encaisse.
+      </p>
+
+      <h2>La belle paire</h2>
+
+      <p>
+        Voilà pourquoi ils s'entendent si bien. La problématique permet à celui
+        d'en haut de ne pas agir : il contemple, il analyse, il ne répare rien.
+        La résilience demande à celui d'en bas de tenir le coup quand même. L'un
+        décrit le choc, l'autre l'absorbe. C'est une division du travail parfaite.
+      </p>
+
+      <p>
+        Et le tour de passe-passe est subtil. En te demandant d'être résilient,
+        on transforme l'épreuve en donnée naturelle — comme la météo, comme une
+        saison. La crise n'est plus quelque chose qu'on questionne ou qu'on
+        combat ; c'est un climat auquel tu dois t'adapter. La seule variable qui
+        reste, c'est <em>toi</em>, ta capacité à plier sans casser. On ne demande
+        plus pourquoi le pont s'est effondré. On célèbre la résilience de ceux
+        qui traversent la rivière à la nage.
+      </p>
+
+      <p>
+        C'est commode. On coupe les services, et ensuite on loue la résilience
+        des communautés qui se débrouillent sans. On vante la résilience d'une
+        population, et le mot devient l'alibi de tout ce qu'on a renoncé à
+        changer pour elle.
+      </p>
+
+      <div class="highlight-box">
+        <p>
+          Le métal, lui, n'a pas le choix : il encaisse ou il rompt.
+          On traite désormais l'humain comme une poutre.
+        </p>
+      </div>
+
+      <h2>Une langue qui adoucit tout</h2>
+
+      <p>
+        Ces deux-là ne sont pas seuls, remarquez. Notre époque n'aime pas nommer
+        les choses comme franchement mauvaises. On ne dit plus un pauvre, on dit
+        une personne en situation de précarité. On ne congédie plus du monde, on
+        procède à une optimisation des effectifs. Le mot cru fait mal, alors on
+        le remplace par un mot long qui anesthésie. « Problématique » et
+        « résilience » sont les deux vedettes de cette famille — ils ont juste
+        mieux réussi que les autres.
+      </p>
+
+      <p>
+        Et puis ça fait sérieux. Le mot savant, c'est un uniforme. Le dire, c'est
+        se ranger du côté de ceux qui ont étudié, qui gèrent, qui décident.
+        L'abstraction donne de l'autorité — ou en donne l'illusion.
+      </p>
+
+      <h2>Ce que ça dit de nous</h2>
+
+      <p>
+        Je ne pense pas que quelqu'un ait décidé ça un matin. C'est une dérive,
+        pas un complot. Mais les dérives en disent souvent plus long que les
+        décisions.
+      </p>
+
+      <p>
+        Une société qui problématise par en haut et exige de la résilience par
+        en bas, c'est une société qui a trouvé le moyen de parler beaucoup tout
+        en agissant peu. On décrit les chocs avec un grand vocabulaire, et on
+        demande aux gens de les absorber avec un grand sourire. Entre les deux,
+        l'espace où l'on réparait les choses s'est rétréci. Orwell le disait déjà
+        il y a quatre-vingts ans : le langage flou sert à ne pas penser ce qu'on
+        nomme.
+      </p>
+
+      <p>
+        Alors moi, je vais continuer d'avoir des problèmes. Et quand ça ira mal,
+        je ne serai pas résilient — je vais être en maudit, puis je vais essayer
+        de régler ça. C'est plus inconfortable. Mais au moins,
+        <strong>un problème, ça finit par se régler.</strong>
+      </p>
+
+    </div>
+
+  </article>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>
