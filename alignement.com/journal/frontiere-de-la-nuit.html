@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quarante-huit degrés et quelques minutes — Alignement.com</title>
+  <meta name="description" content="À partir de quelle latitude nord le solstice d'été n'a-t-il plus de vraie nuit? La réponse calculée comme à l'Almanach nautique : 48°34′ nord. Un point de référence enfin écrit noir sur blanc.">
+  <link rel="canonical" href="https://alignement.com/journal/frontiere-de-la-nuit.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="fr_CA">
+  <meta property="og:url" content="https://alignement.com/journal/frontiere-de-la-nuit.html">
+  <meta property="og:title" content="Quarante-huit degrés et quelques minutes — Alignement.com">
+  <meta property="og:description" content="À partir de quelle latitude le solstice d'été n'a plus de vraie nuit? 48°34′ nord. Calculé comme à l'Almanach nautique, au sextant.">
+  <meta property="og:image" content="https://alignement.com/journal/images/frontiere-de-la-nuit-sextant.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="/fonts/fonts-all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/fonts/fonts-all.css"></noscript>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,160,32,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(46,125,233,0.12);
+      border: 1px solid rgba(46,125,233,0.3);
+      color: #7cb9ff;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 30px 0;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 40px 0 16px;
+    }
+
+    figure.article-figure { margin: 30px 0; }
+    figure.article-figure img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    figure.article-figure figcaption {
+      font-size: 0.8rem;
+      color: rgba(232,238,248,0.35);
+      letter-spacing: 0.5px;
+      margin-top: 10px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    .formule-box {
+      background: rgba(232,160,32,0.06);
+      border: 1px solid rgba(232,160,32,0.25);
+      border-radius: 12px;
+      padding: 26px 30px;
+      margin: 30px 0;
+      text-align: center;
+    }
+    .formule-box .formule {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .formule-box .formule-legende {
+      font-size: 0.85rem;
+      color: rgba(232,238,248,0.45);
+      letter-spacing: 0.5px;
+    }
+
+    .seuils-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+      font-size: 0.95rem;
+    }
+    .seuils-table th {
+      font-family: 'Rajdhani', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .seuils-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(46,125,233,0.1);
+      color: rgba(232,238,248,0.75);
+    }
+    .seuils-table td.seuil {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .seuils-table tr.is-highlight td {
+      background: rgba(232,160,32,0.06);
+      color: var(--white);
+    }
+
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.1rem !important;
+      line-height: 1.75;
+    }
+
+    .bilan-box {
+      background: rgba(46,125,233,0.05);
+      border: 1px solid rgba(46,125,233,0.2);
+      border-radius: 14px;
+      padding: 28px 30px;
+      margin: 36px 0;
+    }
+    .bilan-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.6;
+      margin-bottom: 16px;
+    }
+    .bilan-box p { margin-bottom: 16px; }
+    .bilan-box p:last-child { margin-bottom: 0; }
+
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @media (max-width: 500px) {
+      .seuils-table { font-size: 0.85rem; }
+      .seuils-table th, .seuils-table td { padding: 9px 8px; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <article>
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">Astronomie</span>
+      <time class="article-date" datetime="2026-06-20">20 juin 2026</time>
+    </div>
+    <h1>Quarante-huit degrés et quelques minutes</h1>
+    <p class="article-intro">
+      Un Noël de pandémie, une question de latitude lancée à un cousin,
+      et une réponse que le web n'avait jamais écrite noir sur blanc.
+      À partir d'où, au solstice d'été, la nuit cesse-t-elle d'exister?
+    </p>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="article-body">
+
+    <p>
+      C'était un Noël de pandémie. Pas de table commune, pas de tourtière partagée —
+      la famille réunie dans une fenêtre Messenger, chacun dans son salon.
+      On jasait de tout et de rien, et la vie était belle quand même.
+      À un moment, je demande à mon cousin d'Esquimalt, en Colombie-Britannique,
+      à quelle latitude il habite. <strong>« Quarante-huit degrés et quelques minutes
+      nord »</strong>, qu'il me répond.
+    </p>
+
+    <p>
+      Et là, sans hésiter, je lui lance : « Chez vous, au solstice d'été,
+      il y a une journée sans nuit. »
+    </p>
+
+    <h2>Le sextant et l'Almanach</h2>
+
+    <p>
+      Je pouvais dire ça parce que, au début des années 1990, j'ai navigué sur
+      l'Atlantique Nord — à l'époque où le GPS n'était pas encore offert au commun
+      des navigateurs. On se débrouillait avec le sextant et l'Almanach nautique.
+      Et dans l'Almanach, ces choses-là se calculent. La hauteur du Soleil,
+      l'heure du crépuscule, la latitude où la nuit cesse d'exister :
+      <strong>c'est de l'arithmétique de quart de nuit.</strong>
+    </p>
+
+    <figure class="article-figure">
+      <img src="/journal/images/frontiere-de-la-nuit-sextant.jpg"
+           alt="Mon Almanach nautique ouvert et le sextant, sur la table du laboratoire">
+      <figcaption>L'Almanach nautique et le sextant — mes outils d'avant le GPS.</figcaption>
+    </figure>
+
+    <p>
+      Mais voilà : des années plus tard, quand j'ai voulu vérifier mon affirmation,
+      je n'ai trouvé aucune page sur le web qui me la confirmait. Beaucoup de pages
+      sur le soleil de minuit au-delà du cercle polaire, oui. Mais la frontière
+      de la <em>nuit</em>, celle d'en deçà — personne ne la nommait.
+      Alors aujourd'hui, je la fixe ici, pour de bon.
+    </p>
+
+    <h2>Le calcul, simple comme un quart de nuit</h2>
+
+    <p>
+      Le Soleil atteint son point le plus bas à minuit solaire.
+      Sa hauteur à ce moment-là se calcule en une ligne :
+    </p>
+
+    <div class="formule-box">
+      <div class="formule">hauteur minimale = latitude + déclinaison − 90°</div>
+      <div class="formule-legende">Au solstice d'été, la déclinaison du Soleil vaut 23,44° — l'inclinaison de la Terre.</div>
+    </div>
+
+    <p>
+      Or, on considère qu'il fait « nuit » seulement quand le Soleil descend à plus
+      de <strong>18° sous l'horizon</strong> : c'est ce que les astronomes appellent
+      la fin du crépuscule astronomique. En deçà de cette profondeur, le ciel garde
+      une lueur, et les étoiles les plus faibles ne sortent jamais.
+    </p>
+
+    <p>
+      Je pose donc la question à l'envers : à quelle latitude le Soleil cesse-t-il
+      de plonger sous ces 18°? La réponse tombe : <strong>48° 34′ nord.</strong>
+      Au-delà, le solstice n'a plus de vraie nuit. Rien qu'un long crépuscule
+      qui glisse du couchant au levant.
+    </p>
+
+    <p>
+      Et tant qu'à fixer la chose, voici les quatre frontières du ciel d'été,
+      toutes tirées de la même formule :
+    </p>
+
+    <table class="seuils-table">
+      <thead>
+        <tr>
+          <th>Phénomène au solstice</th>
+          <th>Soleil jamais sous</th>
+          <th>À partir de</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Soleil de minuit (jamais couché)</td>
+          <td>0°</td>
+          <td class="seuil">66° 34′ N</td>
+        </tr>
+        <tr>
+          <td>Crépuscule civil toute la nuit (« nuits blanches »)</td>
+          <td>−6°</td>
+          <td class="seuil">60° 34′ N</td>
+        </tr>
+        <tr>
+          <td>Crépuscule nautique toute la nuit</td>
+          <td>−12°</td>
+          <td class="seuil">54° 34′ N</td>
+        </tr>
+        <tr class="is-highlight">
+          <td>Plus de nuit du tout (toujours un crépuscule)</td>
+          <td>−18°</td>
+          <td class="seuil">48° 34′ N</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      Saint-Pétersbourg et ses célèbres nuits blanches sont à environ 60° nord :
+      ça tombe pile sur la troisième ligne. Le calcul tient.
+    </p>
+
+    <h2>Et mon cousin, dans tout ça?</h2>
+
+    <div class="bilan-box">
+      <div class="bilan-title">Le verdict d'Esquimalt</div>
+      <p>
+        Esquimalt est à <strong>48° 26′ nord</strong>. La ligne est à
+        <strong>48° 34′</strong>. Huit petites minutes d'arc sous la frontière.
+        J'ai refait le calcul, et il faut bien que je l'avoue : chez lui,
+        le Soleil descend à 18,1° sous l'horizon au cœur du solstice.
+        Un dixième de degré de trop.
+      </p>
+      <p>
+        Il reste donc, à Esquimalt, une nuit astronomique — mais une nuit
+        de quelques minutes, le temps de cligner des yeux à minuit.
+        J'avais tort d'un cheveu. S'il avait habité quarante kilomètres
+        plus au nord, à Nanaimo, j'avais raison sur toute la ligne.
+        La frontière passait, sans le savoir, juste devant sa porte.
+      </p>
+    </div>
+
+    <h2>Pourquoi l'écrire</h2>
+
+    <p>
+      Parce que c'est exactement le genre de savoir qui se perd. Le GPS a tout
+      réglé pour nous, et avec lui s'est effacé le réflexe de calculer le ciel
+      soi-même. Or il n'y a rien là de sorcier : une latitude, une déclinaison,
+      une soustraction. De quoi répondre à un cousin un soir de Noël —
+      et avoir presque raison.
+    </p>
+
+    <div class="highlight-box">
+      <p>
+        « 48° 34′ nord. La latitude où la nuit rend les armes. Notez-la quelque part. »
+      </p>
+    </div>
+
+  </div>
+  </article>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>

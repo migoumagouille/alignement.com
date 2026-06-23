@@ -159,6 +159,22 @@
     "categorie": "Société",
     "resume": "Quand j'étais jeune, on avait des problèmes. Aujourd'hui on a des problématiques — et on nous demande d'être résilients. Deux mots qui s'entendent un peu trop bien.",
     "fichier": "/journal/problematiques-resilience.html"
+  },
+  {
+    "id": "frontiere-de-la-nuit",
+    "titre": "Quarante-huit degrés et quelques minutes",
+    "date": "2026-06-20",
+    "categorie": "Astronomie",
+    "resume": "Un Noël de pandémie, une question de latitude lancée à un cousin d'Esquimalt. À partir de 48°34′ nord, le solstice d'été n'a plus de vraie nuit. La preuve, calculée comme à l'Almanach nautique.",
+    "fichier": "/journal/frontiere-de-la-nuit.html"
+  } ,
+  {
+    "id": "huit-plaques-vertes",
+    "titre": "Huit plaques vertes au stationnement",
+    "date": "2026-06-23",
+    "categorie": "Transition",
+    "resume": "Cent ans après avoir mené la course puis l'avoir perdue, l'auto électrique reprend la route. De la Yaris 2012 à la Chevrolet Bolt 2026 — un retour, pas une nouveauté.",
+    "fichier": "/journal/huit-plaques-vertes.html"
   }
 ]
 

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Huit plaques vertes au stationnement — Alignement.com</title>
+  <meta name="description" content="Cent ans après avoir mené la course puis l'avoir perdue, l'auto électrique reprend la route. Récit d'une transition : de la Yaris 2012 à la Chevrolet Bolt 2026, en passant par 1900.">
+
+  <link rel="canonical" href="https://alignement.com/journal/huit-plaques-vertes.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="fr_CA">
+  <meta property="og:url" content="https://alignement.com/journal/huit-plaques-vertes.html">
+  <meta property="og:title" content="Huit plaques vertes au stationnement — Alignement.com">
+  <meta property="og:description" content="Cent ans après avoir mené la course puis l'avoir perdue, l'auto électrique reprend la route. De la Yaris 2012 à la Bolt 2026.">
+  <meta property="og:image" content="https://alignement.com/journal/images/huit-plaques-vertes.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --green: #4caf6a;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Josefin Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,160,32,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(76,175,106,0.12);
+      border: 1px solid rgba(76,175,106,0.35);
+      color: #7fd99a;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      color: rgba(232,238,248,0.7);
+      font-style: italic;
+      line-height: 1.6;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 30px 0;
+    }
+
+    /* Bandeau image — patron standard des articles */
+    .article-hero {
+      margin: 0 0 40px;
+      animation: fadeUp 0.6s ease both 0.05s;
+    }
+
+    .article-hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .article-hero figcaption {
+      font-size: 0.8rem;
+      color: rgba(232,238,248,0.35);
+      letter-spacing: 0.5px;
+      text-align: center;
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.08rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.8);
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--gold);
+      margin: 48px 0 16px;
+    }
+
+    .ext-link {
+      color: #7cb9ff;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(124,185,255,0.4);
+      transition: all 0.2s;
+    }
+    .ext-link:hover { color: var(--white); border-color: var(--white); }
+
+    /* Les trois tiers de 1900 */
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 28px 0;
+    }
+
+    .tiers-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 14px;
+      text-align: center;
+    }
+
+    .tiers-icon { font-size: 1.8rem; display: block; margin-bottom: 8px; }
+
+    .tiers-nom {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+
+    .tiers-desc {
+      font-size: 0.72rem;
+      color: rgba(232,238,248,0.4);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Citation */
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+
+    .highlight-box p {
+      font-family: 'Cormorant Garamond', serif;
+      color: rgba(232,238,248,0.85) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.5rem !important;
+      line-height: 1.55;
+      font-weight: 500 !important;
+    }
+
+    /* Encadré pratique */
+    .info-box {
+      background: rgba(46,125,233,0.05);
+      border: 1px solid rgba(46,125,233,0.2);
+      border-radius: 14px;
+      padding: 28px 30px;
+      margin: 36px 0;
+    }
+
+    .info-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+
+    .info-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.98rem;
+      color: rgba(232,238,248,0.7);
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    .info-check {
+      color: #7fd99a;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @media (max-width: 500px) {
+      .tiers-grid { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <article>
+
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="categorie-badge">Transition</span>
+        <time class="article-date" datetime="2026-06-23">23 juin 2026</time>
+      </div>
+      <h1>Huit plaques vertes au stationnement</h1>
+      <p class="article-intro">
+        En 2026, il y a une Chevrolet Bolt dans mon entrée. Pour bien du monde,
+        c'est une nouveauté, presque une audace. Moi, j'y vois plutôt un retour.
+      </p>
+      <div class="header-line"></div>
+    </header>
+
+    <figure class="article-hero">
+      <img src="/journal/images/huit-plaques-vertes.jpg"
+           alt="Ma Chevrolet Bolt dans l'entrée de garage">
+      <figcaption>Ma Chevrolet Bolt, dans l'entrée.</figcaption>
+    </figure>
+
+    <div class="article-body">
+
+      <p>
+        L'auto électrique n'a rien d'une invention récente — elle est plus vieille
+        que l'auto à essence telle qu'on la connaît. Avant d'en arriver à ma Bolt,
+        il faut remonter cent ans en arrière.
+      </p>
+
+      <h2>1900 — quand l'électrique menait la course</h2>
+
+      <p>
+        Au tournant du XX<sup>e</sup> siècle, sur les routes et les chemins de terre
+        d'Amérique, l'électrique n'était pas marginale : elle dominait. Les voitures
+        se partageaient à peu près en trois tiers.
+      </p>
+
+      <div class="tiers-grid">
+        <div class="tiers-box">
+          <span class="tiers-icon">⚡</span>
+          <div class="tiers-nom">Électrique</div>
+          <div class="tiers-desc">Silencieuse, propre</div>
+        </div>
+        <div class="tiers-box">
+          <span class="tiers-icon">♨️</span>
+          <div class="tiers-nom">Vapeur</div>
+          <div class="tiers-desc">Puissante, capricieuse</div>
+        </div>
+        <div class="tiers-box">
+          <span class="tiers-icon">⛽</span>
+          <div class="tiers-nom">Essence</div>
+          <div class="tiers-desc">Bruyante, la manivelle</div>
+        </div>
+      </div>
+
+      <p>
+        Les électriques étaient silencieuses, propres, et surtout elles démarraient
+        toutes seules — pas de manivelle à brasser au risque de se casser le poignet.
+        Des marques comme <strong>Baker</strong> et <strong>Detroit Electric</strong>
+        vendaient des voitures élégantes, populaires en ville. Même Ferdinand Porsche
+        a construit une électrique, puis une hybride, avant 1905.
+      </p>
+
+      <h2>Pendant ce temps, sous terre</h2>
+
+      <p>
+        On l'oublie, mais c'est la même logique qui explique pourquoi aucun métro au
+        monde ne roule au diésel. Dans un tunnel fermé, un moteur à combustion, c'est
+        l'asphyxie garantie. Sous terre, il n'y a jamais eu d'autre choix que
+        l'électricité. <strong>L'électrique n'a donc jamais vraiment disparu</strong> —
+        elle s'est juste retirée là où la combustion était impossible.
+      </p>
+
+      <h2>Pourquoi elle a perdu</h2>
+
+      <p>
+        Trois coups, presque en même temps. Le pétrole texan devient quasiment gratuit
+        après Spindletop, en 1901. Ford lance le Model T à la chaîne en 1908 : l'auto
+        à essence devient abordable pour tout le monde. Et en 1912, Kettering invente
+        le démarreur électrique — qui enlève à l'essence son seul vrai défaut, la
+        manivelle.
+      </p>
+
+      <p>
+        Du coup, l'électrique perd son principal avantage pendant que l'essence devient
+        moins chère, plus puissante, plus autonome. En une vingtaine d'années,
+        l'électrique disparaît des rues. Pour un siècle.
+      </p>
+
+      <h2>2012 — pas encore le temps</h2>
+
+      <p>
+        Quand j'ai acheté ma Toyota Yaris en 2012, l'électrique commençait tout juste
+        à repointer le nez. Si une vraie électrique abordable avait existé, je l'aurais
+        prise sans hésiter. Mais <strong>ce n'était pas le temps</strong> : les
+        premières offraient une autonomie ridicule, des bornes il n'y en avait nulle
+        part, et pour un hiver québécois, c'était impensable. La Yaris, elle, était
+        honnête, fiable, et faisait le travail.
+      </p>
+
+      <h2>2026 — c'est le temps</h2>
+
+      <p>
+        Saint-Basile-le-Grand devient une ville de plus en plus verte. L'autre jour,
+        dans un stationnement public, <strong>huit plaques vertes côte à côte.</strong>
+        Les temps changent — et il était temps que moi aussi.
+      </p>
+
+      <p>
+        Tant que la Yaris roulait bien, le plus écologique c'était de la garder : pas
+        de sens à fabriquer une auto neuve pour remplacer une bonne usagée. Mais quand
+        les réparations se sont mises à coûter plus cher que la valeur de l'auto, le
+        calcul a basculé. C'était le temps.
+      </p>
+
+      <p>
+        J'ai regardé pour du neuf — trop dispendieux pour mes moyens. Mais une Bolt
+        usagée avec 37 000 km au compteur, ça, c'était dans mes prix.
+      </p>
+
+      <h2>La batterie, je commence à connaître</h2>
+
+      <p>
+        Les batteries au lithium, j'en ai déjà parlé ici — pour la recharge solaire du
+        labo. <em>(Voir <a href="https://alignement.com/journal/batterie-solaire.html" class="ext-link">La batterie du salon</a>.)</em>
+        Alors l'idée d'une grosse batterie sur roues ne m'inquiète pas une miette.
+      </p>
+
+      <p>
+        Pour recharger, un câble et un chargeur viennent avec l'auto — ça se branche
+        sur une prise de maison ordinaire. Pas de problème… sauf un petit désappointement :
+        le temps de recharge. Je recharge à partir de 40 % de batterie, et sur une prise
+        domestique c'est lent. Mais pour le moment ça va : une fois par semaine, 18 heures
+        suffisent à mes besoins. Faut dire que je suis à la retraite, je ne cours pas
+        après les minutes.
+      </p>
+
+      <div class="info-box">
+        <div class="info-title">La prochaine étape — une borne de niveau 2</div>
+        <div class="info-items">
+          <div class="info-item"><span class="info-check">✦</span>Recharge complète en deux à trois heures plutôt qu'en jours</div>
+          <div class="info-item"><span class="info-check">✦</span>Une subvention s'applique — la dépense devient résorbable</div>
+          <div class="info-item"><span class="info-check">✦</span>Après consultation, c'est dans mes cordes</div>
+        </div>
+      </div>
+
+      <h2>Une seule pédale</h2>
+
+      <p>
+        Autre belle surprise : la conduite à une pédale. La Yaris était manuelle —
+        embrayage, frein, accélérateur, trois pédales à gérer. Maintenant, une seule
+        suffit. On appuie sur l'accélérateur, la voiture avance en tirant sur la
+        batterie. On lève le pied, elle ralentit — et recharge la batterie au passage.
+        On lâche complètement, c'est l'arrêt. <strong>Un vrai plaisir.</strong>
+      </p>
+
+      <p>
+        Je n'ai pas encore passé un hiver avec. Je sais que le froid mord dans
+        l'autonomie — c'est connu, je ne me conte pas d'histoires. Mais je regarde
+        ça avec confiance.
+      </p>
+
+      <h2>La boucle est bouclée</h2>
+
+      <p>
+        Il y aura toujours quelqu'un pour dire que l'avenir de l'auto, ce n'est pas
+        l'électrique — que c'est l'hydrogène, ou autre chose. Peut-être. L'hydrogène a
+        sa place pour le lourd, les camions, les trains. Mais pour l'auto qu'on a dans
+        l'entrée, il faut juste se rendre compte d'une chose : ce n'est pas une question
+        d'avenir.
+      </p>
+
+      <div class="highlight-box">
+        <p>« Le présent est électrique. Le futur, on verra. Aujourd'hui, c'est ça. »</p>
+      </div>
+
+      <p>
+        Et à ceux qui répondent que fabriquer des batteries au lithium, c'est de la
+        grosse pollution — ils n'ont pas tort de poser la question, mais ils retardent
+        d'un train. Les batteries au sodium ne sont plus un rêve de laboratoire : CATL
+        et BYD les produisent, et la première voiture de série qui en est équipée arrive
+        cette année. Le sodium est abondant, bon marché — et, ironie qui me parle
+        directement, <strong>il endure mieux le froid que le lithium.</strong> La techno
+        qui s'en vient répond déjà à ma seule vraie réserve.
+      </p>
+
+      <p>
+        Cent ans après avoir mené la course puis l'avoir perdue, l'électrique reprend la
+        route. Cette fois, pour de bon. Et il y a une Bolt dans mon entrée pour le prouver.
+      </p>
+
+    </div>
+
+  </article>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>
