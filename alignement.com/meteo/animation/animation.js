@@ -322,12 +322,14 @@ async function init() {
 
 // ── Rechargement automatique (2× par jour) ────────────────────────────────────
 const CHECK_INTERVAL_MS = 30 * 60 * 1000; // 30 minutes
+let lastCheck = 0;
 
 function scheduleDataCheck() {
   setTimeout(checkForNewData, CHECK_INTERVAL_MS);
 }
 
 async function checkForNewData() {
+  lastCheck = Date.now();
   try {
     const resp = await fetch('data/meta.json?_=' + Date.now());
     if (!resp.ok) { scheduleDataCheck(); return; }
@@ -353,6 +355,23 @@ async function checkForNewData() {
   }
   scheduleDataCheck();
 }
+
+// Vérifie chaque minute si 30 min se sont écoulées — résiste au gel des timers en veille.
+setInterval(() => {
+  if (Date.now() - lastCheck > CHECK_INTERVAL_MS) checkForNewData();
+}, 60 * 1000);
+
+// Filet de sécurité : onglet qui redevient visible après sommeil.
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible' && Date.now() - lastCheck > CHECK_INTERVAL_MS) {
+    checkForNewData();
+  }
+});
+
+// Réveil de l'ordinateur avec l'onglet déjà en avant-plan.
+window.addEventListener('focus', () => {
+  if (Date.now() - lastCheck > CHECK_INTERVAL_MS) checkForNewData();
+});
 
 // ── Contrôles ─────────────────────────────────────────────────────────────────
 document.querySelectorAll('.layer-btn').forEach(btn => {
