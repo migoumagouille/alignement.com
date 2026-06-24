@@ -63,7 +63,8 @@ async function loadVille(ville, idx) {
   }
 }
 
-const REFRESH_MS = 10 * 60 * 1000; // 10 minutes
+const REFRESH_MS     = 10 * 60 * 1000;      // 10 min → mise à jour données
+const HARD_RELOAD_MS =  2 * 60 * 60 * 1000; // 2 h   → rechargement complet (réveil de nuit)
 let lastRefresh = 0;
 
 async function refreshData() {
@@ -81,6 +82,13 @@ async function refreshData() {
     `Données à jour — ${now.toLocaleTimeString('fr-CA', {hour:'2-digit', minute:'2-digit'})} · prochaine mise à jour ${prochaine.toLocaleTimeString('fr-CA', {hour:'2-digit', minute:'2-digit'})}`;
 }
 
+// Décide entre rechargement complet (réveil prolongé) et simple mise à jour des données.
+function checkRefresh() {
+  const elapsed = Date.now() - lastRefresh;
+  if (elapsed > HARD_RELOAD_MS) { location.reload(); return; }
+  if (elapsed > REFRESH_MS)     { refreshData(); }
+}
+
 async function init() {
   const grid = document.getElementById('villesGrid');
   VILLES.forEach((ville, idx) => {
@@ -89,22 +97,16 @@ async function init() {
 
   await refreshData();
 
-  // Vérifie chaque minute si 10 min se sont écoulées — résiste au gel des timers en veille.
-  setInterval(() => {
-    if (Date.now() - lastRefresh > REFRESH_MS) refreshData();
-  }, 60 * 1000);
+  // Vérifie chaque minute — résiste au gel des timers en veille.
+  setInterval(checkRefresh, 60 * 1000);
 
-  // Filet de sécurité : tab qui redevient visible après sommeil.
+  // Onglet qui redevient visible après sommeil.
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible' && Date.now() - lastRefresh > REFRESH_MS) {
-      refreshData();
-    }
+    if (document.visibilityState === 'visible') checkRefresh();
   });
 
-  // Réveil de l'ordinateur avec l'onglet déjà en avant-plan.
-  window.addEventListener('focus', () => {
-    if (Date.now() - lastRefresh > REFRESH_MS) refreshData();
-  });
+  // Réveil avec l'onglet déjà en avant-plan.
+  window.addEventListener('focus', checkRefresh);
 }
 
 init();
