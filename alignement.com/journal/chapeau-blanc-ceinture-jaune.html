@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapeau blanc, ceinture jaune — Alignement.com</title>
+  <meta name="description" content="Après le faux courriel de l'ARC, une question : comment ai-je su? La réponse tient dans un mot longtemps inquiétant — hacker. Comment on se forme à penser comme les malfaiteurs pour mieux s'en défendre, comme on pratique les arts martiaux.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="fr_CA">
+  <meta property="og:url" content="https://alignement.com/journal/chapeau-blanc-ceinture-jaune.html">
+  <meta property="og:title" content="Chapeau blanc, ceinture jaune — Alignement.com">
+  <meta property="og:description" content="Se former à penser comme les malfaiteurs pour mieux s'en défendre. TryHackMe comme dojo, mille heures qui deviennent un réflexe — la cybersécurité comme art martial.">
+  <meta property="og:image" content="https://alignement.com/journal/images/chapeau-blanc-ceinture-jaune.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://alignement.com/journal/chapeau-blanc-ceinture-jaune.html">
+  <link rel="preload" href="/fonts/fonts-all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/fonts/fonts-all.css"></noscript>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Josefin Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,160,32,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(46,125,233,0.12);
+      border: 1px solid rgba(46,125,233,0.3);
+      color: #7cb9ff;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.12;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: rgba(232,238,248,0.65);
+      font-style: italic;
+      line-height: 1.7;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 30px 0;
+    }
+
+    .article-hero {
+      margin: 0 0 36px;
+      animation: fadeUp 0.6s ease both 0.05s;
+    }
+    .article-hero img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    .article-hero figcaption {
+      font-size: 0.8rem;
+      color: rgba(232,238,248,0.35);
+      letter-spacing: 0.5px;
+      margin-top: 10px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+    .article-body em { color: rgba(232,238,248,0.9); }
+
+    .article-body h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      margin: 44px 0 16px;
+    }
+
+    .ext-link {
+      color: #7cb9ff;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(124,185,255,0.4);
+      transition: all 0.2s;
+    }
+    .ext-link:hover { color: var(--white); border-color: var(--white); }
+
+    /* Citation */
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+
+    .highlight-box p {
+      font-family: 'Cormorant Garamond', serif;
+      color: rgba(232,238,248,0.75) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.35rem !important;
+      line-height: 1.65;
+    }
+
+    /* Carte profil TryHackMe */
+    .profil-box {
+      background: rgba(46,125,233,0.05);
+      border: 1px solid rgba(46,125,233,0.2);
+      border-radius: 14px;
+      padding: 26px 28px;
+      margin: 36px 0;
+      text-align: center;
+    }
+
+    .profil-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.6;
+      margin-bottom: 18px;
+    }
+
+    .profil-box img.badge {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 14px;
+    }
+
+    .profil-cert {
+      font-size: 0.9rem;
+      color: rgba(232,238,248,0.6);
+      line-height: 1.6;
+    }
+    .profil-cert strong { color: var(--white); }
+
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <article>
+
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="categorie-badge">Cybersécurité</span>
+        <time class="article-date" datetime="2026-07-24">24 juillet 2026</time>
+      </div>
+      <h1>Chapeau blanc, ceinture jaune</h1>
+      <p class="article-intro">
+        Le mois dernier, j'ai repéré un
+        <a href="/journal/hameconnage-arc.html" class="ext-link">faux courriel de l'ARC</a>
+        et je l'ai signalé. Mais une question m'est restée : comment ai-je su?
+        La réponse tient dans un mot que j'ai longtemps trouvé inquiétant — <em>hacker</em>.
+      </p>
+      <div class="header-line"></div>
+    </header>
+
+    <figure class="article-hero">
+      <img src="/journal/images/chapeau-blanc-ceinture-jaune.jpg" alt="Certificat TryHackMe — Introduction to Cyber Security, décerné à Gil Bourhis le 22 décembre 2023">
+      <figcaption>Mon certificat TryHackMe — <em>Introduction to Cyber Security</em>, décembre 2023.</figcaption>
+    </figure>
+
+    <div class="article-body">
+
+      <p>
+        Quand j'ai reconnu ce courriel frauduleux, ce n'était pas de la magie.
+        C'était un réflexe. Un petit quelque chose qui clochait — l'adresse, le ton,
+        l'urgence fabriquée. Mais ce réflexe, je ne l'ai pas eu à la naissance.
+        Il s'est construit. Et plus j'y pense, plus je me dis qu'on peut le construire
+        <strong>volontairement</strong>, comme on affûte n'importe quelle compétence.
+      </p>
+
+      <h2>Pour se défendre, il faut comprendre l'attaque</h2>
+
+      <p>
+        Il y a une vérité que le monde de la sécurité informatique répète sans arrêt :
+        <strong>on ne défend bien que ce qu'on sait attaquer.</strong> Le « white hat » —
+        le hacker éthique, chapeau blanc — n'est pas un saint qui ignore les méthodes des
+        malfaiteurs. C'est exactement le contraire. Il les connaît mieux qu'eux.
+        Il pense comme eux. La seule différence, c'est ce qu'il choisit d'en faire.
+      </p>
+
+      <p>
+        Ça m'a pris du temps à accepter cette idée. On grandit en pensant que le bien
+        et le mal utilisent des outils différents. En cybersécurité, c'est le même
+        marteau — c'est la main qui change.
+      </p>
+
+      <h2>Le dojo, pas le manuel</h2>
+
+      <p>
+        C'est là que l'analogie des arts martiaux devient utile. Personne n'apprend à
+        se défendre en lisant un livre sur les coups de poing. On enfile un kimono,
+        on entre dans un dojo, et on prend des coups — dans un cadre sûr, avec des règles,
+        un professeur, une progression par ceintures.
+      </p>
+
+      <p>
+        La cybersécurité, c'est pareil. On ne devient pas prudent en lisant des articles
+        alarmistes. On le devient en <em>pratiquant</em>. En se mettant, encadré et en
+        sécurité, dans la peau de celui qui attaque — pour enfin comprendre de l'intérieur
+        ce qu'on subissait de l'extérieur.
+      </p>
+
+      <h2>TryHackMe : mon tatami numérique</h2>
+
+      <p>
+        C'est précisément ce qu'offre une plateforme comme
+        <a href="https://tryhackme.com" class="ext-link" target="_blank" rel="noopener">TryHackMe</a>.
+        Un environnement contrôlé, légal, isolé du vrai monde, où l'on progresse
+        « salle » par salle (<em>rooms</em>), du débutant total jusqu'aux techniques avancées.
+        Des machines virtuelles jetables qu'on peut casser sans conséquence. Une progression
+        gamifiée qui ressemble, oui, à passer les ceintures.
+      </p>
+
+      <p>
+        On y apprend à reconnaître une faille, à comprendre comment un maliciel se propage,
+        à décortiquer une attaque — et même, en Python, à démonter la mécanique d'un bout de
+        code malveillant pour voir ce qui le fait tourner. Non pas pour le lâcher dans la
+        nature, mais pour ne plus jamais se faire prendre. Manipuler le danger en laboratoire,
+        comme un virologue étudie un pathogène derrière une vitre scellée. Le but n'est pas
+        de relâcher le virus. C'est d'apprendre à le voir venir.
+      </p>
+
+      <p>
+        Et si TryHackMe reste mon dojo de prédilection, il existe aussi des salles
+        d'entraînement ouvertes à tous, gratuites, où n'importe qui peut faire ses
+        premières armes. La plus célèbre :
+        <a href="https://overthewire.org" class="ext-link" target="_blank" rel="noopener">OverTheWire</a>
+        et son wargame <em>Bandit</em> — on y apprend la ligne de commande Linux, niveau
+        par niveau, en cherchant soi-même le mot de passe qui ouvre le suivant. Un tatami
+        public, sans inscription payante, parfait pour commencer.
+      </p>
+
+      <div class="highlight-box">
+        <p>
+          « On ne défend bien que ce qu'on sait attaquer. En cybersécurité,
+          c'est le même marteau — c'est la main qui change. »
+        </p>
+      </div>
+
+      <h2>La confiance, pas la paranoïa</h2>
+
+      <p>
+        Et c'est ça, au fond, le vrai gain. Pas de devenir méfiant au point de ne plus
+        rien oser. L'inverse. Le pratiquant d'arts martiaux ne marche pas dans la rue la
+        peur au ventre — il marche <em>calme</em>, parce qu'il sait. La cybersécurité procure
+        la même chose : à mesure qu'on comprend le terrain, la peur diffuse laisse place à
+        une assurance tranquille.
+      </p>
+
+      <h2>Ceinture jaune, et ça ne me quitte plus</h2>
+
+      <p>
+        Je ne suis plus tout à fait débutant. Pendant six mois, j'y ai consacré mes journées —
+        quarante heures par semaine, comme un métier. Et honnêtement, on n'a pas besoin d'en
+        faire autant pour changer sa façon de voir : quelques salles suffisent déjà à aiguiser
+        le regard. De mon côté, j'ai décroché mon certificat
+        <em>Introduction to Cyber Security</em>, empilé les salles complétées. Disons une
+        <strong>ceinture jaune</strong> : plus le premier jour au dojo, pas encore le maître.
+      </p>
+
+      <div class="profil-box">
+        <div class="profil-title">Mon parcours TryHackMe</div>
+        <img class="badge" src="/journal/images/chapeau-blanc-badge.jpg" alt="Badge TryHackMe — migoumagouille, niveau 0x5, série de 13 jours">
+        <div class="profil-cert">
+          Certificat <strong>Introduction to Cyber Security</strong> — décerné le 22 décembre 2023.
+        </div>
+      </div>
+
+      <p>
+        Aujourd'hui je ne pratique plus activement. Mais c'est là tout l'intérêt :
+        <strong>ça ne me quitte plus.</strong> Comme quelqu'un qui a fait des arts martiaux
+        pendant des années et qui, même sans remettre les pieds au dojo, garde la posture,
+        le réflexe, l'œil. Je ne « fais » plus de cybersécurité au quotidien — mais je pense
+        désormais comme quelqu'un qui en a fait. Et ça, ça ne se désapprend pas.
+      </p>
+
+      <p>
+        C'est ce que chaque salle m'a laissé : un internet un peu moins hostile, un peu plus
+        <em>lisible</em>. Le
+        <a href="/journal/hameconnage-arc.html" class="ext-link">faux courriel de l'ARC</a>,
+        la prochaine fois, je le verrai encore plus vite.
+      </p>
+
+      <p>
+        Chapeau blanc, ceinture jaune. On commence tous quelque part — et certaines choses,
+        une fois apprises, restent.
+      </p>
+
+    </div>
+
+  </article>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>

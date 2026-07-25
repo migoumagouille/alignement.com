@@ -183,6 +183,30 @@
     "categorie": "Société",
     "resume": "Un coup de fil de Donald Trump à Gianni Infantino, et la suspension de Folarin Balogun s'évapore. Du jamais vu depuis Garrincha en 1962. La planète foot peut-elle accepter ça?",
     "fichier": "/journal/balogun-trump-fifa.html"
+  },
+  {
+    "id": "un-pays-vert-a-la-television",
+    "titre": "Un pays vert... à la télévision",
+    "date": "2026-07-16",
+    "categorie": "Environnement",
+    "resume": "Tous les soirs, une annonce du gouvernement nous vend un Canada vert — hymne national et panneaux solaires. Pendant ce temps, Ottawa finance des pipelines et démantèle ses lois climatiques. Trois fois payé, de nos poches.",
+    "fichier": "/journal/un-pays-vert-a-la-television.html"
+  },
+  {
+    "id": "hameconnage-arc",
+    "titre": "Le faux remboursement de l'ARC",
+    "date": "2026-07-23",
+    "categorie": "Société",
+    "resume": "Un courriel m'annonce un remboursement d'impôt. Sauf que l'ARC n'envoie jamais ça. L'anatomie d'une arnaque décortiquée avec Claude — et où signaler l'hameçonnage au Canada, en quinze minutes.",
+    "fichier": "/journal/hameconnage-arc.html"
+  },
+  {
+    "id": "chapeau-blanc-ceinture-jaune",
+    "titre": "Chapeau blanc, ceinture jaune",
+    "date": "2026-07-24",
+    "categorie": "Cybersécurité",
+    "resume": "Après le faux courriel de l'ARC, une question : comment ai-je su? Se former à penser comme les malfaiteurs pour mieux s'en défendre — TryHackMe comme dojo, la cybersécurité comme art martial.",
+    "fichier": "/journal/chapeau-blanc-ceinture-jaune.html"
   }
 ]
 

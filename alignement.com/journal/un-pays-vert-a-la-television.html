@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Un pays vert... à la télévision — Alignement.com</title>
+  <meta name="description" content="Tous les soirs, une annonce du gouvernement du Canada nous vend un pays vert. Pendant ce temps, Ottawa finance des pipelines et démantèle ses lois climatiques. Le double jeu, payé de nos poches.">
+  <link rel="canonical" href="https://alignement.com/journal/un-pays-vert-a-la-television.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="fr_CA">
+  <meta property="og:url" content="https://alignement.com/journal/un-pays-vert-a-la-television.html">
+  <meta property="og:title" content="Un pays vert... à la télévision — Alignement.com">
+  <meta property="og:description" content="Tous les soirs, une annonce du gouvernement nous vend un Canada vert. Pendant ce temps, Ottawa finance des pipelines et démantèle ses lois climatiques. Le double jeu, payé de nos poches.">
+  <meta property="og:image" content="https://alignement.com/journal/images/annonce-canada-tele.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="/fonts/fonts-all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/fonts/fonts-all.css"></noscript>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,160,32,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(46,125,233,0.12);
+      border: 1px solid rgba(46,125,233,0.3);
+      color: #7cb9ff;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 30px 0;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-image {
+      margin: 0 0 32px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .article-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 40px 0 16px;
+    }
+
+    .ext-link {
+      color: #7cb9ff;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(124,185,255,0.4);
+      transition: all 0.2s;
+    }
+    .ext-link:hover { color: var(--white); border-color: var(--white); }
+
+    /* Citation */
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.1rem !important;
+      line-height: 1.75;
+    }
+
+    /* Les chiffres massues */
+    .bilan-box {
+      background: rgba(46,125,233,0.05);
+      border: 1px solid rgba(46,125,233,0.2);
+      border-radius: 14px;
+      padding: 28px 30px;
+      margin: 36px 0;
+    }
+
+    .bilan-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.6;
+      margin-bottom: 16px;
+    }
+
+    .bilan-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .bilan-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: rgba(232,238,248,0.65);
+      line-height: 1.5;
+    }
+
+    .bilan-check {
+      color: #7cb9ff;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <article>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">Environnement</span>
+      <time class="article-date" datetime="2026-07-16">16 juillet 2026</time>
+    </div>
+    <h1>Un pays vert... à la télévision</h1>
+    <p class="article-intro">
+      Tous les soirs, deux ou trois fois, la même annonce à la télévision.
+      Des panneaux solaires, des éoliennes, la petite musique de l'hymne national
+      et le logo du Canada. Pendant ce temps, à Ottawa, on finance des pipelines.
+      Et c'est nous qui payons les deux.
+    </p>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="article-body">
+
+    <figure class="article-image">
+      <img src="/journal/images/annonce-canada-tele.jpg" alt="Le mot-symbole Canada à la fin de l'annonce télévisée du gouvernement" loading="lazy">
+    </figure>
+
+    <h2>La belle annonce de 19 h</h2>
+
+    <p>
+      Vous l'avez sûrement vue. Elle passe tous les soirs, deux ou trois fois.
+      Des panneaux solaires qui brillent au soleil, des éoliennes majestueuses,
+      un barrage hydroélectrique, et la fameuse usine de captage de carbone
+      de l'Ouest canadien. En finale, les premières notes de l'hymne national
+      et le mot-symbole <strong>Canada</strong>. Le message : nous sommes un pays
+      qui investit dans un avenir plus vert.
+    </p>
+
+    <p>
+      C'est très beau. Il y a probablement un fond de vérité — nos barrages sont
+      bien réels, et ma batterie solaire au laboratoire aussi. Mais cette annonce
+      n'est pas là pour nous informer. <strong>Elle est là pour camoufler.</strong>
+    </p>
+
+    <h2>Pendant ce temps, à Ottawa</h2>
+
+    <p>
+      Pendant que la petite musique joue dans nos salons, le gouvernement du Canada
+      vient d'annoncer, aux côtés de l'Alberta, un nouveau pipeline d'un million
+      de barils par jour vers la côte ouest — environ 35 milliards de dollars,
+      financé en partie par des fonds publics. Le 2 juillet dernier, en pleine
+      vague de chaleur. Le premier ministre a même parlé d'une « météo biblique »
+      qui retardait son annonce. On ne l'invente pas.
+    </p>
+
+    <p>
+      Et ce n'est pas tout. L'entente Canada-Alberta prévoit la suspension du
+      Règlement sur l'électricité propre dans la province et l'annulation du
+      plafonnement des émissions du secteur pétrolier et gazier. Ça s'ajoute à
+      l'abolition de la taxe carbone pour les consommateurs et — tenez-vous bien —
+      à l'affaiblissement des dispositions législatives contre l'écoblanchiment.
+      <strong>On affaiblit la loi qui interdit de mentir en vert, en même temps
+      qu'on nous vend du vert à la télévision.</strong> Il faut le faire.
+    </p>
+
+    <div class="bilan-box">
+      <div class="bilan-title">Les chiffres qu'on ne met pas dans l'annonce</div>
+      <div class="bilan-items">
+        <div class="bilan-item"><span class="bilan-check">✦</span>Un nouveau pipeline d'un million de barils par jour, financé en partie par des fonds publics — environ 35 milliards $</div>
+        <div class="bilan-item"><span class="bilan-check">✦</span>L'Alberta vise 8 millions de barils par jour d'ici 2035 : près de 1,7 milliard de tonnes de GES par année, environ 22 fois les émissions du Québec</div>
+        <div class="bilan-item"><span class="bilan-check">✦</span>Plus de 80 % des émissions du pétrole viennent de sa combustion — le captage de carbone n'y change rien</div>
+        <div class="bilan-item"><span class="bilan-check">✦</span>Les projets de captage au Canada sont subventionnés par le public à hauteur de 50 à 85 %</div>
+        <div class="bilan-item"><span class="bilan-check">✦</span>Le Canada n'atteindra pas sa cible climatique de 2030, selon l'Institut climatique du Canada</div>
+      </div>
+    </div>
+
+    <h2>Le mirage du captage de carbone</h2>
+
+    <p>
+      Parlons-en, de cette usine de captage qu'on nous montre fièrement à la télé.
+      Ce sont les pétrolières qui portent ce projet — regroupées dans l'Alliance
+      des sables bitumineux. Sauf que le captage ne s'applique qu'à l'extraction.
+      Plus de 80 % des émissions du pétrole se produisent quand on le brûle,
+      dans nos moteurs et ailleurs. <strong>On ne peut pas capter ce qu'on envoie
+      dans l'atmosphère aux quatre coins du monde.</strong> Mais ça paraît bien
+      de le faire croire.
+    </p>
+
+    <p>
+      Le plus beau : ces projets de captage sont subventionnés par le public
+      à hauteur de 50 à 85 %. Alors quand on nous dit que « les pétrolières
+      investissent », c'est encore notre argent qui investit. Leur campagne
+      publicitaire a d'ailleurs fait l'objet d'une enquête du Bureau de la
+      concurrence pour déclarations trompeuses. Quand la loi anti-écoblanchiment
+      est entrée en vigueur, l'Alliance a effacé tout le contenu de son site web
+      et de ses réseaux sociaux. Du jour au lendemain. Si leurs affirmations
+      étaient vraies, pourquoi les effacer?
+    </p>
+
+    <div class="highlight-box">
+      <p>
+        « On paie la publicité qui nous dit que tout va bien, on paie les
+        subventions au captage de carbone, et on paie le pipeline.
+        Trois fois payé — pour se faire mentir. »
+      </p>
+    </div>
+
+    <h2>Pas en mon nom</h2>
+
+    <p>
+      Je ne suis pas contre l'économie. Mais on dirait qu'elle passe en premier,
+      sans remords pour l'environnement. Je ne suis pas certain que ce soit
+      l'opinion de tous les Canadiens — et ce n'est certainement pas la mienne.
+    </p>
+
+    <p>
+      Moi, ma transition énergétique, je l'ai faite dans mon laboratoire, avec
+      mes mains. Une batterie LiFePO4 assemblée pièce par pièce, des capteurs
+      solaires, et une maison qui a traversé <a href="/journal/nuit-du-verglas.html" class="ext-link">dix heures de panne pendant le verglas</a>
+      sans même s'en apercevoir. Ce n'est pas de la publicité, c'est du vécu.
+      Alors quand le gouvernement m'explique, à coups de millions en temps
+      d'antenne, que le pays s'en va dans la même direction que moi pendant
+      qu'il finance des pipelines — <strong>je ne marche pas.</strong>
+    </p>
+
+    <p>
+      Pour nous, les gens qui essayons de protéger notre planète un panneau
+      solaire à la fois, ce double jeu n'est pas acceptable. La prochaine fois
+      que la petite musique de l'hymne national jouera dans votre salon,
+      rappelez-vous : c'est vous qui payez l'orchestre.
+    </p>
+
+  </div>
+
+  </article>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>

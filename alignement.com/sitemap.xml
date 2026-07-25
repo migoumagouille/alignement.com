@@ -181,19 +181,19 @@
   </url>
   <url>
     <loc>https://alignement.com/journal/retraites-appauvrissement.html</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alignement.com/journal/retraites-chiffres.html</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alignement.com/journal/retraites-robert.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -242,6 +242,24 @@
   <url>
     <loc>https://alignement.com/journal/balogun-trump-fifa.html</loc>
     <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/un-pays-vert-a-la-television.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/hameconnage-arc.html</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/chapeau-blanc-ceinture-jaune.html</loc>
+    <lastmod>2026-07-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>

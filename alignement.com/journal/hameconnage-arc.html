@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le faux remboursement de l'ARC — Alignement.com</title>
+  <meta name="description" content="Un courriel m'annonce un remboursement d'impôt. Sauf que l'ARC n'envoie jamais ça. Comment j'ai décortiqué l'arnaque avec Claude, et où signaler l'hameçonnage au Canada — en 15 minutes.">
+  <link rel="canonical" href="https://alignement.com/journal/hameconnage-arc.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="fr_CA">
+  <meta property="og:url" content="https://alignement.com/journal/hameconnage-arc.html">
+  <meta property="og:title" content="Le faux remboursement de l'ARC — Alignement.com">
+  <meta property="og:description" content="Un courriel m'annonce un remboursement d'impôt. Sauf que l'ARC n'envoie jamais ça. L'anatomie d'une arnaque, et où la signaler — en 15 minutes.">
+  <meta property="og:image" content="https://alignement.com/journal/images/hameconnage-arc.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="/fonts/fonts-all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/fonts/fonts-all.css"></noscript>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Josefin Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,160,32,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(46,125,233,0.12);
+      border: 1px solid rgba(46,125,233,0.3);
+      color: #7cb9ff;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 30px 0;
+    }
+
+    .article-photo {
+      margin: 0 0 40px;
+    }
+
+    .article-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .article-photo figcaption {
+      font-size: 0.8rem;
+      color: rgba(232,238,248,0.35);
+      letter-spacing: 1px;
+      margin-top: 10px;
+      text-align: right;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin: 40px 0 16px;
+    }
+
+    .ext-link {
+      color: #7cb9ff;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(124,185,255,0.4);
+      transition: all 0.2s;
+    }
+    .ext-link:hover { color: var(--white); border-color: var(--white); }
+
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.1rem !important;
+      line-height: 1.75;
+    }
+
+    .indices-box {
+      background: rgba(46,125,233,0.05);
+      border: 1px solid rgba(46,125,233,0.2);
+      border-radius: 14px;
+      padding: 28px 30px;
+      margin: 36px 0;
+    }
+
+    .indices-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.6;
+      margin-bottom: 16px;
+    }
+
+    .indices-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .indices-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: rgba(232,238,248,0.65);
+      line-height: 1.5;
+    }
+
+    .indices-check {
+      color: var(--gold);
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .indices-item code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #7cb9ff;
+      background: rgba(46,125,233,0.1);
+      padding: 1px 6px;
+      border-radius: 4px;
+      word-break: break-all;
+    }
+
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <article>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">Société</span>
+      <time class="article-date" datetime="2026-07-23">23 juillet 2026</time>
+    </div>
+    <h1>Le faux remboursement de l'ARC</h1>
+    <p class="article-intro">
+      Mercredi soir, un courriel m'annonce que mon remboursement d'impôt est prêt.
+      Belle nouvelle — sauf que l'ARC n'envoie jamais ça. L'anatomie d'une arnaque,
+      décortiquée avec Claude, et où la signaler. Quinze minutes, pas plus.
+    </p>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="article-body">
+
+    <figure class="article-photo">
+      <img src="/journal/images/hameconnage-arc.jpg" alt="L'auteur devant son ordinateur, en train de décortiquer le courriel frauduleux" width="1200" height="630">
+      <figcaption>Sur le cas du faux remboursement — mercredi soir, au laboratoire.</figcaption>
+    </figure>
+
+    <p>
+      Le courriel est arrivé à 18 h 40, mercredi. Objet : « eStatement is available ».
+      Expéditeur : « Canada RA ». Déjà, ça part mal — chez nous, c'est l'ARC,
+      pas la « RA ». Le message, bilingue et bien tourné, m'annonce que
+      l'Agence du revenu du Canada a traité ma déclaration 2025 et qu'un
+      <strong>remboursement a été approuvé</strong>. Il suffit de cliquer sur un lien
+      pour consulter mon « Refund Disbursement Statement » et confirmer mes
+      informations de dépôt.
+    </p>
+
+    <p>
+      Bien sûr. Et le petit chaperon rouge n'a qu'à suivre le loup dans le bois.
+    </p>
+
+    <h2>L'anatomie de la bête</h2>
+
+    <p>
+      Plutôt que de supprimer le courriel, je l'ai passé à Claude, en-têtes complets.
+      C'est là que ça devient intéressant. Sous le vernis, la mécanique est grossière :
+    </p>
+
+    <div class="indices-box">
+      <div class="indices-title">Les indices qui trahissent l'arnaque</div>
+      <div class="indices-items">
+        <div class="indices-item"><span class="indices-check">✦</span><span>L'expéditeur : <code>teal-ticking-seabird.us.customerio.build</code> — un « oiseau de mer turquoise qui fait tic-tac ». L'ARC a des adresses en <code>cra-arc.gc.ca</code>, pas des noms d'oiseaux.</span></div>
+        <div class="indices-item"><span class="indices-check">✦</span><span>Le lien pointe vers <code>edocument-reader.es</code> — un domaine espagnol. Mon remboursement d'impôt canadien passe par Madrid, ben voyons.</span></div>
+        <div class="indices-item"><span class="indices-check">✦</span><span>La perle : le document exigerait un « High-Level Windows-Only Encryption ». Un chiffrement gouvernemental qui fonctionne juste sur Windows, ça n'existe pas. C'est pour vous faire télécharger un logiciel malveillant.</span></div>
+        <div class="indices-item"><span class="indices-check">✦</span><span>Le courriel est parti d'une plateforme de marketing commerciale (Customer.io via Mailgun) — pas des serveurs du gouvernement du Canada.</span></div>
+      </div>
+    </div>
+
+    <p>
+      Et la règle d'or, que l'ARC répète elle-même :
+      <strong>elle n'envoie jamais de courriel avec un lien</strong> vous demandant
+      des renseignements personnels ou financiers. Jamais. Quand vous avez du courrier,
+      elle vous avise, et vous allez le lire vous-même dans Mon dossier, en tapant
+      l'adresse dans votre navigateur.
+    </p>
+
+    <h2>Signaler, ça prend quinze minutes</h2>
+
+    <p>
+      Supprimer le courriel, c'est bien. Le signaler, c'est mieux — chaque signalement
+      aide à faire fermer ces comptes et protège le prochain sur la liste.
+      Petit détail savoureux : l'ancienne adresse de signalement de l'ARC
+      ne fonctionne plus. Mon premier envoi m'est revenu en pleine face.
+      Voici les canaux qui fonctionnent, en juillet 2026 :
+    </p>
+
+    <div class="indices-box">
+      <div class="indices-title">Où signaler un hameçonnage au Canada</div>
+      <div class="indices-items">
+        <div class="indices-item"><span class="indices-check">1.</span><span><strong>Centre de notification des pourriels</strong> — transférez le courriel frauduleux en pièce jointe à <code>spam@fightspam.gc.ca</code>. Les en-têtes complets sont préservés, et c'est ce que les enquêteurs veulent voir.</span></div>
+        <div class="indices-item"><span class="indices-check">2.</span><span><strong>Centre antifraude du Canada</strong> — formulaire en ligne à <a href="https://antifraudcentre-centreantifraude.ca" class="ext-link" target="_blank" rel="noopener">antifraudcentre-centreantifraude.ca</a> ou 1-888-495-8501. Essentiel si vous avez cliqué ou fourni des renseignements.</span></div>
+        <div class="indices-item"><span class="indices-check">3.</span><span><strong>La plateforme d'envoi</strong> — celle dont le fraudeur a abusé pour expédier son courriel. C'est le coup le plus efficace, et il mérite sa propre section.</span></div>
+      </div>
+    </div>
+
+    <h2>Frapper à la porte du serveur</h2>
+
+    <p>
+      Les gouvernements enquêtent, mais lentement. Pour couper l'herbe sous le pied
+      du fraudeur, il y a plus direct : <strong>avertir la compagnie dont il utilise
+      les serveurs</strong>. Notre pêcheur n'envoyait pas ses millions de courriels
+      de son sous-sol — il passait par Customer.io, une plateforme de marketing
+      américaine tout à fait légitime, relayée par Mailgun.
+    </p>
+
+    <p>
+      Et voici le plus beau : la plateforme signe ses envois. Dans les en-têtes
+      du courriel, une ligne indiquait noir sur blanc où dénoncer les abus :
+      <code style="font-family:monospace;font-size:0.9rem;color:#7cb9ff;background:rgba(46,125,233,0.1);padding:1px 6px;border-radius:4px;">X-Report-Abuse-To: badactor@customer.io</code>.
+      Juste à côté, les numéros d'identification internes du compte expéditeur.
+      Le fraudeur avait laissé sa carte d'affaires dans ses propres en-têtes.
+      Il suffisait de la lire.
+    </p>
+
+    <p>
+      Alors Claude m'a rédigé un courriel en anglais, sobre et technique :
+      la date, le faux avis de l'ARC, le lien piégé, et surtout les identifiants
+      internes du compte — de quoi permettre à leur équipe de le retrouver
+      en quelques secondes. Message original en pièce jointe, pour préserver
+      les en-têtes. Envoyé.
+    </p>
+
+    <div class="highlight-box">
+      <p>
+        « Cinq minutes plus tard : accusé de réception, billet #266388 ouvert.
+        Ces plateformes ne niaisent pas avec ça — leur réputation d'expéditeur
+        en dépend. Le compte du fraudeur ne fera pas long feu. »
+      </p>
+    </div>
+
+    <p>
+      C'est ça, la différence entre supprimer un pourriel et le signaler :
+      dans un cas, le fraudeur continue sa pêche. Dans l'autre, on lui coupe
+      la ligne, les hameçons, pis le moteur de la chaloupe.
+    </p>
+
+    <h2>Pourquoi je prends la peine</h2>
+
+    <p>
+      Moi, j'ai flairé l'arnaque en dix secondes. Mais je pense à Robert, mon retraité
+      de Longueuil qui vit avec 2 200 $ par mois. Un « remboursement approuvé »
+      de l'ARC, quand chaque dollar compte, c'est une carotte cruelle. Ces courriels
+      sont conçus pour les gens fatigués, pressés, ou qui espèrent une bonne nouvelle.
+      C'est de la pêche au filet : ils en envoient des millions, il suffit que
+      quelques-uns mordent.
+    </p>
+
+    <p>
+      Alors la prochaine fois qu'un courriel trop beau atterrit dans votre boîte :
+      ne cliquez pas, regardez l'adresse de l'expéditeur, et prenez quinze minutes
+      pour le signaler. Le fraudeur, lui, compte sur le fait que vous ne le ferez pas.
+    </p>
+
+    <h2>Épilogue — 24 heures plus tard</h2>
+
+    <p>
+      Le lendemain de mon signalement, réponse officielle de Customer.io —
+      et pas un accusé de réception automatique cette fois. Un technicien
+      de leur équipe m'écrit : <strong>le compte du fraudeur est fermé.</strong>
+      Mieux : en enquêtant, ils ont débusqué et fermé d'autres activités
+      liées à la même source, et leurs ingénieurs ont colmaté les brèches
+      qui avaient permis l'abus.
+    </p>
+
+    <div class="highlight-box">
+      <p>
+        « Reports from recipients like you are a genuine help », conclut le technicien.
+        Ce n'est pas juste un compte de fermé : c'est tout un filet de pêche
+        qui a été remonté. Quinze minutes de signalement. Ça vaut la peine.
+      </p>
+    </div>
+
+  </div>
+
+  </article>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>
