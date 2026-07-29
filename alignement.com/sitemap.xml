@@ -9,6 +9,14 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- À propos -->
+  <url>
+    <loc>https://alignement.com/apropos/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
   <!-- Contact -->
   <url>
     <loc>https://alignement.com/contact/</loc>
@@ -17,167 +25,138 @@
     <priority>0.4</priority>
   </url>
 
-  <!-- Liens -->
-  <url>
-    <loc>https://alignement.com/liens/</loc>
-    <lastmod>2026-03-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- Météo -->
-  <url>
-    <loc>https://alignement.com/meteo/conus/</loc>
-    <lastmod>2026-03-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://alignement.com/meteo/conus/tout.html</loc>
-    <lastmod>2026-03-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/meteo/conus/tout_vis.html</loc>
-    <lastmod>2026-03-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <!-- Projet Cuivre -->
-  <url>
-    <loc>https://alignement.com/cuivre/</loc>
-    <lastmod>2026-03-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Brousse — Marcel Bourhis -->
-  <url>
-    <loc>https://alignement.com/brousse/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/brousse/marcel.html</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/brousse/avions.html</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Linux -->
-  <url>
-    <loc>https://alignement.com/linux/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/linux/video.html</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/linux/photo.html</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/linux/son.html</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/linux/musique.html</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
   <!-- Journal -->
   <url>
     <loc>https://alignement.com/journal/</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://alignement.com/journal/le-precieux.html</loc>
-    <lastmod>2026-03-08</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/journal/restructuration.html</loc>
-    <lastmod>2026-03-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/journal/publier-avec-claude.html</loc>
-    <lastmod>2026-03-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/journal/hiver-2026.html</loc>
-    <lastmod>2026-03-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/journal/batterie-solaire.html</loc>
-    <lastmod>2026-03-07</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/journal/dimanche-debian.html</loc>
-    <lastmod>2026-03-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/journal/nuit-du-verglas.html</loc>
-    <lastmod>2026-03-12</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/journal/ia-et-le-temps.html</loc>
-    <lastmod>2026-03-14</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/journal/page-de-liens.html</loc>
-    <lastmod>2026-03-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/journal/deux-ia.html</loc>
-    <lastmod>2026-03-24</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://alignement.com/journal/a-qui-obeit-la-machine.html</loc>
+    <lastmod>2026-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alignement.com/journal/agrippa.html</loc>
     <lastmod>2026-03-25</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/balogun-trump-fifa.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/batterie-solaire.html</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/chapeau-blanc-ceinture-jaune.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/deux-ia.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/dimanche-debian.html</loc>
+    <lastmod>2026-03-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/enqueter-sur-les-fraudeurs.html</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/frontiere-de-la-nuit.html</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/hameconnage-arc.html</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/hiver-2026.html</loc>
+    <lastmod>2026-03-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/huit-plaques-vertes.html</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/ia-et-le-temps.html</loc>
+    <lastmod>2026-03-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/langue-une-generation.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/le-precieux.html</loc>
+    <lastmod>2026-03-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/noaa-meteo-canada.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/nuit-du-verglas.html</loc>
+    <lastmod>2026-03-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/page-de-liens.html</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/problematiques-resilience.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/publier-avec-claude.html</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/journal/restructuration.html</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alignement.com/journal/retraites-appauvrissement.html</loc>
@@ -198,69 +177,192 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://alignement.com/journal/noaa-meteo-canada.html</loc>
-    <lastmod>2026-05-04</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/journal/enqueter-sur-les-fraudeurs.html</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/journal/langue-une-generation.html</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/journal/a-qui-obeit-la-machine.html</loc>
-    <lastmod>2026-06-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/journal/problematiques-resilience.html</loc>
-    <lastmod>2026-06-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/journal/frontiere-de-la-nuit.html</loc>
-    <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/journal/huit-plaques-vertes.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://alignement.com/journal/balogun-trump-fifa.html</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://alignement.com/journal/un-pays-vert-a-la-television.html</loc>
     <lastmod>2026-07-16</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://alignement.com/journal/hameconnage-arc.html</loc>
-    <lastmod>2026-07-23</lastmod>
-    <changefreq>yearly</changefreq>
+    <loc>https://alignement.com/journal/une-semaine-prodigieuse.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Météo -->
+  <url>
+    <loc>https://alignement.com/meteo/animation/</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://alignement.com/journal/chapeau-blanc-ceinture-jaune.html</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>yearly</changefreq>
+    <loc>https://alignement.com/meteo/conus/</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://alignement.com/meteo/conus/observer.html</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/meteo/conus/observer_vis.html</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/meteo/conus/petit.html</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/meteo/conus/petit_vis.html</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/meteo/conus/tout.html</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/meteo/conus/tout_vis.html</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Cuivre -->
+  <url>
+    <loc>https://alignement.com/cuivre/</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Brousse -->
+  <url>
+    <loc>https://alignement.com/brousse/</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/brousse/avions.html</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/brousse/marcel.html</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Linux -->
+  <url>
+    <loc>https://alignement.com/linux/</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/linux/musique.html</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/linux/photo.html</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/linux/son.html</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/linux/video.html</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Savon -->
+  <url>
+    <loc>https://alignement.com/savon/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/savon/galerie.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Recettes -->
+  <url>
+    <loc>https://alignement.com/recettes/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/recettes/zen/</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/recettes/zen/gomasio.html</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/recettes/zen/kinpira.html</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/recettes/zen/nishime.html</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/recettes/zen/riz-brun.html</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alignement.com/recettes/zen/soupe-miso.html</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Liens -->
+  <url>
+    <loc>https://alignement.com/liens/</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
 </urlset>
