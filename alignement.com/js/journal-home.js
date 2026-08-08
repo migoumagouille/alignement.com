@@ -4,8 +4,9 @@ fetch('/journal/articles.json')
     const grid = document.getElementById('journalApercu');
     const mois = ['janvier','février','mars','avril','mai','juin',
                   'juillet','août','septembre','octobre','novembre','décembre'];
-    articles.slice().reverse().slice(0, 3).forEach((a, i) => {
-      const d = new Date(a.date);
+    articles.slice().reverse().slice(0, 9).forEach((a, i) => {
+      const [an, mo, jr] = a.date.split('-').map(Number);
+      const d = new Date(an, mo - 1, jr);
       const dateStr = `${d.getDate()} ${mois[d.getMonth()]} ${d.getFullYear()}`;
       const card = document.createElement('a');
       card.className = 'journal-card';
