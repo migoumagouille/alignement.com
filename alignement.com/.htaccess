@@ -1,15 +1,65 @@
 # =====================================================
 # Alignement.com — .htaccess Sécurité
 # =====================================================
-# ── Forcer HTTPS ───────────────────────────────────
+# ── Canonicalisation de l'adresse ──────────────────
+# Une seule adresse fait autorité : https://alignement.com
 RewriteEngine On
+
+# www.alignement.com → alignement.com (passe en HTTPS au passage)
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+# http → https
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # ── Pages d'erreur personnalisées ──────────────────
 ErrorDocument 403 /403.html
 ErrorDocument 404 /404.html
+ErrorDocument 410 /404.html
 ErrorDocument 503 /503.html
+
+# ── Anciennes URL : redirections 301 ───────────────
+# Corrige les 404 signalés par la Search Console (rapport
+# du 8 août 2026). L'ordre compte : le cas le plus précis
+# doit précéder le plus général.
+<IfModule mod_rewrite.c>
+  RewriteRule ^accueil/?$                   /                             [R=301,L]
+  RewriteRule ^index1\.html$                /                             [R=301,L]
+  RewriteRule ^nous-joindre/?$              /contact/                     [R=301,L]
+  RewriteRule ^liens-utiles/meteo/?$        /meteo/conus/                 [R=301,L]
+  RewriteRule ^liens-utiles/?$              /liens/                       [R=301,L]
+  RewriteRule ^meteo/meteo\.html$           /meteo/conus/                 [R=301,L]
+  RewriteRule ^meteo/conus/observer1\.html$ /meteo/conus/observer.html    [R=301,L]
+  RewriteRule ^brousse/test\.html$          /brousse/                     [R=301,L]
+
+  # Gabarits d'articles jamais substitués (liens internes du journal)
+  RewriteRule ^journal/URL_CATL$            /journal/batterie-solaire.html [R=301,L]
+  RewriteRule ^journal/URL_DALY$            /journal/batterie-solaire.html [R=301,L]
+  RewriteRule ^journal/URL_DEBIAN$          /journal/dimanche-debian.html  [R=301,L]
+</IfModule>
+
+# ── Anciennes URL : définitivement supprimées (410) ─
+# Vestiges de l'ancien site dynamique. Un 410 « Gone » sort
+# de l'index plus vite qu'un 404, qui laisse Google réessayer.
+<IfModule mod_rewrite.c>
+  RewriteRule ^services(/|$)      - [G,L]
+  RewriteRule ^espace-client(/|$) - [G,L]
+  RewriteRule ^partenaires(/|$)   - [G,L]
+  RewriteRule ^politique(/|$)     - [G,L]
+  RewriteRule ^astro(/|$)         - [G,L]
+  RewriteRule ^invite(/|$)        - [G,L]
+  RewriteRule ^Omnium(/|$)        - [G,L]
+  RewriteRule ^temp(/|$)          - [G,L]
+  RewriteRule ^cartes(/|$)        - [G,L]
+
+  # Ancienne galerie du site dynamique (toutes variantes,
+  # y compris ?page=N : le motif ne voit que le chemin)
+  RewriteRule ^gallery(/|$)       - [G,L]
+
+  # La voilerie aura son propre domaine
+  RewriteRule ^voilerie(/|$)      - [G,L]
+</IfModule>
 
 # ── En-têtes de sécurité HTTP ──────────────────────
 <IfModule mod_headers.c>
@@ -33,6 +83,32 @@ ErrorDocument 503 /503.html
 
   # Politique de sécurité du contenu
   Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://meteo.gc.ca https://img.youtube.com https://alignement.com https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org; frame-src 'self' https://www.youtube.com; connect-src 'self' https://api.open-meteo.com https://marine-api.open-meteo.com"
+</IfModule>
+
+# ── /aligneur/ : hors des moteurs de recherche ─────
+# Histoire privée destinée aux amis. Les pages restent
+# accessibles par lien direct, mais ne doivent jamais
+# apparaître dans les résultats de recherche.
+# Volontairement absent du sitemap — ce n'est pas un oubli.
+<IfModule mod_setenvif.c>
+  SetEnvIf Request_URI "^/?aligneur(/|$)" NOINDEX_PRIVE
+</IfModule>
+<IfModule mod_headers.c>
+  Header always set X-Robots-Tag "noindex, nofollow, noarchive" env=NOINDEX_PRIVE
+</IfModule>
+
+# ── Indexation : noindex ciblé ─────────────────────
+# Remplace les anciens « Disallow » du robots.txt. Un Disallow
+# empêchait Google de LIRE ces URL, donc de voir qu'il ne fallait
+# pas les indexer — il les indexait quand même, sans description.
+# L'en-tête ci-dessous, lui, les fait sortir de l'index.
+# Les médias de /cuivre/ restent volontairement indexables
+# (visibilité des pièces dans Google Images).
+<IfModule mod_headers.c>
+  # Script de traitement du formulaire de contact
+  <FilesMatch "^envoyer\.php$">
+    Header always set X-Robots-Tag "noindex, nofollow"
+  </FilesMatch>
 </IfModule>
 
 # ── Bloquer les robots malveillants ────────────────
