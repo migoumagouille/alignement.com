@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le legs des hippies — Alignement.com</title>
+  <meta name="description" content="1968, 16 ans, un premier joint et un 45 tours de Hendrix. De la Ferme Pural au Zen macrobiotique, ce que les hippies ont semé pousse encore en 2026.">
+  <link rel="canonical" href="https://alignement.com/journal/legs-des-hippies.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="fr_CA">
+  <meta property="og:url" content="https://alignement.com/journal/legs-des-hippies.html">
+  <meta property="og:title" content="Le legs des hippies — Alignement.com">
+  <meta property="og:description" content="1968, 16 ans, un premier joint et un 45 tours de Hendrix. De la Ferme Pural au Zen macrobiotique, ce que les hippies ont semé pousse encore en 2026.">
+  <meta property="og:image" content="https://alignement.com/journal/images/legs-des-hippies.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="/fonts/fonts-all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/fonts/fonts-all.css"></noscript>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Josefin Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,160,32,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 5px 12px 3px;
+      border-radius: 20px;
+      background: rgba(46,125,233,0.12);
+      border: 1px solid rgba(46,125,233,0.3);
+      color: #7cb9ff;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.3rem, 6vw, 3.6rem);
+      font-weight: 600;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.12;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.12rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 30px 0;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+    .article-body em { color: rgba(232,238,248,0.9); }
+
+    .article-body h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin: 44px 0 16px;
+    }
+
+    .ext-link {
+      color: #7cb9ff;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(124,185,255,0.4);
+      transition: all 0.2s;
+    }
+    .ext-link:hover { color: var(--white); border-color: var(--white); }
+
+    /* Photo d'article */
+    .article-photo {
+      margin: 32px 0;
+    }
+
+    .article-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .article-photo figcaption {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.35);
+      letter-spacing: 1px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* Citation */
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.1rem !important;
+      line-height: 1.75;
+    }
+
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .article-header, .article-body { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <article>
+
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="categorie-badge">Mémoires</span>
+        <time class="article-date" datetime="2026-07-30">30 juillet 2026</time>
+      </div>
+      <h1>Le legs des hippies</h1>
+      <p class="article-intro">
+        1968. Hendrix sur le tourne-disque, le <em>Zen macrobiotique</em> sur la table,
+        la famille sur le toit. Ce que les hippies ont semé — et qui pousse encore en 2026.
+      </p>
+      <div class="header-line"></div>
+    </header>
+
+    <div class="article-body">
+
+      <p>
+        En 1968, j'avais 16 ans. C'est cette année-là que j'ai fumé mon premier joint.
+        Ça a été <strong>le point tournant</strong> — et pas juste symboliquement :
+        j'ai continué à fumer longtemps, et aujourd'hui c'est légal.
+        Un autre legs des hippies, celui-là aussi. Mais avec le pot venait
+        tout un monde qui allait changer nos vies.
+      </p>
+
+      <h2>Un 45 tours pour commencer une révolution</h2>
+
+      <p>
+        Puis est arrivé Jimi Hendrix. Mon premier 45 tours :
+        <em>All Along the Watchtower</em> d'un côté,
+        <em>The Burning of the Midnight Lamp</em> de l'autre.
+        Je l'ai fait tourner jusqu'à user le sillon. Cette guitare-là ne ressemblait
+        à rien de ce qu'on avait entendu avant. <strong>Elle annonçait quelque chose.</strong>
+      </p>
+
+      <p>
+        Notre révolution commençait. Che Guevara venait de se faire assassiner en Bolivie.
+        La guerre du Vietnam n'allait plus du tout — les images arrivaient jusque dans
+        nos salons. En Californie, le mouvement hippie prenait naissance. Mais il ne faut
+        pas croire que ça se passait juste là-bas : <strong>au Québec aussi, ça brassait
+        fort.</strong> Toute la jeunesse se réveillait en même temps, et ça donnait
+        l'impression d'un mouvement mondial. C'en était un.
+      </p>
+
+      <h2>Retrouver ce que nos parents avaient perdu</h2>
+
+      <p>
+        Dans les années qui ont suivi, il s'est passé quelque chose de plus profond
+        que la musique et les cheveux longs : <strong>l'ouverture à la nature.</strong>
+        Celle que nos parents, happés par le progrès et le confort d'après-guerre,
+        avaient perdue en chemin.
+      </p>
+
+      <p>
+        On s'est remis à croire à l'agriculture biologique, à une nourriture saine,
+        à un retour à la terre. Puis Georges Ohsawa est apparu dans nos vies.
+        Son <em>Zen macrobiotique</em> est devenu notre livre de chevet.
+        On suivait ses principes scrupuleusement — le yin, le yang, l'équilibre
+        dans l'assiette. On était sérieux là-dedans, plus sérieux que bien
+        des adultes le pensaient.
+      </p>
+
+      <p>
+        J'ai encore mon exemplaire original — édition Vrin, Paris, 1969.
+        Plus de couverture, les pages jaunies, souillé d'huile de sésame.
+        C'est le sort des vrais livres de cuisine et de vie : ils portent
+        les traces de l'usage. <strong>Celui-là a nourri une génération.</strong>
+      </p>
+
+      <p>
+        Et le sésame, justement, n'a jamais quitté ma table. Le gomasio —
+        ce mélange de graines de sésame rôties et de sel de mer qu'Ohsawa
+        nous a fait découvrir — est là depuis les années 70.
+        <strong>Je n'en ai jamais manqué.</strong> Cinquante ans plus tard,
+        il trône encore à côté de mon assiette. S'il fallait une seule preuve
+        que le <em>Zen macrobiotique</em> n'était pas une mode passagère,
+        elle est là, dans ce petit pot.
+      </p>
+
+      <h2>La rue St-Hubert, notre monde au complet</h2>
+
+      <p>
+        Ç'a pas été long que tout le monde s'est retrouvé au magasin d'aliments
+        naturels — <em>La Ferme Pural</em>, sur la rue St-Hubert à Montréal.
+        On y achetait des céréales à grains entiers qu'on venait tout juste
+        de découvrir. Du riz brun, du sarrasin, du millet.
+        <strong>Des mots nouveaux dans nos bouches.</strong>
+      </p>
+
+      <p>
+        Curieusement, ça finissait quand même souvent chez Harvey's,
+        de l'autre côté de la rue. Faut croire que la révolution avait
+        aussi ses contradictions — et un appétit de 16 ans.
+      </p>
+
+      <p>
+        Sans oublier un petit tour chez <em>La Tosca</em>, à deux coins de rue
+        de là, pour les instruments de musique. Et le dojo de judo, au-dessus
+        de la taverne St-Hubert, où on finissait nos entraînements... en bas,
+        à la taverne. Je n'étais pas un jeune reposant, à 16 ans.
+        <strong>La rue St-Hubert, c'était notre monde au complet</strong> —
+        le corps, l'âme, le ventre et la soif, tout tenait dans quelques
+        coins de rue.
+      </p>
+
+      <h2>La famille</h2>
+
+      <figure class="article-photo">
+        <img src="/journal/images/legs-des-hippies.jpg" alt="Une dizaine de jeunes aux cheveux longs posant devant et sur le toit d'une maison à Laval, une moto rouge stationnée devant la galerie" width="1200" height="630">
+        <figcaption>La famille, en 1970</figcaption>
+      </figure>
+
+      <p>
+        Sur cette photo, c'est toute notre famille de l'époque. À l'époque,
+        on ne disait pas « commune » — <strong>on disait la famille.</strong>
+        On vivait ensemble, on partageait tout : le loyer, le riz brun,
+        la musique. La maison était à Laval. On s'éloignait tranquillement
+        du centre-ville — premier pas vers le retour à la terre.
+      </p>
+
+      <h2>Ce qu'on a semé entre 1968 et 1972</h2>
+
+      <p>
+        De 1968 à 1972, on a remis au goût du jour bien des principes qui sont
+        acquis aujourd'hui : <strong>la nourriture biologique, le retour des
+        céréales entières, le manger local.</strong> Tout ça était déjà énoncé
+        dans le <em>Zen macrobiotique</em> — qui reste, à mon avis, un livre
+        de référence incontournable.
+      </p>
+
+      <p>
+        En 2026, ces principes font partie intégrante de notre vie. On les trouve
+        dans toutes les épiceries, sur toutes les étiquettes, dans tous les discours.
+        Mais peu de gens se souviennent qu'ils ont fait leur retour à la fin
+        des années 60, portés par une gang de jeunes aux cheveux longs
+        qu'on prenait pour des rêveurs.
+      </p>
+
+      <div class="highlight-box">
+        <p>
+          « Ce n'est pas tous les baby-boomers qui étaient des hippies.
+          Loin de là. Mais les vrais le sont encore — et ils ont certainement
+          contribué à rendre le monde meilleur. »
+        </p>
+      </div>
+
+    </div>
+
+    <div class="article-footer">
+      <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+      <a href="/liens/" class="nav-article-link">Liens</a>
+      <a href="/apropos/" class="nav-article-link">À propos</a>
+      <a href="/index.html" class="nav-article-link">Accueil →</a>
+    </div>
+
+  </article>
+
+</div>
+</body>
+</html>
