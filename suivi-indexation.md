@@ -71,14 +71,16 @@ palier à 43 depuis le 24 juillet.
 
 ## Chantiers ouverts
 
-- **Le certificat SSL ne couvre pas `www.alignement.com`.** Le SAN
-  ne contient que `DNS:alignement.com`. Chaîne actuelle :
-  `http://www...` → 301 (fait par l'hébergeur, avant le
-  `.htaccess`) → `https://www...` → **erreur de certificat**.
-  La règle www → non-www du `.htaccess` est correcte et vérifiée,
-  mais personne ne l'atteint. Problème antérieur aux correctifs.
-  Correction côté panneau d'hébergement : ajouter `www` au
-  certificat, ou supprimer l'enregistrement DNS `www`.
+- ~~Le certificat SSL ne couvre pas `www.alignement.com`.~~
+  **Réglé le 8 août 2026.** L'hébergeur a fait réémettre le
+  certificat AlphaSSL avec les deux noms :
+  `DNS:www.alignement.com, DNS:alignement.com`, série
+  `177DBA99363E1BFEBC13FAA1`. Vérifié : `http://www...` aboutit
+  à `https://alignement.com/` en deux sauts, certificat validé,
+  et les règles 301/410 s'appliquent aussi via `www`.
+  **Attention à l'échéance** : le nouveau certificat expire le
+  **23 février 2027**, soit trois semaines plus tôt que celui
+  qu'il remplace (17 mars 2027).
 
 - **`/aligneur/` reste volontairement privé** — une histoire pour
   les amis. Ses 22 pages ne doivent PAS entrer au sitemap, et leur
