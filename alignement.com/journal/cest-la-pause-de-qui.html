@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C'est la pause de qui? — Alignement.com</title>
+  <meta name="description" content="J'aime notre télé québécoise — Bonsoir Bonsoir, les téléromans, le TJ. C'est pour ça que je veux qu'elle se repense. Réflexion constructive sur les pauses publicitaires, par un gars qui capte ses ondes avec une antenne sur le toit.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="fr_CA">
+  <meta property="og:url" content="https://alignement.com/journal/cest-la-pause-de-qui.html">
+  <meta property="og:title" content="C'est la pause de qui? — Alignement.com">
+  <meta property="og:description" content="J'aime notre télé québécoise. C'est pour ça que je veux qu'elle se repense. Réflexion constructive sur les pauses publicitaires, par un gars qui capte ses ondes avec une antenne sur le toit.">
+  <meta property="og:image" content="https://alignement.com/journal/images/pause-de-qui-antenne.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://alignement.com/journal/cest-la-pause-de-qui.html">
+  <link rel="stylesheet" href="/fonts/fonts-all.css">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --accent: #2e7de9;
+      --gold: #e8a020;
+      --light: #e8eef8;
+      --white: #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,160,32,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 5px 12px 3px;
+      border-radius: 20px;
+      background: rgba(46,125,233,0.12);
+      border: 1px solid rgba(46,125,233,0.3);
+      color: #7cb9ff;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      font-weight: 600;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.12;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(232,238,248,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 30px 0;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin: 40px 0 16px;
+    }
+
+    .article-photo {
+      margin: 32px 0;
+    }
+
+    .article-photo img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+
+    .article-photo figcaption {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.35);
+      letter-spacing: 1px;
+      margin-top: 10px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(232,238,248,0.7) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.1rem !important;
+      line-height: 1.75;
+    }
+
+    /* Pistes pour repenser */
+    .pistes-box {
+      background: rgba(46,125,233,0.05);
+      border: 1px solid rgba(46,125,233,0.2);
+      border-radius: 14px;
+      padding: 28px 30px;
+      margin: 36px 0;
+    }
+
+    .pistes-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.6;
+      margin-bottom: 16px;
+    }
+
+    .pistes-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .piste-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: rgba(232,238,248,0.65);
+      line-height: 1.5;
+    }
+
+    .piste-check {
+      color: #7cb9ff;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .article-header, .article-body { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <article>
+
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="categorie-badge">Société</span>
+        <time class="article-date" datetime="2026-08-18">18 août 2026</time>
+      </div>
+      <h1>C'est la pause de qui?</h1>
+      <p class="article-intro">
+        J'aime notre télé québécoise. Bonsoir Bonsoir, les téléromans, le TJ —
+        c'est justement parce que j'y tiens que je me pose la question :
+        quand on « s'en va à la pause », c'est la pause de qui, au juste?
+      </p>
+      <div class="header-line"></div>
+    </header>
+
+    <div class="article-body">
+
+      <p>
+        Sur mon toit, il y a une antenne. Elle capte la télé comme en 1965 —
+        les ondes tombent du ciel, gratuitement. Pas de câble, pas d'abonnement,
+        pas de facture. Et ce qu'elle m'apporte, cette antenne, j'y tiens :
+        <strong>notre télé à nous.</strong> Celle qui parle notre langue,
+        qui raconte nos histoires, qui nous rassemble le soir. Bonsoir Bonsoir
+        pour rire un peu, les téléromans pour se retrouver, le TJ pour savoir
+        où le monde s'en va. Le contenu est bon. Il l'a toujours été.
+      </p>
+
+      <figure class="article-photo">
+        <img src="/journal/images/pause-de-qui-antenne.jpg"
+             alt="Antenne de télévision UHF sur le toit d'une maison, ciel bleu"
+             width="1200" height="630" loading="lazy">
+        <figcaption>Mon antenne. Les ondes sont gratuites — et j'y tiens, à cette télé-là.</figcaption>
+      </figure>
+
+      <p>
+        Mais voilà : entre les émissions que j'aime, il y a les pauses.
+        Et c'est là que quelque chose s'est brisé — pas la télé,
+        juste sa façon de nous parler pendant qu'on l'écoute.
+      </p>
+
+      <h2>La vaisselle du bulletin de 22 heures</h2>
+
+      <p>
+        Avec les années, j'ai développé une technique. Première série d'annonces :
+        je fais couler l'eau la plus chaude possible dans l'évier. Deuxième série :
+        la vaisselle a assez trempé, je commence. Troisième série : je peux essuyer.
+        Quand l'émission finit, <strong>la vaisselle aussi.</strong> C'est rendu
+        un rythme de vie, presque une chorégraphie.
+      </p>
+
+      <p>
+        Le plus drôle? Même de dos, les mains dans l'eau, je les entends pareil.
+        Et je les connais tellement par cœur que je les revois dans ma tête,
+        sans écran. Il faut le faire : une annonce qui joue toute seule dans
+        la mémoire d'un gars qui essuie ses assiettes.
+      </p>
+
+      <h2>La septième fois</h2>
+
+      <p>
+        Parce que le problème, ce n'est pas la publicité — je comprends très bien
+        qu'elle finance ce que je regarde, et je suis prêt à faire ma part.
+        Le problème, c'est la répétition. La même annonce de char, sept fois
+        dans la même soirée. Pas sept annonces différentes — la même.
+        Ou le message politique payé avec nos fonds publics, répété une dixième
+        fois à quelqu'un dont l'idée est faite depuis longtemps. Aucun renouveau.
+      </p>
+
+      <p>
+        Et plus on revoit le même visage, plus la personne dans l'annonce devient
+        malgré elle désagréable. Elle n'a rien fait de mal, la pauvre — c'est sa
+        douzième apparition de la soirée qui joue contre elle. J'essaye toujours
+        de rester cool, mais des fois, c'est pas facile de retenir ses sacres.
+        Et ça, c'est dommage pour tout le monde : l'annonceur paye des fortunes
+        pour se faire aimer, et la répétition produit le contraire.
+      </p>
+
+      <div class="highlight-box">
+        <p>
+          « Je ne demande pas une télé sans publicité. Je demande une pause
+          qui ne me donne pas envie de quitter la pièce. »
+        </p>
+      </div>
+
+      <h2>Ils le savent déjà</h2>
+
+      <p>
+        La bonne nouvelle, c'est que les diffuseurs et les annonceurs le savent.
+        Regardez le soin mis dans le choix des visages : des femmes sympathiques
+        pour les automobiles, des gars de chantier pour les pick-up — chaque
+        détail est calculé pour adoucir la répétition. C'est la preuve qu'ils
+        comprennent le problème. Ils traitent juste le symptôme au lieu
+        de la cause : ce n'est pas le visage qu'il faut changer,
+        c'est la fréquence.
+      </p>
+
+      <h2>Des pistes, pas des reproches</h2>
+
+      <p>
+        Je ne suis pas un expert en publicité — juste un téléspectateur fidèle
+        depuis des décennies. Mais il me semble qu'il y a moyen de faire mieux,
+        sans réinventer la roue :
+      </p>
+
+      <div class="pistes-box">
+        <div class="pistes-title">Pour repenser la pause</div>
+        <div class="pistes-items">
+          <div class="piste-item"><span class="piste-check">✦</span>Limiter le nombre de passages d'une même annonce par soirée — deux fois, le message est passé</div>
+          <div class="piste-item"><span class="piste-check">✦</span>Varier les versions : les grandes campagnes d'autrefois déclinaient une idée en plusieurs annonces, et on s'en souvient encore</div>
+          <div class="piste-item"><span class="piste-check">✦</span>Miser sur la créativité d'ici — nos meilleures annonces québécoises sont entrées dans la culture populaire, la preuve que c'est possible</div>
+          <div class="piste-item"><span class="piste-check">✦</span>Raccourcir les pauses plutôt que les multiplier — une pause respectueuse retient mieux le spectateur qu'une pause remplie</div>
+        </div>
+      </div>
+
+      <p>
+        Rien là-dedans qui demande une révolution. Juste du respect pour
+        celui qui est de l'autre bord de l'écran — le même respect que les
+        émissions elles-mêmes nous témoignent déjà.
+      </p>
+
+      <h2>Parce qu'elle en vaut la peine</h2>
+
+      <p>
+        Notre télé a quelque chose que les grandes plateformes n'auront jamais :
+        elle nous ressemble. Elle est en direct quand il se passe quelque chose
+        — une tempête de verglas, une élection, une soirée d'humour. Elle nous
+        donne des références communes, des personnages qu'on connaît tous,
+        des conversations du lendemain matin. Ça, ça ne se remplace pas
+        par un algorithme.
+      </p>
+
+      <p>
+        C'est pour ça que je veux qu'elle se repense au lieu de s'effacer.
+        Le jour où la pause redeviendra un moment qu'on peut regarder sans
+        soupirer, je resterai peut-être au salon au lieu d'aller à l'évier.
+        En attendant, mon antenne capte toujours, je suis fidèle au poste —
+        <strong>et ma vaisselle n'a jamais été aussi propre.</strong>
+      </p>
+
+    </div>
+
+  </article>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>
