@@ -1,7 +1,8 @@
 function formatDate(dateStr) {
   const mois = ['janvier','février','mars','avril','mai','juin',
                 'juillet','août','septembre','octobre','novembre','décembre'];
-  const d = new Date(dateStr);
+  const [an, mo, jr] = dateStr.split('-').map(Number);
+  const d = new Date(an, mo - 1, jr);
   return `${d.getDate()} ${mois[d.getMonth()]} ${d.getFullYear()}`;
 }
 
