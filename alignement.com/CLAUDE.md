@@ -80,6 +80,14 @@ l'en-tête doit correspondre à la date du JSON et du sitemap.
 `articles.json` et les fichiers de `/js/` sont mis en cache : après le transfert,
 recharger de force (Ctrl+Maj+R) avant de conclure que ça n'a pas marché.
 
+### Brouillons
+
+Un article en cours d'écriture va dans `../brouillons/`, hors de la racine web :
+suivi par git donc sauvegardé, mais hors de portée du transfert FTPS. Ne pas
+l'ignorer par `.gitignore` — un brouillon ignoré n'est sauvegardé nulle part.
+Le publier, c'est le `git mv` vers `journal/` puis suivre les quatre étapes
+ci-dessus. Voir `../brouillons/LISEZMOI.md`.
+
 ## `/aligneur/` est privé
 
 Une histoire écrite pour des amis. Accessible par lien direct, mais **jamais**

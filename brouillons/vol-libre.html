@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La colline et le vent — Alignement.com</title>
+  <meta name="description" content="Pionnier du vol libre au Québec — ce que c'est que de décoller pour la première fois, et pourquoi certains n'atterrissent jamais vraiment.">
+  <link rel="canonical" href="https://alignement.com/journal/vol-libre.html">
+  <!-- Article non terminé : retirer cette ligne au moment de le publier. -->
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="fr_CA">
+  <meta property="og:url" content="https://alignement.com/journal/vol-libre.html">
+  <meta property="og:title" content="La colline et le vent — Alignement.com">
+  <meta property="og:description" content="Pionnier du vol libre au Québec — ce que c'est que de décoller pour la première fois, et pourquoi certains n'atterrissent jamais vraiment.">
+  <!-- <meta property="og:image" content="https://alignement.com/journal/images/vol-libre.jpg"> -->
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/fonts/fonts-all.css">
+  <style>
+    :root {
+      --navy:    #0a1628;
+      --accent:  #2e7de9;
+      --gold:    #e8a020;
+      --sky:     #7cb9ff;
+      --light:   #e8eef8;
+      --white:   #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --border:  rgba(46,125,233,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Crimson Pro', Georgia, serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46,125,233,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,233,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(124,185,255,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: 'JetBrains Mono', monospace;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(232,238,248,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(124,185,255,0.10);
+      border: 1px solid rgba(124,185,255,0.30);
+      color: var(--sky);
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(232,238,248,0.3);
+      letter-spacing: 1px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .article-header h1 {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--white) 30%, var(--sky));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.25rem;
+      color: rgba(232,238,248,0.65);
+      font-style: italic;
+      line-height: 1.7;
+      border-left: 3px solid var(--sky);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--sky), transparent);
+      margin: 30px 0;
+    }
+
+    /* Image héro */
+    .article-hero {
+      margin: 0 0 40px;
+      animation: fadeUp 0.6s ease both 0.05s;
+    }
+    .article-hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+    .article-hero figcaption {
+      font-size: 0.8rem;
+      color: rgba(232,238,248,0.35);
+      letter-spacing: 0.5px;
+      text-align: center;
+      margin-top: 10px;
+      font-style: italic;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Corps */
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.12rem;
+      line-height: 1.85;
+      color: rgba(232,238,248,0.8);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--sky);
+      margin: 48px 0 16px;
+    }
+
+    /* Citation encadrée */
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--sky);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+    .highlight-box p {
+      color: rgba(232,238,248,0.85) !important;
+      margin-bottom: 0 !important;
+      font-style: italic;
+      font-size: 1.35rem !important;
+      line-height: 1.6;
+    }
+
+    /* Encadré doré */
+    .bilan-box {
+      background: rgba(232,160,32,0.05);
+      border: 1px solid rgba(232,160,32,0.22);
+      border-radius: 14px;
+      padding: 28px 30px;
+      margin: 36px 0;
+    }
+    .bilan-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+    .bilan-box p { margin-bottom: 16px; }
+    .bilan-box p:last-child { margin-bottom: 0; }
+
+    /* Encadré bleu */
+    .info-box {
+      background: rgba(46,125,233,0.05);
+      border: 1px solid rgba(46,125,233,0.2);
+      border-radius: 14px;
+      padding: 28px 30px;
+      margin: 36px 0;
+    }
+    .info-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.7;
+      margin-bottom: 14px;
+    }
+
+    .ext-link {
+      color: var(--sky);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(124,185,255,0.4);
+      transition: all 0.2s;
+    }
+    .ext-link:hover { color: var(--white); border-color: var(--white); }
+
+    .article-footer {
+      border-top: 1px solid rgba(46,125,233,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(232,238,248,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      font-family: 'JetBrains Mono', monospace;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <article>
+
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="categorie-badge">Vol libre</span>
+        <!-- À CONFIRMER : la date de publication -->
+        <time class="article-date" datetime="2026-06-24">24 juin 2026</time>
+      </div>
+      <!-- À CONFIRMER : titre provisoire -->
+      <h1>La colline et le vent</h1>
+      <p class="article-intro">
+        Il y a des choses qu'on fait une fois et qui changent le sens du mot « sol ».
+        Le vol libre en est une. Depuis que j'ai décollé pour la première fois,
+        je ne regarde plus une colline de la même façon.
+      </p>
+      <div class="header-line"></div>
+    </header>
+
+    <!-- À CONFIRMER : image à fournir -->
+    <!--
+    <figure class="article-hero">
+      <img src="/journal/images/vol-libre.jpg" alt="…">
+      <figcaption>…</figcaption>
+    </figure>
+    -->
+
+    <div class="article-body">
+
+      <p>
+        <!-- À CONFIRMER : l'année, le lieu exact, le contexte de la première fois -->
+        C'était au début des années 1980. On était une poignée à avoir entendu parler
+        du deltaplane — ce sport venu de Californie qui commençait tout juste à
+        se pointer le nez au Québec. Pas de clubs organisés, pas d'école, pas de
+        manuel en français. On apprenait des Américains, on se passait des photocopies,
+        et on se retrouvait sur les collines à essayer de comprendre ce que le vent
+        voulait bien nous dire.
+      </p>
+
+      <p>
+        Ma première tentative, c'était une série de petits bonds au-dessus d'un
+        champ en pente douce. Rien de spectaculaire — deux mètres de haut, cinq
+        secondes en l'air. Mais ces cinq secondes ont suffi.
+        <strong>Le sol n'avait plus rien d'obligatoire.</strong>
+      </p>
+
+      <h2>Ce que c'est, le vol libre</h2>
+
+      <p>
+        Il faut distinguer deux choses que le grand public confond souvent.
+        Le <strong>deltaplane</strong> — une aile rigide triangulaire, faite de tubes
+        d'aluminium et de toile dacron, qu'on suspend sous ses épaules —
+        et le <strong>parapente</strong>, arrivé plus tard, à la fin des années 1980,
+        qui ressemble à un parachute rectangulaire qu'on pilote comme une aile.
+        Les deux font partie du vol libre. Les deux fonctionnent sans moteur,
+        sans batterie, sans carburant. Juste le vent, la pente, et la gravité
+        qu'on retourne contre elle-même.
+      </p>
+
+      <p>
+        Le principe est vieux comme les frères Wright, et même avant eux.
+        <!-- À CONFIRMER : Gil peut vouloir ajouter ses propres références historiques -->
+        Otto Lilienthal, un ingénieur allemand, volait en planeur dès les années 1890
+        et mourait pour ça en 1896. Ce qu'il cherchait à comprendre — comment une aile
+        courbe génère de la portance — c'est exactement ce qu'on utilise encore
+        aujourd'hui. La physique n'a pas changé. Ce qui a changé, c'est la légèreté
+        des matériaux et la solidité des harnais.
+      </p>
+
+      <h2>Le Québec, terrain de pionniers</h2>
+
+      <p>
+        <!-- À CONFIRMER : dates, associations, noms, sites spécifiques au Québec -->
+        Le vol libre est arrivé au Québec vers la fin des années 1970.
+        Les premières ailes qu'on voyait ici venaient des États-Unis —
+        des kits montés en garage, des appareils sans certification, des
+        vols qui se terminaient parfois à l'envers dans un champ de maïs.
+        La culture de l'époque, c'était : essaie, apprends de tes erreurs,
+        partage ce que tu as compris.
+      </p>
+
+      <p>
+        Les sites qu'on fréquentait,
+        <!-- À CONFIRMER : les vrais sites que Gil a pratiqués -->
+        c'étaient les collines des Laurentides, les escarpements de la Rive-Sud,
+        quelques buttes qu'on avait repérées à force de conduire en regardant les
+        pentes plutôt que la route. On regardait la carte topographique différemment
+        qu'avant. Chaque courbe de niveau devenait une question : est-ce que le vent
+        touche ça ? Est-ce que j'ai assez de dégagement pour décrocher ?
+      </p>
+
+      <div class="bilan-box">
+        <div class="bilan-title">Ce que « pionnier » veut dire</div>
+        <p>
+          <!-- À CONFIRMER : Gil peut adapter ce paragraphe à ce qu'il a réellement vécu -->
+          Être pionnier d'un sport, ce n'est pas nécessairement avoir été le premier.
+          C'est avoir fait partie de la génération qui a défriché le terrain —
+          au sens littéral, parfois — pendant qu'il n'y avait ni balisage officiel,
+          ni filet de sécurité institutionnel. Ceux qui ont établi les premières
+          règles de sécurité locales, formé les premiers pilotes, tracé les premiers
+          chemins de retour depuis les zones d'atterrissage. On ne le savait pas,
+          à l'époque. On faisait juste voler.
+        </p>
+      </div>
+
+      <h2>Ce que l'air enseigne</h2>
+
+      <p>
+        Voler sans moteur oblige à lire l'air. Ce n'est pas une métaphore —
+        c'est une compétence concrète, apprise à force d'erreurs et d'observations.
+        On apprend à voir les thermiques : ces colonnes d'air chaud qui montent
+        au-dessus d'un champ labouré, d'un stationnement, d'un versant exposé au soleil.
+        On apprend à reconnaître les rotors — les tourbillons violents qui se forment
+        sous le vent d'une crête — et à les éviter.
+      </p>
+
+      <p>
+        Le vent, on finit par le <em>sentir</em> avant de le voir.
+        L'odeur de l'herbe coupée qui monte. La façon dont un bouleau frémit
+        différemment d'un sapin. La qualité particulière du silence avant une
+        rafale. Un pilote expérimenté lit ces signes-là sans y penser,
+        comme un marin lit la mer. <strong>C'est une forme d'intelligence
+        du corps qu'on ne peut pas acquérir autrement qu'en étant dehors,
+        à écouter.</strong>
+      </p>
+
+      <div class="highlight-box">
+        <p>
+          « L'air n'est pas vide. Il est structuré, animé, plein d'intentions.
+          Il faut juste apprendre à le lire. »
+        </p>
+      </div>
+
+      <h2>La voilerie, prolongement naturel</h2>
+
+      <p>
+        Il n'est pas surprenant que j'aie fini par ouvrir une voilerie.
+        <!-- À CONFIRMER : le lien entre le vol libre et la création de la voilerie Air Terre Mer -->
+        Une aile de deltaplane, c'est une voile. Pas exactement la même toile
+        qu'une grand-voile de voilier, mais les mêmes principes : tension, cambrure,
+        portance. Quelqu'un qui comprend pourquoi une aile de deltaplane se déforme
+        dans une rafale comprend aussi pourquoi un spi craque s'il est mal coupé.
+        La toile, ça se parle. Et quand on a passé des années à dépendre d'une
+        voile pour ne pas tomber, on développe une relation particulière
+        avec ce matériau.
+      </p>
+
+      <p>
+        La Voilerie Air Terre Mer — le nom n'est pas innocent.
+        Trois milieux, trois façons de se déplacer, une seule toile pour
+        les traverser. L'air est en premier dans le nom parce qu'il
+        est arrivé en premier dans ma vie.
+      </p>
+
+      <h2>Pourquoi j'en parle maintenant</h2>
+
+      <p>
+        Parce que ce sujet-là n'existe nulle part sur ce site.
+        J'ai écrit sur la batterie solaire, sur Debian, sur l'auto électrique,
+        sur les retraités qui s'appauvrissent. Mais sur le vol libre — rien.
+        Comme si cette partie de ma vie était tellement évidente pour moi
+        qu'elle n'avait pas besoin d'être nommée.
+      </p>
+
+      <p>
+        Or, le vol libre a tout changé dans ma façon d'habiter le monde.
+        Il a changé la façon dont je lis le ciel, dont je regarde les cartes,
+        dont je comprends la météo. C'est pourquoi la page météo d'Alignement.com
+        existe — pas parce que je suis un enthousiate de la climatologie,
+        mais parce que je suis quelqu'un qui a eu, pendant des années,
+        besoin de savoir exactement d'où venait le vent
+        <strong>avant de courir vers le bord d'une colline.</strong>
+      </p>
+
+      <div class="highlight-box">
+        <p>
+          « Je ne regarde pas la météo parce que j'ai froid.
+          Je la regarde parce que j'ai volé. »
+        </p>
+      </div>
+
+    </div>
+
+  </article>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>
