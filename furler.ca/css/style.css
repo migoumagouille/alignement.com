@@ -1,0 +1,161 @@
+/* ============================================================
+   furler.ca — feuille de style unique
+   Palette relevee sur le theme « darkblue » d'origine :
+     #323c57  marine (banniere, pied de page)
+     #7590df  bleu clair (anneau du logo)
+     #97b1fb  bleu du titre du site
+     #9aa8d1  lavande du slogan
+     #697491  fond des onglets du menu   (#9aa1b8 filet du haut)
+     #1c2232  marine profond des titres
+     #566aa8  intertitres de la barre laterale
+     #ced2db  filet gris sous les titres
+     #74c768  vert des puces de la barre laterale
+   ============================================================ */
+
+:root{
+  --marine:#323c57; --anneau:#7590df; --titre-site:#97b1fb; --slogan:#9aa8d1;
+  --menu:#697491; --menu-haut:#9aa1b8; --encre:#1c2232; --inter:#566aa8;
+  --filet:#ced2db; --puce:#74c768; --lien:#20273a;
+  --large:1001px; --colonne:950px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0; background:#fff; color:#000;
+  font:16px/1.65 Georgia,"Times New Roman",serif;
+}
+img{max-width:100%;height:auto}
+a{color:var(--lien)}
+
+/* ---------- banniere ---------- */
+.banniere{
+  background:var(--marine); color:var(--slogan);
+  padding:26px 20px;
+}
+.banniere-i{
+  max-width:var(--large); margin:0 auto;
+  display:flex; align-items:center; gap:28px; flex-wrap:wrap;
+}
+.marque{flex:0 0 auto; line-height:0}
+.marque svg,.marque img{width:132px;height:132px;display:block}
+.identite{flex:1 1 300px; min-width:0}
+.titre-site{margin:0;font:normal 30px/1.2 Arial,Helvetica,sans-serif}
+.titre-site a{color:var(--titre-site);text-decoration:none}
+.slogan{margin:10px 0 0;font:20px/1.35 Tahoma,Verdana,sans-serif;color:var(--slogan)}
+.coord{
+  flex:0 0 auto; font:normal 15px/1.5 Tahoma,Verdana,sans-serif;
+  color:var(--titre-site); font-style:normal;
+}
+.coord a{color:var(--titre-site);text-decoration:none}
+.coord .tel{display:inline-block;margin-top:4px;font-size:19px;font-weight:bold}
+.coord a:hover,.titre-site a:hover{text-decoration:underline}
+
+/* ---------- menu ---------- */
+.menu{background:var(--marine)}
+.menu ul{
+  max-width:var(--large); margin:0 auto; padding:0 20px;
+  list-style:none; display:flex; flex-wrap:wrap; gap:1px;
+}
+.menu a{
+  display:block; padding:10px 17px;
+  background:var(--menu); border-top:1px solid var(--menu-haut);
+  color:#fefefe; text-decoration:none; text-transform:uppercase;
+  font:bold 13px/1.2 Tahoma,Verdana,sans-serif;
+}
+.menu a:hover,.menu a[aria-current="page"]{background:var(--encre)}
+
+/* ---------- corps ---------- */
+.milieu{
+  max-width:var(--colonne); margin:0 auto; padding:30px 20px 50px;
+  display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap;
+}
+.contenu{flex:1 1 520px; min-width:0}
+.barre{flex:0 0 200px}
+
+.contenu h1{
+  margin:0 0 4px; font:normal 30px/1.2 Georgia,serif; color:var(--encre);
+}
+.chapeau{
+  margin:0 0 22px; padding-bottom:16px; border-bottom:1px solid var(--filet);
+  font:italic 19px/1.45 Georgia,serif; color:var(--inter);
+}
+.contenu h2{margin:30px 0 10px;font:normal 22px/1.3 Georgia,serif;color:var(--encre)}
+.contenu p{margin:0 0 14px}
+.contenu figure{float:right;width:180px;margin:4px 0 18px 26px}
+.contenu figure img{border:1px solid var(--filet)}
+.contenu figcaption{
+  margin-top:8px;font:12px/1.4 Tahoma,Verdana,sans-serif;color:var(--inter);
+}
+.atouts{margin:0 0 22px;padding:0;list-style:none}
+.atouts li{position:relative;padding:0 0 8px 26px}
+.atouts li::before{
+  content:"";position:absolute;left:2px;top:.55em;
+  border:6px solid transparent;border-left:9px solid var(--puce);
+}
+.appel{
+  margin:26px 0 0;padding:16px 20px;background:#f6f6f6;
+  border-left:5px solid var(--menu);
+  font:italic 19px/1.4 Georgia,serif;color:var(--encre);
+}
+.appel .tel{font-style:normal;font-weight:bold;white-space:nowrap}
+
+/* ---------- barre laterale ---------- */
+.barre h2{
+  margin:0 0 8px; font:bold 11px/1.3 Tahoma,Verdana,sans-serif;
+  color:var(--inter); text-transform:uppercase; letter-spacing:.06em;
+}
+.barre section{margin-bottom:26px}
+.barre ul{margin:0;padding:0;list-style:none;font:bold 11px/1.5 Tahoma,Verdana,sans-serif}
+.barre li{position:relative;padding:0 0 6px 21px}
+.barre li::before{
+  content:"";position:absolute;left:0;top:.45em;
+  border:4px solid transparent;border-left:6px solid var(--puce);
+}
+.barre a{color:var(--lien);text-decoration:none}
+.barre a:hover{text-decoration:underline}
+.bloc-tel{
+  background:var(--marine);color:#fff;padding:14px 16px;
+  font:14px/1.5 Tahoma,Verdana,sans-serif;
+}
+.bloc-tel a{color:var(--titre-site);text-decoration:none;display:block}
+.bloc-tel .tel{font-size:20px;font-weight:bold;margin:4px 0 8px}
+.langue a{
+  display:inline-block;padding:7px 14px;background:var(--menu);
+  border-top:1px solid var(--menu-haut);color:#fff;text-decoration:none;
+  font:bold 12px/1.2 Tahoma,Verdana,sans-serif;
+}
+.partenaires li{padding-left:0}
+.partenaires li::before{display:none}
+.partenaires img{margin-bottom:10px}
+
+/* ---------- pied de page ---------- */
+.pied{background:var(--marine);color:#fff;padding:24px 20px}
+.pied-i{
+  max-width:var(--large);margin:0 auto;
+  display:flex;align-items:center;gap:26px;flex-wrap:wrap;
+}
+.pied img{flex:0 0 auto;width:110px;height:auto}
+.mot{flex:1 1 300px;margin:0;font:italic 21px/1.5 Georgia,serif}
+.mot .signature{display:block;margin-top:10px;text-align:right;font-size:18px}
+.mentions{
+  max-width:var(--large);margin:22px auto 0;padding-top:14px;
+  border-top:1px solid #4a5573;
+  font:12px/1.5 Tahoma,Verdana,sans-serif;color:var(--slogan);
+}
+.mentions a{color:var(--titre-site)}
+
+/* ---------- telephone ---------- */
+@media (max-width:760px){
+  .banniere-i{gap:18px}
+  .marque svg,.marque img{width:92px;height:92px}
+  .titre-site{font-size:24px}
+  .slogan{font-size:17px}
+  .coord{flex:1 1 100%}
+  .menu ul{gap:1px}
+  .menu a{flex:1 1 auto;text-align:center;padding:11px 12px}
+  .milieu{gap:28px;padding-top:22px}
+  .barre{flex:1 1 100%}
+  .contenu h1{font-size:25px}
+  .chapeau{font-size:17px}
+  .contenu figure{float:none;width:auto;max-width:220px;margin:0 0 20px}
+}
