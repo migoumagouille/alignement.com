@@ -18,9 +18,16 @@ const map = L.map('map', {
   zoomControl: true,
 });
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-  attribution: '© OpenStreetMap © CARTO',
-  subdomains: 'abcd',
+// Esri Dark Gray Canvas — sans clé API. CARTO filigrane désormais ses tuiles
+// gratuites (« API KEY REQUIRED » en travers de chaque tuile).
+const ESRI = 'https://services.arcgisonline.com/ArcGIS/rest/services/Canvas';
+
+L.tileLayer(ESRI + '/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+  attribution: '© Esri © OpenStreetMap',
+  maxZoom: 10,
+}).addTo(map);
+
+L.tileLayer(ESRI + '/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
   maxZoom: 10,
 }).addTo(map);
 
