@@ -223,6 +223,14 @@
     "categorie": "Société",
     "resume": "« On s'en va à la pause. » La même annonce de char pour la 7e fois de la soirée. La télé traditionnelle est devenue le meilleur moment pour faire la vaisselle — et c'est ça, son vrai problème.",
     "fichier": "/journal/cest-la-pause-de-qui.html"
+  },
+  {
+    "id": "gomasio",
+    "titre": "Comment je fais mon gomasio depuis 1970",
+    "date": "2026-09-13",
+    "categorie": "Mémoires",
+    "resume": "Découvert en 1970 dans Le Zen macrobiotique de George Ohsawa, le gomasio n'a jamais quitté ma table. La recette, le geste, et une transmission qui a sauté une génération.",
+    "fichier": "/journal/gomasio.html"
   }
 ]
 

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comment je fais mon gomasio depuis 1970 — Alignement.com</title>
+  <meta name="description" content="Découvert en 1970 dans Le Zen macrobiotique de George Ohsawa, le gomasio n'a jamais quitté ma table. La recette, le geste, et une transmission qui a sauté une génération.">
+  <link rel="canonical" href="https://alignement.com/journal/gomasio.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="fr_CA">
+  <meta property="og:url" content="https://alignement.com/journal/gomasio.html">
+  <meta property="og:title" content="Comment je fais mon gomasio depuis 1970 — Alignement.com">
+  <meta property="og:description" content="Découvert en 1970 dans Le Zen macrobiotique de George Ohsawa, le gomasio n'a jamais quitté ma table. La recette, le geste, et une transmission qui a sauté une génération.">
+  <meta property="og:image" content="https://alignement.com/journal/images/gomasio-og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/fonts/fonts-all.css">
+  <style>
+    :root {
+      --navy: #3c2a18;
+      --accent: #c1662f;
+      --gold: #d9a441;
+      --light: #f2e8da;
+      --white: #ffffff;
+      --card-bg: rgba(255,244,230,0.04);
+      --border: rgba(193,102,47,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(193,102,47,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(193,102,47,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(217,164,65,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      padding: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(242,232,218,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; }
+    .sep { color: rgba(242,232,218,0.15); }
+
+    .article-header {
+      padding: 50px 0 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .categorie-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(193,102,47,0.12);
+      border: 1px solid rgba(193,102,47,0.3);
+      color: #e8b871;
+    }
+
+    .article-date {
+      font-size: 0.82rem;
+      color: rgba(242,232,218,0.3);
+      letter-spacing: 1px;
+    }
+
+    .article-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .article-intro {
+      font-size: 1.15rem;
+      color: rgba(242,232,218,0.6);
+      font-style: italic;
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 30px 0;
+    }
+
+    .article-body {
+      animation: fadeUp 0.6s ease both 0.1s;
+      padding-bottom: 60px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(242,232,218,0.78);
+      margin-bottom: 24px;
+    }
+
+    .article-body p strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 40px 0 16px;
+    }
+
+    /* Photos d'article */
+    .article-figure {
+      margin: 28px 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+    }
+
+    .article-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .article-figure figcaption {
+      padding: 12px 18px;
+      font-size: 0.85rem;
+      color: rgba(242,232,218,0.4);
+      letter-spacing: 0.5px;
+      font-style: italic;
+    }
+
+    /* Encadré recette */
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+
+    .highlight-box p {
+      color: rgba(242,232,218,0.7) !important;
+      margin-bottom: 0 !important;
+      font-size: 1rem !important;
+      line-height: 1.7;
+    }
+
+    .highlight-box strong { color: var(--gold) !important; }
+
+    /* Vidéo */
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin: 28px 0;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .article-footer {
+      border-top: 1px solid rgba(193,102,47,0.15);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(242,232,218,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-article-link:hover { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/index.html" class="back-link">Alignement.com</a>
+    <span class="sep">/</span>
+    <a href="/journal/" class="back-link" style="font-size:0.8rem;">Journal</a>
+  </nav>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="categorie-badge">Mémoires</span>
+      <time class="article-date" datetime="2026-09-13">13 septembre 2026</time>
+    </div>
+    <h1>Comment je fais mon gomasio depuis 1970</h1>
+    <p class="article-intro">
+      Depuis 1970, il y a toujours eu du gomasio sur ma table. Je l'ai découvert
+      dans un livre, à une époque où tout se lisait autrement. Cinquante ans plus
+      tard, le geste n'a pas changé — et il a même sauté une génération.
+    </p>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="article-body">
+
+    <h2>Origine du mot et du condiment</h2>
+    <p>
+      Le gomasio (胡麻塩, <em>goma</em> = sésame, <em>shio</em> = sel) est un condiment
+      japonais traditionnel, utilisé depuis des siècles, composé d'environ 90 % de
+      graines de sésame torréfiées et 10 % de sel de mer — un condiment japonais au
+      sésame qui remplace le sel.
+    </p>
+
+    <h2>Le lien avec Ohsawa</h2>
+    <p>
+      Le gomasio a été introduit en France par George Ohsawa, maître macrobiote, et
+      la graine de sésame qui le compose facilite l'absorption des minéraux du sel.
+      Il doit une grande partie de sa popularité au mouvement de la cuisine
+      macrobiotique japonaise, popularisé au XXe siècle par George Ohsawa
+      (1893-1966), où il remplace le sel de table classique sur les bols de riz et
+      légumes.
+    </p>
+
+    <h2>La recette, telle que je la fais depuis toujours</h2>
+    <p>
+      Le gomasio se prépare avec très peu de choses : du sésame, du sel, un
+      suribachi. Chez moi, ça n'a jamais changé. La proportion de base :
+      <strong>quatre parts de sésame pour une part de sel</strong>, à ajuster
+      légèrement selon le goût.
+    </p>
+
+    <figure class="article-figure">
+      <img src="/journal/images/gomasio-ingredients_outils.jpg" alt="Les outils traditionnels du gomasio : suribachi, pilon de bois, sésame et sel" loading="lazy">
+      <figcaption>Les outils sont toujours les mêmes — le suribachi, son pilon de bois, un peu de sésame, un peu de sel.</figcaption>
+    </figure>
+
+    <p>
+      On commence par griller le sésame à sec, à feu moyen, en remuant sans arrêt
+      jusqu'à ce qu'il prenne une teinte dorée.
+    </p>
+
+    <figure class="article-figure">
+      <img src="/journal/images/gomasio-grillage_sesame.jpg" alt="Torréfaction du sésame à la poêle" loading="lazy">
+      <figcaption>La torréfaction du sésame — l'étape qui réveille l'huile et le parfum de noisette.</figcaption>
+    </figure>
+
+    <p>
+      Le sel aussi se fait griller, quelques minutes, à part. C'est un détail que
+      peu de recettes mentionnent aujourd'hui, mais que j'ai toujours fait ainsi.
+    </p>
+
+    <figure class="article-figure">
+      <img src="/journal/images/gomasio-grillage_sel.jpg" alt="Torréfaction du sel à la poêle" loading="lazy">
+      <figcaption>Le sel, grillé lui aussi — une étape qu'on oublie souvent.</figcaption>
+    </figure>
+
+    <p>
+      Vient ensuite le broyage, au suribachi, à la main, jusqu'à ce que le sésame
+      relâche son huile et enrobe le sel.
+    </p>
+
+    <figure class="article-figure">
+      <img src="/journal/images/gomasio-resultat.jpg" alt="Broyage du gomasio au suribachi" loading="lazy">
+      <figcaption>Le broyage — la texture doit rester grossière, jamais réduite en pâte.</figcaption>
+    </figure>
+
+    <figure class="article-figure">
+      <img src="/journal/images/gomasio-suribachi.jpg" alt="Le suribachi vide, pilon posé" loading="lazy">
+      <figcaption>Le suribachi, vide, pilon posé — l'outil qui n'a pas changé en cinquante ans.</figcaption>
+    </figure>
+
+    <p>
+      Le résultat : un condiment simple, qui remplace le sel sur à peu près tout.
+    </p>
+
+    <h2>Une transmission sans un mot</h2>
+    <p>
+      J'ai découvert le gomasio en 1970, dans les pages du <em>Zen macrobiotique</em>.
+      Trente ans plus tard, sans que je lui aie vraiment montré, c'est ma fille —
+      elle avait seize ans — qui le préparait devant la caméra, exactement de la
+      même façon. Le geste avait traversé une génération sans qu'on en parle.
+      Aujourd'hui elle en a quarante, et il y a encore du gomasio sur ma table.
+    </p>
+
+    <figure class="article-figure">
+      <img src="/journal/images/gomasio-broyage.jpg" alt="Ma fille, seize ans, préparant le gomasio" loading="lazy">
+      <figcaption>Ma fille, seize ans, devant la caméra — le même geste, une génération plus tard.</figcaption>
+    </figure>
+
+    <h2>La vidéo</h2>
+    <p>
+      La préparation, en images.
+    </p>
+
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/_JQgRiMeWv8" title="Comment je fais mon gomasio depuis 1970" allowfullscreen></iframe>
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <a href="/journal/" class="nav-article-link">← Tous les articles</a>
+    <a href="/liens/" class="nav-article-link">Liens</a>
+    <a href="/apropos/" class="nav-article-link">À propos</a>
+    <a href="/index.html" class="nav-article-link">Accueil →</a>
+  </div>
+
+</div>
+</body>
+</html>
