@@ -56,3 +56,11 @@ En attente de Gil :
 
 Vérifié et exact, à garder tel quel : Otto Lilienthal (l. 364), planeur à
 partir de 1891, mort le 9 août 1896 des suites d'une chute.
+
+### `recettes/` — section Recettes (cuisine zen macrobiotique), retirée le 13 septembre 2026
+
+Accueil `/recettes/` et sous-section `zen/` : gomasio, kinpira, nishime,
+riz brun, soupe miso. Mise en ligne par erreur en mai 2026 (au sitemap, mais
+sans aucun lien depuis le reste du site), puis ramenée ici parce qu'elle
+n'est pas prête. Pour la publier : `git mv brouillons/recettes alignement.com/recettes`,
+puis remettre ses sept entrées dans `sitemap.xml`.
