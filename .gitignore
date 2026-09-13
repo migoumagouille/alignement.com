@@ -3,7 +3,3 @@ coffre/
 
 # Configuration locale de Claude Code (permissions, worktrees)
 .claude/
-
-# Maquette de furler.ca servie sous /test/ — entièrement régénérée
-# par scripts/apercu-furler.py à partir de furler.ca/
-furler.ca-test/
